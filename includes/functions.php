@@ -93,10 +93,10 @@ function renderField($module,$field,$process,$type,$category,$data,$req,$min,$ma
 			// label text
 			switch($field) {
 				case 'status':
-					echo renderLang($GLOBALS{'lang_status'});
+					echo renderLang($GLOBALS['lang_status']);
 					break;
 				default:
-					echo renderLang($GLOBALS{$module.'_'.$field});
+					echo renderLang($GLOBALS[$module.'_'.$field]);
 					break;
 			}
 	
@@ -135,7 +135,7 @@ function renderField($module,$field,$process,$type,$category,$data,$req,$min,$ma
 						echo $err ? ' is-invalid' : '';
 						echo '"';
 					
-						echo ' id="'.$field.'" name="'.$field.'" placeholder="'.renderLang($GLOBALS{$module.'_'.$field.'_placeholder'}).'"';
+						echo ' id="'.$field.'" name="'.$field.'" placeholder="'.renderLang($GLOBALS[$module.'_'.$field.'_placeholder']).'"';
 						echo isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val']) ? ' value="'.$_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'].'"' : '';
 						echo $req ? ' required' : '';
 					echo '>';
@@ -350,7 +350,7 @@ function renderSidebarLink($folder,$module) {
 				echo '"';
 				echo '>';
 				echo '<i class="nav-icon '.$module_icon.'"></i>';
-				echo '<p>'.renderLang($GLOBALS{str_replace('-','_',$folder).'_title'}).'</p>';
+				echo '<p>'.renderLang($GLOBALS[str_replace('-','_',$folder).'_title']).'</p>';
 			echo '</a>';
 		echo '</li>';
 
