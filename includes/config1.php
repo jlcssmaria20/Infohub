@@ -20,12 +20,13 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 
 // DATABASE CONNECTION
 
-
+//local setup
 $server = 'localhost';
 $username = 'root'; 
 $password = '';
 $db = 'dxinfo_db';
 
+//live setup
 // $server = 'localhost';
 // $username = 'infohubt_user'; 
 // $password = 'HK3VPE{uB4BT';
