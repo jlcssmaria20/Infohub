@@ -1,0 +1,12 @@
+li.document-and-links {
+    border-radius: 5px;
+    border: solid;
+    padding: 5px;
+    margin: 8px 0;
+    width: 743px;
+    color: #000;
+}
+
+li.document-and-links:hover {
+   color: #cc112b!important
+}

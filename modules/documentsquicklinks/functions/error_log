@@ -1,0 +1,192 @@
+[01-Mar-2022 00:47:02 America/Chicago] PHP Fatal error:  Can't use function return value in write context in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/edit.php on line 55
+[01-Mar-2022 01:06:13 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:18 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:21 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:21 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:21 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:24 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:25 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:26 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:06:26 America/Chicago] PHP Warning:  POST Content-Length of 15216153 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:09:53 America/Chicago] PHP Warning:  POST Content-Length of 13854855 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:10:15 America/Chicago] PHP Warning:  POST Content-Length of 13854855 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:11:28 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:05 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:09 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:10 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:10 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:12 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:14 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:14 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:17 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:17 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:17 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:18 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:18 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:18 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:12:18 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:14:25 America/Chicago] PHP Warning:  POST Content-Length of 13855997 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:14:28 America/Chicago] PHP Warning:  POST Content-Length of 13855997 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:14:32 America/Chicago] PHP Warning:  POST Content-Length of 13855997 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:15:37 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:15:41 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:15:44 America/Chicago] PHP Warning:  POST Content-Length of 13855996 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:16:31 America/Chicago] PHP Warning:  POST Content-Length of 13855998 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 01:17:46 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:17:46 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:17:52 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:17:52 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:18:21 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:18:21 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:19:48 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:19:48 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:20:06 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:20:06 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:20:53 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:20:53 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:21:03 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:21:03 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:21:36 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:21:36 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[01-Mar-2022 01:21:44 America/Chicago] PHP Warning:  POST Content-Length of 13854978 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[01-Mar-2022 15:21:44 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 21:58:31 America/Chicago] PHP Warning:  POST Content-Length of 10846876 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 10:58:31 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 21:59:22 America/Chicago] PHP Warning:  POST Content-Length of 10846876 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 10:59:22 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 22:00:14 America/Chicago] PHP Warning:  POST Content-Length of 10846876 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 11:00:14 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 22:20:26 America/Chicago] PHP Warning:  POST Content-Length of 10846899 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 11:20:26 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 23:07:54 America/Chicago] PHP Warning:  POST Content-Length of 10846896 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 12:07:54 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[12-May-2022 23:11:40 America/Chicago] PHP Warning:  POST Content-Length of 10846896 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 12:11:40 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 04:54:22 America/Chicago] PHP Warning:  POST Content-Length of 10846873 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 17:54:22 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 04:57:17 America/Chicago] PHP Warning:  POST Content-Length of 10846873 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 17:57:17 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 05:12:10 America/Chicago] PHP Warning:  POST Content-Length of 9393482 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 18:12:10 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 05:19:30 America/Chicago] PHP Warning:  POST Content-Length of 9393482 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 18:19:30 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 05:25:15 America/Chicago] PHP Warning:  POST Content-Length of 9393482 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 18:25:15 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 05:26:37 America/Chicago] PHP Warning:  POST Content-Length of 9393482 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 18:26:37 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[13-May-2022 05:29:54 America/Chicago] PHP Warning:  POST Content-Length of 9393482 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[13-May-2022 18:29:54 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[22-May-2022 22:28:06 America/Chicago] PHP Warning:  POST Content-Length of 8878779 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[22-May-2022 22:30:12 America/Chicago] PHP Warning:  POST Content-Length of 8878779 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[06-Jun-2022 20:41:08 America/Chicago] PHP Warning:  POST Content-Length of 12229030 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[07-Jun-2022 09:41:08 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[27-Jun-2022 00:36:19 America/Chicago] PHP Warning:  POST Content-Length of 13316540 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[27-Jun-2022 13:36:19 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[27-Jun-2022 20:33:48 America/Chicago] PHP Warning:  POST Content-Length of 11487574 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[28-Jun-2022 09:33:48 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28
+[27-Jun-2022 20:39:00 America/Chicago] PHP Warning:  POST Content-Length of 11487574 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[28-Jun-2022 09:39:00 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'docu_name' cannot be null' in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php:28
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/documentsquicklinks/functions/add.php on line 28

@@ -1,0 +1,23 @@
+[02-Feb-2022 04:16:43 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date_set' in 'field list'' in /home/infohubtcap/public_html/modules/announcements/functions/edit.php:33
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/announcements/functions/edit.php(33): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 33
+[02-Feb-2022 04:17:20 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'images' in 'field list'' in /home/infohubtcap/public_html/modules/announcements/functions/edit.php:33
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/announcements/functions/edit.php(33): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 33
+[24-Feb-2022 02:25:34 America/Chicago] PHP Warning:  POST Content-Length of 14687644 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[24-Feb-2022 16:25:34 Asia/Manila] PHP Warning:  Invalid argument supplied for foreach() in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 22
+[24-Feb-2022 16:25:34 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/announcements/functions/edit.php:22) in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 60
+[24-Feb-2022 02:25:48 America/Chicago] PHP Warning:  POST Content-Length of 14687644 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[24-Feb-2022 16:25:48 Asia/Manila] PHP Warning:  Invalid argument supplied for foreach() in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 22
+[24-Feb-2022 16:25:48 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/announcements/functions/edit.php:22) in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 60
+[24-Feb-2022 02:26:53 America/Chicago] PHP Warning:  POST Content-Length of 14687643 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[24-Feb-2022 16:26:53 Asia/Manila] PHP Warning:  Invalid argument supplied for foreach() in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 22
+[24-Feb-2022 16:26:53 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/announcements/functions/edit.php:22) in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 60
+[24-Feb-2022 02:38:26 America/Chicago] PHP Warning:  POST Content-Length of 14687643 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+[24-Feb-2022 16:38:26 Asia/Manila] PHP Warning:  Invalid argument supplied for foreach() in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 22
+[24-Feb-2022 16:38:26 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/announcements/functions/edit.php:22) in /home/infohubtcap/public_html/modules/announcements/functions/edit.php on line 60
+[06-Mar-2022 21:28:49 America/Chicago] PHP Warning:  POST Content-Length of 14687387 bytes exceeds the limit of 8388608 bytes in Unknown on line 0

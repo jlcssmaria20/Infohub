@@ -1,0 +1,26 @@
+img {
+    width: 216px;
+}
+.user-list-item li {
+    padding: 10px 2px;
+    float:left;
+}
+select#multiSelectSearch {
+    border-radius: 5px;
+    border: solid 1.4px;
+    width: 191px;
+    padding: 5px 12px;
+}
+section.main-area.col-s-9.d-column.mb-4 {
+    margin: 75px 0 0;
+}
+ul.user-list-item {
+    overflow: hidden;
+    padding: 11px 0;
+}
+li.list-inline-item {
+    width: 221px;
+}
+ul {
+    list-style-type: none;
+}

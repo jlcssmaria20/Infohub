@@ -1,0 +1,53 @@
+[17-Feb-2022 08:55:36 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[17-Feb-2022 09:10:10 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[17-Feb-2022 09:12:13 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[24-Feb-2022 15:24:27 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 09:05:39 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 15:35:43 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 15:36:03 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 15:36:15 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 15:44:55 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[01-Mar-2022 15:45:07 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.teams' doesn't exist' in /home/infohubtcap/public_html/modules/users/pages/profile.php:45
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/users/pages/profile.php(45): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/users/pages/profile.php on line 45
+[03-Mar-2022 01:41:01 America/Chicago] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/infohubtcap/public_html/modules/users/pages/edit.php on line 51
+[03-Mar-2022 01:41:22 America/Chicago] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/infohubtcap/public_html/modules/users/pages/edit.php on line 46
+[03-Mar-2022 01:41:25 America/Chicago] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home/infohubtcap/public_html/modules/users/pages/edit.php on line 46

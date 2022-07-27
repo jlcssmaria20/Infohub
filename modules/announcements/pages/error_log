@@ -1,0 +1,15 @@
+[01-Feb-2022 12:13:09 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/announcements/pages/add.php on line 69
+[02-Feb-2022 04:33:35 Asia/Manila] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/infohubtcap/public_html/includes/functions.php on line 545
+[02-Feb-2022 04:33:35 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/includes/functions.php:545) in /home/infohubtcap/public_html/modules/announcements/pages/index.php on line 229
+[21-Mar-2022 11:26:47 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.pagination_set_active' doesn't exist' in /home/infohubtcap/public_html/modules/announcements/pages/index.php:9
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/announcements/pages/index.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/announcements/pages/index.php on line 9
+[21-Mar-2022 11:26:50 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'infohubt_db.pagination_set_active' doesn't exist' in /home/infohubtcap/public_html/modules/announcements/pages/index.php:9
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/announcements/pages/index.php(9): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/announcements/pages/index.php on line 9
+[30-May-2022 18:02:59 Asia/Manila] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/infohubtcap/public_html/includes/functions.php on line 539
+[30-May-2022 18:02:59 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/includes/functions.php:539) in /home/infohubtcap/public_html/modules/announcements/pages/index.php on line 245

@@ -1,0 +1,23 @@
+section.main-area.col-s-9.d-column.mb-4 {
+    margin: 77px 0 0;
+}
+li.list-dl-item {
+    float: left;
+    width: 100%;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 5px;
+    border: solid 1px #727272;
+    margin: 4px 0;
+    color: #111;
+}
+
+ul.list-inline.mb-4 {
+    overflow: hidden;
+  }
+
+.list-inline li:hover {
+    background: #727272;
+    color: #fff;
+}
+  

@@ -1,0 +1,7 @@
+[28-Jan-2022 02:51:24 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/add.php on line 67
+[01-Feb-2022 12:29:08 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/index.php on line 61
+[01-Feb-2022 12:31:10 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/index.php on line 61
+[01-Feb-2022 12:31:12 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/index.php on line 61
+[01-Feb-2022 12:31:15 America/Chicago] PHP Parse error:  syntax error, unexpected '?' in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/index.php on line 61
+[02-Feb-2022 04:33:37 Asia/Manila] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/infohubtcap/public_html/includes/functions.php on line 545
+[02-Feb-2022 04:33:37 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/includes/functions.php:545) in /home/infohubtcap/public_html/modules/documentsquicklinks/pages/index.php on line 220

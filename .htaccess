@@ -1,0 +1,181 @@
+ErrorDocument 404 /404.php
+Options -Indexes
+
+RewriteEngine on
+
+# TEST -----------------------------------------------------------------------------------------------------------------------------------
+#RewriteRule ^test              	                                        test.php [NC,L]
+RewriteRule ^test              	                                         test/index.php [NC,L]
+RewriteRule ^filter-search              	                             test/fetch.php [NC,L]
+
+# LOGIN -----------------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin-login                                                index.php
+RewriteRule ^user-admin-login                                           dx-index.php
+RewriteRule ^tcap-login-verification									modules/login/functions/tcapverifylog.php [NC,L]
+RewriteRule ^login														modules/login/functions/verifylog.php [NC,L]
+RewriteRule ^dx-login												    modules/login/functions/dx-verifylog.php [NC,L]
+RewriteRule ^change-password											modules/login/functions/changepass.php [NC,L]
+RewriteRule ^dx-signout													modules/login/functions/dx-logout.php [NC,L]
+RewriteRule ^logout														modules/login/functions/logout.php [NC,L]
+RewriteRule ^downloads												    modules/login/functions/downloads.php [NC,L]
+
+# FORGOT PASSWORD -----------------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^forgot-password									        modules/login/forgotpassword.php [NC,L]
+RewriteRule ^forgot-function									        modules/login/functions/forgotfunc.php [NC,L]
+
+# GENERAL ---------------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^dashboard													modules/dashboard/pages/index.php [NC,L]
+RewriteRule ^user-dashboard											    modules/dashboard/pages/dx-index.php [NC,L]
+RewriteRule ^newsfeed													modules/newsfeed/pages/index.php [NC,L]
+RewriteRule ^system-log													modules/system-log/pages/index.php [NC,L]
+
+# USERS ------------------------------------------------------------------------------------------------
+RewriteRule ^users														modules/users/pages/index.php [NC,L]
+RewriteRule ^user/([a-zA-Z0-9_]+)										modules/users/pages/view.php?id=$1 [QSA,L]
+RewriteRule ^profile/([a-zA-Z0-9_]+)									modules/users/pages/profile.php?id=$1 [QSA,L]
+RewriteRule ^add-user													modules/users/pages/add.php [NC,L]
+RewriteRule ^submit-add-user											modules/users/functions/add.php [NC,L]
+RewriteRule ^edit-user/([a-z]+)/([a-zA-Z0-9_]+)							modules/users/pages/edit.php?src=$1&id=$2 [NC,L]
+RewriteRule ^submit-edit-user											modules/users/functions/edit.php [NC,L]
+RewriteRule ^submit-dx-edit-user										modules/users/functions/dx-edit.php [NC,L]
+RewriteRule ^delete-user												modules/users/functions/delete.php [NC,L]
+RewriteRule ^restore-user/([a-z]+)/([a-zA-Z0-9_]+)						modules/users/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^user-reset-password/([a-zA-Z0-9_]+)						modules/users/functions/reset-password.php?id=$1 [NC,L]
+RewriteRule ^user-update-status/([a-zA-Z0-9_]+)/([0-1]+)				modules/users/functions/update-status.php?id=$1&status=$2 [NC,L]
+RewriteRule ^update-user-permission/([0-1]+)/([a-z-]+)/([a-zA-Z0-9_]+)	modules/users/functions/update-permission.php?mode=$1&code=$2&id=$3 [NC,L]
+RewriteRule ^check-user-via-employee-id									modules/users/functions/check-user.php [QSA,L]
+
+
+# ROLES ------------------------------------------------------------------------------------------------
+RewriteRule ^roles														modules/roles/pages/index.php [NC,L]
+RewriteRule ^role/([a-zA-Z0-9_]+)										modules/roles/pages/view.php?id=$1 [NC,L]
+RewriteRule ^add-role													modules/roles/pages/add.php [NC,L]
+RewriteRule ^submit-add-role											modules/roles/functions/add.php [NC,L]
+RewriteRule ^edit-role/([a-z]+)/([a-zA-Z0-9_]+)							modules/roles/pages/edit.php?src=$1&id=$2 [NC,L]
+RewriteRule ^submit-edit-role											modules/roles/functions/edit.php [NC,L]
+RewriteRule ^delete-role												modules/roles/functions/delete.php [NC,L]
+RewriteRule ^restore-role/([a-z]+)/([a-zA-Z0-9_]+)						modules/roles/functions/restore.php?src=$1&id=$2 [NC,L]
+
+# SETTINGS ------------------------------------------------------------------------------------------------
+RewriteRule ^settings													modules/settings/pages/index.php [NC,L]
+RewriteRule ^change-language/([0-9]+)									modules/settings/functions/change-language.php?id=$1 [QSA,L]
+RewriteRule ^update-general												modules/settings/functions/update-general.php [NC,L]
+RewriteRule ^update-password											modules/settings/functions/change-password.php [NC,L]
+
+# SYSTEM ------------------------------------------------------------------------------------------------
+RewriteRule ^reset-tickets												includes/functions/reset-tickets.php [NC,L]
+RewriteRule ^reset-users												includes/functions/reset-users.php [NC,L]
+RewriteRule ^reset-system												includes/functions/reset-system.php [NC,L]
+RewriteRule ^set-pagination     									    includes/pagination-func-set.php [NC,L]
+##############################################################################################################
+
+# Add-documents-quick-link ------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^delete-documents/([a-z]+)/([a-zA-Z0-9_]+)                      modules/documentsquicklinks/pages/delete-doc.php?src=$1&id=$2 [NC,L]
+RewriteRule ^add-more-documents-quick-link				                    modules/documentsquicklinks/functions/add-more.php
+RewriteRule ^add-documents-quick-link				                        modules/documentsquicklinks/functions/add.php
+RewriteRule ^dx-add				                                            modules/documentsquicklinks/functions/dx-add.php
+RewriteRule ^submit-edit-documentsquicklink									modules/documentsquicklinks/functions/edit.php [NC,L]
+RewriteRule ^delete-documentsquicklink										modules/documentsquicklinks/functions/delete.php [NC,L]
+RewriteRule ^restore-documentsquicklink/([a-z]+)/([a-zA-Z0-9_]+)			modules/documentsquicklinks/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^documentsquicklink/([a-zA-Z0-9_]+)								modules/documentsquicklinks/pages/view.php?id=$1 [NC,L]
+RewriteRule ^add-documents-and-quick-link								    modules/documentsquicklinks/pages/add.php [NC,L]
+RewriteRule ^add-template								                    modules/documentsquicklinks/pages/add-template.php [NC,L]
+RewriteRule ^documents-quick-link								            modules/documentsquicklinks/pages/index.php [NC,L]
+RewriteRule ^edit-documentsquicklink/([a-z]+)/([a-zA-Z0-9_]+)				modules/documentsquicklinks/pages/edit.php?src=$1&id=$2 [NC,L]
+RewriteRule ^documentsquicklinks				                            modules/documentsquicklinks/pages/index.php
+
+# HOME PAGE FOR USERVIEW ------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^add-func-teamviews		                                modules/teamviews/functions/add.php
+RewriteRule ^submit-edit-teamview									modules/teamviews/functions/edit.php [NC,L]
+RewriteRule ^delete-teamview									modules/teamviews/functions/delete.php [NC,L]
+RewriteRule ^restore-teamview/([a-z]+)/([a-zA-Z0-9_]+)				modules/teamviews/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^teamviews/([a-zA-Z0-9_]+)								modules/teamviews/pages/view.php?id=$1 [NC,L]
+RewriteRule ^add-teamviews							                modules/teamviews/pages/add.php [NC,L]
+RewriteRule ^teamviews								                modules/teamviews/pages/index.php [NC,L]
+RewriteRule ^edit-teamview/([a-z]+)/([a-zA-Z0-9_]+)					modules/teamviews/pages/edit.php?src=$1&id=$2 [NC,L]
+
+
+# ANNOUNCEMENT ------------------------------------------------------------------------------------------------------------------------
+#RewriteRule ^dx-update-count-img                                        modules/announcements/functions/dx-update-count-img.php
+RewriteRule ^add-func-announcement			                            modules/announcements/functions/add.php
+RewriteRule ^submit-edit-announcement									modules/announcements/functions/edit.php [NC,L]
+RewriteRule ^delete-announcement										modules/announcements/functions/delete.php [NC,L]
+RewriteRule ^restore-announcement/([a-z]+)/([a-zA-Z0-9_]+)				modules/announcements/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^announcement/([a-zA-Z0-9_]+)								modules/announcements/pages/view.php?id=$1 [NC,L]
+RewriteRule ^add-announce_ments							                modules/announcements/pages/add.php [NC,L]
+RewriteRule ^announcements								                modules/announcements/pages/index.php [NC,L]
+RewriteRule ^edit-announcement/([a-z]+)/([a-zA-Z0-9_]+)					modules/announcements/pages/edit.php?src=$1&id=$2 [NC,L]
+
+
+# WEBINAR AND EVENT ------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^dx-update-count-img-sec                                        modules/webinarandevents/functions/dx-update-count-img-sec.php
+RewriteRule ^dx-update-count-img                                            modules/webinarandevents/functions/dx-update-count-img.php
+RewriteRule ^add-func-webinar-and-events				                    modules/webinarandevents/functions/add.php
+RewriteRule ^submit-edit-webinarandevent									modules/webinarandevents/functions/edit.php [NC,L]
+RewriteRule ^delete-webinarandevent											modules/webinarandevents/functions/delete.php [NC,L]
+RewriteRule ^restore-webinarandevent/([a-z]+)/([a-zA-Z0-9_]+)				modules/webinarandevents/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^webinarandevent/([a-zA-Z0-9_]+)								modules/webinarandevents/pages/view.php?id=$1 [NC,L]
+RewriteRule ^add-webinar-and-events									        modules/webinarandevents/pages/add.php [NC,L]
+RewriteRule ^webinar-and-events									            modules/webinarandevents/pages/index.php [NC,L]
+RewriteRule ^edit-webinarandevent/([a-z]+)/([a-zA-Z0-9_]+)					modules/webinarandevents/pages/edit.php?src=$1&id=$2 [NC,L]
+RewriteRule ^delete-update			                                        modules/webinarandevents/functions/deleteUpdate.php
+
+# GENERAL VIEW ----------------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^add-general									                modules/generals/functions/add.php [NC,L]
+RewriteRule ^add-pagination									                modules/generals/functions/add-pagination.php [NC,L]
+RewriteRule ^edit-general					                                modules/generals/pages/edit.php [NC,L]
+
+RewriteRule ^submit-edit-team									            modules/generals/functions/edit.php [NC,L]
+RewriteRule ^delete-general/([a-zA-Z0-9_]+)									modules/generals/functions/delete.php?id=$1 [NC,L]
+RewriteRule ^restore-webinarandevent/([a-z]+)/([a-zA-Z0-9_]+)				modules/generals/functions/restore.php?src=$1&id=$2 [NC,L]
+RewriteRule ^webinarandevent/([a-zA-Z0-9_]+)								modules/generals/pages/view.php?id=$1 [NC,L]
+RewriteRule ^general            								            modules/generals/pages/index.php [NC,L]
+
+RewriteRule ^delete-update			                                        modules/generals/functions/deleteUpdate.php
+
+
+# Documents and quick links ---------------
+RewriteRule ^dl-template/([a-zA-Z0-9_]+)                                                               modules/documentsquicklinks/pages/template/dl-template.php?id=$1 [NC,L]
+RewriteRule ^htmldl-template                                                                           modules/documentsquicklinks/pages/template/htmldl-template.php [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template20/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template20.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template19/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template19.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template18/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template18.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template17/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template17.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template16/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template16.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template15/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template15.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template14/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template14.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template13/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template13.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template12/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template12.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template11/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template11.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template10/([a-zA-Z0-9_]+)                                   modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template10.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template9/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template9.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template8/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template8.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template7/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template7.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template6/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template6.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template5/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template5.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template4/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template4.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template3/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template3.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template2/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template2.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links-template1/([a-zA-Z0-9_]+)                                    modules/documentsquicklinks/pages/template/dx-documents-and-quick-links-template1.php?id=$1 [NC,L]
+RewriteRule ^dx-documents-and-quick-links								                               modules/documentsquicklinks/pages/dx-documents-and-quick-links.php [NC,L]
+
+# Documents and quick links --------------------------------------------
+#RewriteRule ^announcement/([a-zA-Z0-9_]+)								modules/announcements/pages/view.php?id=$1 [NC,L]
+
+RewriteRule ^$                                                              modules/usersview/dx-home-page.php
+RewriteRule ^dx-webinar-and-events                                          modules/usersview/dx-webinar-and-events.php
+#RewriteRule ^dx-documents-and-quick-links                                   modules/usersview/dx-documents-and-quick-links.php
+RewriteRule ^dx-modal-view-announcement                                     modules/usersview/dx-modal-view-announcement.php
+RewriteRule ^dx-announcements                                               modules/usersview/dx-announcements.php
+#  RewriteRule ^dx-team                                                      modules/usersview/dx-team.php
+
+
+
+RewriteRule ^dx-view-profile/([a-zA-Z0-9_]+)								 modules/users/pages/dx-view.php?id=$1 [NC,L]
+RewriteRule ^dx-team                                                         modules/users/pages/dx-index.php
+
+RewriteRule ^live_search                                                     search/live_search.php
+#RewriteRule ^search                                                          search/index.php
+
+
+

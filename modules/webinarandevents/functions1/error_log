@@ -1,0 +1,13 @@
+[02-Mar-2022 17:56:34 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null' in /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php:64
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php(64): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php on line 64
+[02-Mar-2022 17:56:58 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user_id' cannot be null' in /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php:64
+Stack trace:
+#0 /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php(64): PDOStatement->execute()
+#1 {main}
+  thrown in /home/infohubtcap/public_html/modules/webinarandevents/functions/add.php on line 64
+[02-Mar-2022 04:00:13 America/Chicago] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/infohubtcap/public_html/modules/webinarandevents/functions/dx-update-count-img-sec.php:1) in /home/infohubtcap/public_html/includes/config.php on line 3
+[02-Mar-2022 18:00:13 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/webinarandevents/functions/dx-update-count-img-sec.php:1) in /home/infohubtcap/public_html/modules/webinarandevents/functions/dx-update-count-img-sec.php on line 74
+[02-Mar-2022 20:33:08 America/Chicago] PHP Warning:  POST Content-Length of 14754389 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
