@@ -11,7 +11,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 	$cookie_login_value = $spooder_creds[0];
 	$cookie_login_password = $spooder_creds[1];
 }
-include "test.php";
+//include "test.php";
 ?>
 <!DOCTYPE html>
 <html>
