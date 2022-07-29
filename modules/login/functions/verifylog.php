@@ -38,7 +38,7 @@ if(isset($_POST['submit-login'])) {
 		// check if password is valid from user data
 		if($upass != '' && $user_upass != '') {
 			
-			if($upass == decryptStr($user_upass)) {
+			if(decryptStr($user_upass, $upass)) {
 
 				// credential is valid
 				$valid_credentials = 1;
@@ -46,7 +46,7 @@ if(isset($_POST['submit-login'])) {
 			}
 
 		}
-		
+
 		// check account status
 		switch($status) {
 			

@@ -43,7 +43,6 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 			
 			<!-- CARD BODY -->
 			<div class="card-body login-card-body">
-				
 				<p class="login-box-msg"><?php echo renderLang($login_message_1); ?></p>		
 				<form action="/login" method="post">
 					<div class="input-group mb-3">

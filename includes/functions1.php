@@ -541,28 +541,41 @@ function checkPermission($permission) {
 	}
 	return $r;
 }
-// encrypt string
+$key = $GLOBALS['crypt_key'];
+
 function encryptStr($str) {
-	$key = $GLOBALS['crypt_key'];
-	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-	$iv = openssl_random_pseudo_bytes($ivlen);
-	$ciphertext_raw = openssl_encrypt($str,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
-	$hmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
-	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
-	return $ciphertext;
+	global $key;
+
+	return password_hash($str ."-" . $key, PASSWORD_DEFAULT);
 }
-// decrypt string
-function decryptStr($str) {
-	$key = $GLOBALS['crypt_key'];
-	$c = base64_decode($str);
-	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-	$iv = substr($c,0,$ivlen);
-	$hmac = substr($c,$ivlen,$sha2len=32);
-	$ciphertext_raw = substr($c,$ivlen+$sha2len);
-	$original_plaintext = openssl_decrypt($ciphertext_raw,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
-	$calcmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
-	if (hash_equals($hmac,$calcmac)) { return $original_plaintext; }
+
+function decryptStr($hash, $value = "") {
+	global $key;
+
+	return password_verify($value . "-" . $key, $hash);
 }
+// // encrypt string
+// function encryptStr($str) {
+// 	$key = $GLOBALS['crypt_key'];
+// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+// 	$iv = openssl_random_pseudo_bytes($ivlen);
+// 	$ciphertext_raw = openssl_encrypt($str,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
+// 	$hmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
+// 	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
+// 	return $ciphertext;
+// }
+// // decrypt string
+// function decryptStr($str) {
+// 	$key = $GLOBALS['crypt_key'];
+// 	$c = base64_decode($str);
+// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+// 	$iv = substr($c,0,$ivlen);
+// 	$hmac = substr($c,$ivlen,$sha2len=32);
+// 	$ciphertext_raw = substr($c,$ivlen+$sha2len);
+// 	$original_plaintext = openssl_decrypt($ciphertext_raw,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
+// 	$calcmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
+// 	if (hash_equals($hmac,$calcmac)) { return $original_plaintext; }
+// }
 // encrypt ID
 function encryptID($id,$module = '') {
 	return processIDEncryption($id,'encrypt',$module);
