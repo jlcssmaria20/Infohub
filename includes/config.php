@@ -19,18 +19,9 @@ $crypt_key = ${$a.$b.$c};
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 // DATABASE CONNECTION
-
-//local setup
-$server = 'localhost';
-$username = 'root'; 
-$password = '';
-$db = 'dxinfo_db';
-
-//live setup
-// $server = 'localhost';
-// $username = 'infohubt_user'; 
-// $password = 'HK3VPE{uB4BT';
-// $db = 'infohubt_db';
+// DATABASE CONNECTION
+include "env.php";
+include "env-" . ENV . ".php";
 
 $conn = 'mysql:host='.$server.';dbname='.$db.';charset=utf8';
 try {

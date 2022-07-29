@@ -19,18 +19,8 @@ $crypt_key = ${$a.$b.$c};
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 // DATABASE CONNECTION
-
-//local setup
-$server = 'localhost';
-$username = 'root'; 
-$password = '';
-$db = 'dxinfo_db';
-
-//live setup
-// $server = 'localhost';
-// $username = 'infohubt_user'; 
-// $password = 'HK3VPE{uB4BT';
-// $db = 'infohubt_db';
+include "env.php";
+include "env-" . ENV . ".php";
 
 //$server = 'localhost'; $username = 'raiansei_corporate_user'; $password = 'IAmYourFather!'; $db = 'raiansei_corporate_db';
 $conn = 'mysql:host='.$server.';dbname='.$db.';charset=utf8';
@@ -72,7 +62,7 @@ $allowed_upload_file_type_arr = array(
 );
 
 
-// // encrypt string
+// encrypt string
 // function encryptStr($str) {
 // 	$key = $GLOBALS['crypt_key'];
 // 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
