@@ -546,13 +546,13 @@ $key = $GLOBALS['crypt_key'];
 function encryptStr($str) {
 	global $key;
 
-	return password_hash($str ."-" . $key, PASSWORD_DEFAULT);
+	return password_hash($str, PASSWORD_DEFAULT);
 }
 
 function decryptStr($hash, $value = "") {
 	global $key;
 
-	return password_verify($value . "-" . $key, $hash);
+	return password_verify($value, $hash);
 }
 // // encrypt string
 // function encryptStr($str) {
