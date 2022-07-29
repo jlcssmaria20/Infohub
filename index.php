@@ -1,6 +1,5 @@
 <?php
 // INCLUDES
-session_destroy();
 $module = 'login';
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 // check if user credentials are remembered
