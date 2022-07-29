@@ -57,8 +57,8 @@ $allowed_upload_file_type_arr = array(
 	'rtf',
 	'mp4',
 	'mov',
-	'wmv',
-	'mp3'
+	'mp3',
+	'wmv'
 );
 
 
