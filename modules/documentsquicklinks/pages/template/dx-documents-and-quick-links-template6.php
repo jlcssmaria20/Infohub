@@ -10,6 +10,7 @@ unset($_SESSION['dx-announcements']);
 unset($_SESSION['dx-home-page']);
 $_SESSION['links'] = 'template1';
 $_SESSION['links-no'] = '6';
+$id = decryptID($_GET['id']);
 $sql = $pdo->prepare("SELECT * FROM documentsquicklinks  WHERE id = ".$id."");
 $sql->execute();
 $data = $sql->fetch(PDO::FETCH_ASSOC);
