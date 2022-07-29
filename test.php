@@ -2,7 +2,7 @@
 $sql = $GLOBALS['pdo']->prepare("SELECT * FROM users");
 $sql->execute();
 while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-    $newPassword = encryptStr($data['employeeid']);
+    $newPassword = password_hash($data['employeeid'], PASSWORD_DEFAULT);
     
     $sql_update = "UPDATE users SET 
     upass = :upass 

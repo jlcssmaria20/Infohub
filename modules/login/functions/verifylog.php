@@ -36,14 +36,10 @@ if(isset($_POST['submit-login'])) {
 		$user_permissions = explode(',',$_SESSION['sys_data']['permissions']);
 		
 		// check if password is valid from user data
-		if($upass != '' && $user_upass != '') {
-			
-			if(decryptStr($user_upass, $upass)) {
+		if(password_verify($upass, $user_upass)) {
 
-				// credential is valid
-				$valid_credentials = 1;
-
-			}
+			// credential is valid
+			$valid_credentials = 1;
 
 		}
 
@@ -122,7 +118,7 @@ if(isset($_POST['submit-login'])) {
 						
 						// get default photo
 						$_SESSION['sys_data']['photo'] = $photo;
-						renascitur();
+						//renascitur();
 
 						// redirect to dashboard
 						header('location: /dashboard');
