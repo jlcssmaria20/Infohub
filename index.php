@@ -27,6 +27,15 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 	<link rel="stylesheet" href="/modules/<?php echo $module; ?>/assets/css/style.css">
 	
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DXDG9F8NFW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DXDG9F8NFW');
+</script>
 
 <body class="hold-transition login-page">
 	
