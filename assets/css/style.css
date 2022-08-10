@@ -110,7 +110,6 @@ img.modal-img {
   background-color: #5c000c;
   border-color: #5c000c;
 }
-
 @media (min-width: 1200px) {
 .container {
     max-width: 1300px !important;
@@ -253,6 +252,9 @@ img.modal-img {
     .announcement-row,
     .webinar-row {
         overflow: hidden;
+        display: flex;
+        justify-content: end;
+        
     }
 
     .aside {

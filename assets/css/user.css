@@ -15,6 +15,7 @@ select#multiSelectSearch {
 }
 section.main-area.col-s-9.d-column.mb-4 {
     margin: 70px 0 0;
+    min-height: 100vh;
 }
 ul.user-list-item {
     overflow: hidden;

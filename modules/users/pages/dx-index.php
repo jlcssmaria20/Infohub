@@ -39,7 +39,9 @@ $data = $sql->fetch(PDO::FETCH_ASSOC);
                 <span style="color: var(--black);">Meet the Team</span>
             </h2>
             <div class="announcement-row">
-                <select id="multiSelectSearch"  title="All">
+                
+                <input type="text" placeholder="Search" class="form-control-s rounded mr-2 px-2">
+                <select id="multiSelectSearch"  title="All" class="form-control-s rounded">
                     <option value=""><a href="window.location.reload()">All</option>
                     <?php
                     $sql = $pdo->prepare("SELECT DISTINCT `team` FROM search_tbl");
