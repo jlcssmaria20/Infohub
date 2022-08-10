@@ -4,32 +4,32 @@ $module = 'users'; $prefix = 'user'; $process = 'view';
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config1.php');
 require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
 
-		$fields = array(
-			`employeeid`, 
-			`date_start`, 
-			`date_edit`, 
-			`firstname`, 
-			`middlename`, 
-			`lastname`, 
-			`email`, 
-			`mobile`, 
-			`photo`, 
-			`status`, 
-			`skills`, 
-			`personal_details`, 
-			`team`, 
-			`position`
-		);
-		// get id
-		$id = decryptID($_GET['id']);
-		
-		$sql = $pdo->prepare("SELECT * FROM ".$module." WHERE id = :id LIMIT 1");
-		$sql->bindParam(":id",$id);
-		$sql->execute();
+	$fields = array(
+		`employeeid`, 
+		`date_start`, 
+		`date_edit`, 
+		`firstname`, 
+		`middlename`, 
+		`lastname`, 
+		`email`, 
+		`mobile`, 
+		`photo`, 
+		`status`, 
+		`skills`, 
+		`personal_details`, 
+		`team`, 
+		`position`
+	);
+	// get id
+	$id = decryptID($_GET['id']);
+	
+	$sql = $pdo->prepare("SELECT * FROM ".$module." WHERE id = :id LIMIT 1");
+	$sql->bindParam(":id",$id);
+	$sql->execute();
 
-		// check if ID exists
-		if($sql->rowCount()) {
-		$data = $sql->fetch(PDO::FETCH_ASSOC);
+	// check if ID exists
+	if($sql->rowCount()) {
+	$data = $sql->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,8 +52,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
         </div>
         <section class="main-area col-s-9 d-column mb-4" >
 			<div class="announcement mb-4">
-				<h2 class="mb-3">
-					<span class="text-primary">PROFESSIONAL BIO</span>
+				<h2 class="mb-3"  style="color:var(--blue);" >
+					<span>Professional Bio</span>
 				</h2>
 			</div>
 		<!-- echo '<i class="fa fa-download" id="fa" aria-hidden="true"></i>'; -->
@@ -65,25 +65,25 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
 
 			foreach($row as $key => $data) {
 				if($data['status'] != 1) {
-          echo '<div class="col-5">';
-					echo "<img src='/assets/uploadimages/".$data['photo']."' class='myImg'>";
-					echo '<a href="/dx-team" class="btn btn-primary ">Back</a>';
-		  echo '</div>';			
-		  echo '<div class="col-7">';
+					echo '<div class="">';
+						echo "<img src='/assets/uploadimages/team-images/".$data['photo']."' class='myImg'>";
 						echo '<p class="name"><b>'.$data["firstname"].' '.$data["lastname"].'</b></p>';
 						echo '<p class="details"> "'.$data["personal_details"].'" </p>';
 						echo '<div class="details">';
-							echo '<p><b>Position:</b> '.$data["position"].'</p>';
-							echo '<p><b>Current Team:</b> '.$data["team"].'</p>';
-							echo '<p><b>Technical Skill:</b><br>'.$data["skills"].'</p>';
+							echo '<p><b>Position: </b> '.$data["position"].'</p>';
+							echo '<p><b>Current Team: </b> '.$data["team"].'</p>';
+							echo '<p><b>Technical Skill: </b>'.$data["skills"].'</p>';
+
 						echo '</div>';
-					
-		  echo '</div>';
+						
+					echo '<a href="/dx-team" class="btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> 
+ Back </a>';
+					echo '</div>';
 		
 				
 				}
 		
-				}
+			}
 		?>
 		</section>
 		</div>            
@@ -96,5 +96,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
 <?php
 } else { // ID not found
 	header('location: /dx-team');
-}?>
+}
+?>
 	

@@ -37,7 +37,7 @@ $_SESSION['dx-webinar-and-events-page'] = 'dx-webinar-and-events-page';
             <section class="main-area col-s-9 d-column mb-4" >
             <div class="announcement mb-4">
                 <h2 class="mb-3">
-                    <span class="text-primary">WEBINAR & EVENTS</span>
+                    <span  style="color: var(--black);">Webinar and Events</span>
                 </h2>
                 <div class="announcement-row">
                     <ul class="list-inline mb-4">

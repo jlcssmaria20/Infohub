@@ -13,7 +13,7 @@
 				if($_SESSION['sys_data']['photo'] == '') {
 					echo '<img src="/assets/images/profile-default.png" class="img-circle elevation-2" alt="User Image">';
 				} else {
-					echo '<img src="/assets/uploadimages/'.$_SESSION['sys_data']['photo'].'" class="img-circle elevation-2" alt="User Image">';
+					echo '<img src="/assets/uploadimages/team-images/'.$_SESSION['sys_data']['photo'].'" class="img-circle elevation-2" alt="User Image">';
 				}
 				?>
 			</div>

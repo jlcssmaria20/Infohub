@@ -33,7 +33,7 @@ $_SESSION['dx-announcements'] = 'dx-announcements';
        <section class="main-area col-s-9 d-column mb-4" >
             <div class="announcement mb-4">
                 <h2 class="mb-3"> 
-                    <span class="text-primary"> IMPORTANT ANNOUNCEMENTS</span>
+                    <span style="color: var(--black);">Important Announcements</span>
                 </h2>
                 <div class="announcement-row">
                <?php
@@ -83,7 +83,7 @@ $_SESSION['dx-announcements'] = 'dx-announcements';
                 <p class="modal-name"></p>
                 <p class="modal-details"></p>
                 <div id="caption<?php echo $x ?>" ></div>
-                    <span class="close">Close</span>
+                    <span class="btn close">Close</span>
                 </div>
             </div>
            
@@ -103,7 +103,10 @@ $_SESSION['dx-announcements'] = 'dx-announcements';
             
             $("div#webinarandevent1").css("display","none")
             $("li img").on("click",function(){
-                $("#sideNav").css("z-index", "0")
+                $("#sideNav").css("z-index", "0");
+                $("body").addClass("modal-open");
+                }).on("hidden", function () {
+                $("body").removeClass("modal-open");
             });
 
 

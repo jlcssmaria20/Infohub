@@ -25,5 +25,5 @@ foreach($row as $data) {
 			echo '</li>';
 		}
 	}
-  }
+}
 ?>

@@ -29,41 +29,38 @@ $_SESSION['dx-announcements'] = 'dx-announcements';
             <div class="container-fluid p-0">
                 <h1 class="text-red">Announcements</h1>
                 <section class="webinar-section">
-                            <div class="webinar-section-content">
-                                <ul class="webinar-list-item">
-               <?php
-                    // The list of items to be displayed on screen.
-                    $x = array();
-                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY announcment_details DESC");
-                    $sql->execute();
-                    $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                    <div class="webinar-section-content">
+                        <ul class="webinar-list-item">
+                        <?php
+                            // The list of items to be displayed on screen.
+                            $x = array();
+                            $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY announcment_details DESC");
+                            $sql->execute();
+                            $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach($row as $key => $data) {
+                            foreach($row as $key => $data) {
 
-                        $x = $key +1;
+                                $x = $key +1;
 
-                        if($data['status'] != 1) {
-                        if($data['id'] != 1) {
-                            // jan
-                            echo '<li class="announcement">';
-                               echo "<img src='/assets/uploadimages/".$data['announcment_img']."' onclick='title()' class='myImg' id='myImg".$x."' >";
-                                echo '<span class="announcement mb-2" >';
-                                    echo $data['announcment_title'];
-                                echo '</span>'; 
-                            echo '</li>';
-                            echo "<div id='announcement".$x."'' style='display:none;' class='myImg' >".$data['announcment_title']."</div>";
-                        }
-                    }
-
+                                if($data['status'] != 1) {
+                                if($data['id'] != 1) {
+                                    // jan
+                                    echo '<li class="announcement">';
+                                    echo "<img src='/assets/uploadimages/".$data['announcment_img']."' onclick='title()' class='myImg' id='myImg".$x."' >";
+                                        echo '<span class="announcement mb-2" >';
+                                            echo $data['announcment_title'];
+                                        echo '</span>'; 
+                                    echo '</li>';
+                                    echo "<div id='announcement".$x."'' style='display:none;' class='myImg' >".$data['announcment_title']."</div>";
+                                }
+                            }
                         ?>
-
-                <?php
-                     }
-                ?>
-                              </ul>
-                           </div>
-                        </section>       
-            
+                        <?php
+                            }
+                        ?>
+                        </ul>
+                    </div>
+                </section>       
             </div>
         </div>
 

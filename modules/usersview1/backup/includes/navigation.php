@@ -22,9 +22,9 @@
             //announcemment
             
             if(isset($_SESSION['dx-documents-and-quick-links-page']) == 'dx-documents-and-quick-links-page') {
-                echo ' <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="/dx-documents-and-quick-links">Documents and Quick Links</a></li>';
+                echo ' <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="/dx-documents-and-quick-links">Documents & Quick Links</a></li>';
             } else {
-                echo ' <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/dx-documents-and-quick-links">Documents and Quick Links</a></li>';
+                echo ' <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/dx-documents-and-quick-links">Documents & Quick Links</a></li>';
             }
             if(isset($_SESSION['dx-team-page']) == 'dx-team-page') {
                 echo ' <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="/dx-team">The Team</a></li>';

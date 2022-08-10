@@ -26,10 +26,10 @@ unset($_SESSION['dx-home-page']);
                 <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/dx-sidebar.php');  ?>
             </div>
 
-            <section class="main-area col-s-9 d-column mb-4" >
+            <section class="main-area col-s-9 d-column mb-4">
             <div class="announcement mb-4">
                 <h2 class="mb-3">
-                    <span class="text-primary">DOCUMENTS & QUICK LINKS</span>
+                    <span  style="color: var(--black);">Documents and Quick Links</span>
                 </h2>
                     <ul class="list-inline mb-4">
                     <?php

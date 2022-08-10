@@ -57,7 +57,8 @@ $_SESSION['links-no'] = $data['id'];
                               </ul>
                            </div>
                         </section>       
-            <a href="/dx-documents-and-quick-links" class="btn btn-primary">Back</a>
+            <a href="/dx-documents-and-quick-links" class="btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> 
+ Back </a>
             </div>
         </div>
 

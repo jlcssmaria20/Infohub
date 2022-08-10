@@ -156,7 +156,7 @@ if(checkSession()) {
 
 													// FULLNAME
 													echo '<td>';
-														$photo = '/assets/uploadimages/'.$data['photo'];
+														$photo = '/assets/uploadimages/team-images/'.$data['photo'];
 														echo '<img src="'.$photo.'" alt="" class="user-photo">';
 														echo renderFullname($data);
 													echo '</td>';

@@ -40,7 +40,7 @@ $_SESSION['dx-home-page'] = 'dx-home-page';
                     if($data['status'] != 1) {
                         if($data['id'] != 1) {
                         echo '<div data-thumb="/assets/uploadimages/'.$data['images'].'">';
-                            echo "<img src='/assets/uploadimages/".$data['images']."' style='margin:0;width:100%; height:593px'>";
+                            echo "<img src='/assets/uploadimages/".$data['images']."' style='width:100%;'>";
                         echo '</div>';
                         }
                     }
@@ -66,7 +66,7 @@ $_SESSION['dx-home-page'] = 'dx-home-page';
                     ?>
                 </ul> 
             </div>
-            <a href="/dx-webinar-and-events" class="btn btn-block btn-primary">See all events</a>
+            <a href="/dx-webinar-and-events" class="btn btn-block" style="background-color:var(--blue);; color: #fff;">See all events</a>
         </section>
         
         <!-- <section class="main-area col-s-9 d-column mb-5" >
@@ -99,7 +99,7 @@ $_SESSION['dx-home-page'] = 'dx-home-page';
         </section> -->
         
         <section class="main-area col-s-9 d-column mb-5" >
-            <div class="announcement">
+            <div class="announcement mb-5">
                 <h2 class="mb-3"> 
                     <span><i class="fa fa-bullhorn"></i>&nbsp;IMPORTANT ANNOUNCEMENTS</span>
                 </h2>
@@ -128,9 +128,8 @@ $_SESSION['dx-home-page'] = 'dx-home-page';
                     ?>
                     </ul>
                 </div>
+                <a href="/dx-announcements" class="btn">See all announcements</a>
             </div>
-            <a href="/dx-announcements" class="btn btn-primary">See all announcements</a>
-            
         </section>
     </div><!-- container -->
 

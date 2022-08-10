@@ -19,11 +19,11 @@ foreach($row as $data) {
 	if($data['id'] != '1') {
 		if($data['status'] != '1') {
 			echo '<li class="list-inline-item">';
-				echo '<a href="/dx-view-profile/'.encryptID($data['id']).'"><img src="/assets/uploadimages/'.$data['photo'].'"></a><br>';
+				echo '<a href="/dx-view-profile/'.encryptID($data['id']).'"><img src="/assets/uploadimages/team-images/'.$data['photo'].'"></a><br>';
 					echo '<b>'.$data["firstname"].' '.$data["lastname"].'</b><br>';
 					echo '<b>'.$data["team"].'</b>';
 			echo '</li>';
 		}
 	}
-  }
+}
 ?>

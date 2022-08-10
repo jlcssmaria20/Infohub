@@ -96,7 +96,7 @@ li.announcement {
             <a class="nav-link js-scroll-trigger" href="#">Webinars & Events</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">Documents and Quick Links</a>
+            <a class="nav-link js-scroll-trigger" href="#">Documents & Quick Links</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#">The Team</a>

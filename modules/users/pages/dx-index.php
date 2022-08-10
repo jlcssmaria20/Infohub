@@ -10,14 +10,13 @@ unset($_SESSION['dx-documents-and-quick-links-page']);
 unset($_SESSION['dx-home-page']);
 unset($_SESSION['dx-announcements']);
 
-    // get module icon
-    $sql = $pdo->prepare("SELECT `docu_name` FROM documentstemplate");
-    $sql->execute();
-    $data = $sql->fetch(PDO::FETCH_ASSOC);
+// get module icon
+$sql = $pdo->prepare("SELECT `docu_name` FROM documentstemplate");
+$sql->execute();
+$data = $sql->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +25,9 @@ unset($_SESSION['dx-announcements']);
     <title>DX Infohub - PROFILE</title>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/dx-links.php');  ?>
     <link href="/assets/css/user.css" rel="stylesheet">
-    <link href="/assets/css/announcement.css" rel="stylesheet"/>
     <script src="assets/js/jquery.js"></script>
     <script src="/assets/js/search.js"></script>
 </head>
-   
 <body id="team">
     <div class="container">
         <div class="col-3 col-s-3 menu">
@@ -39,11 +36,11 @@ unset($_SESSION['dx-announcements']);
         <section class="main-area col-s-9 d-column mb-4" >
         <div class="announcement mb-4">
             <h2 class="mb-3">
-                <span class="text-primary">THE TEAM</span>
+                <span style="color: var(--black);">Meet the Team</span>
             </h2>
             <div class="announcement-row">
-                <select id="multiSelectSearch"  title="Alphabetically">
-                    <option value=""><a href="window.location.reload()">Alphabetically</option>
+                <select id="multiSelectSearch"  title="All">
+                    <option value=""><a href="window.location.reload()">All</option>
                     <?php
                     $sql = $pdo->prepare("SELECT DISTINCT `team` FROM search_tbl");
                     $sql->execute();
@@ -71,6 +68,4 @@ unset($_SESSION['dx-announcements']);
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/dx-footer.php');  ?>
     <script src="assets/modal/js/lightslider.js"></script> 
 </body>
-</body>
-
 </html>
