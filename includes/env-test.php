@@ -1,9 +1,9 @@
 <?php
 
 $server = 'localhost';
-$username = 'root'; 
-$password = '';
-$db = 'dxinfo_db';
+$username = 'infohubt_user'; 
+$password = 'HK3VPE{uB4BT';
+$db = 'infohubt_db_test';
 
 define("SERVER", $server);
 define("USERNAME", $username);
