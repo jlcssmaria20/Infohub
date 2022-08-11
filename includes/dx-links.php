@@ -7,3 +7,4 @@
 <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 <link href="/assets/modal/css/lightslider.css" rel="stylesheet" />
 <link href="/assets/css/style.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Volkhov:ital@1&display=swap" rel="stylesheet">
