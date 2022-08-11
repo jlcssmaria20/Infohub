@@ -61,6 +61,18 @@
               echo '<a class="nav-link js-scroll-trigger" href="/dx-announcements">Announcements</a>';
             echo '</li>';
           }
+
+          if(isset($_SESSION['login-page']) == 'login-page') {
+            echo '<li class="nav-item">';
+              echo '<a class="nav-link js-scroll-trigger active" href="/login">LOGIN';
+                
+              echo '</a>';
+            echo '</li>';
+          } else {
+            echo '<li class="nav-item">';
+              echo '<a class="nav-link js-scroll-trigger" href="/login">LOGIN</a>';
+            echo '</li>';
+          }
     ?>
     </ul>
 </nav>

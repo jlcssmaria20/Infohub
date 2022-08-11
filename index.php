@@ -53,7 +53,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 			<!-- CARD BODY -->
 			<div class="card-body login-card-body">
 				<p class="login-box-msg"><?php echo renderLang($login_message_1); ?></p>		
-				<form action="/login" method="post">
+				<form action="/submit-login" method="post">
 					<div class="input-group mb-3">
 						<input type="text" id="uname" class="form-control" name="uname" placeholder="<?php echo renderLang($login_login_placeholder); ?>"<?php if($cookie_login_value != '') { echo ' value="'.$cookie_login_value.'"'; } else { if(isset($_SESSION['sys_login_uname'])) { echo ' value="'.$_SESSION['sys_login_uname'].'"'; } } ?> required>
 						<div class="input-group-append">
@@ -89,6 +89,8 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 							<button type="submit" name="submit-login" class="btn btn-primary btn-block btn-flat"><?php echo renderLang($login_sign_in); ?></button>
 						</div>
 					</div>
+                    <hr>
+                    <div class="text-center bold"><a  href="/"><strong>Go to DX Infohub</strong></a></div>
 					
 				</form>
 

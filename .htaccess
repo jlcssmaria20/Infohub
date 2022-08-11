@@ -9,10 +9,11 @@ RewriteRule ^test              	                                         test/in
 RewriteRule ^filter-search              	                             test/fetch.php [NC,L]
 
 # LOGIN -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin-login                                                index.php
+RewriteRule ^login                                                      index.php
 RewriteRule ^user-admin-login                                           dx-index.php
 RewriteRule ^tcap-login-verification									modules/login/functions/tcapverifylog.php [NC,L]
-RewriteRule ^login														modules/login/functions/verifylog.php [NC,L]
+# RewriteRule ^login													modules/login/functions/verifylog.php [NC,L]
+RewriteRule ^submit-login												functions/login/verifylog.php [NC,L]
 RewriteRule ^dx-login												    modules/login/functions/dx-verifylog.php [NC,L]
 RewriteRule ^change-password											modules/login/functions/changepass.php [NC,L]
 RewriteRule ^dx-signout													modules/login/functions/dx-logout.php [NC,L]

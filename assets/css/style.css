@@ -249,14 +249,11 @@ img.modal-img {
         color: var(--blue);
         text-decoration: none;
     }
-    .announcement-row,
     .webinar-row {
         overflow: hidden;
         display: flex;
         justify-content: end;
-        
     }
-
     .aside {
       background-color: #33b5e5;
       padding: 15px;
