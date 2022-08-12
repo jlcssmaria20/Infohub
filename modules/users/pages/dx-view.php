@@ -76,8 +76,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
 
 						echo '</div>';
 						
-					echo '<a href="/dx-team" class="btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> 
- Back </a>';
+					echo '<div class="text-center  mb-3">
+					<a href="/dx-team" class="btn">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i> 
+ 						Back </a></div>';
 					echo '</div>';
 		
 				

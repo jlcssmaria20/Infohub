@@ -12,11 +12,6 @@
     
 }
 
-#profile .btn {
-  margin-bottom: 20px;
-  position: relative;
-  margin-left: 45%;
-}
 #profile .btn .fa {
  margin-right: 10px;
 }
@@ -37,8 +32,9 @@
 p.details {
   font-family: 'Volkhov', serif;
   font-style: italic;
-  font-size: 23px;
+  font-size: 1rem;
   text-align: center;
+  margin-inline: 20%;
 }
 div.details {
   background-color: #f7f7f7;

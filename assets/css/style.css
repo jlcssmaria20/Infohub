@@ -148,15 +148,16 @@ img.modal-img {
     }
     
     a.nav-link.js-scroll-trigger {
-      padding: 10px 7px;
+      padding: 10px 12px;
       text-transform: uppercase;
+    }
+    .nav-link .fa {
+      margin-right: 5px;
+      font-size: 15px;
     }
     .menu li a {
       color: #111;
       list-style-type: none;
-      margin: 0;
-    }
-    .menu li {
       margin: 0;
     }
     .nav-title {
@@ -172,13 +173,13 @@ img.modal-img {
     }
     nav ul {
       list-style: none;
-      padding: 0 13px;
+      padding-left: 13px;
+      padding-right: 0;
       width: 256px;
     }
   
     nav li {
-        padding: 0 9px 0 0;
-        margin: 0;
+        margin-block: 5px;
     }
     
     .menu li a:hover {

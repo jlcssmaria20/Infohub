@@ -82,8 +82,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/unsetSession.php');
 				}
 		?>
 		</section>
-		<a href="/dx-team" class="btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> 
- Back </a>
+		<a href="/dx-team" class="btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back </a>
 		</div>            
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/dx-footer.php');  ?>
