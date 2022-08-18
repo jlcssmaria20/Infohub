@@ -47,11 +47,7 @@ $permissions_arr = array(
 				'Allow account to delete test data.',
 				''
 			)
-		)
-	)
-	
-	// ANNOUNCEMENTS =========================================================================================
-	array(
+		),
 		array(
 			'permission_code' => 'announcements',
 			'permission_name' => array(
