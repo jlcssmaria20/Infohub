@@ -1,27 +1,3 @@
-i.note-icon-eraser {
-  display: none;
-}
-i.note-icon-font.note-recent-color {
-  display: none;
-}
-light.btn-sm.dropdown-toggle {
-  display: none;
-}
-i.note-icon-picture {
-  display: none;
-}
-i.note-icon-unorderedlist {
-  display: none;
-}
-i.note-icon-orderedlist {
-  display: none;
-}
-button.note-btn.btn.btn-light.btn-sm.dropdown-toggle {
-  display: none;
-}
-
-
-
 .daterangepicker {
   position: absolute;
   color: inherit;

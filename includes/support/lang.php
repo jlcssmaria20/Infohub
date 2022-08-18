@@ -7,14 +7,24 @@ Legend: (by index)
 */
 
 // GENERAL
-include($root.'/includes/lang/general.php');
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/general.php');
+
+// MODULES
+// include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/modules.php');
 
 // FORMS
-include($root.'/includes/lang/forms.php');
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/forms.php');
 
 // MODALS
-include($root.'/includes/lang/modals.php');
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/modals.php');
+
+// ADMINS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/test.php');
 
 // SETTINGS
-include($root.'/includes/lang/settings.php');
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/settings.php');
+
+// LOGIN
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/login.php');
+
 ?>

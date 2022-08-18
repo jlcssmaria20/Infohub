@@ -1,9 +1,3 @@
-<?php
-switch($process) {
-	case 'list': $page_link = '/'.$submodule; break;
-	case 'view': $page_link = '/'.$prefix.'/'.encryptID($id); break;
-}
-?>
 <!-- SEARCH AND PAGINATION -->
 <div class="row search-and-pagination">
 	<div class="col-sm-6 col-md-5">
@@ -15,12 +9,12 @@ switch($process) {
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-7 dataTables_wrapper dt-bootstrap4">
-		<a href="/<?php echo $submodule; ?>" class="btn btn-default btn-md float-left mb-3"><?php echo renderLang($btn_clear); ?></a>
+		<a href="/<?php echo $redirect_link; ?>" class="btn btn-default btn-md float-left mb-3"><?php echo renderLang($btn_clear); ?></a>
 		<div class="dataTables_paginate paging_simple_numbers mb-3">
 			<ul class="pagination">
-				<li class="paginate_button page-item previous<?php if($page_ctr == 1) { echo ' disabled'; } ?>"><a href="<?php echo $page_link.'?p='.($page_ctr-1).$var_k; ?>" class="page-link" data-dt-idx="0" tabindex="0"><?php echo renderLang($btn_previous); ?></a></li>
+				<li class="paginate_button page-item previous<?php if($page_ctr == 1) { echo ' disabled'; } ?>"><a href="<?php echo $page.'?p='.($page_ctr-1).$var_k; ?>" class="page-link" data-dt-idx="0" tabindex="0"><?php echo renderLang($btn_previous); ?></a></li>
 				<?php
-				$page_1 = $page_ctr-2;
+				$page_1 = (int)$page_ctr-2;
 				if($page_1 < 1) {
 					$page_1 = 1;
 				}
@@ -42,7 +36,7 @@ switch($process) {
 					if($x == $page_ctr) {
 						echo ' active';
 					}
-					echo '"><a href="'.$page_link.'?p='.$x.$var_k.'" class="page-link" data-dt-idx="'.$x.'" tabindex="'.($x-1).'">'.$x.'</a></li>';
+					echo '"><a href="'.$page.'?p='.$x.$var_k.'" class="page-link" data-dt-idx="'.$x.'" tabindex="'.($x-1).'">'.$x.'</a></li>';
 				}
 				if($page_count > 5) {
 					if($page_ctr <= $page_count-3) {
@@ -50,7 +44,7 @@ switch($process) {
 					}
 				}
 				?>
-				<li class="paginate_button page-item next<?php if($page_ctr == $page_count || $page_count == 0) { echo ' disabled'; } ?>"><a href="<?php echo $page_link.'?p='.($page_ctr+1).$var_k; ?>" class="page-link" data-dt-idx="<?php echo $page_count; ?>" tabindex="0"><?php echo renderLang($btn_next); ?></a></li>
+				<li class="paginate_button page-item next<?php if($page_ctr == $page_count) { echo ' disabled'; } ?>"><a href="<?php echo $page.'?p='.($page_ctr+1).$var_k; ?>" class="page-link" data-dt-idx="<?php echo $page_count; ?>" tabindex="0"><?php echo renderLang($btn_next); ?></a></li>
 			</ul>
 		</div>
 	</div>

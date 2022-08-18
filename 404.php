@@ -7,13 +7,13 @@ $page = '404';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php include('includes/links.php'); ?>
+  <?php include('includes/common/links.php'); ?>
   <link rel="stylesheet" href="<?php echo $uri; ?>assets/css/notFound404.css">
   <title>Page Not Found - <?php echo $sitename; ?></title>
 </head>
 <body id="notFound">
   <!-- HEADER -->
-  <?php include('includes/header.php'); ?>
+  <?php include('includes/common/child-header.php'); ?>
   <!-- /HEADER -->
 
   <main>
@@ -33,11 +33,11 @@ $page = '404';
   </main>
 
   <!-- FOOTER -->
-  <?php include('includes/footer.php'); ?>
+  <?php include('includes/common/child-footer.php'); ?>
   <!-- /FOOTER -->
 
   <!-- SCRIPTS -->
-  <?php include('includes/js.php'); ?>
+  <?php include('includes/common/js.php'); ?>
   <script>
 
   </script>

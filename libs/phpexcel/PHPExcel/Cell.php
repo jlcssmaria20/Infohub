@@ -25,7 +25,6 @@
  *    @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  *    @version    ##VERSION##, ##DATE##
  */
-ini_set('memory_limit', '4095M');
 class PHPExcel_Cell
 {
     /**
@@ -841,17 +840,17 @@ class PHPExcel_Cell
         if (!isset($_indexCache[$pColumnIndex])) {
             // Determine column string
             if ($pColumnIndex < 26) {
-                $_indexCache[$pColumnIndex] = chr(65 + $pColumnIndex);
-            } elseif ($pColumnIndex < 702) {
-                $_indexCache[$pColumnIndex] = chr(64 + ($pColumnIndex / 26)) .
-                                              chr(65 + $pColumnIndex % 26);
+                $_indexCache[intval($pColumnIndex)] = chr(65 + intval($pColumnIndex));
+            } elseif (intval($pColumnIndex) < 702) {
+                $_indexCache[intval($pColumnIndex)] = chr(64 + (intval($pColumnIndex) / 26)) .
+                                              chr(65 + intval($pColumnIndex) % 26);
             } else {
-                $_indexCache[$pColumnIndex] = chr(64 + (($pColumnIndex - 26) / 676)) .
-                                              chr(65 + ((($pColumnIndex - 26) % 676) / 26)) .
-                                              chr(65 + $pColumnIndex % 26);
+                $_indexCache[intval($pColumnIndex)] = chr(64 + ((intval($pColumnIndex) - 26) / 676)) .
+                                              chr(65 + (((intval($pColumnIndex) - 26) % 676) / 26)) .
+                                              chr(65 + intval($pColumnIndex) % 26);
             }
         }
-        return $_indexCache[$pColumnIndex];
+        return $_indexCache[intval($pColumnIndex)];
     }
 
     /**

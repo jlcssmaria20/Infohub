@@ -1,0 +1,28 @@
+Creation of Module
+
+- Setup Table in Database
+- Table Design
+- Setup Permission (includes/support/permissions.php)
+- Create Module Language File in (includes/lang/) renderLang()
+- Modify includes/support/lang.php include newly created language module file
+- Modify .htaccess (Naming in htaccess > process - module 	
+	ex: add-test (the view page), submit-add-test (functionality)
+	)
+- Modify includes/functions.php
+function Clearsession()
+ > supply variables that is present in file
+unsetSession('sys_'.$module.'_'.$process.'_'.$field.'_'.$data_type);
+ex: 
+Announcements Module
+sys_announcements_edit_username_val
+
+Table Name (plural form) -> Folder Name
+File Naming (List) -> index.php
+
+-----------------------------------------------------------------------------------------
+!! Always put comments on your code !!
+-----------------------------------------------------------------------------------------
+Deployment in Git
+Pull (to get updates) > Push > Code Review > Merge
+
+

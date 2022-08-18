@@ -1,6 +1,0 @@
-[24-Feb-2022 11:40:29 Asia/Manila] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/infohubtcap/public_html/modules/users/functions/edit.php:32) in /home/infohubtcap/public_html/modules/users/functions/edit.php on line 91
-[03-Mar-2022 23:31:19 Asia/Manila] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'email' cannot be null' in /home/infohubtcap/public_html/modules/users/functions/add.php:62
-Stack trace:
-#0 /home/infohubtcap/public_html/modules/users/functions/add.php(62): PDOStatement->execute()
-#1 {main}
-  thrown in /home/infohubtcap/public_html/modules/users/functions/add.php on line 62

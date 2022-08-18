@@ -125,4 +125,31 @@
         'strikethrough': 'Establir estil ratllat',
         'removeFormat': 'Netejar estil',
         'justifyLeft': 'Alinear a l\'esquerra',
-        'justifyCen
+        'justifyCenter': 'Alinear al centre',
+        'justifyRight': 'Alinear a la dreta',
+        'justifyFull': 'Justificar',
+        'insertUnorderedList': 'Inserir llista desendreçada',
+        'insertOrderedList': 'Inserir llista endreçada',
+        'outdent': 'Reduïr tabulació del paràgraf',
+        'indent': 'Augmentar tabulació del paràgraf',
+        'formatPara': 'Canviar l\'estil del bloc com a un paràgraf (etiqueta P)',
+        'formatH1': 'Canviar l\'estil del bloc com a un H1',
+        'formatH2': 'Canviar l\'estil del bloc com a un H2',
+        'formatH3': 'Canviar l\'estil del bloc com a un H3',
+        'formatH4': 'Canviar l\'estil del bloc com a un H4',
+        'formatH5': 'Canviar l\'estil del bloc com a un H5',
+        'formatH6': 'Canviar l\'estil del bloc com a un H6',
+        'insertHorizontalRule': 'Inserir una línia horitzontal',
+        'linkDialog.show': 'Mostrar panel d\'enllaços',
+      },
+      history: {
+        undo: 'Desfer',
+        redo: 'Refer',
+      },
+      specialChar: {
+        specialChar: 'CARÀCTERS ESPECIALS',
+        select: 'Selecciona caràcters especials',
+      },
+    },
+  });
+})(jQuery);

@@ -27,12 +27,12 @@ $(function() {
 	});
 	
 	// run search
-	$('#search-keywords').keyup(function(e) {
+	$('body').on('keyup', '#search-keywords', function(e) {
 		if(e.which == 13) {
 			$('#btn-search').click();
 		}
 	});
-	$('#btn-search').click(function(e) {
+	$('body').on('click', '#btn-search', function(e) {
 		e.preventDefault();
 		var keywords = $('#search-keywords').val();
 		var currUrl = $(location).attr("href");

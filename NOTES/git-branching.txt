@@ -1,0 +1,6 @@
+git checkout -b <branch_name> // Point to Origin
+
+Hotfix Branch > Minimal Changes | High Priority ex: hotfix/announcement
+Feature Branch > New Feature Branch ex: feature/announcement
+Bugfix Branch > Bug Branch | Major Bug bugfix/announcement
+

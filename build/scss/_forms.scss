@@ -143,6 +143,7 @@ label:not(.form-check-label, .custom-file-label) {
     ~ .warning-feedback,
     ~ .warning-tooltip {
       display: block;
+	  
     }
   }
 }
@@ -213,6 +214,7 @@ textarea.form-control {
   ~ .warning-feedback,
   ~ .warning-tooltip {
     display: block;
+	
   }
 
   &:checked {

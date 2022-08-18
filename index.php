@@ -1,133 +1,194 @@
-<?php
-// INCLUDES
-$module = 'login';
-require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
-// check if user credentials are remembered
-// set default values from cookies
-$cookie_login_value = '';
-$cookie_login_password = '';
-if(isset($_COOKIE['sys_cookie_'.$system_code])) {
-	$spooder_creds = explode('|',$_COOKIE['sys_cookie_'.$system_code]);
-	$cookie_login_value = $spooder_creds[0];
-	$cookie_login_password = $spooder_creds[1];
-}
-//include "test.php";
+<?php 
+require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php'); 
+$total = 4;
+
+ // set page
+ $page = 'home';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>DX Infohub - Home</title>
+        <?php require($_SERVER['DOCUMENT_ROOT'].'includes/common/links.php');  ?>
+    </head>
+  <body>
+    <div class="container">
+        <div class="col-3 col-s-3 menu">
+            <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
+        </div>
+        <section class="main-area col-s-9 d-column mb-5" >
+            <div class="clearfix mb-2">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    <?php
+                    $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC");
+                    $sql->execute();
+                    $data = $sql->fetch(PDO::FETCH_ASSOC);
 
-<head>
-	
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo renderLang($sitename); ?></title>
-	
-	<?php include($root.'/includes/common/links.php'); ?>
-	<link rel="stylesheet" href="/modules/<?php echo $module; ?>/assets/css/style.css">
-	
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DXDG9F8NFW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+                    $LastID = $data['id'];
+                    if($data['status'] != 1) {
+                        if($data['id'] != 1) {
+                        echo '<div data-thumb="/assets/images/'.$data['images'].'">';
+                            echo "<img src='/assets/images/".$data['images']."' style='width:100%;'>";
+                        echo '</div>';
+                        }
+                    }
 
-  gtag('config', 'G-DXDG9F8NFW');
-</script>
+                    // The list of items to be displayed on screen.
+                    $x = array();
+                    $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC");
+                    $sql->execute();
+                    $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                    foreach($row as $key => $data) {
+                        $x = $key +1;
+                        if($data['status'] != 1) {
+                            if($data['id'] != $LastID) {
+                                if($data['id'] != 1) {
+                                    echo '<li data-thumb="/assets/images/'.$data['images'].'"> ';
+                                        echo "<img src='/assets/images/".$data['images']."' style='margin:0;width:100%; height:593px'>";
+                                        // echo '<div class="text">The text of slide one</div>';
+                                    echo '</li>';
+                                }     
+                            }
+                        }
+                    }
+                    ?>
+                </ul> 
+            </div>
+            <a href="/webinar-and-events" class="btn btn-block" style="background-color:var(--blue);; color: #fff;">See all events</a>
+        </section>
+        
+        <!-- <section class="main-area col-s-9 d-column mb-5" >
+            <div class="webinar mb-4">
+                <h2 class="mb-3">
+                <span class="text-primary">WEBINAR &  EVENTS</span>
+                </h2>
+                <div class="webinar-row">
+                    <?php
+                        $x = array();
+                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC LIMIT 4");
+                        $sql->execute();
+                        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($row as $key => $data) {
+                            $x = $key +1;
+                            if($data['status'] != 1) {
+                                if($data['id'] != 1) {
+                                    echo '<div class="list-inline-item">';
+                                    echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
+                                        echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                    echo '</a>';
+                                    echo '</div>';
+                                }
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <a href="/dx-webinar-and-events" class="btn btn-primary">See more events</a>
+        </section> -->
+        
+        <section class="main-area col-s-9 d-column mb-5" >
+            <div class="announcement mb-5">
+                <h2 class="mb-3"> 
+                    <span><i class="fa fa-bullhorn"></i>&nbsp;IMPORTANT ANNOUNCEMENTS</span>
+                </h2>
+                <div class="announcement-row">
+                    <ul>
+                    <?php
+                    // The list of items to be displayed on screen.
+                    $x = array();
+                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY announcment_title DESC LIMIT 4");
+                    $sql->execute();
+                    $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-<body class="hold-transition login-page">
-	
-	<!-- LOGIN BOX -->
-	<div class="login-box">
-		
-		<!-- LOGO -->
-		<div class="login-logo">
-			<a href="#">DX INFO HUB</a>
-		</div><!-- login-logo -->
-		
-		<!-- CARD -->
-		<div class="card">
-			
-			<!-- CARD BODY -->
-			<div class="card-body login-card-body">
-				<p class="login-box-msg"><?php echo renderLang($login_message_1); ?></p>		
-				<form action="/submit-login" method="post">
-					<div class="input-group mb-3">
-						<input type="text" id="uname" class="form-control" name="uname" placeholder="<?php echo renderLang($login_login_placeholder); ?>"<?php if($cookie_login_value != '') { echo ' value="'.$cookie_login_value.'"'; } else { if(isset($_SESSION['sys_login_uname'])) { echo ' value="'.$_SESSION['sys_login_uname'].'"'; } } ?> required>
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
-							</div>
-						</div>
-					</div>
-					
-					<div class="input-group mb-3">
-						<input type="password" id="upass" class="form-control" name="upass" placeholder="<?php echo renderLang($login_password_placeholder); ?>"<?php if($cookie_login_password != '') { echo ' value="'.$cookie_login_password.'"'; } ?> required>
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-					
-					<?php
-					renderError('sys_login_err');
-					renderSuccess('sys_login_suc');
+                    foreach($row as $key => $data) {
+                        $x = $key +1;
+                        if($data['status'] != 1) {
+                            if($data['id'] != 1) {
+                                echo '<li >';
+                                    echo '<a href="/announcements" style="padding: 0 10px 0 0">';
+                                        echo  $data['announcment_title'];
+                                        echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
+                                    echo '</a>';
+                                echo '</li>';
+                            }
+                        }
+                    }
+                    ?>
+                    </ul>
+                </div>
+                <a href="/announcements" class="btn">See all announcements</a>
+            </div>
+        </section>
+    </div><!-- container -->
 
-					?>
-					
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<input type="checkbox" id="remember_me" name="remember_me" value="1"<?php if(isset($spooder_creds)) { echo ' checked'; } ?>>
-								<label for="remember_me"><?php echo renderLang($login_remember_me); ?></label>
-							</div>
-						</div>
-						<div class="col-4">
-							<button type="submit" name="submit-login" class="btn btn-primary btn-block btn-flat"><?php echo renderLang($login_sign_in); ?></button>
-						</div>
-					</div>
-                    <hr>
-                    <div class="text-center bold"><a  href="/"><strong>Go to DX Infohub</strong></a></div>
-					
-				</form>
+    <!-- Modal Area -->
+    <?php for ($x = 1; $x <= $total + 1; $x++) { ?>
+        <div id="myModal<?php echo $x ?>" class="modal">
+            <div class="modal-body">
+                <img class="modal-img">
+            </div>
+            <div id="caption<?php echo $x ?>"></div>
+                <span class="close">Close</span>
+            </div>
+        </div>
+       
+    <?php } ?>
 
-<!--
-				<p class="mb-1">
-					<a href="#"><?php //echo renderLang($login_forgot_password); ?></a>
-				</p>
--->
-				
-			</div>
-			
-		</div><!-- card -->
-		
-		<div class="login-footer">
-			<p>Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</p>
-		</div>
-		
-	</div>
-	<!-- /.login-box -->
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="assets/modal/js/lightslider.js"></script> 
 
-	<!-- JAVASCRIPT -->
-	<script src="/plugins/jquery/jquery.min.js"></script>
-	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="/dist/js/adminlte.min.js"></script>
-	<script>
-		$(function() {
-			
-			// set uname focus if it is not blank, else focus on upass
-			if($('#uname').val() == '') {
-				$('#uname').focus();
-			} else {
-				$('#upass').focus();
-			}
+    <script>
+            $('.close').click(function() {
+                for (let i = 1; i < <?php echo $total + 1?>; i++) {
+                $("div#myModal"+i).attr("style", "display: none !important");
+                }
+            });
+            
+            $("div#webinarandevent1").css("display","none")
+            $("li img").on("click",function(){
+                $("#sideNav").css("z-index", "0")
+            });
 
+
+            // Get the modal1
+            $('.js-modal').on('click', function() {
+                var modalTarget = $(this).attr('data-target');
+                var modalImg = $(this).find('img').attr('src'); 
+
+                // var modalName = $(this).find('h2').attr('data1');
+                // var modaldetails = $(this).find('p').attr('data2')
+
+                $('#'+ modalTarget).show();
+                $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
+                // $('#'+ modalTarget).find('.modal-name').html(modalName)
+                // $('#'+ modalTarget).find('.modal-details').html(modaldetails)
+            });
+
+
+    	 $(document).ready(function() {
+			 $("#content-slider").lightSlider({
+                loop:true,
+                keyPress:true
+            });
+            $('#image-gallery').lightSlider({
+                gallery:true,
+                item:1,
+                thumbItem:5,
+                slideMargin: 0,
+                speed:500,
+                auto:true,
+                loop:true,
+                onSliderLoad: function() {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }  
+            });
 		});
-	</script>
-
-</body>
-
+    </script>
+    </body>
 </html>
+

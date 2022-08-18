@@ -6,4 +6,4 @@ SQL-Table-Columns
 
 1 - current sql, not used in production (local sql)
 1.1 - changes in tables
-1.1.1 - alter in columns
+1.1.1 - changes in columns

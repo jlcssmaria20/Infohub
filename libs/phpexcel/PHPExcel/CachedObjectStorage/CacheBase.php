@@ -25,7 +25,6 @@
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  * @version    ##VERSION##, ##DATE##
  */
-ini_set('memory_limit', '4095M');
 abstract class PHPExcel_CachedObjectStorage_CacheBase
 {
     /**

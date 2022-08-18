@@ -1,10 +1,7 @@
 <?php
-// INCLUDES
-include('support/array-sets.php');
-
 // RENDER
 // render language
-function renderLang($lang_arr,$function = '') {
+function renderLang($lang_arr) {
 	if(isset($lang_arr[$GLOBALS['default_lang_idx']])) {
 		if($lang_arr[$GLOBALS['default_lang_idx']] != '') {
 			$return = $lang_arr[$GLOBALS['default_lang_idx']];
@@ -14,27 +11,12 @@ function renderLang($lang_arr,$function = '') {
 	} else {
 		$return = $lang_arr[0];
 	}
-	if($function != '' && $GLOBALS['default_lang_idx'] == 0) {
-		switch($function) {
-			case 'ucwords': $return = ucwords($return); break;
-			case 'strtoupper': $return = strtoupper($return); break;
-			case 'strtolower': $return = strtolower($return); break;
-			default: $return = ucwords($return); break;
-		}
-	}
 	return $return;
 }
 // render error message
 function renderError($session) {
 	if(isset($_SESSION[$session])) {
 		echo '<div class="alert alert-danger"><h5><i class="icon fas fa-ban"></i> '.renderLang($GLOBALS['alert_error']).'</h5>'.$_SESSION[$session].'</div>';
-		unset($_SESSION[$session]);
-	}
-}
-// render warning message
-function renderWarning($session) {
-	if(isset($_SESSION[$session])) {
-		echo '<div class="alert alert-warning"><h5><i class="icon fas fa-exclamation-triangle"></i> '.renderLang($GLOBALS['alert_warning']).'</h5>'.$_SESSION[$session].'</div>';
 		unset($_SESSION[$session]);
 	}
 }
@@ -70,217 +52,335 @@ function renderConfirmDelete($err_code,$session_name,$variable_name) {
 function renderProfileStatus($status) {
 	switch($status) {
 		case 0:
-			echo '<button class="btn btn-flat btn-sm btn-success">'.renderLang($GLOBALS['lang_status_active']).'</button>';
+			echo '<button class="btn btn-flat btn-success">'.renderLang($GLOBALS['lang_status_active']).'</button>';
 			break;
 		case 1:
-			echo '<button class="btn btn-flat btn-sm btn-warning">'.renderLang($GLOBALS['lang_status_deactivated']).'</button>';
+			echo '<button class="btn btn-flat btn-warning">'.renderLang($GLOBALS['lang_status_deactivated']).'</button>';
 			break;
 		case 2:
-			echo '<button class="btn btn-flat btn-sm btn-danger">'.renderLang($GLOBALS['lang_status_deleted']).'</button>';
+			echo '<button class="btn btn-flat btn-danger">'.renderLang($GLOBALS['lang_status_deleted']).'</button>';
 			break;
 	}
 }
-// render form field
-function renderField($module,$field,$process,$type,$category,$data,$req,$min,$max) {
-	$suc = isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_suc']) ? 1 : 0; // check error toggle
-	$err = isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_err']) ? 1 : 0; // check error toggle
-	echo '<div class="form-group">';
-		echo '<label for="'.$field.'" class="mr-1';
-			if($err) { echo ' text-danger'; } // for error
-		echo '">';
-			if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } // for error
-	
-			// label text
-			switch($field) {
-				case 'status':
-					echo renderLang($GLOBALS['lang_status']);
-					break;
-				default:
-					echo renderLang($GLOBALS[$module.'_'.$field]);
-					break;
-			}
-	
-		echo '</label>';
-		if($req) {
-			echo ' <span class="right badge badge-danger">'.renderLang($GLOBALS['label_required']).'</span>';
-		}
-	
-		if($category == 'datepicker') {
-			echo '<div class="input-group">';
-				echo '<div class="input-group-prepend">';
-					echo '<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>';
-				echo '</div>';
-		}
-	
-		switch($type) {
-				
-			// INPUT FIELD
-			case 'input':
-				if($category == '') {
-					$input_type = 'text';
-				} else {
-					$input_type = $category;
-				}
-				if($input_type != 'file') {
-					echo '<input type="'.$input_type.'"';
-					
-						// attributes
-						echo $min > 0 ? ' minlength="'.$min.'"' : '';
-						echo $max > 0 ? ' maxlength="'.$max.'"' : '';
-						echo $data != '' ? ' step="'.$data.'"' : '';
-					
-						// class
-						echo 'class="form-control';
-						echo $req ? ' required' : '';
-						echo $err ? ' is-invalid' : '';
-						echo '"';
-					
-						echo ' id="'.$field.'" name="'.$field.'" placeholder="'.renderLang($GLOBALS[$module.'_'.$field.'_placeholder']).'"';
-						echo isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val']) ? ' value="'.$_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'].'"' : '';
-						echo $req ? ' required' : '';
-					echo '>';
-				} else {
-					echo '<input type="file" multiple="multiple" class="';
-					if($err) { echo ' is-invalid'; }
-					echo '" id="'.$field.'" name="'.$field.'[]"';
-					if(isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'])) {
-						echo ' value="'.$_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'].'"';
-					}
-					echo '>';
-				}
-				break;
-				
-			// SELECT DROPDOWN
-			case 'select':
-				
-				echo '<select class="form-control';
-					if($req) { echo ' required'; }
-					if($err) { echo ' is-invalid'; }
-					if($category == 'query') {
-						$select_type = ' select2';
-						if(isset($data['option-type'])) {
-							switch($data['option-type']) {
-								case 0: $select_type = ''; break;
-								case 1: $select_type = ' select2'; break;
-								default: $select_type = ' select2'; break;
-							}
-						}
-						echo $select_type;
-					}
-					echo '" id="'.$field.'" name="'.$field.'"';
-					if($req) { echo ' required'; }
-				echo '>';
-
-				switch($category) {
-					
-					// data from array
-					case 'array':
-						foreach($data as $i => $val) {
-							if($val[0] != 'Deleted') { // for status only
-								echo '<option value="'.encryptID($i,$field).'"';
-								if(isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'])) {
-									if($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'] == $i) {
-										echo ' selected';
-									}
-								}
-								echo '>'.renderLang($val).'</option>';
-							}
-						}
-						break;
-						
-					// data from database
-					case 'query':
-						$key = $data['key'];
-						$query = $data['query'];
-						$option_value = $data['option-value'];
-						$option_text_arr = explode(' ',$data['option-text']);
-						
-						if(!$req) { echo '<option value="'.encryptID('0',$key).'">TBD</option>'; }
-						
-						$sql = $GLOBALS['pdo']->prepare($query);
-						$sql->execute();
-						while($data_fn = $sql->fetch(PDO::FETCH_ASSOC)) {
-							echo '<option value="'.encryptID($data_fn[$option_value],$key).'"';
-							if(isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'])) {
-								if($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'] == $data_fn[$option_value]) {
-									echo ' selected';
-								}
-							}
-							echo '>';
-							$text_display = '';
-							foreach($option_text_arr as $option_text) {
-								if(isset($data_fn[$option_text])) {
-									$text_display .= $data_fn[$option_text].' ';
-								} else {
-									$text_display .= $option_text.' ';
-								}
-							}
-							$text_display = str_replace('[ ','[',$text_display);
-							$text_display = str_replace(' ]',']',$text_display);
-							
-							// START ADDITIONALS
-							$text_display = str_replace('[code] ','',$text_display);
-							// END ADDITIONALS
-							
-							echo $text_display;
-							echo '</option>';
-						}
-						break;
-						
-				}
-				
-				echo '</select>';
-				break;
-				
-			// WYSIWYG
-			case 'wysiwyg':
-				echo '<textarea class="wysiwyg';
-					if($req) { echo ' required'; }
-					if($err) { echo ' is-invalid'; }
-					echo '" id="'.$field.'" name="'.$field.'"';
-					if($req) { echo ' required'; }
-				echo '>';
-					if(isset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'])) {
-						echo $_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_val'];
-					}
-				echo '</textarea>';
-				break;
-		}
-	
-		if($category == 'datepicker') {
-			echo '</div>';
-		}
-	
-		// set link to module list
-		switch($type) {
-			case 'select':
-				switch($category) {
-					case 'query':
-						switch($_SESSION['sys_data']['language']) {
-							case 0: $link_text = strtoupper($data['option-link-text']); break;
-							case 1: $link_text = $data['option-link-text']; break;
-							default: $link_text = strtoupper($data['option-link-text']); break;
-						}
-						if(checkPermission($data['key'])) {
-							echo '<a href="/'.$data['key'].'" class="btn btn-xs btn-default float-right mt-1" data-src="render"><i class="'.$data['option-link-icon'].' mr-2"></i>'.$link_text.'</a>';
-						}
-						break;
-				}
-				break;
-		}
-		
-		// render field message
-		if($err) {
-			echo '<p class="text-danger mt-1">'.$_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_err'].'</p>';
-			unset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_err']);
-		}
-		if($suc) {
-			echo '<p class="text-green mt-1">'.renderLang($GLOBALS['lang_field_updated']).'</p>';
-			unset($_SESSION['sys_'.$module.'_'.$process.'_'.$field.'_suc']);
-		}
-	echo '</div>';
+// render date using YMD
+function renderDatecode($datecode) {
+	$year = $datecode[0].$datecode[1].$datecode[2].$datecode[3];
+	$month = $datecode[4].$datecode[5];
+	$day = $datecode[6].$datecode[7];
+	$datecode = array(
+		'year' => $year,
+		'month' => $month,
+		'day' => $day
+	);
+	return $datecode;
 }
-// render name
+// render actual time with rounding off
+function renderActualHours($time) {
+	$hour = 0; $m = 0;
+	if($time > 3600) {
+		$hour = floor($time/3600);
+		$excess = $time-($hour*3600);
+		$minute = floor($excess/60);
+	} else {
+		$minute = floor($time/60);
+	}
+	if($minute > 54) { $hour += 1; }
+	elseif($minute <= 0) { $hour += 0; }
+	elseif($minute <= 6) { $hour += .1; }
+	elseif($minute <= 12) { $hour += .2; }
+	elseif($minute <= 18) { $hour += .3; }
+	elseif($minute <= 24) { $hour += .4; }
+	elseif($minute <= 30) { $hour += .5; }
+	elseif($minute <= 36) { $hour += .6; }
+	elseif($minute <= 42) { $hour += .7; }
+	elseif($minute <= 48) { $hour += .8; }
+	elseif($minute <= 54) { $hour += .9; }
+	$time = $hour;
+	return $time;
+}
+function renderActualHours2($time) {
+	$hour = 0; $m = 0;
+	if($time > 3600) {
+		$hour = floor($time/3600);
+		$excess = $time-($hour*3600);
+		$minute = floor($excess/60);
+	} else {
+		$minute = floor($time/60);
+	}
+	if($minute > 54) { $hour += 1; }
+	elseif($minute <= 0) { $hour += 0; }
+	elseif($minute <= 1) { $hour += .01; }
+	elseif($minute <= 2) { $hour += .03; }
+	elseif($minute <= 3) { $hour += .05; }
+	elseif($minute <= 4) { $hour += .06; }
+	elseif($minute <= 5) { $hour += .08; }
+	elseif($minute <= 6) { $hour += .1; }
+	elseif($minute <= 7) { $hour += .11; }
+	elseif($minute <= 8) { $hour += .13; }
+	elseif($minute <= 9) { $hour += .15; }
+	elseif($minute <= 10) { $hour += .16; }
+	elseif($minute <= 11) { $hour += .18; }
+	elseif($minute <= 12) { $hour += .2; }
+	elseif($minute <= 13) { $hour += .21; }
+	elseif($minute <= 14) { $hour += .23; }
+	elseif($minute <= 15) { $hour += .25; }
+	elseif($minute <= 16) { $hour += .26; }
+	elseif($minute <= 17) { $hour += .28; }
+	elseif($minute <= 18) { $hour += .3; }
+	elseif($minute <= 19) { $hour += .31; }
+	elseif($minute <= 20) { $hour += .33; }
+	elseif($minute <= 21) { $hour += .35; }
+	elseif($minute <= 22) { $hour += .36; }
+	elseif($minute <= 23) { $hour += .38; }
+	elseif($minute <= 24) { $hour += .4; }
+	elseif($minute <= 25) { $hour += .41; }
+	elseif($minute <= 26) { $hour += .43; }
+	elseif($minute <= 27) { $hour += .45; }
+	elseif($minute <= 28) { $hour += .46; }
+	elseif($minute <= 29) { $hour += .48; }
+	elseif($minute <= 30) { $hour += .5; }
+	elseif($minute <= 36) { $hour += .6; }
+	elseif($minute <= 42) { $hour += .7; }
+	elseif($minute <= 48) { $hour += .8; }
+	elseif($minute <= 54) { $hour += .9; }
+	$time = $hour;
+	return $time;
+}
+
+function strpos_similar($haystack, $needle, $offset = 0, &$results = array()) {
+	$offset = strpos($haystack, $needle, $offset);
+	if($offset === false) {
+		return $results;
+	} else {
+		$results[] = $offset;
+		return strpos_similar($haystack, $needle, ($offset + 1), $results);
+	}
+}
+
+
+// process revenue or parent project
+function processParentProjectRevenue($project_id) {
+	
+	$parent_revenue_tci = 0;
+	$parent_revenue_center = 0;
+	
+	$sql_prj = $GLOBALS['pdo']->prepare("SELECT project_id, parent_id, parent_pattern FROM projects WHERE project_id = ".$project_id." LIMIT 1");
+	$sql_prj->execute();
+	$data_prj = $sql_prj->fetch(PDO::FETCH_ASSOC);
+	
+	if($data_prj['parent_id'] == 0 && $data_prj['parent_pattern'] != '') {
+		$sql_rev = $GLOBALS['pdo']->prepare("SELECT project_id, revenue_tci, revenue_center FROM project_revenue WHERE project_id = ".$project_id." LIMIT 1");
+		$sql_rev->execute();
+		$data_rev = $sql_rev->fetch(PDO::FETCH_ASSOC);
+
+		$parent_revenue_tci = $data_rev['revenue_tci'];
+		$parent_revenue_center = $data_rev['revenue_center'];
+		
+		$sql_child = $GLOBALS['pdo']->prepare("SELECT
+			projects.project_id,
+			projects.parent_id,
+			projects.parent_pattern,
+			project_revenue.revenue_tci,
+			project_revenue.revenue_center
+		FROM projects
+		LEFT JOIN project_revenue ON project_revenue.project_id = projects.project_id
+		WHERE projects.parent_id = ".$project_id);
+		$sql_child->execute();
+		while($data_child = $sql_child->fetch(PDO::FETCH_ASSOC)) {
+			$parent_revenue_tci -= $data_child['revenue_tci'];
+			$parent_revenue_center -= $data_child['revenue_center'];
+		}
+	}
+	
+	return array(
+		'revenue_tci' => $parent_revenue_tci,
+		'revenue_center' => $parent_revenue_center
+	);
+	
+}
+function processParentProjectBudgetTime($project_id) {
+	
+	$parent_budget_time = 0;
+	
+	$sql_prj = $GLOBALS['pdo']->prepare("SELECT project_id, parent_id, parent_pattern FROM projects WHERE project_id = ".$project_id." LIMIT 1");
+	$sql_prj->execute();
+	$data_prj = $sql_prj->fetch(PDO::FETCH_ASSOC);
+	
+	if($data_prj['parent_id'] == 0 && $data_prj['parent_pattern'] != '') {
+		$sql_rev = $GLOBALS['pdo']->prepare("SELECT project_id, project_budget_time FROM project_budget_time WHERE project_id = ".$project_id." LIMIT 1");
+		$sql_rev->execute();
+		$data_rev = $sql_rev->fetch(PDO::FETCH_ASSOC);
+
+		$parent_budget_time = $data_rev['project_budget_time'];
+		
+		$sql_child = $GLOBALS['pdo']->prepare("SELECT
+			projects.project_id,
+			projects.parent_id,
+			projects.parent_pattern,
+			project_budget_time.project_budget_time
+		FROM projects
+		LEFT JOIN project_budget_time ON project_budget_time.project_id = projects.project_id
+		WHERE projects.parent_id = ".$project_id);
+		$sql_child->execute();
+		while($data_child = $sql_child->fetch(PDO::FETCH_ASSOC)) {
+			$parent_budget_time -= $data_child['project_budget_time'];
+		}
+	}
+	
+	return $parent_budget_time;
+	
+}
+
+// process revenue of linked projects
+function processLinkedProjectRevenueBudgetTime($link_id) {
+	
+	// get other linked projects
+	$link_ctr = 0;
+	$link_parent_project_ids = array();
+	$sql_link = $GLOBALS['pdo']->prepare("SELECT project_id, link_id FROM projects WHERE link_id = '".$link_id."'");
+	$sql_link->execute();
+	while($data_link = $sql_link->fetch(PDO::FETCH_ASSOC)) {
+		array_push($link_parent_project_ids,$data_link['project_id']);
+		$link_ctr++;
+	}
+
+	// get all child projects of all linked parents
+	$child_project_ids = array();
+	$where_child = '';
+	foreach($link_parent_project_ids as $link_parent_project_id) {
+		if($where_child == '') {
+			$where_child .= " WHERE parent_id = ".$link_parent_project_id;
+		} else {
+			$where_child .= " OR parent_id = ".$link_parent_project_id;
+		}
+	}
+	$sql_child = $GLOBALS['pdo']->prepare("SELECT project_id, parent_id FROM projects".$where_child);
+	$sql_child->execute();
+	while($data_child = $sql_child->fetch(PDO::FETCH_ASSOC)) {
+		array_push($child_project_ids,$data_child['project_id']);
+	}
+	
+	if(count($child_project_ids) > 0) {
+	
+		// get total revenue of all child projects of all linked parents
+		$total_child_projects_revenue_center = 0;
+		$where_child = '';
+		foreach($child_project_ids as $child_project_id) {
+			if($where_child == '') {
+				$where_child .= " WHERE project_id = ".$child_project_id;
+			} else {
+				$where_child .= " OR project_id = ".$child_project_id;
+			}
+		}
+		$sql_child = $GLOBALS['pdo']->prepare("SELECT project_id, revenue_center FROM project_revenue".$where_child);
+		$sql_child->execute();
+		while($data_child = $sql_child->fetch(PDO::FETCH_ASSOC)) {
+			$total_child_projects_revenue_center += $data_child['revenue_center'];
+		}
+		$revenue_adjustment = $total_child_projects_revenue_center/$link_ctr;
+
+		// get total budget time of all child projects of all linked parents
+		$total_child_projects_budget_time = 0;
+		$sql_child = $GLOBALS['pdo']->prepare("SELECT project_id, project_budget_time FROM project_budget_time".$where_child);
+		$sql_child->execute();
+		while($data_child = $sql_child->fetch(PDO::FETCH_ASSOC)) {
+			$total_child_projects_budget_time += $data_child['project_budget_time'];
+		}
+		$budget_time_adjustment = $total_child_projects_budget_time/$link_ctr;
+	
+	} else {
+		$budget_time_adjustment = 0;
+		$revenue_adjustment = 0;
+	}
+		
+	return array(
+		'budget_time' => $budget_time_adjustment,
+		'revenue_center' => $revenue_adjustment
+	);
+}
+
+// PROCESS
+// unset a cookie
+function unsetCookie($cookie_name) {
+	if(isset($_COOKIE[$cookie_name])) {
+		unset($_COOKIE[$cookie_name]);
+		setcookie($cookie_name, null, -1, '/');
+	}
+}
+// unset a session
+function unsetSession($session) {
+	if(isset($_SESSION[$session])) {
+		unset($_SESSION[$session]);
+	}
+}
+// record action to system log
+function systemLog($module,$target_id,$action,$change_log) {
+	$epoch_time = time();
+	$account_id = $_SESSION['sys_id'];
+	switch($_SESSION['sys_account_mode']) {
+		case 'admin': $account_mode = 0; break;
+		case 'user': $account_mode = 1; break;
+	}
+	$sql = $GLOBALS['pdo']->prepare("INSERT INTO system_log(
+		id,
+		account_id,
+		account_mode,
+		module,
+		target_id,
+		action,
+		change_log,
+		epoch_time
+	) VALUES(
+		NULL,
+		".$account_id.",
+		".$account_mode.",
+		'".$module."',
+		'".$target_id."',
+		'".$action."',
+		'".$change_log."',
+		'".$epoch_time."'
+	)");
+	$sql->execute();
+}
+// send email function
+function sendMail($to, $name, $subject, $body) {
+	require '../../vendor/autoload.php';
+	require_once '../../vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+	
+	$transport = (new Swift_SmtpTransport('smtp.office365.com', 587, 'tls'))
+		->setUsername('goop.info@transcosmos.com.ph')
+		->setPassword('vtdwycnrzqntldfh');
+
+	$mailer = new Swift_Mailer($transport);
+
+	$message = (new Swift_Message($subject))
+		->setFrom(['goop.info@transcosmos.com.ph' => 'Goop!'])
+		->setTo([$to => $name])
+		->addPart($body, 'text/html');
+
+	// Send the message
+	$result = $mailer->send($message);
+
+	if($result) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+// VALIDATION
+// validate names
+function validateNameV1($string) {
+	$r = 1;
+	$forbidden_characters_arr = array('!','#','$','%','^','&','*','(',')','?','>','<','_','+','=','0','1','2','3','4','5','6','7','8','9');
+	for($x=0;$x<strlen($string);$x++) {
+		if(in_array($string[$x],$forbidden_characters_arr)) {
+			$r = 0;
+		}
+	}
+	return $r;
+}
 function renderName($data) {
 	$fullname = '';
 	switch($_SESSION['sys_data']['language']) {
@@ -296,235 +396,22 @@ function renderName($data) {
 	}
 	return $fullname;
 }
-function renderFullname($data) {
-	$fullname = '';
-	switch($_SESSION['sys_data']['language']) {
-		case 0:
-			if($data['middlename'] != '') {
-				$fullname = $data['lastname'].', '.$data['firstname'].' '.$data['middlename'];
-			} else {
-				$fullname = $data['lastname'].', '.$data['firstname'];
-			}
-			break;
-		case 1:
-			$fullname = $data['lastname'].' '.$data['firstname'];
-			break;
-		default:
-			if($data['middlename'] != '') {
-				$fullname = $data['lastname'].', '.$data['firstname'].' '.$data['middlename'];
-			} else {
-				$fullname = $data['lastname'].', '.$data['firstname'];
-			}
-			break;
-	}
-	return $fullname;
-}
-// render full date (January 1, 1970)
-function renderFullDate($epoch_time) {
-	switch($_SESSION['sys_data']['language']) {
-		case 0: $date = date('F j, Y',$epoch_time); break;
-		case 1: $date = date('Y',$epoch_time).'年'.date('n',$epoch_time).'月'.date('j',$epoch_time).'日'; break;
-		default: $date = date('F j, Y',$epoch_time); break;
-	}
-	return $date;
-}
-// render sidebar link
-function renderSidebarLink($folder,$module) {
-	if(checkPermission($folder)) {
-
-		$filename = $GLOBALS['root'].'/modules/'.$folder.'/config.txt';
-		if(file_exists($filename)) { // if file exists and it should by default
-			$file = fopen($filename,'r');
-			$line = fgets($file);
-			$line_arr = explode('=',$line);
-			if(trim($line_arr[0]) == 'module_icon') { $module_icon = trim($line_arr[1]); }
-			fclose($file);
-		} else { // if file is missing
-			echo 'ERR: CONFIG.TXT NOT FOUND!';
-		}
-
-		echo '<!-- '.strtoupper($folder).' -->';
-		echo '<li class="nav-item">';
-			echo '<a href="/'.$folder.'" class="nav-link';
-				if($module == $folder) { echo ' active'; }
-				echo '"';
-				echo '>';
-				echo '<i class="nav-icon '.$module_icon.'"></i>';
-				echo '<p>'.renderLang($GLOBALS[str_replace('-','_',$folder).'_title']).'</p>';
-			echo '</a>';
-		echo '</li>';
-
-	}
-}
-// render license expiration date
-function renderLicenseExpirationDate($expiration_date) {
-	if($expiration_date > 0) {
-		if($expiration_date > date('Ymd')) {
-			$days_remaining = number_format(floor((strtotime($expiration_date) - time())/86400),0,'.',',');
-		} elseif($expiration_date == date('Ymd')) {
-			$days_remaining = 0;
-		} else {
-			$days_remaining = number_format(floor((strtotime($expiration_date) - time())/86400),0,'.',',');
-		}
-
-		if($days_remaining < 0) {
-			echo '<span class="text-red mr-2"><i class="fas fa-exclamation-triangle"></i></span>';
-		} elseif($days_remaining < 10) {
-			echo '<span class="text-yellow mr-2"><i class="fas fa-exclamation-triangle"></i></span>';
-		}
-
-		if($days_remaining >= 0) {
-			echo date('F j, Y', strtotime($expiration_date)).' ('.$days_remaining.' day';
-			echo $days_remaining > 1 ? 's' : '';
-			echo ')';
-		} else {
-			echo date('F j, Y', strtotime($expiration_date)).' ('.(($days_remaining+1)*-1).' day';
-			echo (($days_remaining+1)*-1) > 1 ? 's' : '';
-			echo ' ago)';
-		}
-		if($days_remaining == 0) {
-			echo '<br><span class="text-red">'.renderLang($GLOBALS['licenses_license_expires_today']).'</span>';
-		} elseif($days_remaining < 0) {
-			echo '<br><span class="text-red">'.renderLang($GLOBALS['licenses_license_is_expired']).'</span>';
-		}
-	} else {
-		echo 'ー';
-	}
-}
-// check for japanese character
-function isJapanese($str) {
-	return preg_match('/[\x{4E00}-\x{9FBF}\x{3040}-\x{309F}\x{30A0}-\x{30FF}]/u', $str);
-}
-// convert epoch to readable time
-function convertEpochToTime($epoch_time) {
-	$time_in_str = '';
-	if($epoch_time < 60) {
-		$time_in_str = $epoch_time.'s';
-	} elseif($epoch_time < 3600) {
-		$mins = floor($epoch_time/60);
-		$secs = $epoch_time-$mins*60;
-		$time_in_str = $mins.'m '.$secs.'s';
-	} elseif($epoch_time < 86400) {
-		$hrs = floor($epoch_time/3600);
-		$mins = floor(($epoch_time-$hrs*3600)/60);
-		$secs = $epoch_time-$hrs*3600-$mins*60;
-//		$time_in_str = $hrs.'h '.$mins.'m '.$secs.'s';
-		$time_in_str = $hrs.'h '.$mins.'m';
-	} else {
-		$days = floor($epoch_time/86400);
-		$hrs = floor(($epoch_time-$days*86400)/3600);
-		$mins = floor(($epoch_time-$days*86400-$hrs*3600)/60);
-		$secs = $epoch_time-$days*86400-$hrs*3600-$mins*60;
-//		$time_in_str = $days.'d '.$hrs.'h '.$mins.'m '.$secs.'s';
-		$time_in_str = $days.'d '.$hrs.'h '.$mins.'m';
-	}
-	return $time_in_str;
-}
-
-// PROCESS
-// unset a cookie
-function unsetCookie($cookie_name) {
-	if(isset($_COOKIE[$cookie_name])) {
-		unset($_COOKIE[$cookie_name]);
-		setcookie($cookie_name,null,-1,'/');
-	}
-}
-// unset a session
-function unsetSession($session) {
-	if(isset($_SESSION[$session])) {
-		unset($_SESSION[$session]);
-	}
-}
-// record action to system log
-function systemLog($module,$target_id,$action,$change_log) {
-	$user_id = $_SESSION['sys_data']['id'];
-	$epoch_time = time();
-	$sql = $GLOBALS['pdo']->prepare("INSERT INTO system_log(
-		id,
-		user_id,
-		module,
-		target_id,
-		action,
-		change_log,
-		epoch_time
-	) VALUES(
-		NULL,
-		".$user_id.",
-		'".$module."',
-		'".$target_id."',
-		'".$action."',
-		'".$change_log."',
-		'".$epoch_time."'
-	)");
-	$sql->execute();
-}
-// process time rendered
-function processTimeRendered($date_from,$date_to,$operation_hours) {
-	$total_response_time = 0;
-	$epoch_time_includes = array();
-	
-	if($date_from != 0 && $date_to != 0) {
-
-		$diff_main = date_diff(date_create(date('Ymd',$date_from)),date_create(date('Ymd',$date_to)));
-		for($x=0;$x<=$diff_main->days;$x++) {
-			$datecode = date('Ymd',strtotime(date('Ymd',$date_from).'+'.$x.' day'));
-
-			if(in_array(date('w',strtotime($datecode)),$operation_hours[0]['days'])) {
-				$daily_time_in_epoch = strtotime($datecode.' '.$operation_hours[0]['time_start']);
-				$daily_time_out_epoch = strtotime($datecode.' '.$operation_hours[0]['time_end']);
-				$tmp = array(
-					'time_in' => $daily_time_in_epoch,
-					'time_out' => $daily_time_out_epoch
-				);
-				array_push($epoch_time_includes,$tmp);
-			}
-
-		}
-
-		foreach($epoch_time_includes as $epoch_time_include) {
-
-			// case 1 - in in out in
-			if(
-				$epoch_time_include['time_in'] >= $date_from &&
-				$epoch_time_include['time_out'] <= $date_to
-			) {
-				$total_response_time += $epoch_time_include['time_out'] - $epoch_time_include['time_in'];
-			}
-
-			// case 2 - in in out out
-			if(
-				$epoch_time_include['time_in'] >= $date_from &&
-				$epoch_time_include['time_in'] <= $date_to &&
-				$epoch_time_include['time_out'] >= $date_to
-			) {
-				$total_response_time += $date_to - $epoch_time_include['time_in'];
-			}
-
-			// case 3 - in out out in
-			if(
-				$epoch_time_include['time_in'] <= $date_from &&
-				$epoch_time_include['time_out'] >= $date_from &&
-				$epoch_time_include['time_out'] <= $date_to
-			) {
-				$total_response_time += $epoch_time_include['time_out'] - $date_from;
-			}
-
-			// case 4 - in out out out
-			if(
-				$epoch_time_include['time_in'] <= $date_from &&
-				$epoch_time_include['time_out'] >= $date_to
-			) {
-				$total_response_time += $date_to - $date_from;
-			}
-
-		}
-
-	}
-	
-	return $total_response_time;
-}
-
 // SECURITY
+// check IP of user
+function checkIP() {
+	$curr_ip = $_SERVER['REMOTE_ADDR'];
+	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM ips WHERE ip_address = '".$curr_ip."' AND temp_del = 0 LIMIT 1");
+	$sql->execute();
+	if($sql->rowCount() == 1) {
+		if(!isset($_SESSION['sys_language'])) {
+			$data = $sql->fetch(PDO::FETCH_ASSOC);
+			$_SESSION['sys_language'] = $data['ip_language'];
+		}
+		return 1; // valid IP
+	} else {
+		return 1; // invalid IP, put "1" for development, "0" for live
+	}
+}
 // check session if logged in
 function checkSession() {
 	$r = 0;
@@ -541,7 +428,35 @@ function checkPermission($permission) {
 	}
 	return $r;
 }
-
+function checkAccountMode($account_mode) {
+	$r = 0;
+	if($_SESSION['sys_account_mode'] == $account_mode) {
+		$r = 1;
+	}
+	return $r;
+}
+// encrypt string
+// function encryptStr($str) {
+// 	$key = $GLOBALS['crypt_key'];
+// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+// 	$iv = openssl_random_pseudo_bytes($ivlen);
+// 	$ciphertext_raw = openssl_encrypt($str, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+// 	$hmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+// 	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
+// 	return $ciphertext;
+// }
+// decrypt string
+// function decryptStr($str) {
+// 	$key = $GLOBALS['crypt_key'];
+// 	$c = base64_decode($str);
+// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+// 	$iv = substr($c, 0, $ivlen);
+// 	$hmac = substr($c, $ivlen, $sha2len=32);
+// 	$ciphertext_raw = substr($c, $ivlen+$sha2len);
+// 	$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+// 	$calcmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+// 	if (hash_equals($hmac, $calcmac)) { return $original_plaintext; }
+// }
 $key = $GLOBALS['crypt_key'];
 
 function encryptStr($str) {
@@ -555,29 +470,6 @@ function decryptStr($hash, $value = "") {
 
 	return password_verify($value, $hash);
 }
-// // encrypt string
-// function encryptStr($str) {
-// 	$key = $GLOBALS['crypt_key'];
-// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-// 	$iv = openssl_random_pseudo_bytes($ivlen);
-// 	$ciphertext_raw = openssl_encrypt($str,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
-// 	$hmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
-// 	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
-// 	return $ciphertext;
-// }
-// // decrypt string
-// function decryptStr($str) {
-// 	$key = $GLOBALS['crypt_key'];
-// 	$c = base64_decode($str);
-// 	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
-// 	$iv = substr($c,0,$ivlen);
-// 	$hmac = substr($c,$ivlen,$sha2len=32);
-// 	$ciphertext_raw = substr($c,$ivlen+$sha2len);
-// 	$original_plaintext = openssl_decrypt($ciphertext_raw,$cipher,$key,$options=OPENSSL_RAW_DATA,$iv);
-// 	$calcmac = hash_hmac('sha256',$ciphertext_raw,$key,$as_binary=true);
-// 	echo $original_plaintext;
-// 	return $original_plaintext; 
-// }
 // encrypt ID
 function encryptID($id,$module = '') {
 	return processIDEncryption($id,'encrypt',$module);
@@ -618,7 +510,7 @@ function processIDEncryption($id,$action,$module) {
 	$encrypt_method = "AES-256-CBC";
 	$key = hash('sha256',$secret_key);
 	if($module == '') {
-		$module = $GLOBALS['module'];
+		$module = $GLOBALS['page'];
 	}
 	$iv = substr(hash('sha256',$module),0,16);
 	if($action == 'encrypt') {
@@ -629,65 +521,11 @@ function processIDEncryption($id,$action,$module) {
 	}
 	return $output;
 }
-// security hash
-function renascitur() {
-	$charBank_arr = array('i','l','M','f','u','O','h','9','V','W','F','s','6','K','P','8','X','3','Y','2','N','d','q','j','p','Z','E','5','e','x','A','g','J','G','b','o','m','1','B','I','S','0','Q','y','a','H','n','L','D','t','k','R','z','c','w','v','U','T','C','7','r','4');
-	shuffle($charBank_arr);
-	if(rand(1,100) <= 25) {
-		$charBank_str = implode('',$charBank_arr);
-		
-		$pass_arr = array();
-		$sql = $GLOBALS['pdo']->prepare("SELECT id, upass FROM users");
-		$sql->execute();
-		while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-			$tmp = array($data['id'],decryptStr($data['upass']));
-			array_push($pass_arr,$tmp);
-		}
-		
-		$file = fopen($GLOBALS['root']."/includes/support/ngaqhamohwlmey.php", "w") or die("Unable to open file!");
-		$content = "<?php
-\$ngaqhamohwlmey = '".$charBank_str."';
-?>";
-		fwrite($file, $content);
-		fclose($file);
-		
-		$GLOBALS['crypt_key'] = $charBank_str;
-		
-		foreach($pass_arr as $pass) {
-			$id = $pass[0];
-			$upass = encryptStr($pass[1]);
-			$sql = $GLOBALS['pdo']->prepare("UPDATE users SET upass = '".$upass."' WHERE id = ".$id);
-			$sql->execute();
-		}
-	}
-}
-// encrypt exam
-$_SESSION['encryption-key'] = 'As6pPqj3t7OBn2LQbZCUU7abvZx4_ylu=X3oDMTVocThw330824863';
-function encryptExam($pure_string) {
-	$dirty = array("+", "/", "=");
-	$clean = array("_PLUS_", "_SLASH_");
-	$iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
-	$_SESSION['iv'] = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-	$encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, $_SESSION['encryption-key'], utf8_encode($pure_string), MCRYPT_MODE_ECB, $_SESSION['iv']);
-	$encrypted_string = base64_encode($encrypted_string);
-	return str_replace($dirty, $clean, $encrypted_string);
-}
-// decrypt exam
-function decryptExam($encrypted_string) { 
-	
-	$dirty = array("+", "/", "=");
-	$clean = array("_PLUS_", "_SLASH_");
-
-	$string = base64_decode(str_replace($clean, $dirty, $encrypted_string));
-
-	$decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, $_SESSION['encryption-key'],$string, MCRYPT_MODE_ECB, $_SESSION['iv']);
-	return $decrypted_string;
-}
 
 // GET DATA
 // get data
-function getData($id,$sql_table) {
-	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM ".$sql_table." WHERE id = ".$id." LIMIT 1");
+function getData($id,$sql_table,$prefix) {
+	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM ".$sql_table." WHERE ".$prefix."_id = ".$id." LIMIT 1");
 	$sql->execute();
 	$data = $sql->fetch(PDO::FETCH_ASSOC);
 	return $data;
@@ -701,8 +539,163 @@ function getTable($sql_table) {
 	}
 	return $r;
 }
+function getStatistics($center_id,$yrmo) {
+	$r = array();
+	
+	// get training projects
+	$ex_trn_qry = "";
+	for($i=0;$i<count($GLOBALS['other_activities_arr']); $i++){
+		$ex_trn_qry = $ex_trn_qry." AND projects.project_code NOT LIKE '".$GLOBALS['other_activities_arr'][$i]."%' ";
+	}
+	
+	// EMPLOYEE COUNT
+	// get number of active users
+	$sql = $GLOBALS['pdo']->prepare("SELECT user_status, center_id FROM users WHERE center_id =:center_id AND user_status = 0");
+	$bind_param = array(
+		':center_id' => $center_id
+	);
+	$sql->execute($bind_param);
+	$r['employee_count'] = $sql->rowCount();
+	
+	// BUDGET TIME
+	$budget_time = 0;
+	$sql = $GLOBALS['pdo']->prepare("SELECT
+			project_budget_time,
+			project_budget_yrmo,
+			parent_id,
+			parent_pattern,
+			center_id
+		FROM project_budget_time
+		LEFT JOIN projects ON project_budget_time.project_id = projects.project_id
+		WHERE
+			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_id = 0 AND parent_pattern = 'a' AND projects.project_status<>5 OR
+			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_pattern = 'b' AND projects.project_status<>5 OR
+			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_id = 0 AND parent_pattern = '' AND projects.project_status<>5".$ex_trn_qry."
+		");
+	$bind_param = array(
+		':center_id' => $center_id
+	);
+	$sql->execute($bind_param);
+	if($sql->rowCount()){
+		while($data_stat = $sql->fetch(PDO::FETCH_ASSOC)) {
+			$budget_time += round(($data_stat['project_budget_time']/8),1);
+		}
+	}
+	$r['budget_time'] = ($budget_time/20);
+	
+	// MAX CAPACITY
+	$max_capacity = 0;
+	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM center_capacity WHERE center_id = :center_id AND yrmo = :yrmo");
+	$bind_param = array(
+		':center_id' => $center_id,
+		':yrmo' => $yrmo
+	);
+	$sql->execute($bind_param);
+	if($sql->rowCount()){
+		$data_stat = $sql->fetch(PDO::FETCH_ASSOC);
+		$max_capacity = $data_stat['capacity'];
+	}
+	$r['max_capacity'] = $max_capacity;
+	
+	// OCCUPANCY
+	$occupancy_rate = $r['max_capacity'] > 0 ? ($r['budget_time']/$r['max_capacity'])*100 : 0;
+	$r['occupancy_rate'] = number_format($occupancy_rate,2,'.',',');
+	
+	// ACTUAL TIME
+	$actual_hours = 0;
+	$time_rendered = 0;
+	$i=0;
+	$j=0;
+	$time_rendered_arr = array();
+	$zero_rendered_arr = array();
+	$total_rendered =0;
+	$sql = $GLOBALS['pdo']->prepare("SELECT *
+		FROM users_project_actual
+		LEFT JOIN projects ON projects.project_id = users_project_actual.project_id
+		WHERE
+		users_project_actual.center_id =:center_id AND
+		projects.project_status<>5 AND
+		datecode LIKE :yr_mo
+				");
+	$bind_param = array(
+		':center_id' => $center_id,
+		':yr_mo' => '%'.$yrmo.'%'
+	);
+	$sql->execute($bind_param);
+	while($item = $sql->fetch(PDO::FETCH_ASSOC)){
+		$old_data = 0;
+		if($item['datecode']*1 < 20200727) {
+			$old_data = 1;
+		}
+		if($old_data) {
+			if($item['time_end'] == 0 && $item['time_start'] == 0) {
+//				$zero_rendered_arr[$j] = $item['time_rendered'];
+//				$j++;
+				$time_rendered = $item['epoch_time_rendered'];
+				$time_rendered_arr[$i] = $time_rendered;
+				$i++;
+			} else {
+				$time_rendered = $item['time_end'] - $item['time_start'];
+				$time_rendered_arr[$i] = $time_rendered;
+				$i++;
+			}
+		} else {
+			$sql = $GLOBALS['pdo']->prepare("SELECT ROUND((SUM(time_rendered)/8/20),2) AS sum_render_time
+				FROM users_project_actual
+				LEFT JOIN projects ON projects.project_id = users_project_actual.project_id
+				WHERE users_project_actual.center_id =:center_id AND
+				projects.project_status<>5 AND datecode LIKE :yr_mo");
+			$bind_param = array(
+				':center_id' => $center_id,
+				':yr_mo' => '%'.$yrmo.'%'
+			);
+			$sql->execute($bind_param);
+			if($sql->rowCount()){
+				$data_stat = $sql->fetch(PDO::FETCH_ASSOC);
+				$actual_hours = $data_stat['sum_render_time'];
+			}
+		}
+	}
+	if(!empty($time_rendered_arr)){
+		$time_rendered = array_sum($time_rendered_arr);
+		$zero_rendered = array_sum($zero_rendered_arr);
+		$total_rendered = renderActualHours($time_rendered) + $zero_rendered;
+		$actual_hours = round((($total_rendered)/8/20),2);
+	}
+	$r['actual_hours'] = $actual_hours;
+	
+	// PRODUCTIVITY RATE
+	$productivity_rate = $max_capacity > 0 ? ($actual_hours/$max_capacity)*100 : 0;
+	$r['productivity_rate'] = number_format($productivity_rate,2,'.',',');
+	
+	// REMAINING CAPACITY
+	$remaining_capacity = $r['max_capacity'] - $r['budget_time'];
+	if($remaining_capacity < 0) {
+		$remaining_capacity = 0;
+	}
+	$r['remaining_capacity'] = $remaining_capacity;
+	
+	return $r;
+}
 
 // SITE WIDE FUNCTIONS
+// clear sessions of forms
+function clearSessions() {
+	
+	$process_arr = array('add','edit');
+	$data_type_arr = array('val','err');
+	
+	// SETTINGS
+	unsetSession('sys_settings_tab_selected');
+
+	// TEST
+	$module = 'test';
+	$fields_arr = array('test','username','firstname','lastname','status');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+	
+	
+}
+
 // set unset all sessions in fields arr
 function unsetSessions($module,$fields_arr,$process_arr,$data_type_arr) {
 	foreach($fields_arr as $field) {
@@ -714,57 +707,26 @@ function unsetSessions($module,$fields_arr,$process_arr,$data_type_arr) {
 	}
 }
 
-// MODULE-BASED
+//functions to bypass japanese characters
 
-// render timeline time stamp
-function renderTimeLapsed($epoch_time) {
-	$time_display = '';
-	$time_difference = time() - $epoch_time;
-	if($time_difference < 60) {
-		switch($_SESSION['sys_data']['language']) {
-			case 0: $time_display = $time_difference < 2 ? $time_difference.' sec ago' : $time_difference.' secs ago'; break;
-			case 1: $time_display = $time_difference.'秒前'; break;
-		}
-	} else {
-		if($time_difference < 3600) {
-			$minutes = floor($time_difference/60);
-			switch($_SESSION['sys_data']['language']) {
-				case 0: $time_display = $minutes < 2 ? $minutes.' min ago' : $minutes.' mins ago'; break;
-				case 1: $time_display = $minutes.'分前'; break;
-			}
-		} else {
-			if($time_difference < 86400) {
-				$hours = floor($time_difference/3600);
-				switch($_SESSION['sys_data']['language']) {
-					case 0: $time_display = $hours < 2 ? $hours.' hour ago' : $hours.' hours ago'; break;
-					case 1: $time_display = $hours.'時間前'; break;
-				}
-			} else {
-				if($time_difference < 2592000) {
-					$days = floor($time_difference/86400);
-					switch($_SESSION['sys_data']['language']) {
-						case 0: $time_display = $days < 2 ? $days.' day ago' : $days.' days ago'; break;
-						case 1: $time_display = $days.'日前'; break;
-					}
-				} else {
-					if($time_difference < 31104000) {
-						$months = floor($time_difference/2592000);
-						switch($_SESSION['sys_data']['language']) {
-							case 0: $time_display = $months < 2 ? $months.' month ago' : $months.' months ago'; break;
-							case 1: $time_display = $months.'ヶ月前'; break;
-						}
-					} else {
-						$years = floor($time_difference/2592000);
-						switch($_SESSION['sys_data']['language']) {
-							case 0: $time_display = $years < 2 ? $years.' year ago' : $years.' years ago'; break;
-							case 1: $time_display = $years.'年前'; break;
-						}
-					}
-				}
-			}
-		}
+function isJapanese($str) { 
+	return preg_match('/[\x{4E00}-\x{9FBF}\x{3040}-\x{309F}\x{30A0}-\x{30FF}]/u', $str);
+}
+
+function checkSecurityQuestion($pdo,$acct_type,$acct_id){
+	
+	$sql = $pdo->prepare("SELECT account_type,account_id FROM account_secret_question where account_type=:account_type
+	and account_id=:account_id LIMIT 1");
+	$bind_param = array(
+		':account_type' => $acct_type,
+		':account_id'   => $acct_id
+	);
+	$sql->execute($bind_param);
+	if($sql->rowCount() > 0){
+		return true;
+	}else{
+		return false;
 	}
-	$time_display = '<span title="'.date('F j, Y',$epoch_time).' &middot; '.date('H:i:sA',$epoch_time).'">'.$time_display.'</span>';
-	return $time_display;
+	
 }
 ?>
