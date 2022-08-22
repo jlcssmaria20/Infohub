@@ -18,10 +18,19 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub | Add Announcement</title>
+	<title>DX Info Hub | Add announcements</title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
-	<link rel="stylesheet" href="/assets/css/announcement.css">
+	<link rel="stylesheet" href="/assets/css/announcements.css">
+	<!-- for the details text area input -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 	
 </head>
 
@@ -44,7 +53,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($announcement_add); ?></h1>
+							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($announcements_add); ?></h1>
 						</div>
 					</div>
 					
@@ -60,7 +69,7 @@ if(checkSession()) {
 					renderSuccess('sys_announcements_add_suc');
 					?>
 					
-					<form method="post" action="/submit-add-announcements">
+					<form method="post" action="/submit-add-announcements" enctype="multipart/form-data">
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title"><?php echo renderLang($announcements_add_form); ?></h3>
@@ -74,11 +83,11 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_announcements_add_title_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_title_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_title_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_title_val'].'"'; } ?> required>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_title_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_title_val'].'"'; } ?> required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_title_err'].'</p>'; unset($_SESSION['sys_announcements_add_title_err']); } ?>
 										</div>
 									</div>
-									
+
 								</div>
 									
 								<hr>
@@ -86,33 +95,36 @@ if(checkSession()) {
 								<div class="row">
 
 									<!-- DETAILS -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-8">
 										<?php
 										$details_err = 0;
 										if(isset($_SESSION['sys_announcements_add_details_err'])) { $details_err = 1; }
 										?>
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>" id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_details_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_details_val'].'"'; } ?> required>
+
+											<textarea class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>"  id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_details_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_details_val'].'"'; } ?> required></textarea>
+										
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_details_err'].'</p>'; unset($_SESSION['sys_announcements_add_details_err']); } ?>
 										</div>
 									</div>
-
+									
 									<!-- IMAGE -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$img_err = 0;
-										if(isset($_SESSION['sys_announcements_add_img_err'])) { $img_err = 1; }
-										?>
+									<div class="col-4">
+										<?php $err = isset($_SESSION['sys_announcements_add_img_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="img" class="mr-1<?php if($img_err) { echo ' text-danger'; } ?>"><?php if($img_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($img_err) { echo ' is-invalid'; } ?>" id="img" name="img" placeholder="<?php echo renderLang($announcements_img_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_img_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_img_val'].'"'; } ?> required>
-											<?php if($img_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_img_err'].'</p>'; unset($_SESSION['sys_announcements_add_img_err']); } ?>
+											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<div class="custom-file">
+												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" required>
+												<label for="imgs" class="custom-file-label">Choose Image</label>
+												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_img_err'].'</p>'; unset($_SESSION['sys_announcements_add_img_err']); } ?>
+												
+											</div>
 										</div>
 									</div>
-
-								</div><!-- row -->
-								
+									
+								</div>
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
 								<a href="/announcements" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
@@ -132,17 +144,29 @@ if(checkSession()) {
 	</div><!-- wrapper -->
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
+		
+	<!-- Summernote -->
 	<script>
-		$(function() {
-			
-			
-			
+		//for image input
+		$('#img').on('change',function(){
+		//get the file name
+		var img = $(this).val();
+		//replace the "Choose a file" label
+		$(this).next('.custom-file-label').html(img);
 		});
+
+		//for details text editor
+		$('#details').summernote({
+			tabsize: 2,
+			height: 100
+		});
+
 	</script>
 	
 </body>
 
 </html>
+
 <?php
 	} else { // permission not found
 

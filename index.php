@@ -100,17 +100,17 @@ $total = 4;
                     <?php
                     // The list of items to be displayed on screen.
                     $x = array();
-                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY announcment_title DESC LIMIT 4");
+                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC LIMIT 4");
                     $sql->execute();
                     $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach($row as $key => $data) {
                         $x = $key +1;
-                        if($data['status'] != 1) {
-                            if($data['id'] != 1) {
+                        if($data['announcements_status'] != 2) {
+                            if($data['id'] != 0) {
                                 echo '<li >';
-                                    echo '<a href="/announcements" style="padding: 0 10px 0 0">';
-                                        echo  $data['announcment_title'];
+                                    echo '<a href="/o-announcements" style="padding: 0 10px 0 0">';
+                                        echo  $data['announcements_title'];
                                         echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
                                     echo '</a>';
                                 echo '</li>';
@@ -120,7 +120,7 @@ $total = 4;
                     ?>
                     </ul>
                 </div>
-                <a href="/announcements" class="btn">See all announcements</a>
+                <a href="/o-announcements" class="btn">See all announcements</a>
             </div>
         </section>
     </div><!-- container -->

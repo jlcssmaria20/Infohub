@@ -5,78 +5,133 @@ LEGEND by (index)
 1 - Japanese
 */
 
-// announcement
-$announcement = array(
-	'Announcement',
+// announcements
+$announcements = array(
+	'Announcements',
 	''
 );
-$announcement_details = array(
-	'Announcement Details',
+$announcements_details = array(
+	'Announcements Details',
 	''
 );
-$announcement_list = array(
-	'Announcement List',
+$announcements_list = array(
+	'Announcements List',
 	''
 );
-$announcement_add = array(
-	'Add Announcement',
+$announcements_add = array(
+	'Add Announcements',
 	''
 );
-$announcement_add_form = array(
-	'Add Announcement Form',
+$announcements_add_form = array(
+	'Add Announcements Form',
 	''
 );
-$announcement_edit = array(
-	'Edit Announcement',
+$announcements_edit = array(
+	'Edit Announcements',
 	''
 );
-$announcement_edit_form = array(
-	'Edit Announcement Form',
+$announcements_edit_form = array(
+	'Edit Announcements Form',
 	''
 );
-$announcement_update_announcement = array(
-	'Update Announcement',
+$announcements_update_announcements = array(
+	'Update Announcements',
 	''
 );
-$announcement_delete_announcement = array(
-	'Delete Announcement',
+$announcements_delete_announcements = array(
+	'Delete Announcements',
+	''
+);
+$announcements_title_label = array(
+	'Title',
+	''
+);
+$announcements_details_label = array(
+	'Details',
+	''
+);
+$announcements_details_placeholder = array(
+	'e.g This webinar or Event is...',
+	''
+);
+$announcements_img_label = array(
+	'Image',
+	''
+);
+$announcements_img_placeholder = array(
+	'Choose Image',
+	''
+);
+$announcements_title_placeholder = array(
+	'e.g. 2022 National Holidays',
+	''
+);
+$announcements_clear_roles = array(
+	'Clear Roles',
+	''
+);
+$announcements_logs = array(
+	'Announcements Logs',
 	''
 );
 
-
-$announcement_logs = array(
-	'Test Logs',
+$announcements_date_created = array(
+	'Date Created ',
+	''
+);
+$announcements_date_edit = array(
+	'Date Last Edited',
+	''
+);
+$announcements_date_edit_placeholder = array(
+	'None ',
 	''
 );
 
 // MODALS
-$announcement_modal_delete_msg1 = array(
+$announcements_modal_delete_msg1 = array(
 	'Are you sure you want to delete this announcement?',
 	''
 );
-$announcement_modal_delete_msg2 = array(
+$announcements_modal_delete_msg2 = array(
 	'Deleting this announcement will remove it from the database permanently.',
 	''
 );
 
 // FORM MESSAGES
-$announcement_added = array(
+$announcements_title_required = array(
+	'Title is required.',
+	''
+);
+$announcements_title_exists = array(
+	'Title already exists. Please provide a unique title.',
+	''
+);
+$announcements_details_required = array(
+	'Detail is required.',
+	''
+);
+$announcements_img_required = array(
+	'Image is required.',
+	''
+);
+$announcements_added = array(
 	'Announcement added!',
 	''
 );
-$announcement_updated = array(
+$announcements_updated = array(
 	'Announcement updated!',
 	''
 );
-$announcement_messages_removed = array(
+$announcements_messages_removed = array(
 	'Announcement removed successfully.',
 	''
 );
-$announcement_messages_deleted = array(
+$announcements_messages_deleted = array(
 	'This announcement has been deleted.',
 	''
 );
-$announcement__not_found = array(
+$announcements__not_found = array(
 	'Announcement Data not found!',
 	''
 );

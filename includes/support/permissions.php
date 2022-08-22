@@ -48,6 +48,7 @@ $permissions_arr = array(
 				''
 			)
 		),
+		// ANNOUNCEMENTS =================================
 		array(
 			'permission_code' => 'announcements',
 			'permission_name' => array(

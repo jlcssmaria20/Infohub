@@ -695,7 +695,7 @@ function clearSessions() {
 	
 	//ANNOUNCEMENTS
 	$module = 'announcements';
-	$fields_arr = array('announcements','title','details','img');
+	$fields_arr = array('announcements','title','details','img','status');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 }
 

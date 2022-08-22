@@ -39,6 +39,11 @@ if(checkSession()) {
 				$announcements_img = $_SESSION['sys_announcements_edit_img_val'];
 				unset($_SESSION['sys_announcements_edit_img_val']);
 			}
+			$announcements_status = $data['announcements_status'];
+			if(isset($_SESSION['sys_announcements_edit_status_val'])) {
+				$announcements_status = $_SESSION['sys_announcements_edit_status_val'];
+				unset($_SESSION['sys_announcements_edit_status_val']);
+			}
 	
 ?>
 <!DOCTYPE html>
@@ -51,7 +56,16 @@ if(checkSession()) {
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	<link rel="stylesheet" href="/assets/css/announcements.css">
-	
+	<!-- for the details text area input -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -72,8 +86,8 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($announcements_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['announcements_title']; ?></h1>
+						<div class="col">
+							<h1><i class="fa fa-bullhorn mr-3"></i><?php echo renderLang($announcements_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['announcements_title']; ?></h1>
 						</div>
 					</div>
 					
@@ -89,7 +103,7 @@ if(checkSession()) {
 					renderSuccess('sys_announcements_edit_suc');
 					?>
 					
-					<form method="post" action="/submit-edit-announcements/<?php echo encryptID($id) ?>">
+					<form method="post" action="/submit-edit-announcements/<?php echo encryptID($id) ?>" enctype="multipart/form-data">
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title"><?php echo renderLang($announcements_edit_form); ?></h3>
@@ -106,40 +120,82 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_announcements_edit_title_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_title_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>" value="<?php echo $announcements_title; ?>" required>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>" value="<?php echo $announcements_title; ?>" required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_title_err'].'</p>'; unset($_SESSION['sys_announcements_edit_title_err']); } ?>
 										</div>
 									</div>
 									
-								</div>
+									<!-- STATUS -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<?php $err = isset($_SESSION['sys_announcements_edit_status_err']) ? 1 : 0; ?>
+										<div class="form-group">
+											<label for="announcements_status" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($lang_status); ?></label> 
+											<span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
+											<select class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="announcements_status" name="announcements_status" required>
+												<?php
+												foreach($status_arr as $status) {
+													echo '<option value="'.$status[0].'"';
+													if($announcements_status == $status[0]) {
+														echo ' selected';
+													}
+													echo '>'.renderLang($status[1]).'</option>';
+												}
+												?>
+											</select>
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_status_err'].'</p>'; unset($_SESSION['sys_announcements_edit_status_err']); } ?>
+										</div>
+									</div>
+
+									<!-- DATE CREATED -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<div class="form-group">
+											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_date_created); ?></label> 
+											<input type="text" class="form-control disabled" id="date_created" name="date_created" value="<?php echo $data['date_created']; ?>" disabled>
+																					
+										</div>
+									</div>
+									<!-- DATE EDITED -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<div class="form-group">
+											<label for="date_edit" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_date_edit); ?></label> 
+											<input type="text" class="form-control disabled" id="date_edit" name="date_edit" placeholder="<?php echo renderLang($announcements_date_edit_placeholder); ?>" value="<?php echo $data['date_edit']; ?>" disabled>
+										</div>
+									</div>
+									
+								</div><!-- row -->
 
 								<hr>
 
 								<div class="row">
 
 									<!-- DETAILS -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-8">
 										<?php
 										$details_err = 0;
 										if(isset($_SESSION['sys_announcements_edit_details_err'])) { $details_err = 1; }
 										?>
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>" id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>" value="<?php echo $announcements_details; ?>" required>
+											
+											<textarea class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>" id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>" required><?php echo $announcements_details; ?></textarea>
+											
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_details_err'].'</p>'; unset($_SESSION['sys_announcements_edit_details_err']); } ?>
 										</div>
 									</div>
+											
 									
 									<!-- IMAGE -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$img_err = 0;
-										if(isset($_SESSION['sys_announcements_edit_img_err'])) { $img_err = 1; }
-										?>
+									<div class="col-4">
+										<?php $err = isset($_SESSION['sys_announcements_edit_img_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="img" class="mr-1<?php if($img_err) { echo ' text-danger'; } ?>"><?php if($img_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($img_err) { echo ' is-invalid'; } ?>" id="img" name="img" placeholder="<?php echo renderLang($announcements_img_placeholder); ?>" value="<?php echo $announcements_img; ?>" required>
-											<?php if($img_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_img_err'].'</p>'; unset($_SESSION['sys_announcements_edit_img_err']); } ?>
+											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<div class="custom-file">
+												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" required>
+												<label for="imgs" class="custom-file-label"><?php echo $announcements_img; ?></label>
+												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_img_err'].'</p>'; unset($_SESSION['sys_announcements_edit_img_err']); } ?>
+												<img src="/assets/images/announcements/<?php echo $announcements_img; ?>" class="img-thumbnail  mt-3 w-100" style="height:200px;">
+											</div>
 										</div>
 									</div>
 
@@ -189,6 +245,7 @@ if(checkSession()) {
 	<?php } ?>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
+	
 	<script>
 		$(function() {
 			<?php if(checkPermission('announcements-delete')) { ?>
@@ -213,6 +270,21 @@ if(checkSession()) {
 			});
 		<?php } ?>
 		});
+
+		// for input image
+		$('#img').on('change',function(){
+			//get the file name
+			var img = $(this).val();
+			//replace the "Choose a file" label
+			$(this).next('.custom-file-label').html(img);
+		});
+
+		//for details text editor
+		$('#details').summernote({
+			tabsize: 2,
+			height: 100
+		});
+
 	</script>
 	
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2022 at 07:52 AM
+-- Generation Time: Aug 22, 2022 at 11:16 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -30,6 +30,40 @@ SET time_zone = "+00:00";
 CREATE TABLE `announcements` (
   `id` int(255) UNSIGNED NOT NULL,
   `user_id` int(255) NOT NULL,
+  `announcements_title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `announcements_details` varchar(1000) CHARACTER SET utf8 NOT NULL,
+  `announcements_img` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `announcements_count` int(1) NOT NULL DEFAULT 0,
+  `date_edit` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `date_created` varchar(255) DEFAULT NULL,
+  `announcements_status` int(255) NOT NULL,
+  `temp_del` int(11) NOT NULL DEFAULT 0,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `user_id`, `announcements_title`, `announcements_details`, `announcements_img`, `announcements_count`, `date_edit`, `date_created`, `announcements_status`, `temp_del`, `timestamp`) VALUES
+(1, 177, '2022 Philippine Holidays', 'Prepare for your next vacation in the Philippines with this detailed list and calendars of all the regular holidays, special non-working and working days, long weekends, and important festivals and events in the Philippines for 2022. \r\n\r\nMake a checklist, plan vacations with family and friends, and arrange tour packages all across the Philippines with the help of this guide that includes celebrations in the Philippines every month. Additionally, you may want to schedule your visit around top Philippines tourist spots and significant Philippine festivals and events for a much more enriching and immersive trip. Make sure to check the updated travel requirements in the Philippines and the best hotels in the Philippines to book when planning your trip to destinations.', '2022-National-Holiday-placeholder_CNNPH.jpg', 0, '', 'August 22, 2022 - Monday - 01:40 pm', 0, 0, '2022-08-22 05:40:17'),
+(2, 177, 'Japanese Public Holidays In 2022!', 'After rearrangements to match the Olympics in 2020 and their rescheduled dates in 2021, Japan&rsquo;s national holidays will return to their normal schedule in 2022.', 'test.jpg', 0, '', 'August 22, 2022 - Monday - 01:43 pm', 0, 0, '2022-08-22 05:43:03'),
+(3, 177, 'Word Press Basic', 'WordPress enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills).\r\n\r\nBefore beginning, it&rsquo;s really important to understand the difference between pages and posts.\r\n\r\nYour website will consist of any number of web pages containing updatable content. One of the pages is the blog page (unless you&rsquo;ve chosen not to run a blog/news page). The blog page can sometimes be set as the home page or it might be a completely separate page called News, instead of Blog.', 'Nature_Fresh_1.jpg', 0, '', 'August 22, 2022 - Monday - 01:46 pm', 0, 0, '2022-08-22 05:46:22'),
+(4, 177, 'New Announcement! Edited', 'This is a new announcement, edited.', '2.jpg', 0, 'August 22, 2022 - Monday - 02:45 pm', 'August 22, 2022 - Monday - 01:51 pm', 1, 0, '2022-08-22 06:45:44'),
+(5, 177, 'Longest Title. This Announcements Is About. Theeer', 'WordPress enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills) The blog page can sometimes be set as the home page or it might be a completely separate page called News, instead of Blog.\r\n\r\nWordPress enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills). Before beginning, it&rsquo;s really important to understand the difference between pages and posts. Your website will consist of any number of web pages containing updatable content. One of the pages is the blog page (unless you&rsquo;ve chosen not to run a blog/news page). The blog', '2.jpg', 0, 'August 22, 2022 - Monday - 03:16 pm', 'August 22, 2022 - Monday - 02:29 pm', 0, 0, '2022-08-22 07:16:44'),
+(6, 177, 'Asdsad', '&lt;b&gt;&amp;nbsp;Bold Text&amp;nbsp;&lt;/b&gt;&amp;nbsp;this announcement s is &lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;sdf fsdf&lt;/span&gt;&lt;/font&gt;', '16-120607.jpeg', 0, 'August 22, 2022 - Monday - 04:40 pm', 'August 22, 2022 - Monday - 04:02 pm', 0, 0, '2022-08-22 08:40:05'),
+(7, 177, 'Summernoter Trial', '&lt;p&gt;this is a summer note template&lt;/p&gt;', '2.jpg', 0, '', 'August 22, 2022 - Monday - 04:32 pm', 0, 0, '2022-08-22 08:32:58'),
+(8, 177, 'Asdasd', '&lt;p&gt;asdsd&lt;/p&gt;', 'dx2.jpg', 0, 'August 22, 2022 - Monday - 05:09 pm', 'August 22, 2022 - Monday - 05:09 pm', 2, 1661159516, '2022-08-22 09:11:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements_old`
+--
+
+CREATE TABLE `announcements_old` (
+  `id` int(255) UNSIGNED NOT NULL,
+  `user_id` int(255) NOT NULL,
   `announcment_details` varchar(1000) CHARACTER SET utf8 NOT NULL,
   `announcment_title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `announcment_img` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -41,33 +75,13 @@ CREATE TABLE `announcements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `announcements`
+-- Dumping data for table `announcements_old`
 --
 
-INSERT INTO `announcements` (`id`, `user_id`, `announcment_details`, `announcment_title`, `announcment_img`, `announcment_count`, `date_edit`, `current_date`, `status`, `temp_del`) VALUES
+INSERT INTO `announcements_old` (`id`, `user_id`, `announcment_details`, `announcment_title`, `announcment_img`, `announcment_count`, `date_edit`, `current_date`, `status`, `temp_del`) VALUES
 (37, 1, '<p>Any employee is looking forward to two things—paydays and holidays. Well, who doesn’t? Holidays in the Philippines allow people to spend some quality time with their loved ones, and that much-needed me-time before getting back to the daily grind. Start planning your vacations for next year by keeping tab of Philippines holidays in 2022. Here’s a quick guide to the Philippine holidays and long weekends that can help you plan your vacations wisely.</p><p>There are 239 working days and 16 holidays in the Philippines in 2022. According to research done by Gulf Business, the Philippines is one of the countries with the most public holidays in the world. India tops the list followed by Columbia and the Philippines. Holidays in the Philippines are also grouped into two—regular and special non-working holidays. Regular holidays typically have a fixed date, like New Year’s Da</p>', '2022 Philippine Holidays', '2022-National-Holiday-placeholder_CNNPH.jpg', 0, 'May 31, 2022 - Tuesday - 03:40 pm', 'March 28, 2022 - Monday - 12:41 pm', 0, 0),
 (41, 204, '<br>', 'Japanese Public Holidays in 2022', 'mount fuji.JPG', 0, 'May 27, 2022 - Friday - 12:31 am', 'May 27, 2022 - Friday - 12:29 am', 0, 0),
 (43, 155, '<p>asdasdasd<span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><', 'Millenials In Workforceasdaasdas', 'WordPress Basics.png', 0, '', 'June 28, 2022 - Tuesday - 10:47 am', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `announcements_new`
---
-
-CREATE TABLE `announcements_new` (
-  `id` int(255) UNSIGNED NOT NULL,
-  `user_id` int(255) NOT NULL,
-  `announcement_title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `announcement_details` varchar(1000) CHARACTER SET utf8 NOT NULL,
-  `announcement_img` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `announcement_count` int(1) NOT NULL DEFAULT 0,
-  `date_edit` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `current_date` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `status` int(255) NOT NULL,
-  `temp_del` int(11) NOT NULL DEFAULT 0,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -345,8 +359,10 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id`, `test_username`, `test_firstname`, `test_lastname`, `test_status`, `temp_del`, `timestamp`) VALUES
-(11, '2200057', 'Julcess', 'Marie', 0, 0, '2022-08-18 01:06:40'),
-(12, '2200057d', 'Dddd', 'Dddd', 0, 0, '2022-08-18 01:11:55');
+(11, '2200057', 'Julcess', 'Marie', 2, 0, '2022-08-22 05:54:00'),
+(12, '2200057ss', 'Dddddddddasd', 'Ddddad', 0, 0, '2022-08-18 23:58:44'),
+(13, '2220090', 'Kimberly', 'De Leon', 2, 1660803128, '2022-08-18 06:12:08'),
+(14, '2220090', 'Kim', 'De Leon', 0, 0, '2022-08-19 05:38:46');
 
 -- --------------------------------------------------------
 
@@ -414,8 +430,8 @@ INSERT INTO `users` (`id`, `uname`, `upass`, `employeeid`, `date_start`, `date_e
 (174, 'Raven_Reyes', '$2y$10$vgy7mXs1gI6.bujvQmDl0OF/SSyO3SXYjcHifnXsTfp03jb3avIzK', '2210499', 20210927, 0, 'Raven Auriesh', 'Corpuz', 'Reyes', 'Associate', 'No matter how hard or impossible it is. Never lose sight of your goal.', 'raven.reyes1@trans-cosmos.co.jp ', '09050395896', 'ravenreyes.jpeg', ',2,', '', 15, 0, 0, 0, 'Associate', 0, 'Team E', 0),
 (175, 'Lerin_Sevenorio', '$2y$10$eUl5OuT/jd0PL7MjoSj1HueAXy1cW.iAmy29JDYlCTFulyPHAsevm', '2190195', 20191127, 0, 'Lerin John', 'Mendoza', 'Sevenorio', 'Associate', 'Associate', 'lerin-john.sevenorio1@trans-cosmos.co.jp', '09456722816', 'user-avatar.jpg', ',2,', '', 15, 0, 1, 1652773469, 'Associate', 0, 'Team E', 0),
 (176, 'Michael_Antipuesto', '$2y$10$duYS8K.ML2zO1RSNOP63UONhIJi6uTA7ZceXNAB5Wy7zuRDHJvqIq', '2210412', 20210909, 0, 'Michael Angelo', 'De Vera', 'Antipuesto', 'Associate', 'Don\'t be afraid to give up the good to go for the great.', 'Michael-angelo.A1@trans-cosmos.co.jp ', '09959325871', 'michaelangeloantipuesto.png', ',2,', '', 15, 1653957397, 0, 0, 'Associate', 0, 'Team Goop!', 0),
-(177, 'Julcess_Mercado', '$2y$10$SD9bUMf7Uc.SSIAnQWvyK.2Dcx950nx81IbAWNFrpSovTek5tOJG2', '2200057', 20200218, 0, 'Julcess Marie', 'Papica', 'Mercado', 'Senior Associate', 'Appear as you are, be as you appear.', 'julcess-marie.m1@trans-cosmos.co.jp ', '09754310357', 'julcessmercado.jpg', ',1,', '', 15, 1660790636, 0, 0, 'Senior Associate', 0, 'Team Goop!', 0),
-(178, 'Christian_Alde', '$2y$10$ZW9awjmXkY8mZIdycVCxdesK8KrpLI84sarv1FuAEIJm2PCZSGdnO', '2170052', 20170613, 0, 'Christian', 'Viray', 'Alde', 'Lead Developer', 'Lead Developer', 'christian.alde1@trans-cosmos.co.jp ', '09956684009', 'christianalde.jpg', ',1,', '', 15, 1660107070, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
+(177, 'Julcess_Mercado', '$2y$10$SD9bUMf7Uc.SSIAnQWvyK.2Dcx950nx81IbAWNFrpSovTek5tOJG2', '2200057', 20200218, 0, 'Julcess Marie', 'Papica', 'Mercado', 'Senior Associate', 'Appear as you are, be as you appear.', 'julcess-marie.m1@trans-cosmos.co.jp ', '09754310357', 'julcessmercado.jpg', ',1,', '', 15, 1661159641, 0, 0, 'Senior Associate', 0, 'Team Goop!', 0),
+(178, 'Christian_Alde', '$2y$10$ZW9awjmXkY8mZIdycVCxdesK8KrpLI84sarv1FuAEIJm2PCZSGdnO', '2170052', 20170613, 0, 'Christian', 'Viray', 'Alde', 'Lead Developer', 'Lead Developer', 'christian.alde1@trans-cosmos.co.jp ', '09956684009', 'christianalde.jpg', ',1,', '', 15, 1660862128, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
 (207, 'Bart_Tabusao', '$2y$10$5AeHHVRQPafQQTnKRE6fh.KdnhsNL6UD2XqF1G7uCZicV2F9wqJEW', '2220005', 20220510, 0, 'Bart', 'Quilala', 'Tabusao', 'Associate', 'Everything is a learning experience.', 'bart.tabusao1@trans-cosmos.co.jp', '01234567891', 'barttabusao.jpg', ',2,', '', 15, 0, 0, 0, 'Associate', 0, 'Trainees', 0),
 (180, 'Yves_Batungbacal', '$2y$10$eo3HAafw8QN02NT1lRVpYe15hN.QLY3qdc8LKtJCN2dDHHndoWEgy', '2210040', 20210301, 0, 'Yves Patrick', 'Valiente', 'Batungbacal', 'Team Leader', 'Things, somehow, have a way of working themselves out. Just keep going.', 'yves-patrick.b1@trans-cosmos.co.jp ', '09271276183', 'yvesbatungbacal.jpg', ',1,', '', 15, 1654564436, 0, 0, 'Team Leader', 0, 'Team Management', 0),
 (181, 'Ashley_Felix', '$2y$10$zthZC0Xo3bUT3xlaANwi.OMRurEsWZCirraYKwWwt6wij2vsnpXKu', '2150107', 20151116, 0, 'Jennica Ashley', 'Ortiz', 'Felix', 'Lead Developer', 'Don\'t be afraid to believe in YOURSELF', 'jennica-ashley.felix1@trans-cosmos.co.jp ', '09568044477', 'ashleyfelix.jpg', ',1,', '', 15, 1654565912, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
@@ -584,7 +600,7 @@ ALTER TABLE `webinarandevents`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `documentsquicklinks`
@@ -632,7 +648,7 @@ ALTER TABLE `teamviews`
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
