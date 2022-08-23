@@ -87,17 +87,16 @@ if(checkSession()) {
 								<table id="table-data" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
-											<th><?php echo renderLang($announcements_title_label); ?></th>
+											<th style="width:20%"><?php echo renderLang($announcements_title_label); ?></th>
 											<th><?php echo renderLang($announcements_img_label); ?></th>
-											<th><?php echo renderLang($announcements_details_label); ?></th>
-											<th><?php echo renderLang($lang_status); ?></th>
-											<th style="width:35px;"></th>
+											<th class="w-50"><?php echo renderLang($announcements_details_label); ?></th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM announcements ". $where ." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
@@ -110,29 +109,11 @@ if(checkSession()) {
 												echo '<td><h5>'.$data['announcements_title'].'</h5><br><br><em>'.$data['date_created'].'</em></td>';
 
 												// IMAGE
-												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class="img-fluid img-thumbnail"></td>';
+												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail"></td>';
 
 												// DETAILS
 												echo '<td>'.$data['announcements_details'].'</td>';
 
-												// STATUS
-												echo '<td>';
-													foreach($status_arr as $status) {
-														if($status[0] == $data['announcements_status']) {
-															switch($data['announcements_status']) {
-																case 0:
-																	echo '<span class="text-success">'.renderLang($status[1]).'</span>';
-																	break;
-																case 1:
-																	echo '<span class="text-warning">'.renderLang($status[1]).'</span>';
-																	break;
-																case 2:
-																	echo '<span class="text-danger">'.renderLang($status[1]).'</span>';
-																	break;
-															}
-														}
-													}
-												echo '</td>';
 												// OPTIONS
 												echo '<td>';
 

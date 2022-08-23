@@ -124,33 +124,6 @@ if(checkSession()) {
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_title_err'].'</p>'; unset($_SESSION['sys_announcements_edit_title_err']); } ?>
 										</div>
 									</div>
-									
-									<!-- STATUS -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php $err = isset($_SESSION['sys_announcements_edit_status_err']) ? 1 : 0; ?>
-										<div class="form-group">
-											<label for="announcements_status" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($lang_status); ?></label> 
-											<?php
-												foreach($status_arr as $status) {
-													if($status[0] == $data['announcements_status']) {
-														switch($data['announcements_status']) {
-															case 0:
-																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
-																break;
-															case 1:											
-																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
-																break;
-															case 2:											
-																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
-																break;
-														}
-													}
-												}
-											?>
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_status_err'].'</p>'; unset($_SESSION['sys_announcements_edit_status_err']); } ?>
-										</div>
-									</div>
-
 									<!-- DATE CREATED -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="form-group">
@@ -166,7 +139,6 @@ if(checkSession()) {
 											<input type="text" class="form-control" id="date_edit" name="date_edit" placeholder="<?php echo renderLang($announcements_date_edit_placeholder); ?>" value="<?php echo $data['date_edit']; ?>" disabled>
 										</div>
 									</div>
-									
 								</div><!-- row -->
 
 								<hr>

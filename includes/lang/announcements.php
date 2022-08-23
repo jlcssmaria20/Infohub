@@ -87,6 +87,10 @@ $announcements_date_edit_placeholder = array(
 	'None ',
 	''
 );
+$announcements_created_by = array(
+	'Created By',
+	''
+);
 
 // MODALS
 $announcements_modal_delete_msg1 = array(
