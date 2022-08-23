@@ -43,7 +43,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     foreach($row as $key => $data) {
 
                         $x = $key +1;
-                        if($data['announcements_status'] != 1) {
+                        if($data['announcements_status'] != 2) {
                             if($data['id'] != 0) {
     
                                 echo '<li class="list-inline-item">';

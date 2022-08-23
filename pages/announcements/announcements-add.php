@@ -103,7 +103,7 @@ if(checkSession()) {
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-											<textarea class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>"  id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_details_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_details_val'].'"'; } ?> required></textarea>
+											<textarea class="form-control required <?php if($details_err) { echo ' is-invalid'; } ?>"  id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_details_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_details_val'].'"'; } ?> required></textarea>
 										
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_details_err'].'</p>'; unset($_SESSION['sys_announcements_add_details_err']); } ?>
 										</div>
@@ -158,7 +158,16 @@ if(checkSession()) {
 		//for details text editor
 		$('#details').summernote({
 			tabsize: 2,
-			height: 100
+			height: 100,
+			toolbar: [
+				// [groupName, [list of button]]
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['font', ['strikethrough', 'superscript', 'subscript']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol']],
+				['height', ['height']]
+			]
 		});
 
 	</script>

@@ -130,18 +130,23 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_announcements_edit_status_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="announcements_status" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($lang_status); ?></label> 
-											<span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="announcements_status" name="announcements_status" required>
-												<?php
+											<?php
 												foreach($status_arr as $status) {
-													echo '<option value="'.$status[0].'"';
-													if($announcements_status == $status[0]) {
-														echo ' selected';
+													if($status[0] == $data['announcements_status']) {
+														switch($data['announcements_status']) {
+															case 0:
+																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
+																break;
+															case 1:											
+																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
+																break;
+															case 2:											
+																echo '<input disabled type="text" class="form-control" value="'.renderLang($status[1]).'">';
+																break;
+														}
 													}
-													echo '>'.renderLang($status[1]).'</option>';
 												}
-												?>
-											</select>
+											?>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_status_err'].'</p>'; unset($_SESSION['sys_announcements_edit_status_err']); } ?>
 										</div>
 									</div>
@@ -150,7 +155,7 @@ if(checkSession()) {
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="form-group">
 											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_date_created); ?></label> 
-											<input type="text" class="form-control disabled" id="date_created" name="date_created" value="<?php echo $data['date_created']; ?>" disabled>
+											<input type="text" class="form-control" id="date_created" name="date_created" value="<?php echo $data['date_created']; ?>" disabled>
 																					
 										</div>
 									</div>
@@ -158,7 +163,7 @@ if(checkSession()) {
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="form-group">
 											<label for="date_edit" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_date_edit); ?></label> 
-											<input type="text" class="form-control disabled" id="date_edit" name="date_edit" placeholder="<?php echo renderLang($announcements_date_edit_placeholder); ?>" value="<?php echo $data['date_edit']; ?>" disabled>
+											<input type="text" class="form-control" id="date_edit" name="date_edit" placeholder="<?php echo renderLang($announcements_date_edit_placeholder); ?>" value="<?php echo $data['date_edit']; ?>" disabled>
 										</div>
 									</div>
 									
@@ -191,10 +196,11 @@ if(checkSession()) {
 											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
 											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											<div class="custom-file">
-												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" required>
-												<label for="imgs" class="custom-file-label"><?php echo $announcements_img; ?></label>
+												<input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img">
+												<label for="img" class="custom-file-label"><?php echo $announcements_img; ?></label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_img_err'].'</p>'; unset($_SESSION['sys_announcements_edit_img_err']); } ?>
 												<img src="/assets/images/announcements/<?php echo $announcements_img; ?>" class="img-thumbnail  mt-3 w-100" style="height:200px;">
+												<input type="hidden" name="file_src" value="<?php echo $announcements_img; ?>">
 											</div>
 										</div>
 									</div>
@@ -278,13 +284,20 @@ if(checkSession()) {
 			//replace the "Choose a file" label
 			$(this).next('.custom-file-label').html(img);
 		});
-
 		//for details text editor
 		$('#details').summernote({
 			tabsize: 2,
-			height: 100
+			height: 100,
+			toolbar: [
+				// [groupName, [list of button]]
+				['style', ['bold', 'italic', 'underline', 'clear']],
+				['font', ['strikethrough', 'superscript', 'subscript']],
+				['fontsize', ['fontsize']],
+				['color', ['color']],
+				['para', ['ul', 'ol']],
+				['height', ['height']]
+			]
 		});
-
 	</script>
 	
 </body>

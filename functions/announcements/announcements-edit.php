@@ -138,6 +138,9 @@ if(checkSession()) {
 					$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 					
 					$img = $filename;
+					if (empty($img)) {
+						$img = $_POST['file_src'];
+					}
 					$inputFile  = $target_dir.$img;
 
 					move_uploaded_file($_FILES["img"]["tmp_name"], $inputFile);

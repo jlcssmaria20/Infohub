@@ -19,27 +19,27 @@ $announcements_list = array(
 	''
 );
 $announcements_add = array(
-	'Add Announcements',
+	'Add Announcement',
 	''
 );
 $announcements_add_form = array(
-	'Add Announcements Form',
+	'Add Announcement Form',
 	''
 );
 $announcements_edit = array(
-	'Edit Announcements',
+	'Edit Announcement',
 	''
 );
 $announcements_edit_form = array(
-	'Edit Announcements Form',
+	'Edit Announcement Form',
 	''
 );
 $announcements_update_announcements = array(
-	'Update Announcements',
+	'Update Announcement',
 	''
 );
 $announcements_delete_announcements = array(
-	'Delete Announcements',
+	'Delete Announcement',
 	''
 );
 $announcements_title_label = array(
@@ -55,7 +55,7 @@ $announcements_details_placeholder = array(
 	''
 );
 $announcements_img_label = array(
-	'Image',
+	'Image (Maximum 200KB)',
 	''
 );
 $announcements_img_placeholder = array(

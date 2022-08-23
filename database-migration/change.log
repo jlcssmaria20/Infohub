@@ -6,6 +6,9 @@ v1-0-1 August 18, 2022 - Cess
 v1-1-0 August 22, 2022 - Kim
 //Renamed 'announcements' to 'announcements_old'. Created a new table entitled 'announcements'. 
 Added 'timestamp' in the 'announcements' column, changed 'status' to 'announcements_status' and current_date to 'date_created'.
+v1-1-1 August 23, 2022 - Kim
+//Dropped 'announcements_count' column in 'announcements' table. 
 
+ 
 
  
