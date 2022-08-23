@@ -7,6 +7,8 @@
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
+<!-- for the summernote in details input  -->
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
 	var loader = $('#loader');
 

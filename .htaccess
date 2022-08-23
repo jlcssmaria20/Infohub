@@ -18,17 +18,24 @@ RewriteRule ^login                                                          page
 RewriteRule ^submit-login												    functions/login/verifylog.php [NC,L]
 
 # WEBINAR AND EVENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^webinar-and-events                                             pages/webinar-and-events/index.php [NC,L]
+RewriteRule ^o-webinar-and-events                                             pages/webinar-and-events/index.php [NC,L]
 
 # DOCUMENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^documents                                                      pages/documents/index.php [NC,L]
+RewriteRule ^o-documents                                                      pages/documents/index.php [NC,L]
 
 # USERS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^teams                                                           pages/users/index.php
+RewriteRule ^o-teams                                                           pages/users/index.php
 RewriteRule ^user-profile/([a-zA-Z0-9_]+)								     pages/users/user-profile.php?id=$1 [NC,L]
 
 # ANNOUNCEMENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^announcements                                                   pages/announcements/index.php [NC,L]
+RewriteRule ^o-announcements                                                 pages/announcements/o-index.php [NC,L]
+RewriteRule ^add-announcements                                               pages/announcements/announcements-add.php
+RewriteRule ^edit-announcements/([a-zA-Z0-9_]+)                              pages/announcements/announcements-edit.php?id=$1 [NC,L]
+RewriteRule ^view-announcements                                              pages/announcements/index.php
+RewriteRule ^announcements                                                   pages/announcements/index.php
+RewriteRule ^submit-add-announcements                                        functions/announcements/announcements-add.php
+RewriteRule ^submit-edit-announcements/([a-zA-Z0-9_]+)                       functions/announcements/announcements-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-delete-announcements/([a-zA-Z0-9_]+)                     functions/announcements/announcements-delete.php?id=$1 [NC,L]
 
 # DASHBOARD -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^dashboard                                                       pages/dashboard/index.php [NC,L]

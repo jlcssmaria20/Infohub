@@ -47,9 +47,56 @@ $permissions_arr = array(
 				'Allow account to delete test data.',
 				''
 			)
-		)
+		),
+		// ANNOUNCEMENTS =================================
+		array(
+			'permission_code' => 'announcements',
+			'permission_name' => array(
+				'Announcement List',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to access announcement list',
+				''
 			)
-	);	
+		),
+		array(
+			'permission_code' => 'announcements-add',
+			'permission_name' => array(
+				'Add Announcement Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to add announcement data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'announcements-edit',
+			'permission_name' => array(
+				'Edit Announcement Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to update announcement data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'announcements-delete',
+			'permission_name' => array(
+				'Delete Announcement Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to delete announcement data.',
+				''
+			)
+		)
+
+
+	)
+);	
 
 	
 $permissions_count = 0;

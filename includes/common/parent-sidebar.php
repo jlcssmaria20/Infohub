@@ -11,22 +11,22 @@
 
        <!-- WEBINAR AND EVENTS -->
        <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'webinar-and-events') { echo ' active'; } ?>" href="/webinar-and-events"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+        <a class="nav-link js-scroll-trigger <?php if($page == 'o-webinar-and-events') { echo ' active'; } ?>" href="/o-webinar-and-events"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
       </li>
 
        <!-- DOCUMENTS AND QUICK LINKS -->
        <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+        <a class="nav-link js-scroll-trigger <?php if($page == 'o-documents') { echo ' active'; } ?>" href="/o-documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
       </li>
 
        <!-- THE TEAM -->
        <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'users') { echo ' active'; } ?>" href="/teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
+        <a class="nav-link js-scroll-trigger <?php if($page == 'o-users') { echo ' active'; } ?>" href="/o-teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
       </li>
 
        <!-- ANNOUNCEMENTS -->
        <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'announcements') { echo ' active'; } ?>" href="/announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
+        <a class="nav-link js-scroll-trigger <?php if($page == 'o-announcements') { echo ' active'; } ?>" href="/o-announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
       </li>
 
          <!-- LOGIN -->

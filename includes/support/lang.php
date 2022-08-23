@@ -27,4 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/settings.php');
 // LOGIN
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/login.php');
 
+// ANNOUNCEMENTS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/announcements.php');
+
 ?>

@@ -134,7 +134,7 @@ if(checkSession()) {
 
 													// EDIT Test
 													if(checkPermission('test-edit')) {
-														echo '<a href="/edit-test/'.$test_id.'" class="btn btn-success btn-xs" title="'.renderLang($test_edit).'"><i class="fa fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-test/'.$test_id.'" class="btn btn-success btn-xs" title="'.renderLang($test_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 												echo '</td>'; // end options
