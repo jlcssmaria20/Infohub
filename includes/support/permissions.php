@@ -92,6 +92,51 @@ $permissions_arr = array(
 				'Allow account to delete announcement data.',
 				''
 			)
+		),
+		// TEAMS =================================
+		array(
+			'permission_code' => 'teams',
+			'permission_name' => array(
+				'Team List',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to access team list',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'team-add',
+			'permission_name' => array(
+				'Add New Team',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to add new team.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'team-edit',
+			'permission_name' => array(
+				'Edit Team Details',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to update team details.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'team-delete',
+			'permission_name' => array(
+				'Delete Teeam',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to delete team.',
+				''
+			)
 		)
 
 

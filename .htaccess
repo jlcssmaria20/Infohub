@@ -4,27 +4,27 @@ Options -Indexes
 RewriteEngine on
 
 # TEST -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^test                                                           pages/test/index.php
-RewriteRule ^add-test                                                       pages/test/test-add.php
-RewriteRule ^edit-test/([a-zA-Z0-9_]+)                                      pages/test/test-edit.php?id=$1 [NC,L]
-RewriteRule ^view-test                                                      pages/test/index.php
-RewriteRule ^test                                                           pages/test/index.php
-RewriteRule ^submit-add-test                                                functions/test/test-add.php
-RewriteRule ^submit-edit-test/([a-zA-Z0-9_]+)                               functions/test/test-edit.php?id=$1 [NC,L]
-RewriteRule ^submit-delete-test/([a-zA-Z0-9_]+)                             functions/test/test-delete.php?id=$1 [NC,L]
+RewriteRule ^test                                                            pages/test/index.php
+RewriteRule ^add-test                                                        pages/test/test-add.php
+RewriteRule ^edit-test/([a-zA-Z0-9_]+)                                       pages/test/test-edit.php?id=$1 [NC,L]
+RewriteRule ^view-test                                                       pages/test/index.php
+RewriteRule ^test                                                            pages/test/index.php
+RewriteRule ^submit-add-test                                                 functions/test/test-add.php
+RewriteRule ^submit-edit-test/([a-zA-Z0-9_]+)                                functions/test/test-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-delete-test/([a-zA-Z0-9_]+)                              functions/test/test-delete.php?id=$1 [NC,L]
 
 # LOGIN -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^login                                                          pages/login/index.php
-RewriteRule ^submit-login												    functions/login/verifylog.php [NC,L]
+RewriteRule ^login                                                           pages/login/index.php
+RewriteRule ^submit-login												     functions/login/verifylog.php [NC,L]
 
 # WEBINAR AND EVENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^o-webinar-and-events                                             pages/webinar-and-events/index.php [NC,L]
+RewriteRule ^o-webinar-and-events                                            pages/webinar-and-events/index.php [NC,L]
 
 # DOCUMENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^o-documents                                                      pages/documents/index.php [NC,L]
+RewriteRule ^o-documents                                                     pages/documents/index.php [NC,L]
 
 # USERS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^o-teams                                                           pages/users/index.php
+RewriteRule ^o-teams                                                         pages/users/index.php
 RewriteRule ^user-profile/([a-zA-Z0-9_]+)								     pages/users/user-profile.php?id=$1 [NC,L]
 
 # ANNOUNCEMENTS -----------------------------------------------------------------------------------------------------------------------------------
@@ -39,4 +39,13 @@ RewriteRule ^submit-delete-announcements/([a-zA-Z0-9_]+)                     fun
 
 # DASHBOARD -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^dashboard                                                       pages/dashboard/index.php [NC,L]
+
+# TEAMS -----------------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^teams                                                           pages/teams/index.php
+RewriteRule ^add-team                                                        pages/teams/team-add.php
+RewriteRule ^edit-team/([a-zA-Z0-9_]+)                                       pages/teams/team-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-add-team                                                 functions/teams/team-add.php
+RewriteRule ^submit-edit-team/([a-zA-Z0-9_]+)                                functions/teams/team-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-delete-team/([a-zA-Z0-9_]+)                              functions/teams/team-delete.php?id=$1 [NC,L]
+
 

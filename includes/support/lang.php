@@ -30,4 +30,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/login.php');
 // ANNOUNCEMENTS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/announcements.php');
 
+// TEAMS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/teams.php');
+
 ?>

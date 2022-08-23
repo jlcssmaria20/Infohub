@@ -43,7 +43,7 @@
 
                 <!-- THE TEAM -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'users') { echo ' active'; } ?>" href=""><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'teams') { echo ' active'; } ?>" href="/teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
                 </li>
 
                 <!-- ANNOUNCEMENTS -->

@@ -1,4 +1,3 @@
-
 <?php
 // INCLUDES
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
@@ -7,20 +6,20 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 if(checkSession()) {
 	
 	// check permission to access this page or function
-	if(checkPermission('announcements')) {
+	if(checkPermission('teams')) {
 	
 		// clear sessions from forms
 		clearSessions();
 
 		// set page
-		$page = 'announcements';
+		$page = 'teams';
 		
 		// set fields from table to search on
-		$fields_arr = array('announcements_details','announcements_img');
-		$search_placeholder = renderLang($announcements_title_label);
+		$fields_arr = array('team_name');
+		$search_placeholder = renderLang($team_name_label);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
-		$sql_query = 'SELECT * FROM announcements'.$where; // set sql statement
+		$sql_query = 'SELECT * FROM teams'.$where; // set sql statement
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
 ?>
@@ -30,7 +29,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub Announcements</title>
+	<title>DX Info Hub team</title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	
@@ -54,8 +53,8 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<div class="row mb-2">
-						<div class="col-sm-6 col-12">
-							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($announcements); ?></h1>
+						<div class="col-sm-6">
+							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($team); ?></h1>
 						</div>
 					</div>
 					
@@ -67,15 +66,15 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<?php
-					renderError('sys_announcements_add_err');
-					renderSuccess('sys_announcements_suc');
+					renderError('sys_team_add_err');
+					renderSuccess('sys_team_suc');
 					?>
 					
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title"><?php echo renderLang($announcements_list); ?></h3>
+							<h3 class="card-title"><?php echo renderLang($team_list); ?></h3>
 							<div class="card-tools">
-								<?php if(checkPermission('announcements-add')) { ?><a href="add-announcements" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($announcements_add); ?></a><?php } ?>
+								<?php if(checkPermission('team-add')) { ?><a href="add-team" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($team_add); ?></a><?php } ?>
 							</div>
 						</div>
 						<div class="card-body">
@@ -87,39 +86,46 @@ if(checkSession()) {
 								<table id="table-data" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
-											<th style="width:20%"><?php echo renderLang($announcements_title_label); ?></th>
-											<th><?php echo renderLang($announcements_img_label); ?></th>
-											<th class="w-50"><?php echo renderLang($announcements_details_label); ?></th>
-											<th></th>
+											<th><?php echo renderLang($team_name_label); ?></th>
+											<th><?php echo renderLang($team_users_label); ?></th>
+											<th style="width:35px;"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM announcements ". $where ." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM teams".$where." ORDER BY team_name ASC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
 											$data_count++;
-											$announcements_id = encryptID($data['id']);
+											$team_id = encryptID($data['id']);
 
 											echo '<tr>';
 
-												// TITLE
-												echo '<td><h5>'.$data['announcements_title'].'</h5><br><br><em>'.$data['date_created'].'</em></td>';
+												// TEAM Name
+												echo '<td>'.$data['team_name'].'</td>';
 
-												// IMAGE
-												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail"></td>';
+												// NUMBER OF USERS
+												echo '<td>0</td>';
 
-												// DETAILS
-												echo '<td>'.$data['announcements_details'].'</td>';
+												// echo '<td>';
 
+												// // get from USERS table
+												// $sql2 = $pdo->prepare("SELECT user_id, team_id, temp_del FROM users WHERE team_id = :team_id AND temp_del=0");
+												// $sql2->bindParam(":team_id",$data['team_id']);
+												// $sql2->execute();
+												// $users_ctr = $sql2->rowCount();
+
+												// echo number_format($users_ctr,0,'.',',');
+
+												// echo '</td>';
 												// OPTIONS
 												echo '<td>';
 
-													// EDIT ANNOUNCEMENTS
-													if(checkPermission('announcements-edit')) {
-														echo '<a href="/edit-announcements/'.$announcements_id.'" class="btn btn-success btn-xs" title="'.renderLang($announcements_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+													// EDIT team
+													if(checkPermission('team-edit')) {
+														echo '<a href="/edit-team/'.$team_id.'" class="btn btn-success btn-xs" title="'.renderLang($team_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 												echo '</td>'; // end options
