@@ -7,7 +7,7 @@
             <p>©transcosmos Asia Philippines <?php echo date("Y"); ?></p>
         </div>
         <div class="footerRight">
-            <img src="/assets/img/dxInfo-logo-img02.svg" >
+            <img src="/assets/images/dxInfo-logo-img02.svg" >
         </div>
     </div>
 </div>

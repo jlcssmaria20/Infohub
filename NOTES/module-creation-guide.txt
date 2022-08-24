@@ -15,7 +15,7 @@ unsetSession('sys_'.$module.'_'.$process.'_'.$field.'_'.$data_type);
 ex: 
 Announcements Module
 sys_announcements_edit_username_val
-
+- $page variable = table name
 Table Name (plural form) -> Folder Name
 File Naming (List) -> index.php
 

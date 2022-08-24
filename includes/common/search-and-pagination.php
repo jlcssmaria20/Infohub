@@ -4,7 +4,7 @@
 		<div class="input-group input-group-md mb-3">
 			<input type="text" id="search-keywords" class="form-control"<?php if($keywords != '') { echo ' value="'.$keywords.'"'; } ?> placeholder="<?php echo $search_placeholder; ?>">
 			<span class="input-group-append">
-				<button type="button" id="btn-search" class="btn btn-info btn-flat" title="<?php echo renderLang($btn_search); ?>"><i class="fa fa-search"></i></button>
+				<button type="button" id="btn-search" class="btn btn-info btn-flat" title="<?php echo renderLang($btn_search); ?>"><i class="fas fa-search"></i></button>
 			</span>
 		</div>
 	</div>

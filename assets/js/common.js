@@ -1,7 +1,7 @@
 $(function() {
 	
 	// validate required with minimum length
-	$('input.required, select.required').on('keyup change',function() {
+	$('input.required, select.required, textarea.required').on('keyup change',function() {
 		checkRequired($(this));
 		var minlength = 1;
 		if($(this).attr('minlength') != undefined) {
@@ -13,7 +13,7 @@ $(function() {
 			$(this).closest('.form-group').find('label i').remove();
 		}
 	});
-	$('input.required, select.required').each(function() {
+	$('input.required, select.required, textarea.required').each(function() {
 		checkRequired($(this));
 	});
 	$('input').on('keyup change',function() {

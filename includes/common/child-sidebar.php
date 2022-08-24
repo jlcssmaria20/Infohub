@@ -28,27 +28,31 @@
 				
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'i-dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i>DASHBOARD</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i>DASHBOARD</a>
                 </li>
                 
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'i-webinar-and-events') { echo ' active'; } ?>" href=""><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinar-and-events') { echo ' active'; } ?>" href=""><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
                 </li>
 
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+=======
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+>>>>>>> a73894d654da24c74c3a52ed8db18ddea1bc0dd2
                 </li>
 
                 <!-- THE TEAM -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'i-users') { echo ' active'; } ?>" href=""><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'teams') { echo ' active'; } ?>" href="/teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
                 </li>
 
                 <!-- ANNOUNCEMENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'i-announcements') { echo ' active'; } ?>" href=""><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'announcements') { echo ' active'; } ?>" href="/announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
                 </li>
 
 				  <!-- TEST PAGE -->

@@ -6,20 +6,20 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 if(checkSession()) {
 	
 	// check permission to access this page or function
-	if(checkPermission('test')) {
+	if(checkPermission('teams')) {
 	
 		// clear sessions from forms
 		clearSessions();
 
 		// set page
-		$page = 'test';
+		$page = 'teams';
 		
 		// set fields from table to search on
-		$fields_arr = array('test_firstname','test_lastname');
-		$search_placeholder = renderLang($test_firstname_label).', '.renderLang($test_lastname_label);
+		$fields_arr = array('team_name');
+		$search_placeholder = renderLang($team_name_label);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
-		$sql_query = 'SELECT * FROM test'.$where; // set sql statement
+		$sql_query = 'SELECT * FROM teams'.$where; // set sql statement
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
 ?>
@@ -29,7 +29,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub Test</title>
+	<title>DX Info Hub team</title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	
@@ -54,7 +54,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($test); ?></h1>
+							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($team); ?></h1>
 						</div>
 					</div>
 					
@@ -66,15 +66,15 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<?php
-					renderError('sys_test_add_err');
-					renderSuccess('sys_test_suc');
+					renderError('sys_team_add_err');
+					renderSuccess('sys_team_suc');
 					?>
 					
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title"><?php echo renderLang($test_list); ?></h3>
+							<h3 class="card-title"><?php echo renderLang($team_list); ?></h3>
 							<div class="card-tools">
-								<?php if(checkPermission('test-add')) { ?><a href="add-test" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($test_add); ?></a><?php } ?>
+								<?php if(checkPermission('team-add')) { ?><a href="add-team" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($team_add); ?></a><?php } ?>
 							</div>
 						</div>
 						<div class="card-body">
@@ -86,55 +86,46 @@ if(checkSession()) {
 								<table id="table-data" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
-											<th><?php echo renderLang($test_username_label); ?></th>
-											<th><?php echo renderLang($test_lastname_label); ?></th>
-											<th><?php echo renderLang($test_firstname_label); ?></th>
-											<th><?php echo renderLang($lang_status); ?></th>
+											<th><?php echo renderLang($team_name_label); ?></th>
+											<th><?php echo renderLang($team_users_label); ?></th>
 											<th style="width:35px;"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
 										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM test".$where." ORDER BY test_lastname ASC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM teams".$where." ORDER BY team_name ASC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
 											$data_count++;
-											$test_id = encryptID($data['id']);
+											$team_id = encryptID($data['id']);
 
 											echo '<tr>';
 
-												// USERNAME
-												echo '<td><a href="/test/'.$test_id.'">'.$data['test_username'].'</a></td>';
+												// TEAM Name
+												echo '<td>'.$data['team_name'].'</td>';
 
-												// LASTNAME
-												echo '<td><a href="/test/'.$test_id.'">'.$data['test_lastname'].'</a></td>';
+												// NUMBER OF USERS
+												echo '<td>0</td>';
 
-												// FIRSTNAME
-												echo '<td><a href="/test/'.$test_id.'">'.$data['test_firstname'].'</a></td>';
+												// echo '<td>';
 
-												// STATUS
-												echo '<td>';
-													foreach($status_arr as $status) {
-														if($status[0] == $data['test_status']) {
-															switch($data['test_status']) {
-																case 0:
-																	echo '<span class="text-success">'.renderLang($status[1]).'</span>';
-																	break;
-																case 1:
-																	echo '<span class="text-warning">'.renderLang($status[1]).'</span>';
-																	break;
-															}
-														}
-													}
-												echo '</td>';
+												// // get from USERS table
+												// $sql2 = $pdo->prepare("SELECT user_id, team_id, temp_del FROM users WHERE team_id = :team_id AND temp_del=0");
+												// $sql2->bindParam(":team_id",$data['team_id']);
+												// $sql2->execute();
+												// $users_ctr = $sql2->rowCount();
+
+												// echo number_format($users_ctr,0,'.',',');
+
+												// echo '</td>';
 												// OPTIONS
 												echo '<td>';
 
-													// EDIT Test
-													if(checkPermission('test-edit')) {
-														echo '<a href="/edit-test/'.$test_id.'" class="btn btn-success btn-xs" title="'.renderLang($test_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+													// EDIT team
+													if(checkPermission('team-edit')) {
+														echo '<a href="/edit-team/'.$team_id.'" class="btn btn-success btn-xs" title="'.renderLang($team_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 												echo '</td>'; // end options
