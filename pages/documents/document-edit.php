@@ -68,7 +68,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
+							<h1><i class="fa fa-file-text-o mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
 						</div>
 					</div>
 					
@@ -93,118 +93,189 @@ if(checkSession()) {
 								</div>
 							</div>
 							<div class="card-body">
-								
 								<div class="row">
 
 									<!-- FOLDER NAME -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php $err = isset($_SESSION['sys_document_edit_name_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" value="<?php echo $document_name; ?>" required>
+											<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> 
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" value="<?php echo $document_name; ?>" required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_name_err'].'</p>'; unset($_SESSION['sys_document_edit_name_err']); } ?>
 										</div>
 									</div>
 									
-									<!-- STATUS -->
+									<!-- DATE CREATED -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php $err = isset($_SESSION['sys_document_edit_status_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="document_status" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($lang_status); ?></label> <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="document_status" name="document_status" required>
-												<?php
-												foreach($status_arr as $status) {
-													echo '<option value="'.$status[0].'"';
-													if($document_status == $status[0]) {
-														echo ' selected';
-													}
-													echo '>'.renderLang($status[1]).'</option>';
-												}
-												?>
-											</select>
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_status_err'].'</p>'; unset($_SESSION['sys_document_edit_status_err']); } ?>
+											<label for="date_created" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_date_created); ?></label> 
+											<input type="text" class="form-control" id="date_created" name="date_created" value="<?php echo $data['date_created']; ?>" disabled>
+										</div>
+									</div>
+								</div>
+								<hr>
+								
+								<div class="row">
+									<!-- LINK NAME -->
+									<div class="col-lg-3">
+										<?php
+										$linkname_err = 0;
+										if(isset($_SESSION['sys_document_add_linkname_err'])) { $linkname_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="linkname" class="mr-1<?php if($linkname_err) { echo ' text-danger'; } ?>"><?php if($linkname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_linkname_label); ?></label> 
+											
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											
+											<input type="text" class="form-control required<?php if($linkname_err) { echo ' is-invalid'; } ?>" id="linkname" name="linkname[]" placeholder="<?php echo renderLang($document_linkname_placeholder); ?>" value="" >
+											
+											<?php if($linkname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_linkname_err'].'</p>'; unset($_SESSION['sys_document_add_linkname_err']); } ?>
+										</div>
+											
+									</div>
+
+									<!-- LINK -->
+									<div class="col-lg-3">
+										<?php $err = isset($_SESSION['sys_announcements_add_docs_err']) ? 1 : 0; ?>
+										<div class="form-group">
+											<label for="link" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_link_label); ?></label> 
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="link" name="link[]" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?>" value="">
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_link_err'].'</p>'; unset($_SESSION['sys_announcements_add_link_err']); } ?>
 										</div>
 									</div>
 
-								</div><!-- row -->
+									<!-- ADD MORE LINK BUTTON -->
+									<div class="col-lg-3">
+										<div class="mt-3">
+											<button type="button" class="mt-3 btn btn-success addmore" name="add" id="add" ><i class="fas fa-plus-square mr-2"></i><?php echo renderLang($document_add_more_link); ?></button>
+										</div>
+									</div>
+								</div>
 
+								<div id="dynamic_field"></div>
 								<hr>
 
-								<div class="row">
-
-									<!-- FIRSTNAME -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$firstname_err = 0;
-										if(isset($_SESSION['sys_document_edit_firstname_err'])) { $firstname_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="firstname" class="mr-1<?php if($firstname_err) { echo ' text-danger'; } ?>"><?php if($firstname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_firstname_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($firstname_err) { echo ' is-invalid'; } ?>" id="firstname" name="firstname" placeholder="<?php echo renderLang($document_firstname_placeholder); ?>" value="<?php echo $document_firstname; ?>" required>
-											<?php if($firstname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_firstname_err'].'</p>'; unset($_SESSION['sys_document_edit_firstname_err']); } ?>
+								<div class="" id="link_div">
+									<div class="row">
+										<div class="col-lg-3">
+											<label for="linkname">
+												<?php echo renderLang($document_linkname_label) ?>
+											</label>
 										</div>
-									</div>
-									
-									<!-- LASTNAME -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$lastname_err = 0;
-										if(isset($_SESSION['sys_document_edit_lastname_err'])) { $lastname_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="lastname" class="mr-1<?php if($lastname_err) { echo ' text-danger'; } ?>"><?php if($lastname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_lastname_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($lastname_err) { echo ' is-invalid'; } ?>" id="lastname" name="lastname" placeholder="<?php echo renderLang($document_lastname_placeholder); ?>" value="<?php echo $document_lastname; ?>" required>
-											<?php if($lastname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_lastname_err'].'</p>'; unset($_SESSION['sys_document_edit_lastname_err']); } ?>
+										<div class="col-lg-6">
+											<label for="link">
+												<?php echo renderLang($document_link_label) ?>
+											</label>
+										</div>
+										<div class="col-lg-3">
+											<label for="link">
+												<?php echo renderLang($document_action) ?>
+											</label>
 										</div>
 									</div>
 
-								</div><!-- row -->
+									<?php 
+										//Display Files
+										$count = 0;
+										$sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
+										$sql->bindParam(":document_name", $data['document_name']);
+										$sql->execute();
+										while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+											$count++; 
+											?>
+											<div class="row">
+												<div class="col-lg-3">
+													<div class="form-group">
+														<input type="text" class="form-control" id="linkname" name="linkname<?php echo $count ?>" value="<?php echo $data['file_linkname'] ?>">
+														<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
+													</div>
+												</div>
 
-							</div><!-- card-body -->
+												<div class="col-lg-6">
+													<div class="form-group">
+														<input type="text" class="form-control" id="link" name="link<?php echo $count ?>" value="<?php echo $data['file_link'] ?>">
+													</div>
+												</div>
+												
+												<div class="col-lg-3">
+													<div>
+														<button type="button" onClick="copyLink()" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-files-o mr-2"></i><?php echo renderLang($document_copy) ?></button>
+														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger" ><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
+													</div>
+												</div>
+											</div>
+										<?php } 
+									?>
+								</div>
+							</div>
+
 							<div class="card-footer text-right">
-								<a href="/documents" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/documents" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($document_update_document); ?></button>
 							</div>
-						</div><!-- card -->
+						</div>
 					</form>
 					
-				</div><!-- container-fluid -->
-			</section><!-- content -->
+				</div>
+			</section>
 			
 		</div>
-		<!-- /.content-wrapper -->
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
 		
-	</div><!-- wrapper -->
-	
+	</div>
+
 	<!-- MODALS -->
+	<!-- DELETE WHOLE DOCUMENT MODAL -->
 	<?php if(checkPermission('document-delete')) { ?>
-	<!-- MODAL -->
-	<div class="modal fade" id="delete_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header bg-danger">
-					<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
+		<div class="modal fade" id="delete_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bg-danger">
+						<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
+					</div>
+					<form action="/submit-delete-document/<?php echo encryptID($id) ?>" method="post" id="form_delete">
+						<input type="hidden" name="document_id" id="delete_document_id" value="4">
+						<div class="modal-body p-4">
+							<p class="fs-3"><?= renderLang($document_modal_delete_msg1); ?></p>
+							<div class="message_delete"></div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+							<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
+						</div>
+					</form>
 				</div>
-				<form action="/submit-delete-document/<?php echo encryptID($id) ?>" method="post" id="form_delete">
-					<input type="hidden" name="document_id" id="delete_document_id" value="4">
-					<div class="modal-body">
-						<p><?= renderLang($document_modal_delete_msg1); ?></p>
-						<div class="message_delete"></div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
-						<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
-					</div>
-				</form>
 			</div>
 		</div>
-	</div>
 	<?php } ?>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	<script>
+		//FOR ADDING MORE INPUT FOR linkS
+		$(document).ready(function() {
+			var i = 1;
+			$('#add').click(function() {
+				if (i <= 20) {
+				$('#dynamic_field').append('<div class="row" id="row' + i + '"> <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="linkname' + i + '" name="linkname[]" value="" placeholder="<?php echo renderLang($document_linkname_placeholder); ?> ' + i + '" required></div></div>  <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="link' + i + '" name="link[]" value="" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?> ' + i + '" required> </div></div><div class="col-lg-3"><button type="button" class="btn btn-danger btn_remove hidden"><?php echo renderLang($document_remove_link); ?></button></div> </div>')
+				
+				i++;
+
+				$('.btn_remove').removeClass('hidden');
+				}
+			});
+			$(document).on('click', '.btn_remove', function() {
+				/* var button_id = $(this).attr("id");
+				i--;
+				$('#row' + $('#dynamic_field div div div').length).remove();
+				if (i<=1) {
+				$('.btn_remove').addClass('hidden');
+				} */
+				$(this).closest('#dynamic_field .row').remove();
+			});
+		});
+		//FOR DELETING FOLDER
 		$(function() {
 			<?php if(checkPermission('document-delete')) { ?>
 			$('html').on('click', '.btn-delete', function(e) {
@@ -228,6 +299,15 @@ if(checkSession()) {
 			});
 		<?php } ?>
 		});
+		//COPYING LINK
+		function copyLink() {
+			var i= 0;
+			var copyText = document.getElementById("link");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999)
+			document.execCommand("copy");
+			navigator.clipboard.writeText(copyText.value);
+		}
 	</script>
 	
 </body>

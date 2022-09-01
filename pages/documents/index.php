@@ -54,7 +54,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-circle-o mr-3"></i><?php echo renderLang($documents); ?></h1>
+							<h1><i class="fa fa-folder-open-o mr-3"></i><?php echo renderLang($documents); ?></h1>
 						</div>
 					</div>
 					
@@ -74,7 +74,9 @@ if(checkSession()) {
 						<div class="card-header">
 							<h3 class="card-title"><?php echo renderLang($document_list); ?></h3>
 							<div class="card-tools">
-								<?php if(checkPermission('document-add')) { ?><a href="add-document" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($document_add); ?></a><?php } ?>
+								<button type="button" class="btn btn-danger btn-delete mr-1" data-toggle="modal" data-target="#add_document_modal">
+									<i class="fa fa-plus mr-2"></i><?php echo renderLang($document_add_document); ?>
+								</button>
 							</div>
 						</div>
 						<div class="card-body">
@@ -88,16 +90,16 @@ if(checkSession()) {
 										<tr>
 											<th><?php echo renderLang($document_name_label); ?></th>
 											<th><?php echo renderLang($document_date_created); ?></th>
-											<th><?php echo renderLang($lang_status); ?></th>
+											<th><?php echo renderLang($document_file_count); ?></th>
 											<th style="width:35px;"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM documents ".$where." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
-										$sql->execute();
-										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+											$data_count = 0;
+											$sql = $pdo->prepare("SELECT * FROM documents ".$where." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+											$sql->execute();
+											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
 											$data_count++;
 											$document_id = encryptID($data['id']);
@@ -110,8 +112,18 @@ if(checkSession()) {
 												// DATE CREATED
 												echo '<td>'.$data['date_created'].'</td>';
 
-												// STATUS
+												// NUMBER OF FILES
+
 												echo '<td>';
+												 /*
+												$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id");
+												$sql->bindParam(":document_id",$document_id);
+												$sql->execute();
+												$total_data_count = $sql->rowCount();
+												
+												echo $total_data_count;  */
+													
+												
 													foreach($status_arr as $status) {
 														if($status[0] == $data['document_status']) {
 															switch($data['document_status']) {
@@ -124,6 +136,8 @@ if(checkSession()) {
 															}
 														}
 													}
+													
+													
 												echo '</td>';
 												// OPTIONS
 												echo '<td>';
@@ -151,14 +165,44 @@ if(checkSession()) {
 			</section><!-- content -->
 			
 		</div>
-		<!-- /.content-wrapper -->
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
 		
-	</div><!-- wrapper -->
+	</div>
+
+	<!-- MODALS -->
+	<?php if(checkPermission('document-add')) { ?>
+		<!-- MODAL -->
+		<div class="modal fade" id="add_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #FCCD2F">
+						<h4 class="modal-title"><?= renderLang($modal_add_confirmation) ?></h4>
+					</div>
+					<form action="/submit-add-document" method="post" id="add_form">
+						<div class="modal-body p-4">
+							<!-- FOLDER NAME -->
+							
+							<div class="form-group">
+								<?php $err = isset($_SESSION['sys_documents_add_name_err']) ? 1 : 0; ?>
+								<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> 
+								<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+								
+								<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" required>
+								<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_name_err'].'</p>'; unset($_SESSION['sys_document_add_name_err']); } ?>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+							<button type="submit"  style="background-color: #FCCD2F"class="btn btn-confirm text-dark"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_add) ?></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
-	
 </body>
 
 </html>

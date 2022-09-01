@@ -26,6 +26,10 @@ $document_add_form = array(
 	'Add Document Form',
 	''
 );
+$file_add_form = array(
+	'Add File Form',
+	''
+);
 $document_edit = array(
 	'Edit Document',
 	''
@@ -40,6 +44,10 @@ $document_update_document = array(
 );
 $document_delete_document = array(
 	'Delete Document',
+	''
+);
+$document_delete_file = array(
+	'Delete',
 	''
 );
 $document_name_label = array(
@@ -71,7 +79,7 @@ $document_last_login = array(
 	''
 );
 $document_name_placeholder = array(
-	'HMO Related Files',
+	'HMO Related links',
 	''
 );
 $document_clear_roles = array(
@@ -88,38 +96,69 @@ $document_date_created = array(
 	''
 );
 
-$document_file_name_label = array(
+$document_linkname_label = array(
 	'File Name',
 	''
 );
-$document_file_name_placeholder = array(
-	'New name for the file you will upload.',
+$document_linkname_placeholder = array(
+	'Name for the link',
 	''
 );
 
-$document_file_upload_label = array(
-	'File Upload',
+$document_link_label = array(
+	'File Link',
 	''
 );
-$document_filename_placeholder = array(
-	'Choose File',
+$document_link_upload_placeholder = array(
+	'Paste Link Here',
 	''
 );
-$document_add_more_file = array(
-	'Add More File',
+$document_add_more_link = array(
+	'Add More Links',
+	''
+);
+$document_remove_link = array(
+	'Remove',
+	''
+);
+$document_file_count = array(
+	'Number of File/s',
 	''
 );
 $document_action = array(
 	'Action',
 	''
 );
+$document_copy = array(
+	'Copy',
+	''
+);
 // MODALS
 $document_modal_delete_msg1 = array(
-	'Are you sure you want to delete this document?',
+	'Are you sure you want to delete this folder?',
 	''
 );
 $document_modal_delete_msg2 = array(
-	'Deleting this document will remove it from the database permanently.',
+	'Are you sure you want to delete this file?',
+	''
+);
+
+$document_add_document = array(
+	'Add New Document'
+);
+$document_add_file = array(
+	'Add New File'
+);
+$modal_add_confirmation = array(
+	'Add Folder'
+);
+
+$document_modal_add_msg1 = array(
+	'Are you sure you want to add this folder?',
+	''
+);
+$modal_confirm_add = array(
+	'Add',
 	''
 );
 
@@ -141,15 +180,15 @@ $document_lastname_required = array(
 	''
 );
 $document_added = array(
-	'document added!',
+	'Document added!',
 	''
 );
 $document_updated = array(
-	'document updated!',
+	'Document updated!',
 	''
 );
 $document_messages_removed = array(
-	'document removed successfully.',
+	'Document removed successfully.',
 	''
 );
 $document_messages_deleted = array(
@@ -157,7 +196,7 @@ $document_messages_deleted = array(
 	''
 );
 $document__not_found = array(
-	'document Data not found!',
+	'Document Data not found!',
 	''
 );
 ?>

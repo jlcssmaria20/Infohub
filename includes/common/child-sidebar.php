@@ -38,11 +38,8 @@
 
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
-<<<<<<< HEAD
+
                     <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
-=======
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href=""><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
->>>>>>> a73894d654da24c74c3a52ed8db18ddea1bc0dd2
                 </li>
 
                 <!-- THE TEAM -->

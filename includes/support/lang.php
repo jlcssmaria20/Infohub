@@ -27,15 +27,13 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/settings.php');
 // LOGIN
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/login.php');
 
-<<<<<<< HEAD
 // DOCUMENTS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/documents.php');
-=======
+
 // ANNOUNCEMENTS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/announcements.php');
 
 // TEAMS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/teams.php');
->>>>>>> a73894d654da24c74c3a52ed8db18ddea1bc0dd2
 
 ?>

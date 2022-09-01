@@ -15,11 +15,10 @@ if(checkSession()) {
 
 		// PROCESS FORM
 		$id = decryptID($_GET['id']);
-
-		// delete document from document table
-		$epoch_time = time();
-		$sql = $pdo->prepare("UPDATE documents SET document_status = 2, temp_del = ".$epoch_time." WHERE id = :document_id LIMIT 1");
-		$sql->bindParam(":document_id",$id);
+		
+		// delete file from document table
+		$sql = $pdo->prepare("DELETE FROM files WHERE id = :id");
+		$sql->bindParam(":id",$id);
 		$sql->execute();
 
 		$err_code = 0;
@@ -30,6 +29,5 @@ if(checkSession()) {
 
 	}
 }
-renderConfirmDelete($err_code,'sys_document_suc','document_messages_removed');
-header('location: /documents');
+header('location: /edit-document/'.encryptID('1').'');
 ?>
