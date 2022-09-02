@@ -33,4 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/announcements.php');
 // TEAMS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/teams.php');
 
+// WEBINAR AND EVENTS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/webinar-events.php');
+
 ?>
