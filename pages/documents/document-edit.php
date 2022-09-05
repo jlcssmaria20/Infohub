@@ -192,16 +192,18 @@ if(checkSession()) {
 													</div>
 												</div>
 
+												
 												<div class="col-lg-6">
 													<div class="form-group">
-														<input type="text" class="form-control" id="link" name="link<?php echo $count ?>" value="<?php echo $data['file_link'] ?>">
+														<input type="text" class="form-control" id="link<?php echo $count ?>" name="link<?php echo $count ?>" value="<?php echo $data['file_link'] ?>">
 													</div>
 												</div>
 												
 												<div class="col-lg-3">
 													<div>
-														<button type="button" onClick="copyLink()" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-files-o mr-2"></i><?php echo renderLang($document_copy) ?></button>
-														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger" ><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
+														<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-files-o mr-2"></i><?php echo renderLang($document_copy) ?></button>
+
+														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 													</div>
 												</div>
 											</div>
@@ -300,9 +302,8 @@ if(checkSession()) {
 		<?php } ?>
 		});
 		//COPYING LINK
-		function copyLink() {
-			var i= 0;
-			var copyText = document.getElementById("link");
+		function copyLink(e) {
+			var copyText = document.getElementById(`link${e}`)
 			copyText.select();
 			copyText.setSelectionRange(0, 99999)
 			document.execCommand("copy");
