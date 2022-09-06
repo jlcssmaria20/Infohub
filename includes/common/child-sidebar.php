@@ -28,29 +28,88 @@
 				
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i>DASHBOARD</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i>Dashboard</a>
                 </li>
                 
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="fa fa-calendar" aria-hidden="true"></i>Webinar and Events</a>
                 </li>
 
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
 
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="fa fa-file-text-o" aria-hidden="true"></i>Documents and Quick Links</a>
                 </li>
 
                 <!-- THE TEAM -->
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'teams') { echo ' active'; } ?>" href="/teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
-                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'teams') { echo ' active'; } ?>" href="/teams"><i class="fa fa-users" aria-hidden="true"></i>Teams</a>
+                </li> -->
 
                 <!-- ANNOUNCEMENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'announcements') { echo ' active'; } ?>" href="/announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'announcements') { echo ' active'; } ?>" href="/announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>Announcements</a>
                 </li>
+
+				<?php
+				if(
+					checkPermission('admins') ||
+					checkPermission('teams') ||
+					checkPermission('users') 
+				) {
+					$tree_open = '';
+					$tree_active = '';
+					if(
+						$page == 'admins' ||
+						$page == 'teams' ||
+						$page == 'users' 
+                        
+					) {
+						$tree_open = ' menu-open';
+						$tree_active = ' active';
+					}
+				?>
+				<li class="nav-item has-treeview <?php echo $tree_open; ?>">
+					<a href="#" class="nav-link js-scroll-trigger<?php echo $tree_active; ?>">
+						<i class="nav-icon fas fa-user-secret"></i>
+						<p><i class="right fas fa-angle-left"></i>Administrator</p>
+					</a>
+					<ul class="nav nav-treeview">
+
+						<?php if(checkPermission('admins')) { ?>
+						<!-- ADMINS -->
+						<li class="nav-item">
+							<a href="/admins" class="nav-link js-scroll-trigger<?php if($page == 'admins') { echo ' active'; } ?>">
+								<i class="nav-icon fas fa-user-secret"></i>
+								<p>Admins</p>
+							</a>
+						</li>
+						<?php } ?>
+
+						<?php if(checkPermission('teams')) { ?>
+						<!-- TEAMS -->
+						<li class="nav-item">
+							<a href="/teams" class="nav-link js-scroll-trigger<?php if($page == 'teams') { echo ' active'; } ?>">
+								<i class="nav-icon fa fa-users"></i>
+								<p>Teams</p>
+							</a>
+						</li>
+						<?php } ?>
+						
+						<?php if(checkPermission('users')) { ?>
+						<!-- USERS -->
+						<li class="nav-item">
+							<a href="/users" class="nav-link js-scroll-trigger<?php if($page == 'users') { echo ' active'; } ?>">
+								<i class="nav-icon fas fa-users"></i>
+								<p>Users</p>
+							</a>
+						</li>
+						<?php } ?>
+
+					</ul>
+				</li>
+				<?php } ?>
 
 				  <!-- TEST PAGE -->
 				  <li class="nav-item">

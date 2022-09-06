@@ -131,7 +131,10 @@ $header_server_date = array(
 );
 
 // SIDEBAR
-
+$sidebar_administrator = array(
+	'Administrator',
+	''
+);
 $sidebar_portal = array(
 	'Portal',
 	'ポータル'
