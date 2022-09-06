@@ -33,7 +33,7 @@
                 
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinar-and-events') { echo ' active'; } ?>" href=""><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
                 </li>
 
                 <!-- DOCUMENTS AND QUICK LINKS -->

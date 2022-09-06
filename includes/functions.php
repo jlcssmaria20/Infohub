@@ -707,6 +707,11 @@ function clearSessions() {
 	$module = 'team';
 	$fields_arr = array('team','name');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+
+	//ANNOUNCEMENTS
+	$module = 'webinar_events';
+	$fields_arr = array('webinar_events','title','user_id','description','img','status', 'schedule_date');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 }
 
 // set unset all sessions in fields arr

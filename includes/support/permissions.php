@@ -193,8 +193,53 @@ $permissions_arr = array(
 				'Allow account to delete team.',
 				''
 			)
-		)
+		),
 
+		// WEBINAR-AND-EVENTS =================================
+		array(
+			'permission_code' => 'webinar-and-events',
+			'permission_name' => array(
+				'Webinar and Events List',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to access webinar and events list',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'webinar-events-add',
+			'permission_name' => array(
+				'Add Webinar and Events Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to add webinar and events data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'webinar-events-edit',
+			'permission_name' => array(
+				'Edit Webinar and Events Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to update webinar and events data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'webinar-events-delete',
+			'permission_name' => array(
+				'Delete Webinar and Events Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to delete webinar and events data.',
+				''
+			)
+		)
 
 	)
 );	

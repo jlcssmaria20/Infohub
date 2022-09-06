@@ -13,7 +13,7 @@ $total = 4;
         <meta name="description" content="">
         <meta name="author" content="">
         <title>DX Infohub - Home</title>
-        <?php require($_SERVER['DOCUMENT_ROOT'].'includes/common/links.php');  ?>
+        <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
   <body>
     <div class="container">
