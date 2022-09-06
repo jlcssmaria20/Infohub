@@ -8,6 +8,8 @@ v1-1-0 August 22, 2022 - Kim
 Added 'timestamp' in the 'announcements' column, changed 'status' to 'announcements_status' and current_date to 'date_created'.
 v1-1-1 August 23, 2022 - Kim
 //Dropped 'announcements_count' column in 'announcements' table. 
+v1-3-0 September 01, 2022 - Kim
+//Created 'documents' and 'files' table for documents and quicklinks. 
 
  
 

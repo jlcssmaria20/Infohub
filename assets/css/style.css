@@ -70,8 +70,6 @@ ul.user-list-item {
 }
 .btn{
   color: var(--white);
-  background-color: var(--blue);
-  border: 1px solid var(--blue);
   transition: 0.2s;
 }
 .btn:hover{

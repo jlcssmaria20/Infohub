@@ -21,7 +21,17 @@ RewriteRule ^submit-login												     functions/login/verifylog.php [NC,L]
 RewriteRule ^o-webinar-and-events                                            pages/webinar-and-events/index.php [NC,L]
 
 # DOCUMENTS -----------------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^o-documents                                                     pages/documents/index.php [NC,L]
+RewriteRule ^o-documents                                                      pages/documents/o-index.php [NC,L]
+RewriteRule ^add-document                                                     pages/documents/document-add.php
+RewriteRule ^edit-document/([a-zA-Z0-9_]+)                                    pages/documents/document-edit.php?id=$1 [NC,L]
+RewriteRule ^view-documents                                                   pages/documents/index.php
+RewriteRule ^documents                                                        pages/documents/index.php
+RewriteRule ^submit-add-document                                              functions/documents/document-add.php
+RewriteRule ^submit-edit-document/([a-zA-Z0-9_]+)                             functions/documents/document-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-delete-document/([a-zA-Z0-9_]+)                           functions/documents/document-delete.php?id=$1 [NC,L]
+
+RewriteRule ^delete-file/([a-z]+)/([a-zA-Z0-9_]+)                             functions/documents/file-delete.php?src=$1&id=$2 [NC,L]
+
 
 # USERS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-teams                                                         pages/users/index.php

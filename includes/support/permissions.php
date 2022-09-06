@@ -48,6 +48,62 @@ $permissions_arr = array(
 				''
 			)
 		),
+		// DOCUMENTS =========================================================================================
+		array(
+			'permission_code' => 'documents',
+			'permission_name' => array(
+				'Document List',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to access document list',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'file-add',
+			'permission_name' => array(
+				'Add File Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to add file data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'document-add',
+			'permission_name' => array(
+				'Add Document Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to add document data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'document-edit',
+			'permission_name' => array(
+				'Edit Document Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to update document data.',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'document-delete',
+			'permission_name' => array(
+				'Delete Document Data',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to delete document data.',
+				''
+			)
+		),
 		// ANNOUNCEMENTS =================================
 		array(
 			'permission_code' => 'announcements',

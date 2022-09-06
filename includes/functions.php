@@ -693,6 +693,11 @@ function clearSessions() {
 	$fields_arr = array('test','username','firstname','lastname','status');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 	
+	//DOCUMENTS
+	$module = 'documents';
+	$fields_arr = array('documents','name','linkname','link','status');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+	
 	//ANNOUNCEMENTS
 	$module = 'announcements';
 	$fields_arr = array('announcements','title','details','img','status');
