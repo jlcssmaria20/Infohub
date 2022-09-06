@@ -19,7 +19,7 @@ $webinar_events_list = array(
 	''
 );
 $webinar_events_add = array(
-	'Add Webinar and Events',
+	'Add Webinar and Event',
 	''
 );
 $webinar_events_add_form = array(
@@ -27,7 +27,7 @@ $webinar_events_add_form = array(
 	''
 );
 $webinar_events_edit = array(
-	'Edit Webinar and Events',
+	'Edit Webinar and Event',
 	''
 );
 $webinar_events_edit_form = array(
@@ -35,11 +35,11 @@ $webinar_events_edit_form = array(
 	''
 );
 $webinar_events_update = array(
-	'Update Webinar and Events',
+	'Update Webinar and Event',
 	''
 );
 $webinar_events_delete = array(
-	'Delete Webinar and Events',
+	'Delete Webinar and Event',
 	''
 );
 $webinar_events_title = array(
@@ -95,12 +95,12 @@ $webinar_events_select_host = array(
 );
 
 $webinar_events_delete = array(
-	'Delete Webinar and Events.',
+	'Delete Webinar and Event',
 	''
 );
 
 $webinar_events_update = array(
-	'Update Webinar and Events.',
+	'Update Webinar and Event',
 	''
 );
 

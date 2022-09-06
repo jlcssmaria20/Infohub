@@ -19,7 +19,7 @@ RewriteRule ^submit-login												     functions/login/verifylog.php [NC,L]
 
 # WEBINAR AND EVENTS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-webinar-and-events                                            pages/webinar-and-events/o-index.php [NC,L]
-RewriteRule ^webinarandevents                                              pages/webinar-and-events/index.php
+RewriteRule ^webinar-and-events                                              pages/webinar-and-events/index.php
 RewriteRule ^add-webinar-and-events                                          pages/webinar-and-events/webinar-events-add.php
 RewriteRule ^edit-webinar-and-events/([a-zA-Z0-9_]+)                         pages/webinar-and-events/webinar-events-edit.php?id=$1 [NC,L]
 RewriteRule ^submit-add-webinar-and-events                                   functions/webinar-and-events/webinar-events-add.php

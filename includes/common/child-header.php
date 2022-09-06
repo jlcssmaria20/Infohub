@@ -4,7 +4,7 @@
 	<ul class="navbar-nav">
 		
 		<li class="nav-item">
-			<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+			<a class="nav-link mr-3" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
 		</li>
 		
 		<!-- <?php if($_SESSION['sys_data']['id'] == 1) { ?>
