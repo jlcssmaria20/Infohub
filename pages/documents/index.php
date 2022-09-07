@@ -103,55 +103,34 @@ if(checkSession()) {
 
 											$data_count++;
 											$document_id = encryptID($data['id']);
+											
+												$count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
+												$count->execute();
+												$total_data_count = $count->rowCount();
+											?>
+											<tr>
+												<!-- FOLDER NAME -->
+												<td>
+													<h6><?php echo $data['document_name'] ?></h6>
+												</td>
 
-											echo '<tr>';
+												<!-- DATE CREATED -->
+												<td><?php echo $data['date_created'] ?></td>
 
-												// NAME
-												echo '<td><h6>'.$data['document_name'].'</h6></td>';
+												<!-- NUMBER OF FILES -->
+												<td><?php echo $total_data_count ?></td>
 
-												// DATE CREATED
-												echo '<td>'.$data['date_created'].'</td>';
-
-												// NUMBER OF FILES
-
-												echo '<td>';
-												 /*
-												$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id");
-												$sql->bindParam(":document_id",$document_id);
-												$sql->execute();
-												$total_data_count = $sql->rowCount();
-												
-												echo $total_data_count;  */
-													
-												
-													foreach($status_arr as $status) {
-														if($status[0] == $data['document_status']) {
-															switch($data['document_status']) {
-																case 0:
-																	echo '<span class="text-success">'.renderLang($status[1]).'</span>';
-																	break;
-																case 1:
-																	echo '<span class="text-warning">'.renderLang($status[1]).'</span>';
-																	break;
-															}
-														}
-													}
-													
-													
-												echo '</td>';
-												// OPTIONS
-												echo '<td>';
-
-													// EDIT document
+												<!-- EDIT DOCUMENT -->
+												<td>
+													<?php
 													if(checkPermission('document-edit')) {
 														echo '<a href="/edit-document/'.$document_id.'" class="btn btn-success btn-xs" title="'.renderLang($document_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
+													?>
+												</td>
 
-												echo '</td>'; // end options
-
-											echo '</tr>';
-										}
-										?>
+											</tr>
+										<?php } ?>
 									</tbody>
 								</table>
 							</div><!-- table-responsive -->

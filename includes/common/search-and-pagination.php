@@ -4,12 +4,12 @@
 		<div class="input-group input-group-md mb-3">
 			<input type="text" id="search-keywords" class="form-control"<?php if($keywords != '') { echo ' value="'.$keywords.'"'; } ?> placeholder="<?php echo $search_placeholder; ?>">
 			<span class="input-group-append">
-				<button type="button" id="btn-search" class="btn btn-info btn-flat" title="<?php echo renderLang($btn_search); ?>"><i class="fas fa-search"></i></button>
+				<button type="button" id="btn-search" class="btn btn-secondary btn-flat" title="<?php echo renderLang($btn_search); ?>"><i class="fas fa-search"></i></button>
 			</span>
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-7 dataTables_wrapper dt-bootstrap4">
-		<a href="/<?php echo $redirect_link; ?>" class="btn btn-default btn-md float-left mb-3"><?php echo renderLang($btn_clear); ?></a>
+		<a href="/<?php echo $redirect_link; ?>" class="btn btn-secondary btn-md float-left mb-3"><?php echo renderLang($btn_clear); ?></a>
 		<div class="dataTables_paginate paging_simple_numbers mb-3">
 			<ul class="pagination">
 				<li class="paginate_button page-item previous<?php if($page_ctr == 1) { echo ' disabled'; } ?>"><a href="<?php echo $page.'?p='.($page_ctr-1).$var_k; ?>" class="page-link" data-dt-idx="0" tabindex="0"><?php echo renderLang($btn_previous); ?></a></li>

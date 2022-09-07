@@ -36,8 +36,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/support/permissions.php');
 
 // SYSTEM DEFAULT SETTINGS
 $system_code = 'dxinfohub';
-$sitename = array('InfoHub!','');
-$sitename = renderLang($sitename);
+$sitename = array(' DX InfoHub!', '');
+$sitenamee = renderLang($sitename);
 date_default_timezone_set('Asia/Manila');
 $system_yrmo_start = 202201;
 header('Content-type: text/html; charset=utf-8');
