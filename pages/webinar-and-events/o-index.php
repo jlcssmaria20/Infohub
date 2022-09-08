@@ -1,8 +1,8 @@
 <?php 
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php'); 
 
- // set page
- $page = 'webinar-and-events';
+    // set page
+    $page = 'webinar-and-events';
 
     $sql = $pdo->prepare("SELECT count('title') as total FROM webinarandevents ");
     $sql->execute();
@@ -47,18 +47,18 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             foreach($row as $key => $data) {
                                 // echo $data['date_set'];
                                 $x = $key +1;
-                                if($data['status'] != 1) {
-                                    if($data['id'] != 1) {
+                                if($data['webinar_status'] != 2) {
+                                    if($data['id'] != 0) {
                                     // jan
                                     if(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 7) == 'January') {
-                                        echo '<h3 style="display:none;font-size: 1.3rem;" class="for-january-class_'.$counter.'" id="subheading'.$key.' " > For January</h3>';  
+                                        echo '<h3 style="display:none;font-size: 1.3rem;" class="for-january-class_'.$counter.'" id="subheading'.$key.' " >For January</h3>';  
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'">';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
+                                                echo  '<p data1="'.$data['webinar_description'].'"> </p>';
                                             echo '</a>';  
                                         echo '</li>';
                                         $counter++;
@@ -71,7 +71,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -84,7 +84,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -97,7 +97,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -110,7 +110,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -123,7 +123,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -136,7 +136,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -149,7 +149,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -162,7 +162,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -174,7 +174,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -187,7 +187,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -200,7 +200,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                                echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
+                                                echo "<img src='/assets/uploadimages/".$data['images']."' class='myImg'>";
                                                 echo  '<p data1="'.$data['description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';

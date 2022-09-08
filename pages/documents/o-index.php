@@ -23,7 +23,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             </div>
 
             <section class="main-area col-s-9 d-column mb-4">
-            <div class="announcement mb-4">
+            <div class="mb-4">
                 <h2 class="mb-3">
                     <span  style="color: var(--black);">Documents and Quick Links</span>
                 </h2>
@@ -31,19 +31,19 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <?php
                             $x = array();
                             // The list of items to be displayed on screen.
-                            $sql = $pdo->prepare("SELECT * FROM documentsquicklinks");
+                            $sql = $pdo->prepare("SELECT * FROM documents");
                             $sql->execute();
                             $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                             foreach($row as $key => $data) {
 
                                 $x = $key +1;
-                                if($data['status'] != 1) {
-                                    if($data['id'] != 1) {
-                                        echo "<a href='/dx-documents-and-quick-links-template".$x."/".encryptID($data['id'])." class='list-inline-item''>";
+                                if($data['document_status'] != 2) {
+                                    if($data['id'] != 0) { 
+                                        echo "<a href='/dx-documents-and-quick-links-template".$x."/".encryptID($data['id'])." class='list-inline-item'>";
                                             echo '<li class="list-dl-item">';
                                                 echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
-                                                echo $data["docu_name"];
+                                                echo $data["document_name"];
                                             echo '</li>';
                                         echo  "</a>";
                                     }

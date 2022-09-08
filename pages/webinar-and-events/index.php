@@ -106,23 +106,22 @@ if(checkSession()) {
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
 											$data_count++;
-											$webinar_events_id = encryptID($data['id']);
+											$webinar_id = encryptID($data['id']);
 
 											echo '<tr>';
 
 												// TITLE
-												echo '<td><h5>'.$data['webinar_events_title'].'</h5><br><br><br><br><br><em>'.date('F j, Y - l - h:i a',strtotime($data['webinar_events_schedule_date'])).'</em></td>';
-
+												echo '<td><h5>'.$data['webinar_title'].'</h5><br><br><em>'.$data['date_created'].'</em></td>';
 												// IMAGE
-												echo '<td><img src="assets/images/webinar-and-events/'.$data['webinar_events_img'].'" class="img-thumbnail" style="height:200px;"></td>';
+												echo '<td><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
 
 												// DESCRIPTION
-												echo '<td>'.$data['webinar_events_description'].'</td>';
+												echo '<td>'.$data['webinar_description'].'</td>';
 
                                                 // STATUS
 												// STATUS
 												echo '<td>';
-												switch($data['webinar_events_status']) {
+												switch($data['webinar_status']) {
 													case 0: $Events = 'Active'; break;
 													case 1: $Events = 'Deleted'; break;	
 												}
@@ -139,7 +138,7 @@ if(checkSession()) {
 
 													// EDIT ANNOUNCEMENTS
 													if(checkPermission('webinar-events-edit')) {
-														echo '<a href="/edit-webinar-and-events/'.$webinar_events_id.'" class="btn btn-success btn-sm" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-success btn-sm" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 												echo '</td>'; // end options

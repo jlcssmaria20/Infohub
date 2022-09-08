@@ -18,7 +18,7 @@ if(checkSession()) {
 
 		// delete webinar_events from webinar_events table
 		$epoch_time = time();
-		$sql = $pdo->prepare("UPDATE webinarandevents SET webinar_events_status = 2, temp_del = ".$epoch_time." WHERE id = :webinar_events_id LIMIT 1");
+		$sql = $pdo->prepare("UPDATE webinarandevents SET webinar_status = 2, temp_del = ".$epoch_time." WHERE id = :webinar_events_id LIMIT 1");
 		$sql->bindParam(":webinar_events_id",$id);
 		$sql->execute();
 

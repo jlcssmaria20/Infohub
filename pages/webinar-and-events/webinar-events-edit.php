@@ -15,8 +15,8 @@ if(checkSession()) {
 		// get webinar_events id
 		$id = decryptID($_GET['id']);
 		
-		$sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE id = :webinar_events_id LIMIT 1");
-		$sql->bindParam(":webinar_events_id",$id);
+		$sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE id = :webinar_id LIMIT 1");
+		$sql->bindParam(":webinar_id",$id);
 		$sql->execute();
 
 		// check if ID exists
@@ -25,38 +25,38 @@ if(checkSession()) {
 			$data = $sql->fetch(PDO::FETCH_ASSOC);
             
             //echo $data['webinar_events_img'];
-            $webinar_img = $data['webinar_events_img'];
+            $webinar_img = $data['webinar_img'];
 
-            $user_id = $data['user_id'];
-			if(isset($_SESSION['sys_webinar_events_edit_title_val'])) {
-				$user_id = $_SESSION['sys_webinar_events_edit_title_val'];
-				unset($_SESSION['sys_webinar_events_edit_title_val']);
+            $host = $data['webinar_host'];
+			if(isset($_SESSION['sys_webinar_events_edit_host_val'])) {
+				$host = $_SESSION['sys_webinar_events_edit_host_val'];
+				unset($_SESSION['sys_webinar_events_edit_host_val']);
 			}
 
-			$title = $data['webinar_events_title'];
+			$title = $data['webinar_title'];
 			if(isset($_SESSION['sys_webinar_events_edit_title_val'])) {
 				$title = $_SESSION['sys_webinar_events_edit_title_val'];
 				unset($_SESSION['sys_webinar_events_edit_title_val']);
 			}
-			$description = $data['webinar_events_description'];
+			$description = $data['webinar_description'];
 			if(isset($_SESSION['sys_webinar_events_edit_description_val'])) {
 				$description = $_SESSION['sys_webinar_events_edit_description_val'];
 				unset($_SESSION['sys_webinar_events_edit_description_val']);
 			}
-			$img = $data['webinar_events_img'];
+			$img = $data['webinar_img'];
 			if(isset($_SESSION['sys_webinar_events_edit_img_val'])) {
 				$img = $_SESSION['sys_webinar_events_edit_img_val'];
 				unset($_SESSION['sys_webinar_events_edit_img_val']);
 			}
 
             $schedule_date = date('m/d/Y');
-			if($data['webinar_events_schedule_date'] == 0){
-				if(isset($_SESSION['sys_webinar_events_edit_status_val'])) {
-					$schedule_date = date('m/d/Y',strtotime($_SESSION['sys_webinar_events_edit_status_val']));
-					unset($_SESSION['sys_webinar_events_edit_status_val']);
+			if($data['date_set'] == 0){
+				if(isset($_SESSION['sys_webinar_events_edit_date_val'])) {
+					$schedule_date = date('m/d/Y',strtotime($_SESSION['sys_webinar_events_edit_date_val']));
+					unset($_SESSION['sys_webinar_events_edit_date_val']);
 				}
 			} else {
-				$schedule_date = date('m/d/Y',strtotime($data['webinar_events_schedule_date']));
+				$schedule_date = date('m/d/Y',strtotime($data['date_set']));
 			}
 	
 ?>
@@ -66,7 +66,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo renderLang($webinar_events_edit); ?> &middot; <?php echo $sitename; ?></title>
+	<title><?php echo renderLang($webinar_events_edit); ?> &middot; <?php echo $sitenamee; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
@@ -92,7 +92,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col">
-							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['webinar_events_title']; ?></h1>
+							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['webinar_title']; ?></h1>
 						</div>
 					</div>
 					
@@ -119,26 +119,26 @@ if(checkSession()) {
 							<div class="card-body">
 								
                                 <div class="row">
-
+									<!-- WEBINAR HOST -->
                                     <div class="col-lg-3 col-md-4 col-sm-2">
-                                        <?php $err = isset($_SESSION['sys_webinar_events_add_user_id_err']) ? 1 : 0; ?>
+                                        <?php $err = isset($_SESSION['sys_webinar_events_add_host_err']) ? 1 : 0; ?>
                                         <div class="form-group">
-                                            <label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_host); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+                                            <label for="host" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_host); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                             <select class="form-control select2 required" name="host" required>
                                                 <?php
                                                     $sql = $pdo->prepare("SELECT *
                                                         FROM users");
                                                     $sql->execute();
                                                     while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                                        echo '<option value="'.$data['id'].'"';
-                                                        if($user_id == $data['id']){
+                                                        echo '<option value="'.$data['employeeid'].'"';
+                                                        if($host == $data['employeeid']){
 															echo ' selected';
 														}
 														echo '>['.$data['employeeid'].'] '.$data['firstname'].' '.$data['lastname'].'</option>';
                                                     }
                                                 ?>
                                             </select>
-                                            <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_user_id_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_user_id_err']); } ?>
+                                            <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_host_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_host_err']); } ?>
                                         </div>
                                     </div><!-- /col-->
 
@@ -193,6 +193,7 @@ if(checkSession()) {
                                                 <input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="picture" name="picture" accept="image/*">
                                                 <label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
                                                 <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
+												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
                                             </div>
                                         </div>
                                     </div><!-- /col-->
@@ -206,7 +207,7 @@ if(checkSession()) {
 
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/webinar-and-events" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/webinarandevents" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($webinar_events_update); ?></button>
 							</div>
 						</div><!-- card -->
