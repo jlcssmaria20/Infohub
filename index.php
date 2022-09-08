@@ -58,7 +58,7 @@ $total = 4;
                     ?>
                 </ul> 
             </div>
-            <a href="/webinar-and-events" class="btn btn-block" style="background-color:var(--blue);; color: #fff;">See all events</a>
+            <a href="/webinar-and-events" class="btn btn-block btn-primary">See all events</a>
         </section>
         
         <!-- <section class="main-area col-s-9 d-column mb-5" >
@@ -93,7 +93,7 @@ $total = 4;
         <section class="main-area col-s-9 d-column mb-5" >
             <div class="announcement mb-5">
                 <h2 class="mb-3"> 
-                    <span><i class="fa fa-bullhorn"></i>&nbsp;IMPORTANT ANNOUNCEMENTS</span>
+                    <span><i class="fa fa-bullhorn"></i>&nbsp; IMPORTANT ANNOUNCEMENTS</span>
                 </h2>
                 <div class="announcement-row">
                     <ul>
@@ -120,7 +120,7 @@ $total = 4;
                     ?>
                     </ul>
                 </div>
-                <a href="/o-announcements" class="btn">See all announcements</a>
+                <a href="/o-announcements" class="btn btn-primary">See all announcements</a>
             </div>
         </section>
     </div><!-- container -->

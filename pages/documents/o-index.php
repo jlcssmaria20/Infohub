@@ -28,28 +28,29 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <span  style="color: var(--black);">Documents and Quick Links</span>
                 </h2>
                     <ul class="list-inline mb-4">
-                    <?php
-                            $x = array();
-                            // The list of items to be displayed on screen.
-                            $sql = $pdo->prepare("SELECT * FROM documents");
+                        <?php
+                            $data_count = 0;
+                            $sql = $pdo->prepare("SELECT * FROM documents WHERE `document_status` = 0 ORDER BY id ASC");
                             $sql->execute();
-                            $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                            while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
-                            foreach($row as $key => $data) {
-
-                                $x = $key +1;
-                                if($data['document_status'] != 2) {
-                                    if($data['id'] != 0) { 
-                                        echo "<a href='/dx-documents-and-quick-links-template".$x."/".encryptID($data['id'])." class='list-inline-item'>";
-                                            echo '<li class="list-dl-item">';
-                                                echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
-                                                echo $data["document_name"];
-                                            echo '</li>';
-                                        echo  "</a>";
-                                    }
-                                }
-                    
+                            $data_count++;
+                            $document_id = encryptID($data['id']);
+                            
+                                $count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
+                                $count->execute();
+                                $total_data_count = $count->rowCount();
+                            
+                                echo "<a href='/document-files/".$data["id"]."'>";
+                                    echo '<li class="list-dl-item">';
+                                        echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
+                                        echo $data["document_name"];
+                                        echo ' ('. $total_data_count .') ';
+                                    echo '</li>';
+                                echo  "</a>";
+                                    
                             }
+                    
                         ?>
                     </ul>
                 </div>

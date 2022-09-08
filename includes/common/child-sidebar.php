@@ -34,13 +34,13 @@
                 
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinar-and-events"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
                 </li>
 
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
 
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="nav-icon fa fa-file-text-o" aria-hidden="true"></i><p> Documents and Quick Links</p></a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="nav-icon fa fa-file" aria-hidden="true"></i><p> Documents and Quick Links</p></a>
                 </li>
 
                 <!-- THE TEAM -->

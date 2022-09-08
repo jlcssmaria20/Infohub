@@ -10,7 +10,7 @@ v1-1-1 August 23, 2022 - Kim
 //Dropped 'announcements_count' column in 'announcements' table. 
 v1-3-0 September 01, 2022 - Kim
 //Created 'documents' and 'files' table for documents and quicklinks. 
-
- 
+v1-2-0 September 08, 2022 -Kim
+//Latest database given by maam julcess, together with correct table for 'webinarandevents'.
 
  
