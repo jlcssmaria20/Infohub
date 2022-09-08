@@ -108,9 +108,9 @@ if(checkSession()) {
 								echo '<li>';
 									echo '<ul class="permissions-group">';
 									foreach($permissions_group as $permission) {
-										$btn_design = 'btn-primary';
+										$btn_design = 'btn-secondary';
 										if(in_array($permission['permission_code'],$permissions_val_arr)) {
-											$btn_design = 'btn-success';
+											$btn_design = 'btn-secondary';
 										}
 										echo '<li><a href="#" class="btn '.$btn_design.' btn-sm" data-permission-code="'.$permission['permission_code'].'" title="'.renderLang($permission['permission_description']).'">'.renderLang($permission['permission_name']).'</a></li>';
 									}
@@ -120,11 +120,11 @@ if(checkSession()) {
 							?>
 							</ul>
 
-							<a href="#" class="btn btn-default mt-2 btn-clear-permissions"><i class="fa fa-times mr-2"></i><?php echo renderLang($roles_clear_permissions); ?></a>
+							<a href="#" class="btn btn-secondary mt-2 btn-clear-permissions"><i class="fa fa-times mr-2"></i><?php echo renderLang($roles_clear_permissions); ?></a>
 							
 						</div><!-- card-body -->
 						<div class="card-footer text-right">
-							<a href="/roles" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+							<a href="/roles" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 							<button class="btn btn-primary"><i class="fa fa-plus mr-2"></i><?php echo renderLang($roles_add_role); ?></button>
 						</div>
 					</div><!-- card -->
@@ -148,7 +148,7 @@ if(checkSession()) {
 		$('.permissions-group li a').click(function(e) {
 			e.preventDefault();
 			
-			$(this).toggleClass('btn-default').toggleClass('btn-success');
+			$(this).toggleClass('btn-secondary').toggleClass('btn-success');
 			
 			var permissions = '';
 			var permissions_arr = [];
@@ -173,7 +173,7 @@ if(checkSession()) {
 		// clear permissions
 		$('.btn-clear-permissions').click(function(e) {
 			e.preventDefault();
-			$('.permissions-group li a').removeClass('btn-success').addClass('btn-default');
+			$('.permissions-group li a').removeClass('btn-success').addClass('btn-secondary');
 			$('#permissions').val('');
 			$('h4 .badge').addClass('badge-danger').removeClass('badge-success');
 		});

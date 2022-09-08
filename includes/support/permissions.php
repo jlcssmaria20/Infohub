@@ -343,6 +343,65 @@ $permissions_arr = array(
 				'アカウントに管理者アカウントの削除を許可する。'
 			)
 		)
+			), 
+			// USERS =========================================================================================
+	array(
+		array(
+			'permission_code' => 'users',
+			'permission_name' => array(
+				'Users Management',
+				'ユーザー管理'
+			),
+			'permission_description' => array(
+				'Allow account to access users list and view user profile.',
+				'アカウントにユーザー一覧へのアクセスまたはユーザープロフィールの表示を許可する。'
+			)
+		),
+		array(
+			'permission_code' => 'user-add',
+			'permission_name' => array(
+				'Add User',
+				'ユーザーを追加'
+			),
+			'permission_description' => array(
+				'Allow account to add user account.',
+				'アカウントにユーザーの追加を許可する。'
+			)
+		),
+		array(
+			'permission_code' => 'user-edit',
+			'permission_name' => array(
+				'Edit User',
+				'ユーザーを修正'
+			),
+			'permission_description' => array(
+				'Allow account to update user account details.',
+				'アカウントにユーザーアカウント詳細の更新を許可する。'
+			)
+		),
+		array(
+			'permission_code' => 'user-delete',
+			'permission_name' => array(
+				'Delete User',
+				'ユーザーを削除'
+			),
+			'permission_description' => array(
+				'Allow account to delete user record.',
+				'アカウントにユーザー記録の削除を許可する。'
+			)
+		),
+		array(
+			'permission_code' => 'export-users-actual-time',
+			'permission_name' => array(
+				'Export Users Actual Time',
+				'ユーザーの実際時間のエクスポート'
+			),
+			'permission_description' => array(
+				'Allow exporting users actual time.',
+				'ユーザーの実工数のエクスポートを許可する'
+			)
+		),
+		
 	)
 
 

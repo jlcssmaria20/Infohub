@@ -44,4 +44,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/admins.php');
 
 // ROLES
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/roles.php');
+
+// USERS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/users.php');
 ?>

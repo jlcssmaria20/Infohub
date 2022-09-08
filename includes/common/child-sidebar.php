@@ -101,7 +101,7 @@
 						<?php } ?>
 
 						<?php if(checkPermission('roles')) { ?>
-						<!-- USERS -->
+						<!-- ROLES -->
 						<li class="nav-item">
 							<a href="/roles" class="nav-link js-scroll-trigger<?php if($page == 'roles') { echo ' active'; } ?>">
 								<i class="nav-icon far fa-id-badge"></i>
