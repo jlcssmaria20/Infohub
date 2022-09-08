@@ -29,10 +29,10 @@ $total = 4;
                     $data = $sql->fetch(PDO::FETCH_ASSOC);
 
                     $LastID = $data['id'];
-                    if($data['status'] != 1) {
-                        if($data['id'] != 1) {
-                        echo '<div data-thumb="/assets/images/'.$data['images'].'">';
-                            echo "<img src='/assets/images/".$data['images']."' style='width:100%;'>";
+                    if($data['webinar_status'] != 2) {
+                        if($data['id'] != 0) {
+                        echo '<div data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'">';
+                            echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' style='width:100%;'>";
                         echo '</div>';
                         }
                     }
@@ -44,11 +44,11 @@ $total = 4;
                     $row = $sql->fetchAll(PDO::FETCH_ASSOC);
                     foreach($row as $key => $data) {
                         $x = $key +1;
-                        if($data['status'] != 1) {
+                        if($data['webinar_status'] != 2) {
                             if($data['id'] != $LastID) {
-                                if($data['id'] != 1) {
-                                    echo '<li data-thumb="/assets/images/'.$data['images'].'"> ';
-                                        echo "<img src='/assets/images/".$data['images']."' style='margin:0;width:100%; height:593px'>";
+                                if($data['id'] != 0) {
+                                    echo '<li data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'"> ';
+                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0;width:100%; height:593px'>";
                                         // echo '<div class="text">The text of slide one</div>';
                                     echo '</li>';
                                 }     

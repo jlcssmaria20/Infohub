@@ -37,7 +37,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo renderLang($team_edit); ?> &middot; <?php echo $sitename; ?></title>
+	<title><?php echo renderLang($team_edit); ?> &middot; <?php echo $sitenamee; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	<link rel="stylesheet" href="/assets/css/team.css">

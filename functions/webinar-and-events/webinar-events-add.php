@@ -15,7 +15,11 @@ if(checkSession()) {
 
         //USER ID
         $host = $_POST['host'];
-        $schedule_date = $_POST['schedule_date'];
+        $date_set1 = $_POST['schedule_date'];
+		$date_set = date('Ymd',strtotime($date_set1));
+
+		$current_date = date('F j, Y - l - h:i a', time());
+		$_SESSION['date_set'] = $date_set;
 
 		// TITLE
 		$title = '';
@@ -29,9 +33,9 @@ if(checkSession()) {
 			} else {
 				
 				// check if title already exists
-				$sql = $pdo->prepare("SELECT webinar_events_title, temp_del FROM webinarandevents WHERE webinar_events_title = :webinar_events_title AND temp_del=0 LIMIT 1");
+				$sql = $pdo->prepare("SELECT webinar_title, temp_del FROM webinarandevents WHERE webinar_title = :webinar_title AND temp_del=0 LIMIT 1");
 				$bind_param = array(
-					':webinar_events_title' => $title
+					':webinar_title' => $title
 				);
 				$sql->execute($bind_param);
 				if($sql->rowCount() > 0) {
@@ -41,7 +45,7 @@ if(checkSession()) {
 			}
 		}
 		
-		// DETAILS
+		// DESCRIPTION
 		$description = '';
 		if(isset($_POST['description'])) {
 			$description = htmlentities(trim($_POST['description']));
@@ -51,7 +55,16 @@ if(checkSession()) {
 				$_SESSION['sys_webinar_events_add_description_err'] = renderLang($webinar_events_description_required);
 			} 
 		}
-		
+		// HOST
+		$host = '';
+		if(isset($_POST['host'])) {
+			$host = htmlentities(trim($_POST['host']));
+			$_SESSION['sys_webinar_events_add_host_val'] = $host;
+			if(strlen($host) == 0) {
+				$err++;
+				$_SESSION['sys_webinar_events_add_host_err'] = renderLang($webinar_events_host_required);
+			} 
+		}
 
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors
@@ -64,8 +77,12 @@ if(checkSession()) {
 			//MOVE IMAGE TO WEBINAR FOLDER
             move_uploaded_file($picture_tmp, '../../assets/images/webinar-and-events/'.$picture);
             
+			$month_set = substr($date_set, 0, 6);
+
+			$_SESSION['month_set'] = $month_set;
+
             //INSERT DATA
-            $insert = $pdo->prepare("INSERT INTO webinarandevents(
+            /* $insert = $pdo->prepare("INSERT INTO webinarandevents(
                 `user_id`,
                 webinar_events_title,
                 webinar_events_description,
@@ -87,7 +104,43 @@ if(checkSession()) {
                 ':webinar_events_schedule_date'	=> $schedule_date
             );
 
-            $insert->execute($bind_param);
+            $insert->execute($bind_param); */
+
+			$sql = $pdo->prepare("INSERT INTO webinarandevents(
+               	id,
+                `user_id`,
+				webinar_host,
+                webinar_title,
+                webinar_description,
+                webinar_img,
+                date_set,
+				month_set,
+				date_created
+
+            ) VALUES(
+				NULL,
+                :user_id,
+                :webinar_host,
+                :webinar_title,
+                :webinar_description,
+                :webinar_img,
+                :date_set,
+				:month_set,
+				:date_created
+            )");
+            $bind_param = array(
+                ':user_id'  				    => $_SESSION['sys_data']['id'],
+				':webinar_host'                 => $host,
+                ':webinar_title'  	    		=> $title,
+                ':webinar_description'  		=> $description,
+                ':webinar_img'   				=> $picture,
+                ':date_set'						=> $date_set,
+				':month_set'					=> $month_set,
+				':date_created'					=> $current_date
+            );
+
+            $sql->execute($bind_param);
+
 
 			$_SESSION['sys_webinar_events_suc'] = renderLang($webinar_events_added);
 			header('location: /webinarandevents');
