@@ -9,7 +9,7 @@ $page = '404';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include('includes/common/links.php'); ?>
   <link rel="stylesheet" href="<?php echo $uri; ?>assets/css/notFound404.css">
-  <title>Page Not Found - <?php echo $sitename; ?></title>
+  <title>Page Not Found - <?php echo $sitenamee; ?></title>
 </head>
 <body id="notFound">
   <!-- HEADER -->
