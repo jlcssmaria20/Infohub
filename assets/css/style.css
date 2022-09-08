@@ -104,10 +104,10 @@ img.modal-img {
 .btn .fa {
   margin-right: 10px;
  }
-.btn-primary:hover {
+/* .btn-primary:hover {
   background-color: #5c000c;
   border-color: #5c000c;
-}
+} */
 @media (min-width: 1200px) {
 .container {
     max-width: 1300px !important;

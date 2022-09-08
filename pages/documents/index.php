@@ -54,7 +54,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-folder-open-o mr-3"></i><?php echo renderLang($documents); ?></h1>
+							<h1><i class="fas fa-folder-open-o mr-3"></i><?php echo renderLang($documents); ?></h1>
 						</div>
 					</div>
 					
@@ -74,7 +74,7 @@ if(checkSession()) {
 						<div class="card-header">
 							<h3 class="card-title"><?php echo renderLang($document_list); ?></h3>
 							<div class="card-tools">
-								<button type="button" class="btn btn-danger btn-delete mr-1" data-toggle="modal" data-target="#add_document_modal">
+								<button type="button" class="btn btn-primary btn-delete mr-1" data-toggle="modal" data-target="#add_document_modal">
 									<i class="fa fa-plus mr-2"></i><?php echo renderLang($document_add_document); ?>
 								</button>
 							</div>

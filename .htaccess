@@ -65,4 +65,24 @@ RewriteRule ^submit-add-team                                                 fun
 RewriteRule ^submit-edit-team/([a-zA-Z0-9_]+)                                functions/teams/team-edit.php?id=$1 [NC,L]
 RewriteRule ^submit-delete-team/([a-zA-Z0-9_]+)                              functions/teams/team-delete.php?id=$1 [NC,L]
 
+# ADMINS ------------------------------------------------------------------------------------------------
+RewriteRule ^admins													pages/admins/admins.php [NC,L]
+RewriteRule ^admin/([a-zA-Z0-9_]+)$									pages/admins/admin.php?id=$1 [NC,L]
+RewriteRule ^add-admin												pages/admins/admin-add.php [NC,L]
+RewriteRule ^submit-add-admin										functions/admins/admin-add.php [NC,L]
+RewriteRule ^edit-admin/([a-zA-Z0-9_]+)								pages/admins/admin-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-admin										functions/admins/admin-edit.php [NC,L]
+RewriteRule ^delete-admin											functions/admins/admin-delete.php [NC,L]
+
+
+# ROLES ------------------------------------------------------------------------------------------------
+RewriteRule ^roles													pages/roles/roles.php [NC,L]
+RewriteRule ^role/([a-zA-Z0-9_]+)									pages/roles/role.php?id=$1 [NC,L]
+RewriteRule ^add-role												pages/roles/role-add.php [NC,L]
+RewriteRule ^submit-add-role										functions/roles/role-add.php [NC,L]
+RewriteRule ^edit-role/([a-zA-Z0-9_]+)								pages/roles/role-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-role										functions/roles/role-edit.php [NC,L]
+RewriteRule ^delete-role											functions/roles/role-delete.php [NC,L]
+
+
 

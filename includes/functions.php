@@ -1,6 +1,8 @@
 <?php
 // RENDER
 // render language
+
+$sitename = "DX Info Hub";
 function renderLang($lang_arr) {
 	if(isset($lang_arr[$GLOBALS['default_lang_idx']])) {
 		if($lang_arr[$GLOBALS['default_lang_idx']] != '') {
@@ -314,34 +316,34 @@ function unsetSession($session) {
 	}
 }
 // record action to system log
-function systemLog($module,$target_id,$action,$change_log) {
-	$epoch_time = time();
-	$account_id = $_SESSION['sys_id'];
-	switch($_SESSION['sys_account_mode']) {
-		case 'admin': $account_mode = 0; break;
-		case 'user': $account_mode = 1; break;
-	}
-	$sql = $GLOBALS['pdo']->prepare("INSERT INTO system_log(
-		id,
-		account_id,
-		account_mode,
-		module,
-		target_id,
-		action,
-		change_log,
-		epoch_time
-	) VALUES(
-		NULL,
-		".$account_id.",
-		".$account_mode.",
-		'".$module."',
-		'".$target_id."',
-		'".$action."',
-		'".$change_log."',
-		'".$epoch_time."'
-	)");
-	$sql->execute();
-}
+// function systemLog($module,$target_id,$action,$change_log) {
+// 	$epoch_time = time();
+// 	$account_id = $_SESSION['sys_id'];
+// 	switch($_SESSION['sys_account_mode']) {
+// 		case 'admin': $account_mode = 0; break;
+// 		case 'user': $account_mode = 1; break;
+// 	}
+// 	$sql = $GLOBALS['pdo']->prepare("INSERT INTO system_log(
+// 		id,
+// 		account_id,
+// 		account_mode,
+// 		module,
+// 		target_id,
+// 		action,
+// 		change_log,
+// 		epoch_time
+// 	) VALUES(
+// 		NULL,
+// 		".$account_id.",
+// 		".$account_mode.",
+// 		'".$module."',
+// 		'".$target_id."',
+// 		'".$action."',
+// 		'".$change_log."',
+// 		'".$epoch_time."'
+// 	)");
+// 	$sql->execute();
+// }
 // send email function
 function sendMail($to, $name, $subject, $body) {
 	require '../../vendor/autoload.php';
@@ -398,20 +400,20 @@ function renderName($data) {
 }
 // SECURITY
 // check IP of user
-function checkIP() {
-	$curr_ip = $_SERVER['REMOTE_ADDR'];
-	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM ips WHERE ip_address = '".$curr_ip."' AND temp_del = 0 LIMIT 1");
-	$sql->execute();
-	if($sql->rowCount() == 1) {
-		if(!isset($_SESSION['sys_language'])) {
-			$data = $sql->fetch(PDO::FETCH_ASSOC);
-			$_SESSION['sys_language'] = $data['ip_language'];
-		}
-		return 1; // valid IP
-	} else {
-		return 1; // invalid IP, put "1" for development, "0" for live
-	}
-}
+// function checkIP() {
+// 	$curr_ip = $_SERVER['REMOTE_ADDR'];
+// 	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM ips WHERE ip_address = '".$curr_ip."' AND temp_del = 0 LIMIT 1");
+// 	$sql->execute();
+// 	if($sql->rowCount() == 1) {
+// 		if(!isset($_SESSION['sys_language'])) {
+// 			$data = $sql->fetch(PDO::FETCH_ASSOC);
+// 			$_SESSION['sys_language'] = $data['ip_language'];
+// 		}
+// 		return 1; // valid IP
+// 	} else {
+// 		return 1; // invalid IP, put "1" for development, "0" for live
+// 	}
+// }
 // check session if logged in
 function checkSession() {
 	$r = 0;
@@ -711,6 +713,16 @@ function clearSessions() {
 	//ANNOUNCEMENTS
 	$module = 'webinar_events';
 	$fields_arr = array('webinar_events','title','user_id','description','img','status', 'schedule_date');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+
+	// ADMINS
+	$module = 'admins';
+	$fields_arr = array('admin','username','firstname','lastname','admin_status');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+	
+	// ROLES
+	$module = 'roles';
+	$fields_arr = array('role','role_name','role_permissions');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 }
 

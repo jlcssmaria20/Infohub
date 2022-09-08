@@ -30,10 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i><p> Dashboard</p> </a>
                 </li>
+				
                 
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinar-and-events"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
                 </li>
 
                 <!-- DOCUMENTS AND QUICK LINKS -->
@@ -56,6 +57,7 @@
 				if(
 					checkPermission('admins') ||
 					checkPermission('teams') ||
+					checkPermission('roles') ||
 					checkPermission('users') 
 				) {
 					$tree_open = '';
@@ -63,6 +65,7 @@
 					if(
 						$page == 'admins' ||
 						$page == 'teams' ||
+						$page == 'roles' ||
 						$page == 'users' 
                         
 					) {
@@ -96,6 +99,16 @@
 							</a>
 						</li>
 						<?php } ?>
+
+						<?php if(checkPermission('roles')) { ?>
+						<!-- USERS -->
+						<li class="nav-item">
+							<a href="/roles" class="nav-link js-scroll-trigger<?php if($page == 'roles') { echo ' active'; } ?>">
+								<i class="nav-icon far fa-id-badge"></i>
+								<p> Roles</p>
+							</a>
+						</li>
+						<?php } ?>
 						
 						<?php if(checkPermission('users')) { ?>
 						<!-- USERS -->
@@ -110,6 +123,11 @@
 					</ul>
 				</li>
 				<?php } ?>
+
+				  <!-- GENERAL -->
+				  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="/general"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
+                 </li>
 
 				  <!-- TEST PAGE -->
 				  <li class="nav-item">

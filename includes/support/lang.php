@@ -39,4 +39,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/teams.php');
 // WEBINAR AND EVENTS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/webinar-events.php');
 
+// ADMINS
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/admins.php');
+
+// ROLES
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/roles.php');
 ?>
