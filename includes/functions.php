@@ -729,7 +729,7 @@ function clearSessions() {
 	$module = 'users';
 	$fields_arr = array(
 		'user',
-		'subteam_id',
+		'team_id',
 		'employee_id',
 		'email',
 		'level',
