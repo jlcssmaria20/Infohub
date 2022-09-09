@@ -82,6 +82,7 @@ if(isset($_POST['submit-login'])) {
 			
 		} else {
 
+
 			$user_password = '';
 			$sql = $pdo->prepare("SELECT * FROM users WHERE user_email = :user_email LIMIT 1");
 			$sql->bindParam(":user_email",$uname);
@@ -102,10 +103,10 @@ if(isset($_POST['submit-login'])) {
 						$_SESSION['sys_photo'] = '/assets/images/team-images/avatar5.png';
 					}
 				} else {
-					$_SESSION['sys_photo'] = '/assets/images/profile/'.$data['user_photo'];
+					$_SESSION['sys_photo'] = '/assets/images/team-images/'.$data['user_photo'];
 				}
 				$_SESSION['sys_center_id'] = $data['center_id'];
-				$_SESSION['sys_role_ids'] = $data['role_ids'];
+				$_SESSION['sys_role_ids'] = $data['role_ids']; 
 				$_SESSION['sys_language'] = $data['language'];
 				$GLOBALS['language'] = $data['language'];
 				$_SESSION['sys_data_per_page'] = $data['data_per_page'];
@@ -113,12 +114,12 @@ if(isset($_POST['submit-login'])) {
 				$status = $data['user_status'];
 				$GLOBALS['user_permissions_arr'] = array_filter(explode(',',$data['permissions']));
 				$_SESSION['is_locked'] = false;
-				setcookie('sys_goop_language', $GLOBALS['language'], time() + (86400 * 30), "/");
+				//setcookie('sys_goop_language', $GLOBALS['language'], time() + (86400 * 30), "/");
 			}
 			
 			if(password_verify($upass, $user_password)){
-				goToPage(true);
-				//getStatus($pdo,$status,$permissions_arr,$lockout_timestamp,"user",$user_id);
+				//goToPage(true);
+				getStatus($pdo,0,$permissions_arr,$lockout_timestamp,"user",$user_id);
 			}else{
 				$attempts = checkAttempts($pdo,$uname);
 
@@ -198,7 +199,7 @@ function getStatus($pdo,$status,$permissions_arr,$lockedTime,$isAdmin,$id){
 				break;
 
 			case 'user':
-
+				
 				// check if there is a role set (requires at least one role per account)
 				if($_SESSION['sys_role_ids'] != ',') {
 
@@ -210,6 +211,7 @@ function getStatus($pdo,$status,$permissions_arr,$lockedTime,$isAdmin,$id){
 
 					// create where clause for multiple roles
 					$where = '';
+					
 					$role_ids_arr = explode(',',$_SESSION['sys_role_ids']);
 					foreach($role_ids_arr as $role_id) {
 						if($role_id != '') { // removes the beginning and end blanks from array
@@ -220,7 +222,7 @@ function getStatus($pdo,$status,$permissions_arr,$lockedTime,$isAdmin,$id){
 							}
 						}
 					}
-
+					
 					// get permissions based on role_ids
 					$sql = $pdo->prepare("SELECT role_id, permissions FROM roles".$where);
 					$sql->execute();

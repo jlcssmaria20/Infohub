@@ -98,7 +98,7 @@ if(checkSession()) {
 									<tbody>
 										<?php
 										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM admins".$where." ORDER BY admin_lastname ASC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM admins".$where." AND admin_id != 1 ORDER BY admin_lastname ASC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 

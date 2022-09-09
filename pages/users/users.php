@@ -109,13 +109,13 @@ if(checkSession()) {
 												<th><?php echo renderLang($roles_roles); ?></th>
 												<th><?php echo renderLang($lang_status); ?></th>
 												<th><?php echo renderLang($users_last_login); ?></th>
-												<th style="width:100px;"></th>
+												<th style="width:40px;"></th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
 											$data_count = 0;
-											$sql = $pdo->prepare("SELECT * FROM users".$where." ORDER BY user_status ASC, center_id ASC, user_lastname ASC");
+											$sql = $pdo->prepare("SELECT * FROM users".$where." ORDER BY user_status ASC, user_lastname ASC");
 											$sql->execute();
 											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
@@ -128,7 +128,7 @@ if(checkSession()) {
 													echo '<td>'.$data['user_employee_id'].'</td>';
 
 													// LASTNAME
-													echo '<td>'.$data['user_lastname'].'/td>';
+													echo '<td>'.$data['user_lastname'].'</td>';
 
 													// FIRSTNAME
 													echo '<td>'.$data['user_firstname'].'</td>';
@@ -139,7 +139,7 @@ if(checkSession()) {
 													// DESIGNATION
 													echo '<td>';
 														foreach($teams_arr as $team) {
-															if($team['team_id'] == $data['team_id']) {
+															if($team['id'] == $data['team_id']) {
 																echo ' - '.$team['team_name'];
 																break;
 															}
@@ -194,10 +194,10 @@ if(checkSession()) {
 													echo '<td class="data-options">';
 
 														// EDIT USER
-													echo '<a href="/user/'.$user_id.'" class="btn btn-primary btn-xs" title="'.renderLang($users_view_user).'" style="padding: 1.5px 7px;" target="_blank"><i class="fa fa-info" aria-hidden="true"></i></a>';
+													// echo '<a href="#" class="btn btn-primary btn-xs" title="'.renderLang($users_view_user).'" style="padding: 1.5px 7px;" target="_blank"><i class="fas fa-info" aria-hidden="true"></i></a>';
 
 													if(checkPermission('user-edit')) {
-														echo '<a href="/edit-user/'.$user_id.'" class="btn btn-success btn-xs" title="'.renderLang($users_edit_user).'" target="_blank"><i class="fa fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-user/'.$user_id.'" class="btn btn-success btn-xs" title="'.renderLang($users_edit_user).'" ><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 													echo '</td>'; // end options
