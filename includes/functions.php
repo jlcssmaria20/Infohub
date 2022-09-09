@@ -417,7 +417,7 @@ function renderName($data) {
 // check session if logged in
 function checkSession() {
 	$r = 0;
-	if(isset($_SESSION['sys_data'])) {
+	if(isset($_SESSION['sys_id'])) {
 		$r = 1;
 	}
 	return $r;
