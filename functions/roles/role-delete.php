@@ -19,7 +19,6 @@ if(checkSession()) {
 
 			$account_id = $_SESSION['sys_id'];
 			$upass = $_POST['upass'];
-
 			// verify password
 			switch($_SESSION['sys_account_mode']) {
 				case 'admin':
@@ -37,6 +36,7 @@ if(checkSession()) {
 					$upass_db = decryptStr($data['user_password']);
 					break;
 			}
+			
 
 			// check if passwords match
 			if($upass_db == $upass) {
