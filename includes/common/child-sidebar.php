@@ -10,11 +10,11 @@
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
 				<?php
-				if($_SESSION['sys_data']['photo'] == '') {
-					echo '<img src="/assets/images/profile-default.png" class="img-circle elevation-2" alt="User Image">';
-				} else {
-					echo '<img src="/assets/images/team-images/'.$_SESSION['sys_data']['photo'].'" class="img-circle elevation-2" alt="User Image">';
-				}
+				// if($_SESSION['sys_data']['photo'] == '') {
+				// 	echo '<img src="/assets/images/profile-default.png" class="img-circle elevation-2" alt="User Image">';
+				// } else {
+				// 	echo '<img src="/assets/images/team-images/'.$_SESSION['sys_data']['photo'].'" class="img-circle elevation-2" alt="User Image">';
+				// }
 				?>
 			</div>
 			<div class="info">
@@ -101,7 +101,7 @@
 						<?php } ?>
 
 						<?php if(checkPermission('roles')) { ?>
-						<!-- USERS -->
+						<!-- ROLES -->
 						<li class="nav-item">
 							<a href="/roles" class="nav-link js-scroll-trigger<?php if($page == 'roles') { echo ' active'; } ?>">
 								<i class="nav-icon far fa-id-badge"></i>

@@ -417,7 +417,7 @@ function renderName($data) {
 // check session if logged in
 function checkSession() {
 	$r = 0;
-	if(isset($_SESSION['sys_data'])) {
+	if(isset($_SESSION['sys_id'])) {
 		$r = 1;
 	}
 	return $r;
@@ -723,6 +723,29 @@ function clearSessions() {
 	// ROLES
 	$module = 'roles';
 	$fields_arr = array('role','role_name','role_permissions');
+	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+
+	// USERS
+	$module = 'users';
+	$fields_arr = array(
+		'user',
+		'subteam_id',
+		'employee_id',
+		'email',
+		'level',
+		'gender',
+		'status',
+		'firstname',
+		'middlename',
+		'lastname',
+		'nickname',
+		'position',
+		'roles',
+		'hiredate',
+		'enddate',
+		'user_status',
+		'user_mobile'
+	);
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 }
 

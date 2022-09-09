@@ -42,7 +42,7 @@ RewriteRule ^document-files/([a-zA-Z0-9_]+)                                   pa
 
 # USERS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-teams                                                         pages/users/index.php
-RewriteRule ^user-profile/([a-zA-Z0-9_]+)								     pages/users/user-profile.php?id=$1 [NC,L]
+#RewriteRule ^user-profile/([a-zA-Z0-9_]+)								     pages/users/user-profile.php?id=$1 [NC,L]
 
 # ANNOUNCEMENTS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-announcements                                                 pages/announcements/o-index.php [NC,L]
@@ -83,6 +83,19 @@ RewriteRule ^submit-add-role										functions/roles/role-add.php [NC,L]
 RewriteRule ^edit-role/([a-zA-Z0-9_]+)								pages/roles/role-edit.php?id=$1 [NC,L]
 RewriteRule ^submit-edit-role										functions/roles/role-edit.php [NC,L]
 RewriteRule ^delete-role											functions/roles/role-delete.php [NC,L]
+
+# USERS ------------------------------------------------------------------------------------------------
+RewriteRule ^users													pages/users/users.php [NC,L]
+RewriteRule ^user/([a-zA-Z0-9_]*)									pages/users/user.php?id=$1 [QSA,L]
+RewriteRule ^add-user												pages/users/user-add.php [NC,L]
+RewriteRule ^submit-add-user										functions/users/user-add.php [NC,L]
+RewriteRule ^edit-user/([a-zA-Z0-9_]*) 								pages/users/user-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-user										functions/users/user-edit.php [NC,L]
+RewriteRule ^delete-user											functions/users/user-delete.php [NC,L]
+RewriteRule ^update-user-permission/([0-1]+)/([a-z-]+)/([a-zA-Z0-9_]+)	functions/users/update-user-permission.php?mode=$1&code=$2&id=$3 [NC,L]
+RewriteRule ^reset-user-pass/([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)	    functions/users/user-reset-password.php?id=$1&eid=$2 [NC,L]
+RewriteRule ^unlock-user/([a-zA-Z0-9_]+)	    					functions/users/user-unlock-account.php?id=$1 [NC,L]
+RewriteRule ^load-user-projects										functions/users/user-projects.php [QSA,L]
 
 
 
