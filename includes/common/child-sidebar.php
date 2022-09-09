@@ -27,28 +27,30 @@
                     <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i><p> Dashboard</p> </a>
                 </li>
 				
-                
+                <?php if(checkPermission('webinar-and-events')) { ?>
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
                 </li>
+				<?php } ?>
 
+				<?php if(checkPermission('documents')) { ?>
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
-
                     <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="nav-icon fa fa-file" aria-hidden="true"></i><p> Documents and Quick Links</p></a>
                 </li>
-
+				<?php } ?>
                 <!-- THE TEAM -->
                 <!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'teams') { echo ' active'; } ?>" href="/teams"><i class="nav-icon fa fa-users" aria-hidden="true"></i>Teams</a>
                 </li> -->
-
+				
+				<?php if(checkPermission('announcements')) { ?>
                 <!-- ANNOUNCEMENTS -->
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'announcements') { echo ' active'; } ?>" href="/announcements"><i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i><p> Announcements</p> </a>
                 </li>
-
+				<?php } ?>
 				<?php
 				if(
 					checkPermission('admins') ||
@@ -75,8 +77,8 @@
 						<p><i class="nav-icon right fa fa-angle-left"></i> Administrator</p>
 					</a>
 					<ul class="nav nav-treeview">
-
-						<?php if(checkPermission('admins')) { ?>
+					<?php if($_SESSION['sys_id'] == 1){ ?>
+						
 						<!-- ADMINS -->
 						<li class="nav-item">
 							<a href="/admins" class="nav-link js-scroll-trigger<?php if($page == 'admins') { echo ' active'; } ?>">
@@ -119,12 +121,12 @@
 					</ul>
 				</li>
 				<?php } ?>
-
+				<?php if($_SESSION['sys_account_mode'] == 'user'){ ?>
 				  <!-- GENERAL -->
 				  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="/general"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="#"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
                  </li>
-
+				 <?php } ?>	
 				  <!-- TEST PAGE -->
 				  <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'test') { echo ' active'; } ?>" href="/test"><i class="nav-icon fa fa-circle-o"></i><p>TEST</p> </a>

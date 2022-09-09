@@ -98,5 +98,8 @@ RewriteRule ^reset-user-pass/([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)	    functions/users
 RewriteRule ^unlock-user/([a-zA-Z0-9_]+)	    					functions/users/user-unlock-account.php?id=$1 [NC,L]
 RewriteRule ^load-user-projects										functions/users/user-projects.php [QSA,L]
 
+# USERS ------------------------------------------------------------------------------------------------
+RewriteRule ^general												pages/general/index.php [NC,L]
+
 
 

@@ -4,12 +4,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
 // check if user has existing session
 if(checkSession()) {
-	
-	// check permission to access this page or function
-	if(checkPermission('user-edit')) {
-
 		// set page
-		$page = 'users';
+		$page = 'general';
 		
 		// get user id
 		$id = decryptID($_GET['id'], 'users');
@@ -229,22 +225,93 @@ if(checkSession()) {
 									<div class="col-lg-6 col-md-8 col-sm-4">
 										<?php $err = isset($_SESSION['sys_users_edit_team_id_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo "User Designation"; ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_center_department_team_team); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="team_id" name="team_id" required>
 												<?php
-												
+												$selected_center_id = 0;
+												$center_filter = '';
+												if($_SESSION['sys_account_mode'] == 'user') {
+													if(isset($_SESSION['sys_center_id'])){
+														$selected_center_id = $_SESSION['sys_center_id'];
+													} else {
+														$selected_center_id = $data['center_id'];
+													}
+													$center_filter = ' AND teams.center_id = '.$selected_center_id;
+												}
 												$select_val = $team_id;
+												if($select_val == 0) {
+													switch($data['center_id']) {
+														case 1:
+															$select_val = 51;
+															break;
+														case 4:
+															$select_val = 46;
+															break;
+														case 5:
+															$select_val = 55;
+															break;
+														case 6:
+															$select_val = 53;
+															break;
+														case 7:
+															$select_val = 45;
+															break;
+														case 9:
+															$select_val = 49;
+															break;
+														case 10:
+															$select_val = 50;
+															break;
+														case 11:
+															$select_val = 52;
+															break;
+														case 12:
+															$select_val = 54;
+															break;
+														case 13:
+															$select_val = 47;
+															break;
+														case 14:
+															$select_val = 48;
+															break;
+													}
+												}
+												
 												$sql = $pdo->prepare("SELECT *
-													FROM teams 
-													ORDER BY  team_name ASC");
+													FROM teams
+													LEFT JOIN teams ON teams.team_id = teams.team_id
+													LEFT JOIN departments ON teams.department_id = departments.department_id
+													LEFT JOIN centers ON teams.center_id = centers.center_id
+													WHERE teams.temp_del = 0".$center_filter."
+													ORDER BY  departments.department_code ASC");
 												$sql->execute();
-												echo '<option value="0">'.renderLang($user_set_designation).'</option>';
-												while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-													echo '<option value="'.$data['id'].'"';
-													if($select_val == $data['id']) {
+			
+												$data_teams = $sql->fetchAll(PDO::FETCH_ASSOC);
+												$sql_c_c = $pdo->prepare("SELECT center_code FROM centers WHERE center_id = ".$data['center_id']."");
+												$sql_c_c->execute();
+												$center_code = $sql_c_c->fetch(PDO::FETCH_ASSOC)['center_code'];
+
+												$term = $center_code;
+												usort($data_teams, function ($a, $b) use ($term) {
+													$t1 = preg_match("/^.*?\b($term\w*)\b.*\$/i", $a['center_code'], $matches) ? $matches[1] : '';
+													$t2 = preg_match("/^.*?\b($term\w*)\b.*\$/i", $b['center_code'], $matches) ? $matches[1] : '';
+													if ($t1 == '' && $t2 != '') return 1;
+													if ($t1 != '' && $t2 == '') return -1;
+													if ($t1 != $t2) return strcmp($t1, $t2);
+													return strcmp($a['center_code'], $b['center_code']);
+												});
+
+												foreach($data_teams as $data) {
+													echo '<option value="'.$data['team_id'].'"';
+													if($select_val == $data['team_id']) {
 														echo ' selected="selected"';
 													}
-													echo '>'.$data['team_name'].'</option>';
+													echo '>';
+													if(checkAccountMode('admin')) {
+														echo $data['center_code'].' - ';
+													}
+													echo $data['department_code'].' - '.$data['team_code'].' - '.$data['team_name'].'</option>';
+//													echo '['.$data['department_id'].'] '.$data['department_code'].' - ['.$data['team_id'].'] '.$data['team_code'].' - ['.$data['team_id'].'] '.$data['team_name'].'</option>';
 												}
 												?>
 											</select>
@@ -651,12 +718,7 @@ if(checkSession()) {
 			header('location: /users');
 
 		}
-	} else { // permission not found
 
-		$_SESSION['sys_permission_err'] = renderLang($permission_message_1); // "You are not authorized to access the page or function."
-		header('location: /dashboard');
-
-	}
 } else { // no session found, redirect to login page
 	
 	$_SESSION['sys_login_err'] = renderLang($login_msg_err_4); // "Session not found.<br>Please login to create one."
