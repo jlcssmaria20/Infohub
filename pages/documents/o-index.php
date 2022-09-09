@@ -23,10 +23,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             </div>
 
             <section class="main-area col-s-9 d-column mb-4">
-            <div class="mb-4">
-                <h2 class="mb-3">
-                    <span  style="color: var(--black);">Documents and Quick Links</span>
-                </h2>
+                <div class="mb-4">
+                    <h2 class="mb-3">
+                        <span  style="color: var(--black);">Documents and Quick Links</span>
+                    </h2>
                     <ul class="list-inline mb-4">
                         <?php
                             $data_count = 0;
@@ -37,20 +37,18 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             $data_count++;
                             $document_id = encryptID($data['id']);
                             
-                                $count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
-                                $count->execute();
-                                $total_data_count = $count->rowCount();
-                            
-                                echo "<a href='/document-files/".$data["id"]."'>";
-                                    echo '<li class="list-dl-item">';
-                                        echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
-                                        echo $data["document_name"];
-                                        echo ' ('. $total_data_count .') ';
-                                    echo '</li>';
-                                echo  "</a>";
-                                    
+                            $count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
+                            $count->execute();
+                            $total_data_count = $count->rowCount();
+                        
+                            echo "<a href='/document-files/".$data["id"]."'>";
+                                echo '<li class="list-dl-item">';
+                                    echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
+                                    echo $data["document_name"];
+                                    echo ' ('. $total_data_count .') ';
+                                echo '</li>';
+                            echo  "</a>";
                             }
-                    
                         ?>
                     </ul>
                 </div>

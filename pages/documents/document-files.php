@@ -35,33 +35,41 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             </div>
 
             <section class="main-area col-s-9 d-column mb-4">
-            <div class="mb-4">
-                <h2 class="mb-3">
-                    <span  style="color: var(--black);">Documents and Quick Links > <?php  echo $data['document_name']; ?></span>
-                </h2>
-                <ul class="list-inline mb-4">
-                    <?php 
-                        //Display Files
-                        $count = 0;
-                        $sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
-                        $sql->bindParam(":document_name", $data['document_name']);
-                        $sql->execute();
-                        while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-                            $count++; 
-                            ?>
-                            <input type="hidden" class="copied">
-                           
+                <div class="mb-4">
+                    <h2 class="mb-3">
+                        <span  style="color: var(--black);">Documents and Quick Links > <?php  echo $data['document_name']; ?></span>
+                    </h2>
+                    <ul class="list-inline mb-4">
+                        <?php 
+                            //Display Files
+                            $count = 0;
+                            $sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
+                            $sql->bindParam(":document_name", $data['document_name']);
+                            $sql->execute();
+                            while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                $count++; 
+                                ?>
+                                <input type="hidden" class="copied">
                             
-                            <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
-                                <li class="list-dl-item text-left">
-                                    <i class="fa fa-copy" id="fa" aria-hidden="true"></i>
-                                    <b>File Name:</b>
-                                    <?php  echo $data['file_linkname']; ?>
-                                    <span class="invisible" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
-                                </li>
-                            </button>
+                                
+                                <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
+                                    <li class="list-dl-item text-left">
+                                        <i class="fa fa-copy" id="fa" aria-hidden="true"></i>
+                                        <b>File Name:</b>
+                                        <?php  echo $data['file_linkname']; ?>
+                                        <br>
+                                        <b class="text-center">Link: </b>
+                                        <span class="" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
+                                    </li>
+                                </button>
                         <?php } ?>
                     </ul>
+                    <div class="text-right">
+                        <a href="/o-documents" class="btn btn-primary text-right">
+                            <i class="fa fa-arrow-left mr-2"></i>
+                            <?php echo renderLang($btn_back); ?>
+                        </a>
+                    </div>
                 </div>
             </section>       
             </div>

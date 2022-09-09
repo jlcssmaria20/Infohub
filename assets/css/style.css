@@ -314,7 +314,8 @@ img.modal-img {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding-block: 10px;
+      padding-inline: 20px;
     }
     .footerLeft p {
       margin-bottom: 0;
@@ -323,7 +324,7 @@ img.modal-img {
       width: 120px;
   }
     .footerRight img {
-        width: 70px;
+        width: 50px;
         float: right;
     }
 }

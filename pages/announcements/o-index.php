@@ -33,7 +33,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <span style="color: var(--black);">Important Announcements</span>
                 </h2>
                 <div class="announcement-row">
-               <?php
+                <?php
                     // The list of items to be displayed on screen.
                     $x = array();
                     $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC");
@@ -62,28 +62,34 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                         }
                         ?>
                        
-                <?php
-                     }
-                ?>
-                              </ul>
-                           </div>
-                        </section>       
-            
+                    <?php
+                        }
+                    ?>
+                        </ul>
+                    </div>
+                </section> 
             </div>
         </div>
 
         <!--- MODAL POP-UP AREA --->
         <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
             <div id="myModal<?php echo $x ?>" class="modal">
-            <div class="modal-body">
-                <img class="modal-img">
-                <p class="modal-name"></p>
-                <p class="modal-details"></p>
-                <div id="caption<?php echo $x ?>" ></div>
-                    <span class="btn close">Close</span>
+                <div class="modal-body">
+                    <img class="modal-img">
+                    <div class="text-left">
+                        <p class="modal-name"></p>
+                        <p class="modal-details"></p>
+                        <div id="caption<?php echo $x ?>">
+                        </div>
+                        <div class="text-right">
+                            <a href="/o-announcements" class="btn btn-primary mt-3">
+                                <i class="fa fa-arrow-left mr-2"></i>
+                                <?php echo renderLang($btn_back); ?>
+                            </a>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-           
             </div>
         <?php } ?>
 
