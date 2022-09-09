@@ -32,7 +32,7 @@ if(isset($_POST['submit-login'])) {
 			$_SESSION['sys_firstname'] = $data['admin_firstname'];
 			$_SESSION['sys_lastname'] = $data['admin_lastname'];
 			$_SESSION['sys_fullname'] = $data['admin_firstname'].' '.$data['admin_lastname'];
-			//$_SESSION['sys_photo'] = '/assets/images/profile/default.png';
+			$_SESSION['sys_photo'] = '/assets/images/team-images/default.png';
 			$_SESSION['sys_account_mode'] = 'admin';
 			$status = $data['admin_status'];
 			
@@ -97,9 +97,9 @@ if(isset($_POST['submit-login'])) {
 				$_SESSION['sys_fullname'] = $data['user_firstname'].' '.$data['user_lastname'];
 				if($data['user_photo'] == '') {
 					if($data['user_gender'] == 0) {
-						$_SESSION['sys_photo'] = '/dist/img/avatar2.png';
+						$_SESSION['sys_photo'] = '/assets/images/team-images/avatar2.png';
 					} else {
-						$_SESSION['sys_photo'] = '/dist/img/avatar5.png';
+						$_SESSION['sys_photo'] = '/assets/images/team-images/avatar5.png';
 					}
 				} else {
 					$_SESSION['sys_photo'] = '/assets/images/profile/'.$data['user_photo'];

@@ -16,6 +16,7 @@ RewriteRule ^submit-delete-test/([a-zA-Z0-9_]+)                              fun
 # LOGIN -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^login                                                           pages/login/index.php
 RewriteRule ^submit-login												     functions/login/verifylog.php [NC,L]
+RewriteRule ^logout												             functions/login/logout.php
 
 # WEBINAR AND EVENTS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-webinar-and-events                                            pages/webinar-and-events/o-index.php [NC,L]

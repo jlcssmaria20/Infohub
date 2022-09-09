@@ -53,7 +53,7 @@ if(checkSession()) {
 						<!-- ACTIVE USERS -->
 						<?php
 						if(checkPermission('users')) {
-							$sql = $pdo->prepare("SELECT user_id, status FROM users WHERE user_status = 0");
+							$sql = $pdo->prepare("SELECT user_id, user_status FROM users WHERE user_status = 0");
 							$sql->execute();
 							$active_users = $sql->rowCount();
 							?>
@@ -61,12 +61,12 @@ if(checkSession()) {
 								<div class="small-box bg-primary">
 									<div class="inner">
 										<h3><?php echo number_format($active_users,0,'.',','); ?></h3>
-										<p><?php echo renderLang(${$module.'_active_users'}); ?></p>
+										<p><?php echo "DX Info Hub Active Users"; ?></p>
 									</div>
 									<div class="icon">
 										<i class="fa fa-users"></i>
 									</div>
-									<a href="/users" class="small-box-footer"><?php echo renderLang(${$module.'_more_info'}); ?> <i class="fas fa-arrow-circle-right"></i></a>
+									<a href="/users" class="small-box-footer"><?php echo "more info"; ?> <i class="fas fa-arrow-circle-right"></i></a>
 								</div>
 							</div>
 						<?php } ?>
@@ -104,7 +104,7 @@ if(checkSession()) {
 <?php
 } else { // no session found, redirect to login page
 	
-	$_SESSION['sys_login_err'] = 'hi! no ses'; // "Session not found.<br>Please login to create one."
+	$_SESSION['sys_login_err'] = renderLang($login_msg_err_4); // "Session not found.<br>Please login to create one."
 	header('location: /login');
 	
 }

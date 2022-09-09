@@ -68,45 +68,34 @@ if(checkSession()) {
 							</div>
 							<div class="card-body">
 								<div class="row">
-									<!-- SUBTEAM -->
+									<!-- team -->
 									<div class="col-lg-6 col-md-8 col-sm-4">
-										<?php $err = isset($_SESSION['sys_users_add_subteam_id_err']) ? 1 : 0; ?>
+										<?php $err = isset($_SESSION['sys_users_add_team_id_err']) ? 1 : 0; ?>
 										
 										<div class="form-group">
-											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_center_department_team_subteam); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="subteam_id" name="subteam_id" required>
+											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo "Team Designation" ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="team_id" name="team_id" required>
 												<?php
-												$center_filter = '';
-												if($_SESSION['sys_account_mode'] == 'user') {
-													$center_filter = ' AND subteams.center_id = '.$_SESSION['sys_center_id'];
-												}
+												
 												$select_val = 0;
-												if(isset($_SESSION['sys_users_add_subteam_id_val'])) {
-													$select_val = $_SESSION['sys_users_add_subteam_id_val'];
+												if(isset($_SESSION['sys_users_add_team_id_val'])) {
+													$select_val = $_SESSION['sys_users_add_team_id_val'];
 												}
 												$sql = $pdo->prepare("SELECT *
-													FROM subteams
-													LEFT JOIN teams ON subteams.team_id = teams.team_id
-													LEFT JOIN departments ON subteams.department_id = departments.department_id
-													LEFT JOIN centers ON subteams.center_id = centers.center_id
-													WHERE subteams.temp_del = 0".$center_filter."
-													ORDER BY subteams.center_id ASC, subteams.department_id ASC, subteams.team_id ASC, subteam_name ASC");
+													FROM teams 
+													ORDER BY  team_name ASC");
 												$sql->execute();
 												echo '<option value="0">'.renderLang($user_set_designation).'</option>';
 												while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-													echo '<option value="'.$data['subteam_id'].'"';
-													if($select_val == $data['subteam_id']) {
+													echo '<option value="'.$data['id'].'"';
+													if($select_val == $data['id']) {
 														echo ' selected="selected"';
 													}
-													echo '>';
-													if(checkAccountMode('admin')) {
-														echo $data['center_code'].' - ';
-													}
-													echo $data['department_code'].' - '.$data['team_code'].' - '.$data['subteam_name'].'</option>';
+													echo '>'.$data['team_name'].'</option>';
 												}
 												?>
 											</select>
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_subteam_id_err'].'</p>'; unset($_SESSION['sys_users_add_subteam_id_err']); } ?>
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_team_id_err'].'</p>'; unset($_SESSION['sys_users_add_team_id_err']); } ?>
 										</div>
 									</div>
 
@@ -178,8 +167,8 @@ if(checkSession()) {
 												<?php
 		
 													$select_val = 0;
-													if(isset($_SESSION['sys_users_add_subteam_id_val'])) {
-														$select_val = $_SESSION['sys_users_add_subteam_id_val'];
+													if(isset($_SESSION['sys_users_add_team_id_val'])) {
+														$select_val = $_SESSION['sys_users_add_team_id_val'];
 													}
 													$sql = $pdo->prepare("SELECT * FROM positions ORDER BY position_name ASC");
 													$sql->execute();
@@ -324,7 +313,7 @@ if(checkSession()) {
 								?>
 								<div class="form-group">
 									<h4<?php if($roles_err) { echo ' class="text-danger"'; } ?>><?php if($roles_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } ?><?php echo renderLang($roles_roles); ?> <span class="right badge badge-danger ml-1" style="font-size:10px;"><?php echo renderLang($label_required); ?></span></h4>
-									<input type="text" id="role_ids" class="required" name="role_ids"<?php if(isset($_SESSION['sys_users_add_roles_val'])) { echo ' value="'.$_SESSION['sys_users_add_roles_val'].'"'; $roles_val = $_SESSION['sys_users_add_roles_val']; } ?> required>
+									<input type="hidden" id="role_ids" class="required" name="role_ids"<?php if(isset($_SESSION['sys_users_add_roles_val'])) { echo ' value="'.$_SESSION['sys_users_add_roles_val'].'"'; $roles_val = $_SESSION['sys_users_add_roles_val']; } ?> required>
 									<?php if($roles_err) { echo '<p class="text-danger mt-1">'.$_SESSION['sys_users_add_roles_err'].'</p>'; unset($_SESSION['sys_users_add_roles_err']); } ?>
 								</div>
 								<ul class="roles-list">
@@ -332,13 +321,13 @@ if(checkSession()) {
 									if($roles_val != '') {
 										$roles_val_arr = explode(',',$roles_val);
 									}
-									$sql = $pdo->prepare("SELECT * FROM roles WHERE role_id<>1 AND temp_del=0 ORDER BY role_name ASC");
+									$sql = $pdo->prepare("SELECT * FROM roles WHERE  temp_del = 0 ORDER BY role_name ASC");
 									$sql->execute();
 									$roles_count = $sql->rowCount();
 									$roles_group_count_max = floor($roles_count/4);
 									$roles_group_counter = 0;
 									while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-										$btn_design = 'btn-default';
+										$btn_design = 'btn-secondary';
 										if(in_array($data['role_id'],$roles_val_arr)) {
 											$btn_design = 'btn-success';
 										}
@@ -347,11 +336,11 @@ if(checkSession()) {
 									?>
 								</ul>
 
-								<button class="btn btn-default clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
+								<button class="btn btn-secondary clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
 								
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/users" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/users" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-plus mr-2"></i><?php echo renderLang($users_add_user); ?></button>
 							</div>
 						</div><!-- card -->
@@ -385,9 +374,9 @@ if(checkSession()) {
 			});
 			// populate roles
 			$('.roles-list li a').click(function(e) {
-				e.preventDefault();
+				e.preventsecondary();
 				
-				$(this).toggleClass('btn-default').toggleClass('btn-success');
+				$(this).toggleClass('btn-secondary').toggleClass('btn-success');
 				
 				var roles = '';
 				var roles_arr = [];
@@ -411,8 +400,8 @@ if(checkSession()) {
 			
 			// clear roles
 			$('.btn-clear-roles').click(function(e) {
-				e.preventDefault();
-				$('.roles-list li a').removeClass('btn-success').addClass('btn-default');
+				e.preventsecondary();
+				$('.roles-list li a').removeClass('btn-success').addClass('btn-secondary');
 				$('#role_ids').val('');
 				$('h4 .badge').addClass('badge-danger').removeClass('badge-success');
 			});

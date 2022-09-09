@@ -24,10 +24,8 @@ if(checkSession()) {
 			require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 		}
 		
-		$subteams_arr = getTable('subteams');
+
 		$teams_arr = getTable('teams');
-		$departments_arr = getTable('departments');
-		$centers_arr = getTable('centers');
 			
 		
 ?>
@@ -86,42 +84,7 @@ if(checkSession()) {
 							<h3 class="card-title"><?php echo renderLang($users_users_list); ?></h3>
 							<div class="card-tools col-md-6">
 								<div class="text-right">
-					
-									<?php if(checkPermission('export-users-actual-time')) { ?>
-									<div class="text-right" style="margin-bottom: 10px;">
-										<form action="/export-actual-time-records" method="POST">
-											<select class="form-control" name="year_mo" id="ym_year_mo">
-												<?php
-													$ym_months_temp = array();
-													$ym_start = $ym_month = strtotime('2018-01-01');
-													$ym_end =  strtotime('0 months',time());
-													while($ym_month < $ym_end)
-													{
-														$ym_yrmo_ctr = date('Ym', $ym_month);
-														$ym_month = strtotime("+1 month", $ym_month);
-														array_push($ym_months_temp,$ym_yrmo_ctr); 
-													}
-													$ym_config_months_select_arr = array_reverse($ym_months_temp);
-													foreach($ym_config_months_select_arr as $item) {
-														echo '<option value="'.$item.'">'.$item.'</option>';
-													}
-												?>
-											</select>
-											<select class="form-control" name="center" id="filter_centers">
-													<?php
-														$center_select = $pdo->prepare("SELECT center_id, center_name, center_code FROM centers WHERE center_id<>7 AND temp_del = 0");
-														$center_select->execute();
-														$data_center = $center_select->fetchall(PDO::FETCH_ASSOC);
-														echo '<option value="'.encryptID(0, 'centers').'">'.renderLang($invoice_lists_all_centers).'</option>';
-														foreach($data_center as $item) {
-															echo '<option value="'. encryptID($item['center_id'], 'centers') .'">'. $item['center_name'] .' ['. $item['center_code'] .']</option>';
-														}
-													?>
-											</select>
-											<button class="btn btn-primary btn-md" type="submit"><i class="fa fa-download mr-2"></i><?= renderLang($users_export_actual_time); ?></button>
-										</form>
-									</div>
-									<?php } ?>
+				
 									<?php if(checkPermission('user-add')) { ?>
 									<div class="text-right">
 										<a href="/add-user" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($users_add_user); ?></a>

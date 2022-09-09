@@ -343,8 +343,8 @@ $permissions_arr = array(
 				'アカウントに管理者アカウントの削除を許可する。'
 			)
 		)
-			), 
-			// USERS =========================================================================================
+	), 
+	// USERS =========================================================================================
 	array(
 		array(
 			'permission_code' => 'users',
@@ -403,6 +403,31 @@ $permissions_arr = array(
 		),
 		
 	)
+	// GENERAL =========================================================================================
+	// array(
+	// 	array(
+	// 		'permission_code' => 'general',
+	// 		'permission_name' => array(
+	// 			'General',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to view general tab',
+	// 			''
+	// 		)
+	// 	),
+	// 	array(
+	// 		'permission_code' => 'general-update-account',
+	// 		'permission_name' => array(
+	// 			'Update Account',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to update account.',
+	// 			''
+	// 		)
+	// 	)
+	// )
 
 
 );

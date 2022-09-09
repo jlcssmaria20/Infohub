@@ -12,27 +12,27 @@ if(checkSession()) {
 		
 		// PROCESS FORM
 
-		// SUBTEAM & TEAM & DEPARTMENT & CENTER
+		// team & TEAM & DEPARTMENT & CENTER
 		$center_id = 0;
 		$department_id = 0;
 		$team_id = 0;
-		$subteam_id = 0;
+		$team_id = 0;
 		
-		if(isset($_POST['subteam_id'])) {
-			$subteam_id = strtoupper(trim($_POST['subteam_id']));
-			if((strlen($subteam_id) == 0) || $subteam_id == 0 )  {
+		if(isset($_POST['team_id'])) {
+			$team_id = strtoupper(trim($_POST['team_id']));
+			if((strlen($team_id) == 0) || $team_id == 0 )  {
 				$err++;
-				$_SESSION['sys_users_add_subteam_id_err'] = renderLang($users_subteam_id_required);
+				$_SESSION['sys_users_add_team_id_err'] = renderLang($users_team_id_required);
 			} else {
 
-				$_SESSION['sys_users_add_subteam_id_val'] = $subteam_id;
+				$_SESSION['sys_users_add_team_id_val'] = $team_id;
 
-				$sql = $pdo->prepare("SELECT subteam_id, team_id, department_id, center_id, temp_del FROM subteams WHERE subteam_id = :subteam_id AND temp_del = 0 LIMIT 1");
-				$sql->bindParam(":subteam_id",$subteam_id);
+				$sql = $pdo->prepare("SELECT team_id, team_id, department_id, center_id, temp_del FROM teams WHERE team_id = :team_id AND temp_del = 0 LIMIT 1");
+				$sql->bindParam(":team_id",$team_id);
 				$sql->execute();
 				if(!$sql->rowCount()) {
 					$err++;
-					$_SESSION['sys_users_add_subteam_id_err'] = renderLang($users_invalid_subteam_selection);
+					$_SESSION['sys_users_add_team_id_err'] = renderLang($users_invalid_team_selection);
 				} else {
 					$data = $sql->fetch(PDO::FETCH_ASSOC);
 					$team_id = $data['team_id'];
@@ -265,7 +265,6 @@ if(checkSession()) {
 					center_id,
 					department_id,
 					team_id,
-					subteam_id,
 					user_hiredate,
 					user_enddate,
 					user_mobile
@@ -285,7 +284,6 @@ if(checkSession()) {
 					:center_id,
 					:department_id,
 					:team_id,
-					:subteam_id,
 					:user_hiredate,
 					:user_enddate,
 					:user_mobile
@@ -305,7 +303,7 @@ if(checkSession()) {
 				':center_id'          => $center_id,
 				':department_id'      => $department_id,
 				':team_id'            => $team_id,
-				':subteam_id'         => $subteam_id,
+				':team_id'         => $team_id,
 				':user_hiredate'      => $user_hiredate,
 				':user_enddate'       => 20270101,
 				':user_mobile'        => $user_mobile

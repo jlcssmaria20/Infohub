@@ -23,10 +23,10 @@ if(checkSession()) {
 
 			$data = $sql->fetch(PDO::FETCH_ASSOC);
 			
-			$subteam_id = $data['subteam_id'];
-			if(isset($_SESSION['sys_users_edit_subteam_id_val'])) {
-				$subteam_id = $_SESSION['sys_users_edit_subteam_id_val'];
-				unset($_SESSION['sys_users_edit_subteam_id_val']);
+			$team_id = $data['team_id'];
+			if(isset($_SESSION['sys_users_edit_team_id_val'])) {
+				$team_id = $_SESSION['sys_users_edit_team_id_val'];
+				unset($_SESSION['sys_users_edit_team_id_val']);
 			}
 
 			$user_employee_id = $data['user_employee_id'];
@@ -225,12 +225,12 @@ if(checkSession()) {
 
 								<div class="row">
 
-									<!-- SUBTEAM -->
+									<!-- team -->
 									<div class="col-lg-6 col-md-8 col-sm-4">
-										<?php $err = isset($_SESSION['sys_users_edit_subteam_id_err']) ? 1 : 0; ?>
+										<?php $err = isset($_SESSION['sys_users_edit_team_id_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_center_department_team_subteam); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="subteam_id" name="subteam_id" required>
+											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_center_department_team_team); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="team_id" name="team_id" required>
 												<?php
 												$selected_center_id = 0;
 												$center_filter = '';
@@ -240,9 +240,9 @@ if(checkSession()) {
 													} else {
 														$selected_center_id = $data['center_id'];
 													}
-													$center_filter = ' AND subteams.center_id = '.$selected_center_id;
+													$center_filter = ' AND teams.center_id = '.$selected_center_id;
 												}
-												$select_val = $subteam_id;
+												$select_val = $team_id;
 												if($select_val == 0) {
 													switch($data['center_id']) {
 														case 1:
@@ -282,11 +282,11 @@ if(checkSession()) {
 												}
 												
 												$sql = $pdo->prepare("SELECT *
-													FROM subteams
-													LEFT JOIN teams ON subteams.team_id = teams.team_id
-													LEFT JOIN departments ON subteams.department_id = departments.department_id
-													LEFT JOIN centers ON subteams.center_id = centers.center_id
-													WHERE subteams.temp_del = 0".$center_filter."
+													FROM teams
+													LEFT JOIN teams ON teams.team_id = teams.team_id
+													LEFT JOIN departments ON teams.department_id = departments.department_id
+													LEFT JOIN centers ON teams.center_id = centers.center_id
+													WHERE teams.temp_del = 0".$center_filter."
 													ORDER BY  departments.department_code ASC");
 												$sql->execute();
 			
@@ -306,20 +306,20 @@ if(checkSession()) {
 												});
 
 												foreach($data_teams as $data) {
-													echo '<option value="'.$data['subteam_id'].'"';
-													if($select_val == $data['subteam_id']) {
+													echo '<option value="'.$data['team_id'].'"';
+													if($select_val == $data['team_id']) {
 														echo ' selected="selected"';
 													}
 													echo '>';
 													if(checkAccountMode('admin')) {
 														echo $data['center_code'].' - ';
 													}
-													echo $data['department_code'].' - '.$data['team_code'].' - '.$data['subteam_name'].'</option>';
-//													echo '['.$data['department_id'].'] '.$data['department_code'].' - ['.$data['team_id'].'] '.$data['team_code'].' - ['.$data['subteam_id'].'] '.$data['subteam_name'].'</option>';
+													echo $data['department_code'].' - '.$data['team_code'].' - '.$data['team_name'].'</option>';
+//													echo '['.$data['department_id'].'] '.$data['department_code'].' - ['.$data['team_id'].'] '.$data['team_code'].' - ['.$data['team_id'].'] '.$data['team_name'].'</option>';
 												}
 												?>
 											</select>
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_subteam_id_err'].'</p>'; unset($_SESSION['sys_users_edit_subteam_id_err']); } ?>
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_team_id_err'].'</p>'; unset($_SESSION['sys_users_edit_team_id_err']); } ?>
 										</div>
 									</div>
 

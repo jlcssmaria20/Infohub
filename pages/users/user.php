@@ -193,11 +193,11 @@ if(checkSession()) {
 											</span>
 										</li>
 										<li class="list-group-item">
-											<b><?php echo renderLang($subteams_subteam); ?></b>
+											<b><?php echo renderLang($teams_team); ?></b>
 											<span class="float-right">
 												<?php
-												$subteam_data = getData($data['subteam_id'],'subteams','subteam');
-												echo '<a href="/subteam/'.$subteam_data['subteam_id'].'">'.$subteam_data['subteam_name'].'</a>';
+												$team_data = getData($data['team_id'],'teams','team');
+												echo '<a href="/team/'.$team_data['team_id'].'">'.$team_data['team_name'].'</a>';
 												?>
 											</span>
 										</li>
