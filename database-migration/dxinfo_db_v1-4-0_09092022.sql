@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 02, 2022 at 06:17 AM
--- Server version: 5.7.33
--- PHP Version: 7.3.27
+-- Host: 127.0.0.1
+-- Generation Time: Sep 09, 2022 at 02:38 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `admin_id` bigint(20) NOT NULL,
+  `admin_username` varchar(100) NOT NULL DEFAULT '',
+  `admin_password` varchar(200) NOT NULL DEFAULT '',
+  `admin_firstname` varchar(100) NOT NULL DEFAULT '',
+  `admin_lastname` varchar(100) NOT NULL DEFAULT '',
+  `language` int(11) NOT NULL DEFAULT '0',
+  `data_per_page` int(11) NOT NULL DEFAULT '20',
+  `admin_last_login` int(11) NOT NULL DEFAULT '0',
+  `admin_log_attempts` int(11) NOT NULL DEFAULT '0',
+  `lockout_timestamp` datetime DEFAULT NULL,
+  `admin_status` float NOT NULL DEFAULT '0',
+  `temp_del` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_username`, `admin_password`, `admin_firstname`, `admin_lastname`, `language`, `data_per_page`, `admin_last_login`, `admin_log_attempts`, `lockout_timestamp`, `admin_status`, `temp_del`) VALUES
+(1, 'admin', '$2y$10$V20FOs0HNEu/ggAzHF9dquhjf/472JyT6u4ioMl2LtQJeqH/TRHNK', 'Julcess', 'Mercado', 0, 20, 1662683844, 1, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `announcements`
 --
 
@@ -34,6 +62,7 @@ CREATE TABLE `announcements` (
   `announcements_title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `announcements_details` varchar(1000) CHARACTER SET utf8 NOT NULL,
   `announcements_img` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `announcements_count` int(1) NOT NULL DEFAULT '0',
   `date_edit` varchar(255) CHARACTER SET utf8 NOT NULL,
   `date_created` varchar(255) DEFAULT NULL,
   `announcements_status` int(255) NOT NULL,
@@ -45,14 +74,15 @@ CREATE TABLE `announcements` (
 -- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`id`, `user_id`, `announcements_title`, `announcements_details`, `announcements_img`, `date_edit`, `date_created`, `announcements_status`, `temp_del`, `timestamp`) VALUES
-(1, 177, '2022 Philippine Holidays', 'Prepare for your next vacation in the Philippines with this detailed list and calendars of all the regular holidays, special non-working and working days, long weekends, and important festivals and events in the Philippines for 2022. \r\n\r\nMake a checklist, plan vacations with family and friends, and arrange tour packages all across the Philippines with the help of this guide that includes celebrations in the Philippines every month. Additionally, you may want to schedule your visit around top Philippines tourist spots and significant Philippine festivals and events for a much more enriching and immersive trip. Make sure to check the updated travel requirements in the Philippines and the best hotels in the Philippines to book when planning your trip to destinations.', '2022-National-Holiday-placeholder_CNNPH.jpg', 'September 2, 2022 - Friday - 01:23 pm', 'August 22, 2022 - Monday - 01:40 pm', 0, 0, '2022-09-02 05:23:10'),
-(2, 177, 'Japanese Public Holidays In 2022!', 'After rearrangements to match the Olympics in 2020 and their rescheduled dates in 2021, Japan&rsquo;s national holidays will return to their normal schedule in 2022.', 'test.jpg', 'August 23, 2022 - Tuesday - 11:14 am', 'August 22, 2022 - Monday - 01:43 pm', 0, 0, '2022-08-23 03:14:04'),
-(3, 177, 'Word Press Basic', '&lt;b&gt;WordPress &lt;/b&gt;enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills).\r\n\r\nBefore beginning, it&rsquo;s really important to understand the difference between pages and posts.\r\n\r\nYour website will consist of any number of web pages containing updatable content. One of the pages is the blog page (unless you&rsquo;ve chosen not to run a blog/news page). The blog page can sometimes be set as the home page or it might be a completely separate page called News, instead of Blog.', 'Nature_Fresh_1.jpg', 'August 23, 2022 - Tuesday - 11:44 am', 'August 22, 2022 - Monday - 01:46 pm', 0, 0, '2022-08-23 03:44:37'),
-(4, 177, 'New Announcement! Edited', 'This is a new announcement, edited.', 'lost-in-random-blogroll-1626975581359.jpg', 'August 23, 2022 - Tuesday - 10:35 am', 'August 22, 2022 - Monday - 01:51 pm', 2, 1661225176, '2022-08-23 03:26:16'),
-(9, 177, 'Trying Archive', '&lt;p&gt;Archienning&lt;/p&gt;', '16-120607.jpeg', '', 'August 23, 2022 - Tuesday - 10:50 am', 2, 1661225154, '2022-08-23 03:25:54'),
-(10, 177, 'Asdasds', '&lt;p&gt;asdasd&lt;/p&gt;', '6049.jpg', '', 'August 23, 2022 - Tuesday - 11:01 am', 2, 1661223724, '2022-08-23 03:02:04'),
-(11, 177, 'Removing Html Tags', '&lt;p&gt;&lt;b&gt;Announcement &lt;/b&gt;&lt;u&gt;Underline&lt;/u&gt;&amp;nbsp;oklay&lt;/p&gt;', '2.jpg', 'August 23, 2022 - Tuesday - 12:01 pm', 'August 23, 2022 - Tuesday - 11:29 am', 2, 1662097855, '2022-09-02 05:50:55');
+INSERT INTO `announcements` (`id`, `user_id`, `announcements_title`, `announcements_details`, `announcements_img`, `announcements_count`, `date_edit`, `date_created`, `announcements_status`, `temp_del`, `timestamp`) VALUES
+(1, 177, '2022 Philippine Holidays', '&lt;b&gt;Prepare&lt;/b&gt; for your next vacation in the Philippines with this detailed list and calendars of all the regular holidays, special non-working and working days, long weekends, and important festivals and events in the Philippines for 2022. \r\n\r\nMake a checklist, plan vacations with family and friends, and arrange tour packages all across the Philippines with the help of this guide that includes celebrations in the Philippines every month. Additionally, you may want to schedule your visit around top Philippines tourist spots and significant Philippine festivals and events for a much more enriching and immersive trip. Make sure to check the updated travel requirements in the Philippines and the best hotels in the Philippines to book when planning your trip to destinations.', '', 0, 'August 23, 2022 - Tuesday - 09:08 am', 'August 22, 2022 - Monday - 01:40 pm', 0, 0, '2022-08-23 01:08:50'),
+(2, 177, 'Japanese Public Holidays In 2022!', '&lt;b&gt;After&lt;/b&gt; rearrangements to match the Olympics in 2020 and their rescheduled dates in 2021, Japan&rsquo;s national holidays will return to their normal schedule in 2022.', '', 0, 'August 23, 2022 - Tuesday - 09:14 am', 'August 22, 2022 - Monday - 01:43 pm', 0, 0, '2022-08-23 01:14:09'),
+(3, 177, 'Word Press Basic', '&lt;b&gt;WordPress&lt;/b&gt; enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills).\r\n\r\nBefore beginning, it&rsquo;s really important to understand the difference between pages and posts.\r\n\r\nYour website will consist of any number of web pages containing updatable content. One of the pages is the blog page (unless you&rsquo;ve chosen not to run a blog/news page). The blog page can sometimes be set as the home page or it might be a completely separate page called News, instead of Blog.', '', 0, 'August 23, 2022 - Tuesday - 09:18 am', 'August 22, 2022 - Monday - 01:46 pm', 0, 0, '2022-08-23 01:18:31'),
+(4, 177, 'New Announcement! Edited', 'This is a new announcement, &lt;b&gt;edited.&lt;/b&gt;', '', 0, 'August 23, 2022 - Tuesday - 09:20 am', 'August 22, 2022 - Monday - 01:51 pm', 1, 0, '2022-08-23 01:20:02'),
+(5, 177, 'Longest Title. This Announcements Is About. Theeer', '&lt;b&gt;WordPress &lt;/b&gt;enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills) The blog page can sometimes be set as the home page or it might be a completely separate page called News, instead of Blog.\r\n\r\nWordPress enables website owners to update page content and operate a blog page through a friendly interface (avoiding the need to learn web design skills). Before beginning, it&rsquo;s really important to understand the difference between pages and posts. Your website will consist of any number of web pages containing updatable content. One of the pages is the blog page (unless you&rsquo;ve chosen not to run a blog/news page). The blog', 'ssl.png', 0, 'August 23, 2022 - Tuesday - 09:27 am', 'August 22, 2022 - Monday - 02:29 pm', 0, 0, '2022-08-23 01:27:36'),
+(6, 177, 'Asdsad', '&lt;b&gt;&amp;nbsp;Bold Text&amp;nbsp;&amp;nbsp;this announcement s is &lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 0);&quot;&gt;sdf fsdf&lt;/span&gt;&lt;/font&gt;&lt;/b&gt;', 'ssl.png', 0, 'August 23, 2022 - Tuesday - 09:28 am', 'August 22, 2022 - Monday - 04:02 pm', 2, 1662452777, '2022-09-06 08:26:17'),
+(7, 177, 'Summernoter Trial', '&lt;p&gt;this is a summer note template&lt;/p&gt;', '2.jpg', 0, '', 'August 22, 2022 - Monday - 04:32 pm', 0, 0, '2022-08-22 08:32:58'),
+(8, 177, 'Asdasd', '&lt;p&gt;asdsd&lt;/p&gt;', 'dx2.jpg', 0, 'August 22, 2022 - Monday - 05:09 pm', 'August 22, 2022 - Monday - 05:09 pm', 2, 1661159516, '2022-08-22 09:11:56');
 
 -- --------------------------------------------------------
 
@@ -81,6 +111,46 @@ INSERT INTO `announcements_old` (`id`, `user_id`, `announcment_details`, `announ
 (37, 1, '<p>Any employee is looking forward to two things—paydays and holidays. Well, who doesn’t? Holidays in the Philippines allow people to spend some quality time with their loved ones, and that much-needed me-time before getting back to the daily grind. Start planning your vacations for next year by keeping tab of Philippines holidays in 2022. Here’s a quick guide to the Philippine holidays and long weekends that can help you plan your vacations wisely.</p><p>There are 239 working days and 16 holidays in the Philippines in 2022. According to research done by Gulf Business, the Philippines is one of the countries with the most public holidays in the world. India tops the list followed by Columbia and the Philippines. Holidays in the Philippines are also grouped into two—regular and special non-working holidays. Regular holidays typically have a fixed date, like New Year’s Da</p>', '2022 Philippine Holidays', '2022-National-Holiday-placeholder_CNNPH.jpg', 0, 'May 31, 2022 - Tuesday - 03:40 pm', 'March 28, 2022 - Monday - 12:41 pm', 0, 0),
 (41, 204, '<br>', 'Japanese Public Holidays in 2022', 'mount fuji.JPG', 0, 'May 27, 2022 - Friday - 12:31 am', 'May 27, 2022 - Friday - 12:29 am', 0, 0),
 (43, 155, '<p>asdasdasd<span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><span style=\"font-size: 1rem;\">asdasdasd</span><', 'Millenials In Workforceasdaasdas', 'WordPress Basics.png', 0, '', 'June 28, 2022 - Tuesday - 10:47 am', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(255) UNSIGNED NOT NULL,
+  `user_id` int(255) NOT NULL DEFAULT '0',
+  `document_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_created` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_edited` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `document_status` int(1) NOT NULL DEFAULT '0',
+  `temp_del` int(1) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `user_id`, `document_name`, `date_created`, `date_edited`, `document_status`, `temp_del`, `timestamp`) VALUES
+(1, 1, 'Dont Delete', 'February 23, 2022 - Wednesday - 04:01 pm', 'September 1, 2022 - Thursday - 02:12 pm', 0, 0, '2022-09-01 06:12:37'),
+(116, 1, 'Developers Training Files', 'May 20, 2022 - Friday - 05:55 pm', '', 0, 0, '2022-08-17 17:11:55'),
+(117, 1, 'Information Security Files', 'May 23, 2022 - Monday - 12:21 pm', '', 0, 0, '2022-08-17 17:11:55'),
+(122, 155, 'Bridge Directors Training Files', 'June 27, 2022 - Monday - 10:45 am', '', 0, 0, '2022-08-17 17:11:55'),
+(123, 153, 'Important Files', 'June 28, 2022 - Tuesday - 09:31 am', '', 0, 0, '2022-08-17 17:11:55'),
+(124, 177, 'Hmo', 'July 29, 2022 - Friday - 04:00 pm', 'September 6, 2022 - Tuesday - 04:58 pm', 2, 1662454713, '2022-09-06 08:58:33'),
+(125, 177, 'Test Forms', 'July 29, 2022 - Friday - 04:01 pm', 'September 5, 2022 - Monday - 03:39 pm', 0, 0, '2022-09-05 07:39:40'),
+(146, 177, 'Test1', 'August 24, 2022 - Wednesday - 01:18 pm', '', 2, 1662216995, '2022-09-03 14:56:35'),
+(147, 177, 'Test2', 'August 24, 2022 - Wednesday - 01:42 pm', '', 2, 1661320100, '2022-08-24 05:48:20'),
+(148, 177, 'Test3', 'August 24, 2022 - Wednesday - 01:43 pm', '', 2, 1662216991, '2022-09-03 14:56:31'),
+(149, 177, 'Test 1', 'August 24, 2022 - Wednesday - 01:50 pm', '', 2, 1662216987, '2022-09-03 14:56:27'),
+(150, 177, 'File Name 2', 'August 24, 2022 - Wednesday - 02:09 pm', 'August 25, 2022 - Thursday - 02:14 pm', 2, 1661820970, '2022-08-30 00:56:10'),
+(151, 177, 'From Modal Text', 'August 25, 2022 - Thursday - 08:33 am', '', 2, 1661820963, '2022-08-30 00:56:03'),
+(152, 177, 'Folder Two', 'August 25, 2022 - Thursday - 02:42 pm', 'August 31, 2022 - Wednesday - 02:26 pm', 2, 1661998626, '2022-09-01 02:17:06'),
+(153, 178, 'Trial', 'August 30, 2022 - Tuesday - 07:57 am', '', 2, 1661817672, '2022-08-30 00:01:12'),
+(154, 177, 'New Folderrrr', 'September 6, 2022 - Tuesday - 03:24 pm', '', 2, 1662451201, '2022-09-06 08:00:01'),
+(155, 177, 'Hmoa', 'September 6, 2022 - Tuesday - 03:25 pm', '', 2, 1662451194, '2022-09-06 07:59:54');
 
 -- --------------------------------------------------------
 
@@ -214,6 +284,40 @@ INSERT INTO `documentstemplate` (`id`, `user_id`, `docu_name`, `docu_id`, `docu_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(255) UNSIGNED NOT NULL,
+  `user_id` int(255) NOT NULL DEFAULT '0',
+  `document_name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `document_id` int(10) NOT NULL DEFAULT '0',
+  `file_linkname` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `file_link` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_created` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `file_status` int(1) NOT NULL DEFAULT '0',
+  `temp_del` int(1) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id`, `user_id`, `document_name`, `document_id`, `file_linkname`, `file_link`, `date_created`, `file_status`, `temp_del`, `timestamp`) VALUES
+(113, 178, 'Bridge Directors Training Files', 122, 'f', 'f', 'September 3, 2022 - Saturday - 10:30 pm', 0, 0, '2022-09-03 14:30:14'),
+(114, 178, 'Bridge Directors Training Files', 122, 'a', 'a', 'September 3, 2022 - Saturday - 10:31 pm', 0, 0, '2022-09-03 14:31:09'),
+(119, 177, 'Test Forms', 125, 'File 1', 'Link 1', 'September 3, 2022 - Saturday - 10:56 pm', 0, 0, '2022-09-03 14:56:50'),
+(126, 177, 'Test Forms', 125, '11', '111', 'September 5, 2022 - Monday - 03:39 pm', 0, 0, '2022-09-05 07:39:21'),
+(127, 177, 'Test Forms', 125, '2222', '2222', 'September 5, 2022 - Monday - 03:39 pm', 0, 0, '2022-09-05 07:39:21'),
+(128, 177, 'Dont Delete', 1, 'sad', 'asd', 'September 5, 2022 - Monday - 03:45 pm', 0, 0, '2022-09-05 07:45:05'),
+(130, 177, 'Dont Delete', 1, 'File 1', 'Link 1', 'September 6, 2022 - Tuesday - 02:07 pm', 0, 0, '2022-09-06 06:07:59'),
+(131, 177, 'Dont Delete', 1, 'File 12', 'Link 12', 'September 6, 2022 - Tuesday - 02:07 pm', 0, 0, '2022-09-06 06:07:59'),
+(132, 177, 'Developers Training Files', 116, 'we', 'wer', 'September 6, 2022 - Tuesday - 04:54 pm', 0, 0, '2022-09-06 08:54:25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `generals`
 --
 
@@ -277,6 +381,20 @@ INSERT INTO `pagination_set_active` (`id`, `pagination_active`, `pagination_name
 --
 
 CREATE TABLE `roles` (
+  `role_id` bigint(20) NOT NULL,
+  `role_name` varchar(50) NOT NULL DEFAULT '',
+  `permissions` varchar(20000) NOT NULL DEFAULT '',
+  `role_status` int(11) NOT NULL DEFAULT '0',
+  `temp_del` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles_old`
+--
+
+CREATE TABLE `roles_old` (
   `id` bigint(255) NOT NULL,
   `role_name` varchar(50) NOT NULL,
   `permissions` varchar(20000) NOT NULL DEFAULT '',
@@ -285,10 +403,10 @@ CREATE TABLE `roles` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `roles`
+-- Dumping data for table `roles_old`
 --
 
-INSERT INTO `roles` (`id`, `role_name`, `permissions`, `status`, `temp_del`) VALUES
+INSERT INTO `roles_old` (`id`, `role_name`, `permissions`, `status`, `temp_del`) VALUES
 (1, 'Super Admin', 'all', 0, 0),
 (2, 'View Only', 'View Only', 0, 0);
 
@@ -320,6 +438,31 @@ INSERT INTO `search_tbl` (`id`, `user_id`, `team`, `status`) VALUES
 (10, 0, 'Team Management', 0),
 (12, 0, 'Trainees', 0),
 (16, 0, 'Tech Team', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE `teams` (
+  `id` int(11) NOT NULL,
+  `team_name` varchar(100) NOT NULL,
+  `team_status` int(11) NOT NULL DEFAULT '0',
+  `temp_del` int(11) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `teams`
+--
+
+INSERT INTO `teams` (`id`, `team_name`, `team_status`, `temp_del`, `timestamp`) VALUES
+(1, 'TeamB', 2, 1661253330, '2022-08-23 11:15:30'),
+(2, '', 2, 1661253127, '2022-08-23 11:12:07'),
+(3, 'Team B', 0, 0, '2022-08-23 11:12:25'),
+(4, 'Team H', 2, 1661253016, '2022-08-23 11:10:16'),
+(5, 'Team F', 0, 0, '2022-08-23 11:16:38');
 
 -- --------------------------------------------------------
 
@@ -370,6 +513,44 @@ INSERT INTO `test` (`id`, `test_username`, `test_firstname`, `test_lastname`, `t
 --
 
 CREATE TABLE `users` (
+  `user_id` bigint(20) NOT NULL,
+  `user_employee_id` varchar(50) NOT NULL DEFAULT '',
+  `user_email` varchar(100) NOT NULL DEFAULT '',
+  `user_password` varchar(200) NOT NULL DEFAULT '',
+  `user_firstname` varchar(100) NOT NULL DEFAULT '',
+  `user_middlename` varchar(100) NOT NULL DEFAULT '',
+  `user_lastname` varchar(100) NOT NULL DEFAULT '',
+  `user_nickname` varchar(50) NOT NULL DEFAULT '',
+  `user_photo` varchar(100) NOT NULL DEFAULT '',
+  `role_ids` varchar(1000) NOT NULL DEFAULT ',',
+  `permissions` varchar(1000) NOT NULL DEFAULT ',',
+  `user_position` int(11) NOT NULL DEFAULT '0',
+  `user_level` int(11) NOT NULL DEFAULT '1',
+  `user_gender` varchar(100) NOT NULL,
+  `user_mobile` varchar(50) NOT NULL DEFAULT '',
+  `center_id` bigint(20) NOT NULL DEFAULT '0',
+  `department_id` bigint(20) NOT NULL DEFAULT '0',
+  `team_id` bigint(20) NOT NULL DEFAULT '0',
+  `subteam_id` bigint(20) NOT NULL DEFAULT '0',
+  `user_hiredate` int(11) NOT NULL DEFAULT '0',
+  `user_enddate` int(11) NOT NULL DEFAULT '0',
+  `starting_date` int(11) NOT NULL DEFAULT '0',
+  `language` int(11) NOT NULL DEFAULT '0',
+  `data_per_page` int(11) NOT NULL DEFAULT '20',
+  `user_last_login` int(11) NOT NULL DEFAULT '0',
+  `user_log_attempts` int(11) DEFAULT NULL,
+  `lockout_timestamp` datetime DEFAULT NULL,
+  `user_status` float NOT NULL DEFAULT '0',
+  `temp_del` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_old`
+--
+
+CREATE TABLE `users_old` (
   `id` bigint(255) NOT NULL,
   `uname` varchar(20) NOT NULL,
   `upass` varchar(200) NOT NULL,
@@ -397,10 +578,10 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `users_old`
 --
 
-INSERT INTO `users` (`id`, `uname`, `upass`, `employeeid`, `date_start`, `date_end`, `firstname`, `middlename`, `lastname`, `skills`, `personal_details`, `email`, `mobile`, `photo`, `roleids`, `permissions`, `data_per_page`, `last_login`, `status`, `temp_del`, `position`, `access_role`, `team`, `language`) VALUES
+INSERT INTO `users_old` (`id`, `uname`, `upass`, `employeeid`, `date_start`, `date_end`, `firstname`, `middlename`, `lastname`, `skills`, `personal_details`, `email`, `mobile`, `photo`, `roleids`, `permissions`, `data_per_page`, `last_login`, `status`, `temp_del`, `position`, `access_role`, `team`, `language`) VALUES
 (1, 'superadmin', '$2y$10$V20FOs0HNEu/ggAzHF9dquhjf/472JyT6u4ioMl2LtQJeqH/TRHNK', '10001', 0, 0, 'Super', '', 'Admin', '0', '0', '', '', '', ',1,', '', 30, 1660201937, 0, 0, '', 0, '', 0),
 (157, 'Dex_Macabangon', '$2y$10$ONYBrC5pA1cxbyJRhvMSxezG/ccbpA1d/iFe.fXAYZdfvoqDgHgTm', '2210784', 20220103, 0, 'Dexter', 'Guzman', 'Macabangon', 'Developer', 'I don\'t stop when I\'m tired. I only  stop when I\'m done', 'dexter-guzman.m1@trans-cosmos.co.jp', '09983544993', 'dextermacabangon.png', ',2,', '', 15, 1653904712, 0, 1654565805, 'Senior Associate', 0, 'Tech Team', 0),
 (156, 'Angelo_Manaog', '$2y$10$dqd8DFhzCbS51BrVXjs6o.8VwMMs6Wew0mGltMo5RuPBGevV7YdIO', '2210200', 20210614, 0, 'Michael Angelo', 'Tribiana', 'Manaog', 'Assistant Lead Developer', 'What we fear doing most is usually what we most need to do.', 'michael-angelo.manaog@transcosmos.com.ph ', '09651574364', 'michaelangelomanaog.jpg', ',2,', '', 15, 0, 0, 0, 'Assistant Lead Developer', 0, 'Tech Team', 0),
@@ -429,8 +610,8 @@ INSERT INTO `users` (`id`, `uname`, `upass`, `employeeid`, `date_start`, `date_e
 (174, 'Raven_Reyes', '$2y$10$vgy7mXs1gI6.bujvQmDl0OF/SSyO3SXYjcHifnXsTfp03jb3avIzK', '2210499', 20210927, 0, 'Raven Auriesh', 'Corpuz', 'Reyes', 'Associate', 'No matter how hard or impossible it is. Never lose sight of your goal.', 'raven.reyes1@trans-cosmos.co.jp ', '09050395896', 'ravenreyes.jpeg', ',2,', '', 15, 0, 0, 0, 'Associate', 0, 'Team E', 0),
 (175, 'Lerin_Sevenorio', '$2y$10$eUl5OuT/jd0PL7MjoSj1HueAXy1cW.iAmy29JDYlCTFulyPHAsevm', '2190195', 20191127, 0, 'Lerin John', 'Mendoza', 'Sevenorio', 'Associate', 'Associate', 'lerin-john.sevenorio1@trans-cosmos.co.jp', '09456722816', 'user-avatar.jpg', ',2,', '', 15, 0, 1, 1652773469, 'Associate', 0, 'Team E', 0),
 (176, 'Michael_Antipuesto', '$2y$10$duYS8K.ML2zO1RSNOP63UONhIJi6uTA7ZceXNAB5Wy7zuRDHJvqIq', '2210412', 20210909, 0, 'Michael Angelo', 'De Vera', 'Antipuesto', 'Associate', 'Don\'t be afraid to give up the good to go for the great.', 'Michael-angelo.A1@trans-cosmos.co.jp ', '09959325871', 'michaelangeloantipuesto.png', ',2,', '', 15, 1653957397, 0, 0, 'Associate', 0, 'Team Goop!', 0),
-(177, 'Julcess_Mercado', '$2y$10$SD9bUMf7Uc.SSIAnQWvyK.2Dcx950nx81IbAWNFrpSovTek5tOJG2', '2200057', 20200218, 0, 'Julcess Marie', 'Papica', 'Mercado', 'Senior Associate', 'Appear as you are, be as you appear.', 'julcess-marie.m1@trans-cosmos.co.jp ', '09754310357', 'julcessmercado.jpg', ',1,', '', 15, 1662094185, 0, 0, 'Senior Associate', 0, 'Team Goop!', 0),
-(178, 'Christian_Alde', '$2y$10$ZW9awjmXkY8mZIdycVCxdesK8KrpLI84sarv1FuAEIJm2PCZSGdnO', '2170052', 20170613, 0, 'Christian', 'Viray', 'Alde', 'Lead Developer', 'Lead Developer', 'christian.alde1@trans-cosmos.co.jp ', '09956684009', 'christianalde.jpg', ',1,', '', 15, 1660862128, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
+(177, 'Julcess_Mercado', '$2y$10$SD9bUMf7Uc.SSIAnQWvyK.2Dcx950nx81IbAWNFrpSovTek5tOJG2', '2200057', 20200218, 0, 'Julcess Marie', 'Papica', 'Mercado', 'Senior Associate', 'Appear as you are, be as you appear.', 'julcess-marie.m1@trans-cosmos.co.jp ', '09754310357', 'julcessmercado.jpg', ',1,', '', 15, 1662617666, 0, 0, 'Senior Associate', 0, 'Team Goop!', 0),
+(178, 'Christian_Alde', '$2y$10$ZW9awjmXkY8mZIdycVCxdesK8KrpLI84sarv1FuAEIJm2PCZSGdnO', '2170052', 20170613, 0, 'Christian', 'Viray', 'Alde', 'Lead Developer', 'Lead Developer', 'christian.alde1@trans-cosmos.co.jp ', '09956684009', 'christianalde.jpg', ',1,', '', 15, 1662540570, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
 (207, 'Bart_Tabusao', '$2y$10$5AeHHVRQPafQQTnKRE6fh.KdnhsNL6UD2XqF1G7uCZicV2F9wqJEW', '2220005', 20220510, 0, 'Bart', 'Quilala', 'Tabusao', 'Associate', 'Everything is a learning experience.', 'bart.tabusao1@trans-cosmos.co.jp', '01234567891', 'barttabusao.jpg', ',2,', '', 15, 0, 0, 0, 'Associate', 0, 'Trainees', 0),
 (180, 'Yves_Batungbacal', '$2y$10$eo3HAafw8QN02NT1lRVpYe15hN.QLY3qdc8LKtJCN2dDHHndoWEgy', '2210040', 20210301, 0, 'Yves Patrick', 'Valiente', 'Batungbacal', 'Team Leader', 'Things, somehow, have a way of working themselves out. Just keep going.', 'yves-patrick.b1@trans-cosmos.co.jp ', '09271276183', 'yvesbatungbacal.jpg', ',1,', '', 15, 1654564436, 0, 0, 'Team Leader', 0, 'Team Management', 0),
 (181, 'Ashley_Felix', '$2y$10$zthZC0Xo3bUT3xlaANwi.OMRurEsWZCirraYKwWwt6wij2vsnpXKu', '2150107', 20151116, 0, 'Jennica Ashley', 'Ortiz', 'Felix', 'Lead Developer', 'Don\'t be afraid to believe in YOURSELF', 'jennica-ashley.felix1@trans-cosmos.co.jp ', '09568044477', 'ashleyfelix.jpg', ',1,', '', 15, 1654565912, 0, 0, 'Lead Developer', 0, 'Team Management', 0),
@@ -464,24 +645,32 @@ INSERT INTO `users` (`id`, `uname`, `upass`, `employeeid`, `date_start`, `date_e
 --
 
 CREATE TABLE `webinarandevents` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `webinar_events_title` varchar(255) NOT NULL,
-  `webinar_events_description` text NOT NULL,
-  `webinar_events_img` varchar(255) NOT NULL,
-  `webinar_events_status` int(11) NOT NULL DEFAULT '0',
-  `webinar_events_schedule_date` varchar(255) NOT NULL,
-  `webinar_events_updated_at` varchar(255) DEFAULT NULL,
-  `webinar_events_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `temp_del` int(11) NOT NULL DEFAULT '0'
+  `id` int(255) UNSIGNED NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `webinar_host` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `webinar_title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `webinar_img` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `webinar_description` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_set` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `month_set` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_created` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `date_edited` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `webinar_status` int(1) NOT NULL DEFAULT '0',
+  `temp_del` int(11) NOT NULL DEFAULT '0',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `webinarandevents`
 --
 
-INSERT INTO `webinarandevents` (`id`, `user_id`, `webinar_events_title`, `webinar_events_description`, `webinar_events_img`, `webinar_events_status`, `webinar_events_schedule_date`, `webinar_events_updated_at`, `webinar_events_created_at`, `temp_del`) VALUES
-(9, 184, 'Wordpress Basics For Masspro Projects', 'Wordpress Basics For Masspro Projects', '1662098696_WordPress Basics.png', 0, '09/19/2022', NULL, '2022-09-02 06:04:56', 0);
+INSERT INTO `webinarandevents` (`id`, `user_id`, `webinar_host`, `webinar_title`, `webinar_img`, `webinar_description`, `date_set`, `month_set`, `date_created`, `date_edited`, `webinar_status`, `temp_del`, `timestamp`) VALUES
+(3, 177, '2180223', 'Enchanting Masquerade - Tcap Thanksgiving Party', '1662614996_tcap-thanksgiving-party.jpg', 'TCAP Thanks Giving Party 2021', '12/17/2021', '202212', 'September 8, 2022 - Thursday - 01:29 pm', 'September 8, 2022 - Thursday - 01:42 pm', 0, 0, '2022-09-08 05:42:13'),
+(4, 177, '10001', 'Dx Online Christmas Party', '1662615130_dx-christmas-party.jpg', 'DX Online Christmas Party 2021!', '12/15/2021', '202112', 'September 8, 2022 - Thursday - 01:32 pm', 'September 8, 2022 - Thursday - 01:42 pm', 0, 0, '2022-09-08 05:42:26'),
+(5, 177, '2150029', 'Little Ways You Can Organize', '1662615843_little-ways-to-organize.jpg', 'Little ways you can organize.', '20220114', '202201', 'September 8, 2022 - Thursday - 01:44 pm', '', 0, 0, '2022-09-08 05:44:03'),
+(6, 177, '2190019', 'The Art Of Multi Tasking', '1662616039_art-of-multitask.jpg', 'Some tips and tips for all tcap employees', '20220121', '202201', 'September 8, 2022 - Thursday - 01:47 pm', '', 0, 0, '2022-09-08 05:47:19'),
+(7, 177, '2210200', 'General Assembly', '1662616156_jan2022GA.jpg', 'General Assembly for the month of January.', '20220114', '202201', 'September 8, 2022 - Thursday - 01:49 pm', '', 0, 0, '2022-09-08 05:49:16'),
+(8, 177, '2210784', 'Connecting Passion With Purpose', '1662616252_passion-with-purpose.jpg', 'By the HRIS Team', '20220121', '202201', 'September 8, 2022 - Thursday - 01:50 pm', '', 0, 0, '2022-09-08 05:50:52');
 
 -- --------------------------------------------------------
 
@@ -547,9 +736,21 @@ INSERT INTO `webinarandevents_old` (`id`, `user_id`, `title`, `img_count`, `imag
 --
 
 --
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
 -- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -562,6 +763,12 @@ ALTER TABLE `documentsquicklinks`
 -- Indexes for table `documentstemplate`
 --
 ALTER TABLE `documentstemplate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -580,12 +787,24 @@ ALTER TABLE `pagination_set_active`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_id`);
+
+--
+-- Indexes for table `roles_old`
+--
+ALTER TABLE `roles_old`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `search_tbl`
 --
 ALTER TABLE `search_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -604,6 +823,15 @@ ALTER TABLE `test`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `team_id` (`team_id`),
+  ADD KEY `user_id_2` (`user_id`);
+
+--
+-- Indexes for table `users_old`
+--
+ALTER TABLE `users_old`
   ADD PRIMARY KEY (`id`),
   ADD KEY `employeeid` (`employeeid`),
   ADD KEY `firstname` (`firstname`),
@@ -628,10 +856,22 @@ ALTER TABLE `webinarandevents_old`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `admin_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `documentsquicklinks`
@@ -644,6 +884,12 @@ ALTER TABLE `documentsquicklinks`
 --
 ALTER TABLE `documentstemplate`
   MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `pagination_set`
@@ -661,6 +907,12 @@ ALTER TABLE `pagination_set_active`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
+  MODIFY `role_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles_old`
+--
+ALTER TABLE `roles_old`
   MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -668,6 +920,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `search_tbl`
   MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teamviews`
@@ -685,13 +943,19 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users_old`
+--
+ALTER TABLE `users_old`
   MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT for table `webinarandevents`
 --
 ALTER TABLE `webinarandevents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `webinarandevents_old`

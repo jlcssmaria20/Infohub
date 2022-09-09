@@ -1,39 +1,44 @@
-<nav class="navbar-nav">
-    <div class="nav-title">
-      <h1><img class="img-logo" src="/assets/images/dx-info-hub-logo.svg" alt="DX Info Hub" /></h1>
-    </div>
+<nav class="navbar-nav mb-5">
+  <div class="nav-title">
+    <h1><img class="img-logo" src="/assets/images/dx-info-hub-logo.svg" alt="DX Info Hub" /></h1>
+  </div>
 
-    <ul>
-      <!-- HOME -->
+  <ul>
+    <!-- HOME -->
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger <?php if($page == 'home') { echo ' active'; } ?>" href="/"> <i class="fa fa-home" aria-hidden="true"></i>HOME</a>
+    </li>
+
+      <!-- WEBINAR AND EVENTS -->
       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'home') { echo ' active'; } ?>" href="/"> <i class="fa fa-home" aria-hidden="true"></i>HOME</a>
-      </li>
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-webinar-and-events') { echo ' active'; } ?>" href="/o-webinar-and-events"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+    </li>
 
-       <!-- WEBINAR AND EVENTS -->
-       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'o-webinar-and-events') { echo ' active'; } ?>" href="/o-webinar-and-events"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
-      </li>
+      <!-- DOCUMENTS AND QUICK LINKS -->
+      <li class="nav-item">
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-documents') { echo ' active'; } ?>" href="/o-documents"><i class="fa fa-file" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+    </li>
 
-       <!-- DOCUMENTS AND QUICK LINKS -->
-       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'o-documents') { echo ' active'; } ?>" href="/o-documents"><i class="fa fa-file" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
-      </li>
+      <!-- THE TEAM -->
+      <li class="nav-item">
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-users') { echo ' active'; } ?>" href="/o-teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
+    </li>
 
-       <!-- THE TEAM -->
-       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'o-users') { echo ' active'; } ?>" href="/o-teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
-      </li>
+      <!-- ANNOUNCEMENTS -->
+      <li class="nav-item">
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-announcements') { echo ' active'; } ?>" href="/o-announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
+    </li>
+  </ul>
+</nav>
 
-       <!-- ANNOUNCEMENTS -->
-       <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'o-announcements') { echo ' active'; } ?>" href="/o-announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
-      </li>
-
-         <!-- LOGIN -->
-         <li class="nav-item">
-        <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>LOGIN</a>
-      </li>
-
-
-    </ul>
+<nav class="navbar-nav sidebar-custom">
+  <ul style="margin-block: 25%;">
+    <hr>
+        <!-- LOGIN -->
+    <li class="nav-item">
+      <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>LOGIN
+      </a>
+    </li>
+  </ul>
 </nav>
