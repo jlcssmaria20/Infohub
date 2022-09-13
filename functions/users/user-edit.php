@@ -247,6 +247,28 @@ if(checkSession()) {
 					$_SESSION['sys_users_edit_enddate_val'] = $_POST['user_enddate'];
 				}
 			}
+
+			// MANTRA IN LIFE
+			$mantra_in_life = '';
+			if(isset($_POST['mantra_in_life'])) {
+				$mantra_in_life = $_POST['mantra_in_life'];
+				$_SESSION['sys_users_edit_mantra_in_life_val'] = $mantra_in_life;
+				if(strlen($mantra_in_life) == 0) {
+					$err++;
+					$_SESSION['sys_users_edit_mantra_in_life_err'] = renderLang($users_mantra_in_life_required);
+				}
+			}
+
+			// SKILLS
+			$skills = '';
+			if(isset($_POST['skills'])) {
+				$skills = $_POST['skills'];
+				$_SESSION['sys_users_edit_skills_val'] = $skills;
+				if(strlen($skills) == 0) {
+					$err++;
+					$_SESSION['sys_users_edit_skills_err'] = renderLang($users_skills_required);
+				}
+			}
 			
 			// STATUS
 			$user_status = 0;
@@ -333,6 +355,14 @@ if(checkSession()) {
 					$tmp = 'users_enddate::'.$data['user_enddate'].'=='.$user_enddate;
 					array_push($change_logs,$tmp);
 				}
+				if($user_mantra_in_life != $data['user_mantra_in_life']) {
+					$tmp = 'users_mantra::'.$data['user_mantra_in_life'].'=='.$user_mantra_in_life;
+					array_push($change_logs,$tmp);
+				}
+				if($user_skills != $data['user_skills']) {
+					$tmp = 'users_skills::'.$data['user_skills'].'=='.$user_skills;
+					array_push($change_logs,$tmp);
+				}
 
 				// check if there is are changes made
 				if(count($change_logs) > 0) {
@@ -352,6 +382,8 @@ if(checkSession()) {
 							team_id = :team_id,
 							user_hiredate = :user_hiredate,
 							user_enddate = :user_enddate,
+							user_mantra_in_life = :user_mantra_in_life,
+							user_skills = :user_skills,
 							role_ids = :role_ids,
 							user_status = :user_status
 						WHERE user_id = :user_id");
@@ -370,6 +402,8 @@ if(checkSession()) {
 						':team_id'            => $team_id,
 						':user_hiredate'      => $user_hiredate,
 						':user_enddate'       => $user_enddate,
+						':user_mantra_in_life'=> $mantra_in_life,
+						':user_skills'        => $skills,
 						':role_ids'           => $role_ids,
 						':user_status'        => $user_status,
 					);

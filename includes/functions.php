@@ -541,144 +541,6 @@ function getTable($sql_table) {
 	}
 	return $r;
 }
-function getStatistics($center_id,$yrmo) {
-	$r = array();
-	
-	// get training projects
-	$ex_trn_qry = "";
-	for($i=0;$i<count($GLOBALS['other_activities_arr']); $i++){
-		$ex_trn_qry = $ex_trn_qry." AND projects.project_code NOT LIKE '".$GLOBALS['other_activities_arr'][$i]."%' ";
-	}
-	
-	// EMPLOYEE COUNT
-	// get number of active users
-	$sql = $GLOBALS['pdo']->prepare("SELECT user_status, center_id FROM users WHERE center_id =:center_id AND user_status = 0");
-	$bind_param = array(
-		':center_id' => $center_id
-	);
-	$sql->execute($bind_param);
-	$r['employee_count'] = $sql->rowCount();
-	
-	// BUDGET TIME
-	$budget_time = 0;
-	$sql = $GLOBALS['pdo']->prepare("SELECT
-			project_budget_time,
-			project_budget_yrmo,
-			parent_id,
-			parent_pattern,
-			center_id
-		FROM project_budget_time
-		LEFT JOIN projects ON project_budget_time.project_id = projects.project_id
-		WHERE
-			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_id = 0 AND parent_pattern = 'a' AND projects.project_status<>5 OR
-			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_pattern = 'b' AND projects.project_status<>5 OR
-			project_budget_yrmo = ".$yrmo." AND center_id = :center_id AND parent_id = 0 AND parent_pattern = '' AND projects.project_status<>5".$ex_trn_qry."
-		");
-	$bind_param = array(
-		':center_id' => $center_id
-	);
-	$sql->execute($bind_param);
-	if($sql->rowCount()){
-		while($data_stat = $sql->fetch(PDO::FETCH_ASSOC)) {
-			$budget_time += round(($data_stat['project_budget_time']/8),1);
-		}
-	}
-	$r['budget_time'] = ($budget_time/20);
-	
-	// MAX CAPACITY
-	$max_capacity = 0;
-	$sql = $GLOBALS['pdo']->prepare("SELECT * FROM center_capacity WHERE center_id = :center_id AND yrmo = :yrmo");
-	$bind_param = array(
-		':center_id' => $center_id,
-		':yrmo' => $yrmo
-	);
-	$sql->execute($bind_param);
-	if($sql->rowCount()){
-		$data_stat = $sql->fetch(PDO::FETCH_ASSOC);
-		$max_capacity = $data_stat['capacity'];
-	}
-	$r['max_capacity'] = $max_capacity;
-	
-	// OCCUPANCY
-	$occupancy_rate = $r['max_capacity'] > 0 ? ($r['budget_time']/$r['max_capacity'])*100 : 0;
-	$r['occupancy_rate'] = number_format($occupancy_rate,2,'.',',');
-	
-	// ACTUAL TIME
-	$actual_hours = 0;
-	$time_rendered = 0;
-	$i=0;
-	$j=0;
-	$time_rendered_arr = array();
-	$zero_rendered_arr = array();
-	$total_rendered =0;
-	$sql = $GLOBALS['pdo']->prepare("SELECT *
-		FROM users_project_actual
-		LEFT JOIN projects ON projects.project_id = users_project_actual.project_id
-		WHERE
-		users_project_actual.center_id =:center_id AND
-		projects.project_status<>5 AND
-		datecode LIKE :yr_mo
-				");
-	$bind_param = array(
-		':center_id' => $center_id,
-		':yr_mo' => '%'.$yrmo.'%'
-	);
-	$sql->execute($bind_param);
-	while($item = $sql->fetch(PDO::FETCH_ASSOC)){
-		$old_data = 0;
-		if($item['datecode']*1 < 20200727) {
-			$old_data = 1;
-		}
-		if($old_data) {
-			if($item['time_end'] == 0 && $item['time_start'] == 0) {
-//				$zero_rendered_arr[$j] = $item['time_rendered'];
-//				$j++;
-				$time_rendered = $item['epoch_time_rendered'];
-				$time_rendered_arr[$i] = $time_rendered;
-				$i++;
-			} else {
-				$time_rendered = $item['time_end'] - $item['time_start'];
-				$time_rendered_arr[$i] = $time_rendered;
-				$i++;
-			}
-		} else {
-			$sql = $GLOBALS['pdo']->prepare("SELECT ROUND((SUM(time_rendered)/8/20),2) AS sum_render_time
-				FROM users_project_actual
-				LEFT JOIN projects ON projects.project_id = users_project_actual.project_id
-				WHERE users_project_actual.center_id =:center_id AND
-				projects.project_status<>5 AND datecode LIKE :yr_mo");
-			$bind_param = array(
-				':center_id' => $center_id,
-				':yr_mo' => '%'.$yrmo.'%'
-			);
-			$sql->execute($bind_param);
-			if($sql->rowCount()){
-				$data_stat = $sql->fetch(PDO::FETCH_ASSOC);
-				$actual_hours = $data_stat['sum_render_time'];
-			}
-		}
-	}
-	if(!empty($time_rendered_arr)){
-		$time_rendered = array_sum($time_rendered_arr);
-		$zero_rendered = array_sum($zero_rendered_arr);
-		$total_rendered = renderActualHours($time_rendered) + $zero_rendered;
-		$actual_hours = round((($total_rendered)/8/20),2);
-	}
-	$r['actual_hours'] = $actual_hours;
-	
-	// PRODUCTIVITY RATE
-	$productivity_rate = $max_capacity > 0 ? ($actual_hours/$max_capacity)*100 : 0;
-	$r['productivity_rate'] = number_format($productivity_rate,2,'.',',');
-	
-	// REMAINING CAPACITY
-	$remaining_capacity = $r['max_capacity'] - $r['budget_time'];
-	if($remaining_capacity < 0) {
-		$remaining_capacity = 0;
-	}
-	$r['remaining_capacity'] = $remaining_capacity;
-	
-	return $r;
-}
 
 // SITE WIDE FUNCTIONS
 // clear sessions of forms
@@ -743,6 +605,8 @@ function clearSessions() {
 		'roles',
 		'hiredate',
 		'enddate',
+		'mantra_in_life',
+		'skills',
 		'user_status',
 		'user_mobile'
 	);

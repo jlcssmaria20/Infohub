@@ -108,11 +108,24 @@ if(checkSession()) {
 			$user_enddate = $data['user_enddate'];
 			if($user_enddate == 0){
 				if(isset($_SESSION['sys_users_edit_enddate_val'])) {
-					$user_enddate = date('m/d/Y', strtotime($_SESSION['sys_users_edit_enddate_val']).' +5 years');
+					$fiveyears = strtotime(" +5 years");
+					$user_enddate = date('m/d/Y', strtotime($_SESSION['sys_users_edit_enddate_val']). $fiveyears);
 					unset($_SESSION['sys_users_edit_enddate_val']);
 				}
 			} else {
 				$user_enddate = date('m/d/Y',strtotime($data['user_enddate']));
+			}
+
+			$user_mantra_in_life = $data['user_mantra_in_life'];
+			if(isset($_SESSION['sys_users_edit_mantra_in_life_val'])) {
+				$user_mantra_in_life = $_SESSION['sys_users_edit_mantra_in_life_val'];
+				unset($_SESSION['sys_users_edit_mantra_in_life_val']);
+			}
+
+			$user_skills = $data['user_skills'];
+			if(isset($_SESSION['sys_users_edit_skills_val'])) {
+				$user_skills = $_SESSION['sys_users_edit_skills_val'];
+				unset($_SESSION['sys_users_edit_skills_val']);
 			}
 			
 			$user_mobile = $data['user_mobile'];
@@ -366,7 +379,33 @@ if(checkSession()) {
 										</div>
 									</div>
 								</div>
+								<div class="row">
+									<!-- MANTRA IN LIFE -->
+									<div class="col-lg-5 col-md-4 col-sm-2">
+										<?php
+										$mantra_in_life_err = 0;
+										if(isset($_SESSION['sys_users_edit_mantra_in_life_err'])) { $mantra_in_life_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="mantra_in_life" class="mr-1<?php if($mantra_in_life_err) { echo ' text-danger'; } ?>"><?php if($mantra_in_life_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_mantra_in_life); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($mantra_in_life_err) { echo ' is-invalid'; } ?>" id="mantra_in_life" name="mantra_in_life" placeholder="<?php echo renderLang($users_mantra_in_life_placeholder); ?>" value="<?php echo $user_mantra_in_life; ?>" required>
+											<?php if($mantra_in_life_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_mantra_in_life_err'].'</p>'; unset($_SESSION['sys_users_edit_mantra_in_life_err']); } ?>
+										</div>
+									</div>
+									<!-- SKILLS -->
+									<div class="col-lg-5 col-md-4 col-sm-2">
+										<?php
+										$skills_err = 0;
+										if(isset($_SESSION['sys_users_edit_skills_err'])) { $skills_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="skills" class="mr-1<?php if($skills_err) { echo ' text-danger'; } ?>"><?php if($skills_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_skills); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($skills_err) { echo ' is-invalid'; } ?>" id="skills" name="skills" placeholder="<?php echo renderLang($users_skills_placeholder); ?>" value="<?php echo $user_skills; ?>" required>
+											<?php if($skills_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_skills_err'].'</p>'; unset($_SESSION['sys_users_edit_skills_err']); } ?>
+										</div>
+									</div>				
 
+								</div>
 								<hr>
 								
 								<div class="row">

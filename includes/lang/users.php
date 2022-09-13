@@ -167,6 +167,30 @@ $users_export_actual_time = array(
 	'Export Users Actual Time',
 	'実稼働工数のエクスポート'
 );
+$users_mantra_in_life = array(
+	'Mantra in Life',
+	''
+);
+$users_mantra_in_life_placeholder = array(
+	'Time is Gold',
+	''
+);
+$users_mantra_in_life_required = array(
+	'Mantra in Life is Required',
+	''
+);
+$users_skills = array(
+	'Skills Front end(FE), Back end(BE), Tools',
+	''
+);
+$users_skills_placeholder = array(
+	'Javascript, PHP, MYSQL, GIT',
+	''
+);
+$users_skills_required = array(
+	'User Skills is Required',
+	''
+);
 
 // MODALS
 $users_modal_delete_msg1 = array(

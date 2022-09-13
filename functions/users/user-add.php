@@ -96,6 +96,27 @@ if(checkSession()) {
 				}
 			}
 		}
+		// MANTRA IN LIFE
+		$mantra_in_life = '';
+		if(isset($_POST['mantra_in_life'])) {
+			$mantra_in_life = $_POST['mantra_in_life'];
+			$_SESSION['sys_users_add_mantra_in_life_val'] = $mantra_in_life;
+			if(strlen($mantra_in_life) == 0) {
+				$err++;
+				$_SESSION['sys_users_add_mantra_in_life_err'] = renderLang($users_mantra_in_life_required);
+			}
+		}
+
+		// SKILLS
+		$skills = '';
+		if(isset($_POST['skills'])) {
+			$skills = $_POST['skills'];
+			$_SESSION['sys_users_add_skills_val'] = $skills;
+			if(strlen($skills) == 0) {
+				$err++;
+				$_SESSION['sys_users_add_skills_err'] = renderLang($users_skills_required);
+			} 
+		}
 		
 		// NICKNAME
 		$nickname = '';
@@ -260,6 +281,8 @@ if(checkSession()) {
 					team_id,
 					user_hiredate,
 					user_enddate,
+					user_mantra_in_life,
+					user_skills,
 					user_mobile
 				) VALUES(
 					NULL,
@@ -277,6 +300,8 @@ if(checkSession()) {
 					:team_id,
 					:user_hiredate,
 					:user_enddate,
+					:user_mantra_in_life,
+					:user_skills,
 					:user_mobile
 				)");
 			$bind_param = array(
@@ -294,6 +319,8 @@ if(checkSession()) {
 				':team_id'            => $team_id,
 				':user_hiredate'      => $user_hiredate,
 				':user_enddate'       => 20270101,
+				':user_mantra_in_life' => $mantra_in_life,
+				':user_skills'        => $skills,
 				':user_mobile'        => $user_mobile
 			);
 			$sql->execute($bind_param);

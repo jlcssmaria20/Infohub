@@ -203,6 +203,31 @@ if(checkSession()) {
 											</div>
 										</div>
 									</div>
+									<!-- Mantra in Life -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<?php
+										$mantra_in_life_err = 0;
+										if(isset($_SESSION['sys_users_add_mantra_in_life_err'])) { $mantra_in_life_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="mantra_in_life" class="mr-1<?php if($mantra_in_life_err) { echo ' text-danger'; } ?>"><?php if($mantra_in_life_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_mantra_in_life); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($mantra_in_life_err) { echo ' is-invalid'; } ?>" id="mantra_in_life" name="mantra_in_life" placeholder="<?php echo renderLang($users_mantra_in_life_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_mantra_in_life_val'])) { echo ' value="'.$_SESSION['sys_users_add_mantra_in_life_val'].'"'; } ?> required>
+											<?php if($mantra_in_life_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_mantra_in_life_err'].'</p>'; unset($_SESSION['sys_users_add_mantra_in_life_err']); } ?>
+										</div>
+									</div>
+
+									<!-- User Skills -->
+									<div class="col-lg-5 col-md-4 col-sm-2">
+										<?php
+										$skills_err = 0;
+										if(isset($_SESSION['sys_users_add_skills_err'])) { $skills_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="skills" class="mr-1<?php if($skills_err) { echo ' text-danger'; } ?>"><?php if($skills_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_skills); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($skills_err) { echo ' is-invalid'; } ?>" id="skills" name="skills" placeholder="<?php echo renderLang($users_skills_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_skills_val'])) { echo ' value="'.$_SESSION['sys_users_add_skills_val'].'"'; } ?> required>
+											<?php if($skills_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_skills_err'].'</p>'; unset($_SESSION['sys_users_add_skills_err']); } ?>
+										</div>
+									</div>
 
 								</div>
 								<hr>

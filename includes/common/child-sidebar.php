@@ -128,9 +128,9 @@
                  </li>
 				 <?php } ?>	
 				  <!-- TEST PAGE -->
-				<li class="nav-item">
+				<!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'test') { echo ' active'; } ?>" href="/test"><i class="nav-icon fa fa-circle-o"></i><p>TEST</p> </a>
-                </li>
+                </li> -->
 			
 
 
