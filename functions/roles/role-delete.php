@@ -6,7 +6,6 @@ $err_code = 1;
 
 // check if user has existing session
 if(checkSession()) {
-
 	// check permission to access this page or function
 	if(checkPermission('role-delete')) {
 		
@@ -26,21 +25,20 @@ if(checkSession()) {
 					$sql->bindParam(":admin_id",$account_id);
 					$sql->execute();
 					$data = $sql->fetch(PDO::FETCH_ASSOC);
-					$upass_db = decryptStr($data['admin_password']);
+					$upass_db = $data['admin_password'];
 					break;
 				case 'user':
 					$sql = $pdo->prepare("SELECT user_id, user_password FROM users WHERE user_id = :user_id LIMIT 1");
 					$sql->bindParam(":user_id",$account_id);
 					$sql->execute();
 					$data = $sql->fetch(PDO::FETCH_ASSOC);
-					$upass_db = decryptStr($data['user_password']);
+					$upass_db = $data['user_password'];
 					break;
 			}
 			
-
 			// check if passwords match
-			if($upass_db == $upass) {
-
+			if(password_verify($upass,$upass_db)){
+				
 				$sql = $pdo->prepare("SELECT role_id FROM roles WHERE role_id = :role_id LIMIT 1");
 				$sql->bindParam(":role_id",$role_id);
 				$sql->execute();

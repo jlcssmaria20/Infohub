@@ -2,7 +2,6 @@
 // INCLUDES
 $page = 'dashboard';
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
-
 // check if user has existing session
 if(checkSession()) {
 

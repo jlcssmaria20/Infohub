@@ -165,18 +165,17 @@ if(checkSession()) {
 											echo '</td>'; // end display permissions
 
 											// NUMBER OF USERS
-											echo '<td>0</td>';
-											// echo '<td>';
+											echo '<td>';
 
-												// get from USERS table
-												// $sql2 = $pdo->prepare("SELECT user_id, role_ids, temp_del FROM users WHERE role_ids LIKE '%,".decryptID($role_id).",%' AND temp_del=0");
-												// $sql2->execute();
+												//get from USERS table
+												$sql2 = $pdo->prepare("SELECT user_id, role_ids, temp_del FROM users WHERE role_ids LIKE '%,".decryptID($role_id).",%' AND temp_del=0");
+												$sql2->execute();
 											
-												// $users_ctr = $sql2->rowCount();
+												$users_ctr = $sql2->rowCount();
 
-												// echo number_format($users_ctr,0,'.',',');
+												echo number_format($users_ctr,0,'.',',');
 						
-											// echo '</td>';
+											echo '</td>';
 
 											// OPTIONS
 											echo '<td>';

@@ -194,7 +194,7 @@ if(checkSession()) {
 							<div class="card-header">
 								<h3 class="card-title"><?php echo renderLang($users_edit_user_form); ?></h3>
 								<div class="card-tools">
-									<a class="btn btn-success mr-2" href="/user/<?php echo $_GET['id']; ?>" target="_blank"><i class="fa fa-user mr-2"></i><?php echo renderLang($users_view_profile); ?></a>
+									
 									<button type="button" class="btn btn-danger btn-confirm-delete mr-1" data-toggle="modal" data-target="#modal-confirm-delete"><i class="fa fa-trash mr-2"></i><?php echo renderLang($users_delete_user); ?></button>
 								</div>
 							</div>
@@ -486,13 +486,13 @@ if(checkSession()) {
 									if($roles_val != '') {
 										$roles_val_arr = explode(',',$roles_val);
 									}
-									$sql = $pdo->prepare("SELECT * FROM roles WHERE role_id<>1 AND temp_del=0 ORDER BY role_name ASC");
+									$sql = $pdo->prepare("SELECT * FROM roles WHERE temp_del=0 ORDER BY role_name ASC");
 									$sql->execute();
 									$roles_count = $sql->rowCount();
 									$roles_group_count_max = floor($roles_count/4);
 									$roles_group_counter = 0;
 									while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-										$btn_design = 'btn-default';
+										$btn_design = 'btn-secondary';
 										if(in_array($data['role_id'],$roles_val_arr)) {
 											$btn_design = 'btn-success';
 										}
@@ -501,11 +501,11 @@ if(checkSession()) {
 									?>
 								</ul>
 
-								<button class="btn btn-default clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
+								<button class="btn btn-secondary clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
 
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/users" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/users" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($users_update_user); ?></button>
 							</div>
 						</div><!-- card -->
@@ -542,7 +542,7 @@ if(checkSession()) {
 						<div class="modal-error alert alert-danger"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?php echo renderLang($modal_cancel); ?></button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?php echo renderLang($modal_cancel); ?></button>
 						<input type="submit" class="btn btn-danger btn-delete" value="<?php echo renderLang($modal_confirm_delete); ?>"><!--<i class="fa fa-check mr-2"></i>-->
 					</div>
 				</form>
@@ -577,7 +577,7 @@ if(checkSession()) {
 			$('.roles-list li a').click(function(e) {
 				e.preventDefault();
 
-				$(this).toggleClass('btn-default').toggleClass('btn-success');
+				$(this).toggleClass('btn-secondary').toggleClass('btn-success');
 
 				var roles = '';
 				var roles_arr = [];
@@ -602,7 +602,7 @@ if(checkSession()) {
 			// clear roles
 			$('.btn-clear-roles').click(function(e) {
 				e.preventDefault();
-				$('.roles-list li a').removeClass('btn-success').addClass('btn-default');
+				$('.roles-list li a').removeClass('btn-success').addClass('btn-secondary');
 				$('#role_ids').val('');
 				$('h4 .badge').addClass('badge-danger').removeClass('badge-success');
 			});

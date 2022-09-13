@@ -29,10 +29,10 @@ if(checkSession()) {
 			$sql->bindParam(":".$account_mode."_id",$account_id);
 			$sql->execute();
 			$data = $sql->fetch(PDO::FETCH_ASSOC);
-			$upass_db = decryptStr($data[$account_mode.'_password']);
+			$upass_db = $data[$account_mode.'_password'];
 			
 			// check if passwords match
-			if($upass_db == $upass) {
+			if(password_verify($upass,$upass_db)){
 
 				$sql = $pdo->prepare("SELECT admin_id FROM admins WHERE admin_id = :admin_id LIMIT 1");
 				$sql->bindParam(":admin_id",$admin_id);

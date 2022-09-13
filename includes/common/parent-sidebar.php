@@ -31,13 +31,13 @@
   </ul>
 </nav>
 
-<nav class="navbar-nav sidebar-custom">
+<nav class="navbar-nav sidebar-custom mb-3">
   <ul style="margin-block: 25%;">
     <hr>
         <!-- LOGIN -->
     <li class="nav-item">
       <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
-        <i class="fa fa-sign-in" aria-hidden="true"></i>LOGIN
+        <i class="fa fa-user" aria-hidden="true"></i>LOGIN
       </a>
     </li>
   </ul>

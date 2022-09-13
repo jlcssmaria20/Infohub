@@ -374,7 +374,7 @@ if(checkSession()) {
 			});
 			// populate roles
 			$('.roles-list li a').click(function(e) {
-				e.preventsecondary();
+				e.preventDefault();
 				
 				$(this).toggleClass('btn-secondary').toggleClass('btn-success');
 				
@@ -400,7 +400,7 @@ if(checkSession()) {
 			
 			// clear roles
 			$('.btn-clear-roles').click(function(e) {
-				e.preventsecondary();
+				e.preventDefault();
 				$('.roles-list li a').removeClass('btn-success').addClass('btn-secondary');
 				$('#role_ids').val('');
 				$('h4 .badge').addClass('badge-danger').removeClass('badge-success');

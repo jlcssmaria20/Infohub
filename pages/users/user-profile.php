@@ -60,7 +60,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 		<!-- echo '<i class="fa fa-download" id="fa" aria-hidden="true"></i>'; -->
 		<?php
 			// The list of items to be displayed on screen.
-			$sql = $pdo->prepare("SELECT * FROM users WHERE id ='".$id."'");
+			$sql = $pdo->prepare("SELECT * FROM users_old WHERE id ='".$id."'");
 			$sql->execute();
 			$row = $sql->fetchAll(PDO::FETCH_ASSOC);
 

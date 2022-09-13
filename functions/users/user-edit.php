@@ -20,31 +20,26 @@ if(checkSession()) {
 
 			// PROCESS FORM
 
-			// SUBTEAM & TEAM & DEPARTMENT & CENTER
-			$center_id = 0;
-			$department_id = 0;
+			// team & TEAM & DEPARTMENT & CENTER
 			$team_id = 0;
-			$subteam_id = 0;
-			if(isset($_POST['subteam_id'])) {
-				$subteam_id = strtoupper(trim($_POST['subteam_id']));
-				if((strlen($subteam_id) == 0) || $subteam_id == 0 )  {
+			if(isset($_POST['team_id'])) {
+				$team_id = strtoupper(trim($_POST['team_id']));
+				if((strlen($team_id) == 0) || $team_id == 0 )  {
 					$err++;
-					$_SESSION['sys_users_edit_subteam_id_err'] = renderLang($users_subteam_id_required);
+					$_SESSION['sys_users_edit_team_id_err'] = renderLang($users_team_id_required);
 				} else {
 
-					$_SESSION['sys_users_edit_subteam_id_val'] = $subteam_id;
+					$_SESSION['sys_users_edit_team_id_val'] = $team_id;
 
-					$sql = $pdo->prepare("SELECT subteam_id, team_id, department_id, center_id, temp_del FROM subteams WHERE subteam_id = :subteam_id AND temp_del = 0 LIMIT 1");
-					$sql->bindParam(":subteam_id",$subteam_id);
+					$sql = $pdo->prepare("SELECT id, temp_del FROM teams WHERE id = :team_id AND temp_del = 0 LIMIT 1");
+					$sql->bindParam(":team_id",$team_id);
 					$sql->execute();
 					if(!$sql->rowCount()) {
 						$err++;
-						$_SESSION['sys_users_edit_subteam_id_err'] = renderLang($users_invalid_subteam_selection);
+						$_SESSION['sys_users_edit_team_id_err'] = renderLang($users_invalid_team_selection);
 					} else {
 						$_data = $sql->fetch(PDO::FETCH_ASSOC);
-						$team_id = $_data['team_id'];
-						$department_id = $_data['department_id'];
-						$center_id = $_data['center_id'];
+						$team_id = $_data['id'];
 					}
 				}
 			}
@@ -60,11 +55,10 @@ if(checkSession()) {
 				} else {
 
 					// check if employee ID already exists
-					$sql = $pdo->prepare("SELECT user_id, user_employee_id, temp_del FROM users WHERE user_employee_id = :user_employee_id AND center_id = :center_id AND user_id <> :user_id AND temp_del=0 LIMIT 1");
+					$sql = $pdo->prepare("SELECT user_id, user_employee_id, temp_del FROM users WHERE user_employee_id = :user_employee_id AND user_id <> :user_id AND temp_del=0 LIMIT 1");
 					$bind_param = array(
 						':user_id'          => $user_id,
-						':user_employee_id' => $employee_id,
-						':center_id'        => $center_id
+						':user_employee_id' => $employee_id
 					);
 					$sql->execute($bind_param);
 					if($sql->rowCount()) {
@@ -278,8 +272,8 @@ if(checkSession()) {
 
 				// check for changes
 				$change_logs = array();
-				if($subteam_id != $data['subteam_id']) {
-					$tmp = 'users_center_department_team_subteam::'.$data['subteam_id'].'=='.$subteam_id;
+				if($team_id != $data['team_id']) {
+					$tmp = 'users_team_team::'.$data['team_id'].'=='.$team_id;
 					array_push($change_logs,$tmp);
 				}
 				if($employee_id != $data['user_employee_id']) {
@@ -355,10 +349,7 @@ if(checkSession()) {
 							user_gender = :user_gender,
 							user_mobile = :user_mobile,
 							user_position = :user_position,
-							center_id = :center_id,
-							department_id = :department_id,
 							team_id = :team_id,
-							subteam_id = :subteam_id,
 							user_hiredate = :user_hiredate,
 							user_enddate = :user_enddate,
 							role_ids = :role_ids,
@@ -376,10 +367,7 @@ if(checkSession()) {
 						':user_gender'        => $gender,
 						':user_mobile'        => $user_mobile,
 						':user_position'      => $position_id,
-						':center_id'          => $center_id,
-						':department_id'      => $department_id,
 						':team_id'            => $team_id,
-						':subteam_id'         => $subteam_id,
 						':user_hiredate'      => $user_hiredate,
 						':user_enddate'       => $user_enddate,
 						':role_ids'           => $role_ids,
