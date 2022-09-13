@@ -47,4 +47,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/roles.php');
 
 // USERS
 include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/users.php');
+
+// PROFILE
+include($_SERVER['DOCUMENT_ROOT'].'/includes/lang/profile.php');
 ?>

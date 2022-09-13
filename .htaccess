@@ -67,39 +67,39 @@ RewriteRule ^submit-edit-team/([a-zA-Z0-9_]+)                                fun
 RewriteRule ^submit-delete-team/([a-zA-Z0-9_]+)                              functions/teams/team-delete.php?id=$1 [NC,L]
 
 # ADMINS ------------------------------------------------------------------------------------------------
-RewriteRule ^admins													pages/admins/admins.php [NC,L]
-RewriteRule ^admin/([a-zA-Z0-9_]+)$									pages/admins/admin.php?id=$1 [NC,L]
-RewriteRule ^add-admin												pages/admins/admin-add.php [NC,L]
-RewriteRule ^submit-add-admin										functions/admins/admin-add.php [NC,L]
-RewriteRule ^edit-admin/([a-zA-Z0-9_]+)								pages/admins/admin-edit.php?id=$1 [NC,L]
-RewriteRule ^submit-edit-admin										functions/admins/admin-edit.php [NC,L]
-RewriteRule ^delete-admin											functions/admins/admin-delete.php [NC,L]
+RewriteRule ^admins													        pages/admins/admins.php [NC,L]
+RewriteRule ^admin/([a-zA-Z0-9_]+)$									        pages/admins/admin.php?id=$1 [NC,L]
+RewriteRule ^add-admin												        pages/admins/admin-add.php [NC,L]
+RewriteRule ^submit-add-admin										        functions/admins/admin-add.php [NC,L]
+RewriteRule ^edit-admin/([a-zA-Z0-9_]+)								        pages/admins/admin-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-admin										        functions/admins/admin-edit.php [NC,L]
+RewriteRule ^delete-admin											        functions/admins/admin-delete.php [NC,L]
 
 
 # ROLES ------------------------------------------------------------------------------------------------
-RewriteRule ^roles													pages/roles/roles.php [NC,L]
-RewriteRule ^role/([a-zA-Z0-9_]+)									pages/roles/role.php?id=$1 [NC,L]
-RewriteRule ^add-role												pages/roles/role-add.php [NC,L]
-RewriteRule ^submit-add-role										functions/roles/role-add.php [NC,L]
-RewriteRule ^edit-role/([a-zA-Z0-9_]+)								pages/roles/role-edit.php?id=$1 [NC,L]
-RewriteRule ^submit-edit-role										functions/roles/role-edit.php [NC,L]
-RewriteRule ^delete-role											functions/roles/role-delete.php [NC,L]
+RewriteRule ^roles													        pages/roles/roles.php [NC,L]
+RewriteRule ^role/([a-zA-Z0-9_]+)									        pages/roles/role.php?id=$1 [NC,L]
+RewriteRule ^add-role												        pages/roles/role-add.php [NC,L]
+RewriteRule ^submit-add-role										        functions/roles/role-add.php [NC,L]
+RewriteRule ^edit-role/([a-zA-Z0-9_]+)								        pages/roles/role-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-role										        functions/roles/role-edit.php [NC,L]
+RewriteRule ^delete-role											        functions/roles/role-delete.php [NC,L]
 
 # USERS ------------------------------------------------------------------------------------------------
-RewriteRule ^users													pages/users/users.php [NC,L]
-RewriteRule ^user/([a-zA-Z0-9_]*)									pages/users/user.php?id=$1 [QSA,L]
-RewriteRule ^add-user												pages/users/user-add.php [NC,L]
-RewriteRule ^submit-add-user										functions/users/user-add.php [NC,L]
-RewriteRule ^edit-user/([a-zA-Z0-9_]*) 								pages/users/user-edit.php?id=$1 [NC,L]
-RewriteRule ^submit-edit-user										functions/users/user-edit.php [NC,L]
-RewriteRule ^delete-user											functions/users/user-delete.php [NC,L]
-RewriteRule ^update-user-permission/([0-1]+)/([a-z-]+)/([a-zA-Z0-9_]+)	functions/users/update-user-permission.php?mode=$1&code=$2&id=$3 [NC,L]
-RewriteRule ^reset-user-pass/([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)	    functions/users/user-reset-password.php?id=$1&eid=$2 [NC,L]
-RewriteRule ^unlock-user/([a-zA-Z0-9_]+)	    					functions/users/user-unlock-account.php?id=$1 [NC,L]
-RewriteRule ^load-user-projects										functions/users/user-projects.php [QSA,L]
+RewriteRule ^users													        pages/users/users.php [NC,L]
+RewriteRule ^user/([a-zA-Z0-9_]*)									        pages/users/user.php?id=$1 [QSA,L]
+RewriteRule ^add-user												        pages/users/user-add.php [NC,L]
+RewriteRule ^submit-add-user										        functions/users/user-add.php [NC,L]
+RewriteRule ^edit-user/([a-zA-Z0-9_]*) 								        pages/users/user-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-user										        functions/users/user-edit.php [NC,L]
+RewriteRule ^delete-user											        functions/users/user-delete.php [NC,L]
+RewriteRule ^update-user-permission/([0-1]+)/([a-z-]+)/([a-zA-Z0-9_]+)	    /users/update-user-permission.php?mode=$1&code=$2&id=$3 [NC,L]
+RewriteRule ^reset-user-pass/([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)	            functions/users/user-reset-password.php?id=$1&eid=$2 [NC,L]
+RewriteRule ^unlock-user/([a-zA-Z0-9_]+)	    					        functions/users/user-unlock-account.php?id=$1 [NC,L]
+RewriteRule ^load-user-projects										        functions/users/user-projects.php [QSA,L]
 
 # USERS ------------------------------------------------------------------------------------------------
-RewriteRule ^general												pages/general/index.php [NC,L]
-
-
+RewriteRule ^general												        pages/general/index.php [NC,L]
+RewriteRule ^edit-general/([a-zA-Z0-9_]+)                                   pages/general/general-edit.php?id=$1 [NC,L]
+RewriteRule ^submit-edit-general/([a-zA-Z0-9_]+)                            functions/general/general-edit.php?id=$1 [NC,L]
 

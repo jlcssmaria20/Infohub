@@ -1,9 +1,9 @@
-<nav class="navbar-nav mb-5">
+<nav class="navbar-nav mb-5 h-100">
   <div class="nav-title">
     <h1><img class="img-logo" src="/assets/images/dx-info-hub-logo.svg" alt="DX Info Hub" /></h1>
   </div>
 
-  <ul>
+  <ul class="h-100" style="flex:1">
     <!-- HOME -->
     <li class="nav-item">
       <a class="nav-link js-scroll-trigger <?php if($page == 'home') { echo ' active'; } ?>" href="/"> <i class="fa fa-home" aria-hidden="true"></i>HOME</a>
@@ -27,18 +27,17 @@
       <!-- ANNOUNCEMENTS -->
       <li class="nav-item">
       <a class="nav-link js-scroll-trigger <?php if($page == 'o-announcements') { echo ' active'; } ?>" href="/o-announcements"><i class="fa fa-bullhorn" aria-hidden="true"></i>ANNOUNCEMENTS</a>
-    </li>
+    </li>  
   </ul>
-</nav>
 
-<nav class="navbar-nav sidebar-custom mb-3">
-  <ul style="margin-block: 25%;">
-    <hr>
-        <!-- LOGIN -->
-    <li class="nav-item">
-      <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
-        <i class="fa fa-user" aria-hidden="true"></i>LOGIN
-      </a>
-    </li>
-  </ul>
+  <div class="nav-footer" style="margin-bottom: 60px;"><hr>
+    <ul>
+      <li class="nav-item">
+        <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
+          <i class="fa fa-user" aria-hidden="true"></i> LOGIN
+        </a>
+      </li>
+    </ul>
+  </div>
+
 </nav>
