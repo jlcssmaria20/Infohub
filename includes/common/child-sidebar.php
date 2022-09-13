@@ -124,11 +124,11 @@
 				<?php if($_SESSION['sys_account_mode'] == 'user'){ ?>
 				  <!-- GENERAL -->
 				  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="#"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="/general"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
                  </li>
 				 <?php } ?>	
 				  <!-- TEST PAGE -->
-				  <li class="nav-item">
+				<li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'test') { echo ' active'; } ?>" href="/test"><i class="nav-icon fa fa-circle-o"></i><p>TEST</p> </a>
                 </li>
 			

@@ -402,7 +402,34 @@ $permissions_arr = array(
 			)
 		),
 		
+	),
+
+	// GENERAL =========================================================================================
+	array(
+		array(
+			'permission_code' => 'General',
+			'permission_name' => array(
+				'General',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to access general',
+				''
+			)
+		),
+		array(
+			'permission_code' => 'general-edit',
+			'permission_name' => array(
+				'Edit Account',
+				''
+			),
+			'permission_description' => array(
+				'Allow account to update account data.',
+				''
+			)
+		)
 	)
+
 	// GENERAL =========================================================================================
 	// array(
 	// 	array(

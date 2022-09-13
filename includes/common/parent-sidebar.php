@@ -30,9 +30,9 @@
     </li>  
   </ul>
 
-  <div class="nav-footer mb-5"><hr>
+  <div class="nav-footer" style="margin-bottom: 60px;"><hr>
     <ul>
-      <li class="nav-item mb-5">
+      <li class="nav-item">
         <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
           <i class="fa fa-user" aria-hidden="true"></i> LOGIN
         </a>
