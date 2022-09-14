@@ -18,7 +18,8 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub | Add announcements</title>
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <title><?php echo $dx."Add Announcement"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	<link rel="stylesheet" href="/assets/css/announcements.css">
@@ -127,7 +128,7 @@ if(checkSession()) {
 								</div>
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/announcements" class="btn btn-default mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/announcements" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-plus mr-2"></i><?php echo renderLang($announcements_add); ?></button>
 							</div>
 						</div><!-- card -->

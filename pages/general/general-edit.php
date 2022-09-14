@@ -70,7 +70,8 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo renderLang($account_edit); ?> &middot; <?php echo $sitenamee; ?></title>
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <title><?php echo $dx."General (Update Account)"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	

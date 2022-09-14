@@ -2,7 +2,7 @@
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php'); 
 
     // set page
-    $page = 'webinar-and-events';
+    $page = 'o-webinar-and-events';
 
     $sql = $pdo->prepare("SELECT count('title') as total FROM webinarandevents ");
     $sql->execute();
@@ -16,7 +16,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>DX Infohub - WEBINAR & EVENTS</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+	    <title><?php echo $dx."Webinar and Events"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link href="/assets/css/announcement.css" rel="stylesheet" />
         <style>

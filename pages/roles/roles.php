@@ -28,7 +28,8 @@ if(checkSession()) {
 
 <head>
 <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/meta.php'); ?>
-<title><?php echo renderLang($roles_roles); ?></title>
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+<title><?php echo $dx."Roles"; ?></title>
 
 <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 

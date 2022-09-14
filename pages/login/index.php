@@ -21,7 +21,8 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 	<!-- META -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub | Login</title>
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <title><?php echo $dx."Login"; ?></title>
 	
 	<?php include($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	

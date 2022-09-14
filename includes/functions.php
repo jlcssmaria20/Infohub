@@ -2,7 +2,7 @@
 // RENDER
 // render language
 
-$sitename = "DX Info Hub";
+$dx = "DX Info Hub ".'&middot; ';
 function renderLang($lang_arr) {
 	if(isset($lang_arr[$GLOBALS['default_lang_idx']])) {
 		if($lang_arr[$GLOBALS['default_lang_idx']] != '') {
