@@ -44,6 +44,8 @@ RewriteRule ^document-files/([a-zA-Z0-9_]+)                                   pa
 # USERS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-teams                                                         pages/users/index.php
 RewriteRule ^user-profile/([a-zA-Z0-9_]+)								     pages/users/user-profile.php?id=$1 [NC,L]
+RewriteRule ^o-user-profile/([a-zA-Z0-9_]+)								     pages/users/o-user-profile.php?id=$1 [NC,L]
+RewriteRule ^live_search                                                     functions/users/live_search.php
 
 # ANNOUNCEMENTS -----------------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^o-announcements                                                 pages/announcements/o-index.php [NC,L]
