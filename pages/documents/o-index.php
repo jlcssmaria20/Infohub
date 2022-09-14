@@ -12,7 +12,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>DX Infohub - WEBINAR & EVENTS</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+        <title><?php echo $dx."Documents and Links"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link href="/assets/css/documents.css" rel="stylesheet" />
     </head>

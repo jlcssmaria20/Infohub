@@ -24,9 +24,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>DX Infohub - WEBINAR & EVENTS</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+        <title><?php echo $dx."Document Files"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link href="/assets/css/documents.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+        <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     </head>
     <body>
         <div class="container">
@@ -54,7 +57,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                 
                                 <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
                                     <li class="list-dl-item text-left">
-                                        <i class="fa fa-copy" id="fa" aria-hidden="true"></i>
+                                        <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy this link to access file"></i>
                                         <b>File Name:</b>
                                         <?php  echo $data['file_linkname']; ?>
                                         <br>
@@ -77,16 +80,29 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>
         <?php } ?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="assets/modal/js/lightslider.js"></script> 
+        <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
+        
         <script>
-        function copyLink(e) {
-            var n = $(`#link${e}`).text();
-            $(".copied").attr("value", n);
-            $(".copied").attr("type", "text").select();
-            document.execCommand("copy")
-            $(".copied").attr("type", "hidden")
-		}
+
+            function copyLink(e) {
+                var n = $(`#link${e}`).text();
+                $(".copied").attr("value", n);
+                $(".copied").attr("type", "text").select();
+                document.execCommand("copy")
+                $(".copied").attr("type", "hidden")
+		    }
+			
+            $('.copied').bind('copy', function(){
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Copied to clipboard!'
+                })
+            //    return alert('Copied!');
+            
+            });
+		
+       
+      
         </script>
     </body>
 </html>

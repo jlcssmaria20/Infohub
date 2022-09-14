@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-	<!-- LOGO -->
+	<!-- LOGO -->	
 	<a href="#" class="brand-link mt-1">
-		<img src="/assets/images/logo-rrx.png" alt="<?php echo renderLang($sitename); ?>" class="brand-image img-circle elevation-3 ml-2 float-none" style="width:35px; height:50px; ">
-		<span class="brand-text font-weight-light"><?php echo renderLang($sitename); ?></span>
+		<img src="/assets/images/logo-rrx.png" alt="<?php echo renderLang($dx); ?>" class="brand-image img-circle elevation-3 ml-2 float-none" style="width:35px; height:50px; ">
+		<span class="brand-text font-weight-light"><?php echo "DX Info Hub"; ?></span>
 	</a>
 	<!-- SIDEBAR -->
 	<div class="sidebar">

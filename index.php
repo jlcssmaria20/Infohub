@@ -1,7 +1,6 @@
 <?php 
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php'); 
 $total = 4;
-
  // set page
  $page = 'home';
 ?>
@@ -12,7 +11,8 @@ $total = 4;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>DX Infohub - Home</title>
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+        <title><?php echo $dx."Home"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
   <body>
@@ -58,7 +58,7 @@ $total = 4;
                     ?>
                 </ul> 
             </div>
-            <a href="/webinar-and-events" class="btn btn-block btn-primary">See all events</a>
+            <a href="/o-webinar-and-events" class="btn btn-block btn-primary">See all events</a>
         </section>
         
         <!-- <section class="main-area col-s-9 d-column mb-5" >

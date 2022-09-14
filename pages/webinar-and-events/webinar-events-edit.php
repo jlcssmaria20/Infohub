@@ -66,7 +66,8 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo renderLang($webinar_events_edit); ?> &middot; <?php echo $sitenamee; ?></title>
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+	<title><?php echo $dx."Edit Webinar and Events"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
@@ -207,7 +208,7 @@ if(checkSession()) {
 
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/webinarandevents" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/webinarandevents" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($webinar_events_update); ?></button>
 							</div>
 						</div><!-- card -->
