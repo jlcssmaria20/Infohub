@@ -14,7 +14,7 @@ if(checkSession()) {
 		// PROCESS FORM
 
 		//GET USER ID
-		$id = $_SESSION['sys_data']['id'];
+		$id = $_SESSION['sys_id'];
 		//CURRENT DATE
 		$current_date = date('F j, Y - l - h:i a', time());
 
@@ -58,7 +58,7 @@ if(checkSession()) {
 					:date_created
 				)");
 			$bind_param = array(
-				':user_id'  				=> $_SESSION['sys_data']['id'],
+				':user_id'  				=> $_SESSION['sys_id'],
 				':document_name'  			=> $name,
 				':date_created'				=> $current_date
 			);
