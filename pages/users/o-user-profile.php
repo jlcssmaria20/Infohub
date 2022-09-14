@@ -56,7 +56,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             <p class="details"><?php echo $data["user_mantra_in_life"]; ?></p>
                             <div class="details">
                                 <p><b>Position: </b><?php echo $data["user_position"]; ?></p>				
-                                <p><b>Technical Skill: </b><?php echo $data["user_skills"]; ?></p>
+                                <p><b>Technical Skills: </b><?php echo $data["user_skills"]; ?></p>
                                 <?php 
                                 $sql = $pdo->prepare("SELECT team_name FROM teams WHERE id ='". $data['team_id']."'");
                                 $sql->execute();
