@@ -5,7 +5,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
  $page = 'o-teams';
 
  $user_id = (isset($_GET['id']) ? $_GET['id'] : '');
-		
+ $positions_arr = getTable('positions');		
  $sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
  $sql->bindParam(":user_id",$user_id);
  $sql->execute();
@@ -55,7 +55,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             <p class="name mt-3"><b><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></b></p>
                             <p class="details"><?php echo $data["user_mantra_in_life"]; ?></p>
                             <div class="details">
-                                <p><b>Position: </b><?php echo $data["user_position"]; ?></p>				
+                                <?php 
+                                    	foreach($positions_arr as $position) {
+                                            if($position['position_id'] == $data["user_position"]) {
+                                               echo  '<p><b>Position: </b>'.$position["position_name"].'</p>';
+                                                break;
+                                            }
+                                        }
+                                ?>
+                    
                                 <p><b>Technical Skills: </b><?php echo $data["user_skills"]; ?></p>
                                 <?php 
                                 $sql = $pdo->prepare("SELECT team_name FROM teams WHERE id ='". $data['team_id']."'");

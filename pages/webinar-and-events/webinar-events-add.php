@@ -82,7 +82,7 @@ if(checkSession()) {
 													echo '<option value="">'.renderLang($webinar_events_select_host).'</option>';
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 														echo '<option value="'.$data['employeeid'].'"';
-														echo '>['.$data['employeeid'].'] '.$data['firstname'].' '.$data['lastname'].'</option>';
+														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 													}
 												?>
 											</select>
