@@ -7,6 +7,9 @@
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
+<script src="/assets/js/jquery.js"></script>
+<!-- for live search in user -->
+<script src="/assets/js/search.js"></script>
 <!-- for the summernote in details input  -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>

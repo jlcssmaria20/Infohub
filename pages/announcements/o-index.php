@@ -33,102 +33,102 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <span style="color: var(--black);">Important Announcements</span>
                 </h2>
                 <div class="announcement-row">
-                <?php
-                    // The list of items to be displayed on screen.
-                    $x = array();
-                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC");
-                    $sql->execute();
-                    $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                    <ul>
+                        <?php
+                        // The list of items to be displayed on screen.
+                        $x = array();
+                        $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC");
+                        $sql->execute();
+                        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach($row as $key => $data) {
+                        foreach($row as $key => $data) {
 
-                        $x = $key +1;
-                        if($data['announcements_status'] != 2) {
-                            if($data['id'] != 0) {
-    
-                                echo '<li class="list-inline-item">';
-                                    echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                        echo '<img src="assets/images/announcements/'.$data['announcements_img'].'" class="myImg">';
-                                            echo '<br><span class="center mt-2" >';
-                                                echo $data['announcements_title'];
-                                            echo '</span>'; 
-                                            echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
-                                            echo  '<p data2="'.$data['announcements_details'].'"> </p>';
-                                    echo '</a>';
-                                echo '</li>';
-                               
-                            
+                            $x = $key +1;
+                            if($data['announcements_status'] != 2) {
+                                if($data['id'] != 0) {
+        
+                                    echo '<li class="list-inline-item">';
+                                        echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
+                                            echo '<img src="assets/images/announcements/'.$data['announcements_img'].'" class="myImg">';
+                                                echo '<br><span class="center mt-2" >';
+                                                    echo $data['announcements_title'];
+                                                echo '</span>'; 
+                                                echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['announcements_details'].'"> </p>';
+                                        echo '</a>';
+                                    echo '</li>';
+                                
+                                
+                                }
                             }
-                        }
+                            ?>
+                        
+                        <?php }
                         ?>
-                       
-                    <?php
-                        }
-                    ?>
-                        </ul>
-                    </div>
-                </section> 
+                    </ul>
+                </div>
+            
             </div>
-        </div>
+        </section> 
+    </div>
 
-        <!--- MODAL POP-UP AREA --->
-        <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
-            <div id="myModal<?php echo $x ?>" class="modal">
-                <div class="modal-body">
-                    <img class="modal-img">
-                    <div class="text-left">
-                        <p class="modal-name"></p>
-                        <p class="modal-details"></p>
-                        <div id="caption<?php echo $x ?>">
-                        </div>
-                        <div class="text-right">
-                            <a href="/o-announcements" class="btn btn-primary mt-3">
-                                <i class="fa fa-arrow-left mr-2"></i>
-                                <?php echo renderLang($btn_back); ?>
-                            </a>
+    <!--- MODAL POP-UP AREA --->
+    <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
+        <div id="myModal<?php echo $x ?>" class="modal">
+            <div class="modal-body">
+                <img class="modal-img">
+                <div class="text-left">
+                    <p class="modal-name"></p>
+                    <p class="modal-details"></p>
+                    <div id="caption<?php echo $x ?>">
+                    </div>
+                    <div class="text-right">
+                        <a href="/o-announcements" class="btn btn-primary mt-3">
+                            Close
+                        </a>
 
-                        </div>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        </div>
+    <?php } ?>
 
-        <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="assets/modal/js/lightslider.js"></script> 
+    <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="assets/modal/js/lightslider.js"></script> 
 
-        <script>
-            $('.close').click(function() {
-                for (let i = 1; i < <?php echo $total + 1?>; i++) {
-                $("div#myModal"+i).attr("style", "display: none !important");
-                }
-            });
-            
-            $("div#webinarandevent1").css("display","none")
-            $("li img").on("click",function(){
-                $("#sideNav").css("z-index", "0");
-                $("body").addClass("modal-open");
-                }).on("hidden", function () {
-                $("body").removeClass("modal-open");
-            });
-
-
-            // Get the modal1
-            $('.js-modal').on('click', function() {
-                var modalTarget = $(this).attr('data-target');
-                var modalImg = $(this).find('img').attr('src'); 
-                var modalName = $(this).find('h2').attr('data1');
-                var modaldetails = $(this).find('p').attr('data2')
+    <script>
+        $('.close').click(function() {
+            for (let i = 1; i < <?php echo $total + 1?>; i++) {
+            $("div#myModal"+i).attr("style", "display: none !important");
+            }
+        });
+        
+        $("div#webinarandevent1").css("display","none")
+        $("li img").on("click",function(){
+            $("#sideNav").css("z-index", "0");
+            $("body").addClass("modal-open");
+            }).on("hidden", function () {
+            $("body").removeClass("modal-open");
+        });
 
 
-                $('#'+ modalTarget).show();
-                $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
-                $('#'+ modalTarget).find('.modal-name').html(modalName)
-                $('#'+ modalTarget).find('.modal-details').html(modaldetails)
-            });
+        // Get the modal1
+        $('.js-modal').on('click', function() {
+            var modalTarget = $(this).attr('data-target');
+            var modalImg = $(this).find('img').attr('src'); 
+            var modalName = $(this).find('h2').attr('data1');
+            var modaldetails = $(this).find('p').attr('data2')
 
 
-        </script>
-    </body>
+            $('#'+ modalTarget).show();
+            $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
+            $('#'+ modalTarget).find('.modal-name').html(modalName)
+            $('#'+ modalTarget).find('.modal-details').html(modaldetails)
+        });
+
+
+    </script>
+</body>
 </html>
 

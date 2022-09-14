@@ -58,7 +58,7 @@ $total = 4;
                     ?>
                 </ul> 
             </div>
-            <a href="/webinar-and-events" class="btn btn-block btn-primary">See all events</a>
+            <a href="/o-webinar-and-events" class="btn btn-block btn-primary">See all events</a>
         </section>
         
         <!-- <section class="main-area col-s-9 d-column mb-5" >
