@@ -13,7 +13,8 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DX Info Hub | Dashboard</title>
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+    <title><?php echo $dx."Dashboard"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	

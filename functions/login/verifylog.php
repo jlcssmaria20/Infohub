@@ -72,7 +72,8 @@ if(isset($_POST['submit-login'])) {
 
 				} else {
 					
-					$_SESSION['sys_login_err'] = $attempts.' '.renderLang($login_msg_err_attempts);//2 out of 5 attempts.<br> Invalid email or password!."
+					//$_SESSION['sys_login_err'] = $attempts.' '.renderLang($login_msg_err_attempts);//2 out of 5 attempts.<br> Invalid email or password!."
+					$_SESSION['sys_login_err'] = renderLang($login_msg_err_3);
 					$_SESSION['is_locked'] = false;
 					goToPage(false);
 					

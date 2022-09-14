@@ -50,7 +50,7 @@
 		
 		<!-- SETTINGS -->
 		<li class="nav-item">
-			<a class="nav-link btn-logout" href="/logout" title="<?php echo renderLang($lang_logout); ?>">
+			<a class="nav-link btn-logout" id="logout" href="/logout" title="<?php echo renderLang($lang_logout); ?>">
 				<i class="fas fa-sign-out-alt"></i>
 			</a>
 		</li>
@@ -58,3 +58,15 @@
 	</ul><!-- nav right -->
 	
 </nav>
+<script>
+		$(function() {
+
+			$('#logout').click(function(e) {
+			e.preventDefault();
+			if(confirm('<?php echo renderLang($login_logout_confirmation)?>')){
+				window.location.href = "/logout";
+			}
+		});
+		});
+	
+</script>
