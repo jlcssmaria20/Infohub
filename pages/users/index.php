@@ -24,6 +24,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 	<title><?php echo $dx."User Profile"; ?></title>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     <link href="/assets/css/user.css" rel="stylesheet">
+    
 </head>
 <body id="team">
     <div class="container">
