@@ -121,12 +121,16 @@
 					</ul>
 				</li>
 				<?php } ?>
-				<?php if($_SESSION['sys_account_mode'] == 'user'){ ?>
+				<?php if((checkPermission('general')) && ($_SESSION['sys_account_mode'] == 'user')) { ?>
+
 				  <!-- GENERAL -->
 				  <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'general') { echo ' active'; } ?>" href="/general"><i class="nav-icon fas fa-th" aria-hidden="true"></i><p> General</p> </a>
                  </li>
-				 <?php } ?>	
+				
+
+				<?php } ?>	
+				
 				  <!-- TEST PAGE -->
 				<!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger <?php if($page == 'test') { echo ' active'; } ?>" href="/test"><i class="nav-icon fa fa-circle-o"></i><p>TEST</p> </a>

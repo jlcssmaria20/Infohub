@@ -5,20 +5,22 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 // check if user has existing session
 if(checkSession()) {
 	
+	// check permission to access this page or function
+	if(checkPermission('general')) {
 	// clear sessions from forms
-	clearSessions();
+		clearSessions();
 
-	// set page
-	$page = 'general';
+		// set page
+		$page = 'general';
 
-	$account_id = $_SESSION['sys_id'];
+		$account_id = $_SESSION['sys_id'];
 
-	$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
-	$sql->bindParam(":user_id",$account_id);
-	$sql->execute();
+		$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+		$sql->bindParam(":user_id",$account_id);
+		$sql->execute();
 
-	// check if ID exists
-	if($sql->rowCount()) {
+		// check if ID exists
+		if($sql->rowCount()) {
 
 		$data = $sql->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -213,7 +215,12 @@ if(checkSession()) {
 
 </html>
 <?php
-	
+	} else { // permission not found
+
+		$_SESSION['sys_permission_err'] = renderLang($permission_message_1); // "You are not authorized to access the page or function."
+		header('location: /dashboard');
+
+	}
 	
 } else { // no session found, redirect to login page
 	
