@@ -29,6 +29,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
         <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+        <link href="/assets/css/documents.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
@@ -48,23 +49,33 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             $sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
                             $sql->bindParam(":document_name", $data['document_name']);
                             $sql->execute();
-                            while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                $count++; 
+
+                            if($sql->rowCount() > 0) {
+
+                                while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                    $count++; 
                                 ?>
-                                <input type="hidden" class="copied">
-                            
+                                    <input type="hidden" class="copied">
                                 
-                                <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
-                                    <li class="list-dl-item text-left">
-                                        <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy"></i>
-                                        <b>File Name:</b>
-                                        <?php  echo $data['file_linkname']; ?>
-                                        <br>
-                                        <b class="text-center">Link: </b>
-                                        <span class="" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
-                                    </li>
-                                </button>
-                        <?php } ?>
+                                    
+                                    <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
+                                        <li class="list-dl-item text-left">
+                                            <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy"></i>
+                                            <b>File Name:</b>
+                                            <?php  echo $data['file_linkname']; ?>
+                                            <br>
+                                            <b class="text-center">Link: </b>
+                                            <span class="" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
+                                        </li>
+                                    </button>
+                                
+                          <?php 
+                                 }
+                             }   else {     
+                                echo '<br><p><strong>No data links available.</strong></p>';
+                             }
+                        ?>
+                       
                     </ul>
                     <div class="text-right">
                         <a href="/o-documents" class="btn btn-primary text-right">
