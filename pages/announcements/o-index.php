@@ -22,7 +22,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link href="/assets/css/announcement.css" rel="stylesheet" />
     </head>
-  <body>
+  <body id="announcement">
     <div class="container">
         <div class="col-3 col-s-3 menu">
             <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
@@ -31,10 +31,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
        <section class="main-area col-s-9 d-column mb-4" >
             <div class="announcement mb-4">
                 <h2 class="mb-3"> 
-                    <span style="color: var(--black);">Important Announcements</span>
+                    <span >Important Announcements</span>
                 </h2>
-                <div class="announcement-row">
-                    <ul>
+                <div class="announcements-row">
+                    <ul class="list-inline mb-4">
                         <?php
                         // The list of items to be displayed on screen.
                         $x = array();
@@ -51,7 +51,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     echo '<li class="list-inline-item">';
                                         echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                             echo '<img src="assets/images/announcements/'.$data['announcements_img'].'" class="myImg">';
-                                                echo '<br><span class="center mt-2" >';
+                                                echo '<br><span class="text-center w-100 mt-2" >';
                                                     echo $data['announcements_title'];
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
