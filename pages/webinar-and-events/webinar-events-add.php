@@ -74,14 +74,14 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_webinar_events_add_host_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="host" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_host); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control select2 required" name="host" required>
+											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="host" required>
 												<?php
 													$sql = $pdo->prepare("SELECT *
 														FROM users");
 													$sql->execute();
-													echo '<option value="">'.renderLang($webinar_events_select_host).'</option>';
+													echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-														echo '<option value="'.$data['employeeid'].'"';
+														echo '<option value="'.$data['user_employee_id'].'"';
 														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 													}
 												?>
@@ -104,7 +104,7 @@ if(checkSession()) {
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php $err = isset($_SESSION['sys_webinar_events_add_schedule_date_err']) ? 1 : 0; ?>
 										<div class="form-group">
-											<label for="project_name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_schedule_date); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<label for="project_name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_schedule_date); ?></label> <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -126,7 +126,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<textarea class="form-control" rows="3" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
+											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="3" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
 										</div>
 										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_description_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_description_err']); } ?>
 									</div><!-- /col-->
