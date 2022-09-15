@@ -74,7 +74,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -87,7 +88,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -100,7 +102,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -113,7 +116,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -126,7 +130,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -139,7 +144,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -152,7 +158,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -165,7 +172,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -177,7 +185,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -190,7 +199,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -203,7 +213,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['description'].'"> </p>';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
                                     }
@@ -223,8 +234,18 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             <div id="myModal<?php echo $x ?>" class="modal modal-color">
                 <div class="modal-body">
                     <img class="modal-img" alt="Webinar and Events">
-                    <span class="close">Close</span>
+                    <div class="text-left">
+                        <p class="modal-name"></p>
+                        <p class="modal-details"></p>
+                    <div id="caption<?php echo $x ?>">
+                    </div>
+                    <div class="text-right my-3">
+                        <button class="btn btn-primary closem">Close</button>
+                    </div>
+
                 </div>
+                </div>
+                
             </div>
         <?php } ?>
 
@@ -232,9 +253,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <script src="assets/modal/js/lightslider.js"></script> 
 
         <script>
-            $('.close').on('click', function() {
+            $('.closem').click(function() {
                 for (let i = 1; i < <?php echo $total + 1?>; i++) {
-                    $("#myModal"+i).attr("style", "display: none !important");
+                $("div#myModal"+i).attr("style", "display: none !important");
                 }
             });
             // $("h3#subheading6").attr("style", "display: block !important; width:100%;overflow:hidden;font-size:0px;");
@@ -244,14 +265,16 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             
             // Get the modal1
             $('.js-modal').on('click', function() {
-                var modalTarget = $(this).attr('data-target');
-                var modalImg = $(this).find('img').attr('src'); 
-                var modaldescription = $(this).find('p').attr('data1')
+            var modalTarget = $(this).attr('data-target');
+            var modalImg = $(this).find('img').attr('src'); 
+            var modalName = $(this).find('h2').attr('data1');
+            var modaldetails = $(this).find('p').attr('data2')
 
-                $('#'+ modalTarget).show();
-                $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
-                $('#'+ modalTarget).find('.modal-description').html(modaldescription)
-            });
+            $('#'+ modalTarget).show();
+            $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
+            $('#'+ modalTarget).find('.modal-name').html(modalName)
+            $('#'+ modalTarget).find('.modal-details').html(modaldetails)
+        });
 
         </script>
     </body>

@@ -149,7 +149,7 @@ img.modal-img {
     
     a.nav-link.js-scroll-trigger {
       padding: 10px 12px;
-      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
     .nav-link .fa {
       margin-right: 15px;
