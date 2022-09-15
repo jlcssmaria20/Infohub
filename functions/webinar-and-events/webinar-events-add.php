@@ -129,7 +129,7 @@ if(checkSession()) {
 				:date_created
             )");
             $bind_param = array(
-                ':user_id'  				    => $_SESSION['sys_data']['id'],
+                ':user_id'  				    => $_SESSION['sys_id'],
 				':webinar_host'                 => $host,
                 ':webinar_title'  	    		=> $title,
                 ':webinar_description'  		=> $description,

@@ -9,15 +9,12 @@
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
-<<<<<<< HEAD
 <script src="/assets/js/jquery.js"></script>
 <!-- for live search in user -->
 <script src="/assets/js/search.js"></script>
-=======
 <script src="/assets/modal/js/lightslider.js"></script> 
 <script src="/plugins/toastr/toastr.min.js"></script>
 
->>>>>>> 1d7d8da10ddbaa203614d35b69c37ce9cd7a1421
 <!-- for the summernote in details input  -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
