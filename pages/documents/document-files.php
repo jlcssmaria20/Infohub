@@ -57,7 +57,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                 
                                 <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
                                     <li class="list-dl-item text-left">
-                                        <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy this link to access file"></i>
+                                        <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy"></i>
                                         <b>File Name:</b>
                                         <?php  echo $data['file_linkname']; ?>
                                         <br>
@@ -73,6 +73,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             <?php echo renderLang($btn_back); ?>
                         </a>
                     </div>
+                    
                 </div>
             </section>       
             </div>
@@ -84,6 +85,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         
         <script>
 
+            //Tootltip
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            //Copy
             function copyLink(e) {
                 var n = $(`#link${e}`).text();
                 $(".copied").attr("value", n);

@@ -84,10 +84,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <div id="caption<?php echo $x ?>">
                     </div>
                     <div class="text-right">
-                        <a href="/o-announcements" class="btn btn-primary mt-3">
-                            Close
-                        </a>
-
+                        <div class="text-right my-3">
+                            <button class="btn btn-primary closem">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +98,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
     <script src="assets/modal/js/lightslider.js"></script> 
 
     <script>
-        $('.close').click(function() {
+        $('.closem').click(function() {
             for (let i = 1; i < <?php echo $total + 1?>; i++) {
             $("div#myModal"+i).attr("style", "display: none !important");
             }
