@@ -3,21 +3,19 @@
 <script src="/plugins/jquery/jquery.min.js"></script>
 
 <script src="/plugins/autoheight.min.js"></script>
-<script src="/plugins/select2/js/select2.full.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
-<<<<<<< HEAD
 <script src="/assets/js/jquery.js"></script>
 <!-- for live search in user -->
 <script src="/assets/js/search.js"></script>
-=======
 <script src="/assets/modal/js/lightslider.js"></script> 
 <script src="/plugins/toastr/toastr.min.js"></script>
 
->>>>>>> 1d7d8da10ddbaa203614d35b69c37ce9cd7a1421
+<script src="/plugins/select2/js/select2.full.min.js"></script>
+
 <!-- for the summernote in details input  -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>

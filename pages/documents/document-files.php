@@ -27,7 +27,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
         <title><?php echo $dx."Document Files"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
-        <link href="/assets/css/documents.css" rel="stylesheet" />
         <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
         <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     </head>

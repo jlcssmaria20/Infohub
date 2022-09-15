@@ -15,7 +15,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
         <title><?php echo $dx."Documents and Links"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
-        <link href="/assets/css/documents.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
