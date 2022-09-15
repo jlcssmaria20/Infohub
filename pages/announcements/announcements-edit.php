@@ -57,6 +57,7 @@ if(checkSession()) {
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	<!-- for the details text area input -->
+	<link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -223,6 +224,10 @@ if(checkSession()) {
 	<?php } ?>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
+	<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
+	<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+	<script src="/dist/js/demo.js"></script>
 	
 	<script>
 		$(function() {
