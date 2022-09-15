@@ -14,6 +14,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <meta name="author" content="">
         <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
         <title><?php echo $dx."Documents and Links"; ?></title>
+        <link href="/assets/css/documents.css" rel="stylesheet" />
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
     <body>
