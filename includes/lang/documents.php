@@ -167,8 +167,8 @@ $document_username_required = array(
 	'Username is required.',
 	''
 );
-$document_username_exists = array(
-	'Username already exists. Please provide a unique username.',
+$document_name_exists = array(
+	'Document name already exists. Please provide a unique folder name.',
 	''
 );
 $document_firstname_required = array(
