@@ -53,7 +53,7 @@ if(checkSession()) {
 				} else {
 					
 					// check if name already exists
-					$sql2 = $pdo->prepare("SELECT id, document_name, temp_del FROM documents WHERE document_name = :document_name AND id <> :document_id LIMIT 1");
+					$sql2 = $pdo->prepare("SELECT id, document_name, temp_del FROM documents WHERE document_name = :document_name AND id <> :document_id AND temp_del = 0 LIMIT 1");
 					$bind_param = array(
 						':document_id'      => $document_id,
 						':document_name'    => $name
@@ -88,20 +88,13 @@ if(checkSession()) {
             
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors
-				
 				// check for changes
 				$change_logs = array();
 				if($name != $data['document_name']) {
 					$tmp = 'document_name::'.$data['document_name'].'=='.$name;
 					array_push($change_logs,$tmp);
 				}
-				
-				if($document_status != $data['document_status']) {
-					echo $document_status.' '.$data['document_status'];
-					$tmp = 'lang_status::'.$data['document_status'].'=='.$document_status;
-					array_push($change_logs,$tmp);
-				}
-
+			
 				// INSERT LINKNAME AND LINK 
 				if(isset($links_arr) && count($links_arr) > 0) {
 					foreach($links_arr as $links) {
@@ -150,36 +143,31 @@ if(checkSession()) {
 				// check if there is are changes made
 				if(count($change_logs) > 0) {
 					
-					// update account language table
+					// update documents table
 					$sql = $pdo->prepare("UPDATE documents SET
 						document_name = :document_name,
-						document_status = :document_status,
 						date_edited = :date_edited
 					    WHERE id = :document_id");
 					
 					$bind_param = array(
 						':document_id'          => $document_id,
 						':document_name'   	    => $name,
-						':document_status'      => $document_status,
 						':date_edited'			=> $current_date
 					);
 					$sql->execute($bind_param);
 
-					/* $sql1 = $pdo->prepare("UPDATE files SET
-						document_name = :document_name,
-						file_linkname = :file_linkname,
-						file_link = :file_link
-						WHERE id = :document_id");
+					// update documents table
+					$sql_update_in_files_table = $pdo->prepare("UPDATE files SET
+						document_name = :document_name
+					    WHERE document_id = :document_id");
 					
 					$bind_param = array(
 						':document_id'          => $document_id,
-						':document_name'   	    => $name,
-						':file_linkname'		=> $file_linkname,
-						':file_link'			=> $document_link
+						':document_name'   	    => $name
 					);
-					$sql1->execute($bind_param); */
+					$sql_update_in_files_table->execute($bind_param);
 
-
+			
 					// record to system log
 					// $change_log = implode(';;',$change_logs);
 					// systemLog('document',$document_id,'update',$change_log);
@@ -188,7 +176,7 @@ if(checkSession()) {
 
 				} else { // no changes made
 
-					/* $_SESSION['sys_document_edit_err'] = renderLang($form_no_changes); */
+					// /* $_SESSION['sys_document_edit_err'] = renderLang($form_no_changes); 
 
 				}
 

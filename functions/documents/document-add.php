@@ -62,48 +62,17 @@ if(checkSession()) {
 				':document_name'  			=> $name,
 				':date_created'				=> $current_date
 			);
-			/* $sql1 = $pdo->prepare("INSERT INTO files(
-					id,
-					`user_id`,
-					document_name,
-					`filename`,
-					`file`,
-					date_created
-				) VALUES(
-					NULL,
-					:user_id,
-					:document_name,
-					:`filename`,
-					:`file`,
-					:date_created
-				)");
-			$bind_param = array(
-				':user_id'  				=> $_SESSION['sys_data']['id'],
-				':document_name'  			=> $name,
-				':filename'					=> $filename,
-				':file'						=> $file,
-				':date_created'				=> $current_date
-			); */
+		
 			$sql->execute($bind_param);
 			$sql->debugDumpParams();
-			
-			// get ID of new document
-			// $sql = $pdo->prepare("SELECT document_id, document_name FROM document WHERE document_name = :document_name LIMIT 1");
-			// $bind_param = array(
-			// 	':document_name'   => $name
-			// );
-			// $sql->execute($bind_param);
-			// $data = $sql->fetch(PDO::FETCH_ASSOC);
-			
-			// record to system log
-			//systemLog('document',$data['document_id'],'add','');
 
 			$_SESSION['sys_document_suc'] = renderLang($document_added);
 			header('location: /documents');
 			
 		} else { // error found
 			
-			$_SESSION['sys_document_add_err'] = renderLang($form_error);
+			$_SESSION['sys_document_add_err'] = renderLang($document_name_exists);
+			header('location: /documents');
 			
 		}
 		
