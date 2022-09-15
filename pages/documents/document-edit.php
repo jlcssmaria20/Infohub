@@ -46,7 +46,6 @@ if(checkSession()) {
     <title><?php echo $dx."Edit Document"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
-	<link rel="stylesheet" href="/assets/css/document.css">
 	
 </head>
 
@@ -85,7 +84,7 @@ if(checkSession()) {
 					renderSuccess('sys_document_edit_suc');
 					?>
 					
-					<form method="post" action="/submit-edit-document/<?php echo encryptID($id) ?>">
+					<form method="post" action="/submit-edit-document/<?php echo encryptID($id); ?>">
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title"><?php echo renderLang($document_edit_form); ?></h3>

@@ -22,7 +22,6 @@ if(checkSession()) {
     <title><?php echo $dx."Add Document"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
-	<link rel="stylesheet" href="/assets/css/document.css">
 
 	<!-- for remove button -->
 	<style>
