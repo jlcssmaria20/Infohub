@@ -46,12 +46,24 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             $sql->execute();
                             $row = $sql->fetchAll(PDO::FETCH_ASSOC);
                             $counter = 0;
+                                $counterfeb = 0;
+                                $countermar = 0;
+                                $counterapr = 0;
+                                $countermay = 0;
+                                $counterjun = 0;
+                                $counterjul = 0;
+                                $counteraug = 0;
+                                $countersep = 0;
+                                $counteroct = 0;
+                                $counternov = 0;
+                            $counterdec = 0;
                             foreach($row as $key => $data) {
                                 // echo $data['date_set'];
                                 $x = $key +1;
                                 if($data['webinar_status'] != 2) {
-                                    if($data['id'] != 1) {
+                                    if($data['id'] != 0) {
                                     // jan
+                                    
                                     if(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 7) == 'January') {
                                         echo '<h3 style="display:none; font-size: 1.3rem;" class="for-january-class_'.$counter.'" id="subheading'.$key.' ">For January</h3>';  
                                         echo '<li class="list-inline-item">';
@@ -60,28 +72,31 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'">';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                echo  '<p data1="'.$data['webinar_description'].'"> </p>';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                             echo '</a>';  
                                         echo '</li>';
                                         $counter++;
                                     }
+                                    
                                     // feb
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 8) == 'February') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For February</h3>';  
+                                        echo '<h3 style="display:none; font-size: 1.3rem;" class="for-february-class_'.$counterfeb.'" id="subheading'.$key.' ">For February</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counterfeb++;
                                     }
                                     //march
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 5) == 'March') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 5).'</h3>';  
+                                        echo '<h3 style="display:none; font-size: 1.3rem;" class="for-march-class_'.$countermar.'" id="subheading'.$key.' ">For March</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -92,10 +107,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $countermar++;
                                     }
                                     // April
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 5) == 'April') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 5).'</h3>';  
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-april-class_'.$counterapr.'" id="subheading'.$key.' ">For April</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -106,10 +122,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counterapr++;
                                     }
                                     // May
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 3) == 'May') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 3).'</h3>'; 
+                                        
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-may-class_'.$countermay.'" id="subheading'.$key.' ">For May</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -120,10 +138,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $countermay++;
                                     }
                                     // june
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 4) == 'June') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 4).'</h3>'; 
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-june-class_'.$counterjun.'" id="subheading'.$key.' ">For June</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -134,10 +153,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counterjun++;
                                     }
                                      // july
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 4) == 'July') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 4).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-july-class_'.$counterjul.'" id="subheading'.$key.' ">For July</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -148,10 +168,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counterjul++;
                                     }
                                     // August
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 6) == 'August') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 6).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-august-class_'.$counteraug.'" id="subheading'.$key.' ">For August</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -162,10 +183,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counteraug++;
                                     }
                                     // September
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 9) == 'September') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 9).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-september-class_'.$countersep.'" id="subheading'.$key.' ">For September</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -176,10 +198,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $countersep++;
                                     }
                                     // October
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 7) == 'October') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 7).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-october-class_'.$counteroct.'" id="subheading'.$key.' ">For October</h3>' ;
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  
@@ -189,10 +212,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counteroct++;
                                     }
                                     // November
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 8) == 'November') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 8).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-november-class_'.$counternov.'" id="subheading'.$key.' ">For November</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -203,10 +227,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counternov++;
                                     }
                                     // December
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 8) == 'December') {
-                                        echo '<h3 class="webinarandevent'.$data['img_count'].'" id="subheading'.$key.'"> For ' .substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])): 'ー', 0, 8).'</h3>';
+                                        echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-december-class_'.$counterdec.'" id="subheading'.$key.' ">For December</h3>' ;
                                         echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
@@ -217,6 +242,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo  '<p data2="'.$data['webinar_description'].'"> </p>';
                                                 echo '</a>';  
                                         echo '</li>';
+                                        $counterdec++;
                                     }
                                 }
                             }
@@ -261,7 +287,17 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             // $("h3#subheading6").attr("style", "display: block !important; width:100%;overflow:hidden;font-size:0px;");
             $(".webinarandevent1").attr("style","display:none");
             $(".for-january-class_0").show();
-        
+            $(".for-february-class_0").show();
+            $(".for-march-class_0").show();
+            $(".for-april-class_0").show();
+            $(".for-may-class_0").show();
+            $(".for-june-class_0").show();
+            $(".for-july-class_0").show();
+            $(".for-august-class_0").show();
+            $(".for-september-class_0").show();
+            $(".for-october-class_0").show();
+            $(".for-november-class_0").show();
+            $(".for-december-class_0").show();
             
             // Get the modal1
             $('.js-modal').on('click', function() {

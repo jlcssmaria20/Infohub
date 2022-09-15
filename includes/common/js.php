@@ -7,12 +7,22 @@
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
+
+<!-- for live search in user -->
+<script src="/assets/js/search.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+<!-- for toast in user -->
+<script src="/assets/modal/js/lightslider.js"></script> 
+<script src="/plugins/toastr/toastr.min.js"></script>
+
 <script src="/assets/js/jquery.js"></script>
 <!-- for live search in user -->
 <script src="/assets/js/search.js"></script>
 <script src="/assets/modal/js/lightslider.js"></script> 
 <script src="/plugins/toastr/toastr.min.js"></script>
 <script src="/plugins/select2/js/select2.full.min.js"></script>
+
 <!-- for the summernote in details input  -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
