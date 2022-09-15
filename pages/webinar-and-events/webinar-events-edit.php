@@ -190,7 +190,7 @@ if(checkSession()) {
                                     <div class="col-lg-3 col-md-4 col-sm-2">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_img_err']) ? 1 : 0; ?>
                                         <div class="form-group">
-                                            <label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_img); ?></label> 
+                                            <label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
                                             <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="picture" name="picture" accept="image/*">
