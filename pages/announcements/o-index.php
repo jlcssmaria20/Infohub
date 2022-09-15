@@ -38,7 +38,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                         <?php
                         // The list of items to be displayed on screen.
                         $x = array();
-                        $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC");
+                        $sql = $pdo->prepare("SELECT * FROM announcements WHERE temp_del = 0 ORDER BY id ASC ");
                         $sql->execute();
                         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
