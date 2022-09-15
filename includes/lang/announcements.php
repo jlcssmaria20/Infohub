@@ -51,7 +51,7 @@ $announcements_details_label = array(
 	''
 );
 $announcements_details_placeholder = array(
-	'e.g This webinar or Event is...',
+	'e.g This national holiday is...',
 	''
 );
 $announcements_img_label = array(

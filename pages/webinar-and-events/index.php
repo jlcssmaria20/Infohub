@@ -16,8 +16,8 @@ if(checkSession()) {
 		$page = 'webinarandevents';
 		
 		// set fields from table to search on
-		$fields_arr = array('webinar_events_title','webinar_events_description');
-		$search_placeholder = renderLang($webinar_events_title_placeholder);
+		$fields_arr = array('webinar_title','webinar_description');
+		$search_placeholder = renderLang($webinar_events_title);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
 		$sql_query = 'SELECT * FROM webinarandevents'.$where; // set sql statement

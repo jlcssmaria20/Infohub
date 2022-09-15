@@ -173,7 +173,7 @@ if(checkSession()) {
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
 							<button type="submit"  style="background-color: #FCCD2F"class="btn btn-confirm text-dark"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_add) ?></button>
 						</div>
 					</form>

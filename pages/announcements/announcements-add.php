@@ -105,8 +105,8 @@ if(checkSession()) {
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-											<textarea class="form-control required <?php if($details_err) { echo ' is-invalid'; } ?>"  id="details" name="details" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_details_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_details_val'].'"'; } ?> required></textarea>
-										
+											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="3" id="details" name="details" required></textarea>
+											
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_details_err'].'</p>'; unset($_SESSION['sys_announcements_add_details_err']); } ?>
 										</div>
 									</div>
@@ -121,15 +121,15 @@ if(checkSession()) {
 												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" required>
 												<label for="imgs" class="custom-file-label">Choose Image</label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_img_err'].'</p>'; unset($_SESSION['sys_announcements_add_img_err']); } ?>
+												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="#" style="display: none; height:200px;">
 												
 											</div>
 										</div>
 									</div>
-									
 								</div>
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/announcements" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/announcements" class="btn btn-default border mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-plus mr-2"></i><?php echo renderLang($announcements_add); ?></button>
 							</div>
 						</div><!-- card -->
@@ -162,9 +162,9 @@ if(checkSession()) {
 		//replace the "Choose a file" label
 		$(this).next('.custom-file-label').html(img);
 		});
-
 		//for details text editor
 		$('#details').summernote({
+			placeholder: 'This announcement is about...',
 			tabsize: 2,
 			height: 100,
 			toolbar: [
@@ -178,6 +178,20 @@ if(checkSession()) {
 			]
 		});
 
+		function readURL(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#picture_display').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+		$("#img").change(function(){
+			$('#picture_display').show();
+		  readURL(this);
+		});
 	</script>
 	
 </body>

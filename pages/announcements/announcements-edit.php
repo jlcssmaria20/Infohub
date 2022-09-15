@@ -182,7 +182,7 @@ if(checkSession()) {
 
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
-								<a href="/announcements" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+								<a href="/announcements" class="btn btn-default border mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($announcements_update_announcements); ?></button>
 							</div>
 						</div><!-- card -->

@@ -35,7 +35,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             <section class="main-area col-s-9 d-column mb-4" >
             <div class="announcement mb-4">
                 <h2 class="mb-3">
-                    <span  style="color: var(--black);">Webinar and Events</span>
+                    <span>Webinar and Events</span>
                 </h2>
                 <div class="announcement-row">
                     <ul class="list-inline mb-4">
