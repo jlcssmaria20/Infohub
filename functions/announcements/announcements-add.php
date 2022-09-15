@@ -105,7 +105,7 @@ if(checkSession()) {
 					:date_created
 				)");
 			$bind_param = array(
-				':user_id'  				=> $_SESSION['sys_data']['id'],
+				':user_id'  				=> $_SESSION['sys_id'],
 				':announcements_title'  	=> $title,
 				':announcements_details'  	=> $details,
 				':announcements_img'   		=> $img,
