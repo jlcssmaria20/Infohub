@@ -5,20 +5,22 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 // check if user has existing session
 if(checkSession()) {
 	
+	// check permission to access this page or function
+	if(checkPermission('general')) {
 	// clear sessions from forms
-	clearSessions();
+		clearSessions();
 
-	// set page
-	$page = 'general';
+		// set page
+		$page = 'general';
 
-	$account_id = $_SESSION['sys_id'];
+		$account_id = $_SESSION['sys_id'];
 
-	$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
-	$sql->bindParam(":user_id",$account_id);
-	$sql->execute();
+		$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+		$sql->bindParam(":user_id",$account_id);
+		$sql->execute();
 
-	// check if ID exists
-	if($sql->rowCount()) {
+		// check if ID exists
+		if($sql->rowCount()) {
 
 		$data = $sql->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -54,7 +56,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="nav-icon fas fa-th" aria-hidden="true"></i><?php echo renderLang($account); ?></h1>
+							<h1><i class="nav-icon fas fa-th" aria-hidden="true"></i><?php echo renderLang($account_details); ?></h1>
 						</div>
 					</div>
 					
@@ -72,7 +74,7 @@ if(checkSession()) {
 
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title"><?php echo renderLang($account_details); ?></h3>
+							
 							<div class="card-tools">
 								<a href="/edit-general/<?php echo $account_id ?>" class="btn btn-primary btn-md"><i class="fa fa-pencil-alt mr-2"></i><?php echo renderLang($account_edit); ?></a><?php } ?>
 							</div>
@@ -213,7 +215,12 @@ if(checkSession()) {
 
 </html>
 <?php
-	
+	} else { // permission not found
+
+		$_SESSION['sys_permission_err'] = renderLang($permission_message_1); // "You are not authorized to access the page or function."
+		header('location: /dashboard');
+
+	}
 	
 } else { // no session found, redirect to login page
 	

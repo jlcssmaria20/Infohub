@@ -4,64 +4,67 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
 // check if user has existing session
 if(checkSession()) {
+
+    // check permission to access this page or function
+	if(checkPermission('general')) {
 	
-	// clear sessions from forms
-	clearSessions();
+        // clear sessions from forms
+        clearSessions();
 
-	// set page
-	$page = 'general';
+        // set page
+        $page = 'general';
 
-	$account_id = $_SESSION['sys_id'];
-	$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
-	$sql->bindParam(":user_id", $account_id);
-	$sql->execute();
+        $account_id = $_SESSION['sys_id'];
+        $sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+        $sql->bindParam(":user_id", $account_id);
+        $sql->execute();
 
-	// check if ID exists
-	if($sql->rowCount()) {
+        // check if ID exists
+        if($sql->rowCount()) {
 
-		$data = $sql->fetch(PDO::FETCH_ASSOC);
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
 
-        $user_skills = $data['user_skills'];
-        if(isset($_SESSION['sys_general_edit_skills_val'])) {
-            $user_skills = $_SESSION['sys_general_edit_skills_val'];
-            unset($_SESSION['sys_general_edit_skills_val']);
-        }
-        $user_mantra = $data['user_mantra_in_life'];
-        if(isset($_SESSION['sys_general_edit_mantra_val'])) {
-            $user_mantra_in_life = $_SESSION['sys_general_edit_mantra_val'];
-            unset($_SESSION['sys_general_edit_mantra_val']);
-        }
-        $user_nickname = $data['user_nickname'];
-        if(isset($_SESSION['sys_general_edit_nickname_val'])) {
-            $user_nickname = $_SESSION['sys_general_edit_nickname_val'];
-            unset($_SESSION['sys_general_edit_nickname_val']);
-        }
-        $user_photo = $data['user_photo'];
-        if(isset($_SESSION['sys_general_edit_photo_val'])) {
-            $user_photo = $_SESSION['sys_general_edit_photo_val'];
-            unset($_SESSION['sys_general_edit_photo_val']);
-        }
+            $user_skills = $data['user_skills'];
+            if(isset($_SESSION['sys_general_edit_skills_val'])) {
+                $user_skills = $_SESSION['sys_general_edit_skills_val'];
+                unset($_SESSION['sys_general_edit_skills_val']);
+            }
+            $user_mantra = $data['user_mantra_in_life'];
+            if(isset($_SESSION['sys_general_edit_mantra_val'])) {
+                $user_mantra_in_life = $_SESSION['sys_general_edit_mantra_val'];
+                unset($_SESSION['sys_general_edit_mantra_val']);
+            }
+            $user_nickname = $data['user_nickname'];
+            if(isset($_SESSION['sys_general_edit_nickname_val'])) {
+                $user_nickname = $_SESSION['sys_general_edit_nickname_val'];
+                unset($_SESSION['sys_general_edit_nickname_val']);
+            }
+            $user_photo = $data['user_photo'];
+            if(isset($_SESSION['sys_general_edit_photo_val'])) {
+                $user_photo = $_SESSION['sys_general_edit_photo_val'];
+                unset($_SESSION['sys_general_edit_photo_val']);
+            }
 
-        $user_firstname = $data['user_firstname'];
-        if(isset($_SESSION['sys_general_edit_firstname_val'])) {
-            $user_firstname = $_SESSION['sys_general_edit_firstname_val'];
-            unset($_SESSION['sys_general_edit_firstname_val']);
-        }
-        $user_middlename = $data['user_middlename'];
-        if(isset($_SESSION['sys_general_edit_middlename_val'])) {
-            $user_middlename = $_SESSION['sys_general_edit_middlename_val'];
-            unset($_SESSION['sys_general_edit_middlename_val']);
-        }
-        $user_lastname = $data['user_lastname'];
-        if(isset($_SESSION['sys_general_edit_lastname_val'])) {
-            $user_lastname = $_SESSION['sys_general_edit_lastname_val'];
-            unset($_SESSION['sys_general_edit_lastname_val']);
-        }
-        $user_mobile = $data['user_mobile'];
-        if(isset($_SESSION['sys_general_edit_mobile_val'])) {
-            $user_mobile = $_SESSION['sys_general_edit_mobile_val'];
-            unset($_SESSION['sys_general_edit_mobile_val']);
-        }
+            $user_firstname = $data['user_firstname'];
+            if(isset($_SESSION['sys_general_edit_firstname_val'])) {
+                $user_firstname = $_SESSION['sys_general_edit_firstname_val'];
+                unset($_SESSION['sys_general_edit_firstname_val']);
+            }
+            $user_middlename = $data['user_middlename'];
+            if(isset($_SESSION['sys_general_edit_middlename_val'])) {
+                $user_middlename = $_SESSION['sys_general_edit_middlename_val'];
+                unset($_SESSION['sys_general_edit_middlename_val']);
+            }
+            $user_lastname = $data['user_lastname'];
+            if(isset($_SESSION['sys_general_edit_lastname_val'])) {
+                $user_lastname = $_SESSION['sys_general_edit_lastname_val'];
+                unset($_SESSION['sys_general_edit_lastname_val']);
+            }
+            $user_mobile = $data['user_mobile'];
+            if(isset($_SESSION['sys_general_edit_mobile_val'])) {
+                $user_mobile = $_SESSION['sys_general_edit_mobile_val'];
+                unset($_SESSION['sys_general_edit_mobile_val']);
+            }
     
 ?>
 <!DOCTYPE html>
@@ -111,9 +114,8 @@ if(checkSession()) {
 					?>
                     <form method="post" action="/submit-edit-general/<?php echo encryptID($account_id) ?>" enctype="multipart/form-data">
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title"><?php echo renderLang($account); ?></h3>
-                            </div>
+                            <!-- <div class="card-header">
+                            </div> -->
                             <!-- YOUR ACCOUNT -->
                             <div class="card-body">
                                 <div class="row">
@@ -278,7 +280,7 @@ if(checkSession()) {
 
                             <!-- FOOTER -->
                             <div class="card-footer text-right">
-                                <a href="/general" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+                                <a href="/general" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
                                 <button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($account_update_account); ?></button>
                             </div>
                         </div>
@@ -309,7 +311,12 @@ if(checkSession()) {
 </html>
 
 <?php
-	
+    } else { // permission not found
+
+        $_SESSION['sys_permission_err'] = renderLang($permission_message_1); // "You are not authorized to access the page or function."
+        header('location: /dashboard');
+
+    }
 	
 } else { // no session found, redirect to login page
 	

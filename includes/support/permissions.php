@@ -3,52 +3,52 @@ $permissions_arr = array(
 
 
 	// TEST =========================================================================================
-	array(
-		array(
-			'permission_code' => 'test',
-			'permission_name' => array(
-				'Test List',
-				''
-			),
-			'permission_description' => array(
-				'Allow account to access test list',
-				''
-			)
-		),
-		array(
-			'permission_code' => 'test-add',
-			'permission_name' => array(
-				'Add Test Data',
-				''
-			),
-			'permission_description' => array(
-				'Allow account to add test data.',
-				''
-			)
-		),
-		array(
-			'permission_code' => 'test-edit',
-			'permission_name' => array(
-				'Edit Test Data',
-				''
-			),
-			'permission_description' => array(
-				'Allow account to update test data.',
-				''
-			)
-		),
-		array(
-			'permission_code' => 'test-delete',
-			'permission_name' => array(
-				'Delete Test Data',
-				''
-			),
-			'permission_description' => array(
-				'Allow account to delete test data.',
-				''
-			)
-		)
-	),
+	// array(
+	// 	array(
+	// 		'permission_code' => 'test',
+	// 		'permission_name' => array(
+	// 			'Test List',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to access test list',
+	// 			''
+	// 		)
+	// 	),
+	// 	array(
+	// 		'permission_code' => 'test-add',
+	// 		'permission_name' => array(
+	// 			'Add Test Data',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to add test data.',
+	// 			''
+	// 		)
+	// 	),
+	// 	array(
+	// 		'permission_code' => 'test-edit',
+	// 		'permission_name' => array(
+	// 			'Edit Test Data',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to update test data.',
+	// 			''
+	// 		)
+	// 	),
+	// 	array(
+	// 		'permission_code' => 'test-delete',
+	// 		'permission_name' => array(
+	// 			'Delete Test Data',
+	// 			''
+	// 		),
+	// 		'permission_description' => array(
+	// 			'Allow account to delete test data.',
+	// 			''
+	// 		)
+	// 	)
+	// ),
 		// DOCUMENTS =========================================================================================
 		array(
 			array(
@@ -407,24 +407,13 @@ $permissions_arr = array(
 	// GENERAL =========================================================================================
 	array(
 		array(
-			'permission_code' => 'General',
+			'permission_code' => 'general',
 			'permission_name' => array(
 				'General',
 				''
 			),
 			'permission_description' => array(
 				'Allow account to access general',
-				''
-			)
-		),
-		array(
-			'permission_code' => 'general-edit',
-			'permission_name' => array(
-				'Edit Account',
-				''
-			),
-			'permission_description' => array(
-				'Allow account to update account data.',
 				''
 			)
 		)

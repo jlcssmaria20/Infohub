@@ -94,7 +94,6 @@ if(checkSession()) {
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
 											<th><?php echo renderLang($webinar_events_img); ?></th>
 											<th class="w-50"><?php echo renderLang($webinar_events_description); ?></th>
-                                            <th><?php echo renderLang($webinar_events_status); ?></th>
 											<th></th>
 										</tr>
 									</thead>
@@ -121,25 +120,25 @@ if(checkSession()) {
 
                                                 // STATUS
 												// STATUS
-												echo '<td>';
-												switch($data['webinar_status']) {
-													case 0: $Events = 'Active'; break;
-													case 1: $Events = 'Deleted'; break;	
-												}
+												// echo '<td>';
+												// switch($data['webinar_status']) {
+												// 	case 0: $Events = 'Active'; break;
+												// 	case 1: $Events = 'Deleted'; break;	
+												// }
 											
-												switch($Events) {
-													case 'Active': $text_class = 'success'; break;
-													case 'Deleted': $text_class = 'danger'; break;
-												}
-												echo '<span class="text-'.$text_class.'">'.$Events.'</span>';
-												echo '</td>';
+												// switch($Events) {
+												// 	case 'Active': $text_class = 'success'; break;
+												// 	case 'Deleted': $text_class = 'danger'; break;
+												// }
+												// echo '<span class="text-'.$text_class.'">'.$Events.'</span>';
+												// echo '</td>';
 
 												// OPTIONS
 												echo '<td>';
 
 													// EDIT ANNOUNCEMENTS
 													if(checkPermission('webinar-events-edit')) {
-														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-success btn-sm" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-success btn-xs" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
 
 												echo '</td>'; // end options
