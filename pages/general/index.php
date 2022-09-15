@@ -56,7 +56,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="nav-icon fas fa-th" aria-hidden="true"></i><?php echo renderLang($account); ?></h1>
+							<h1><i class="nav-icon fas fa-th" aria-hidden="true"></i><?php echo renderLang($account_details); ?></h1>
 						</div>
 					</div>
 					
@@ -74,7 +74,7 @@ if(checkSession()) {
 
 					<div class="card">
 						<div class="card-header">
-							<h3 class="card-title"><?php echo renderLang($account_details); ?></h3>
+							
 							<div class="card-tools">
 								<a href="/edit-general/<?php echo $account_id ?>" class="btn btn-primary btn-md"><i class="fa fa-pencil-alt mr-2"></i><?php echo renderLang($account_edit); ?></a><?php } ?>
 							</div>

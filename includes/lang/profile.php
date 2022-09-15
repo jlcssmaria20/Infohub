@@ -23,7 +23,7 @@ $account_contact_information = array(
 	''
 );
 $account_edit = array(
-	'Edit Your Account',
+	'Edit Account Details',
 	''
 );
 $account_edit_form = array(

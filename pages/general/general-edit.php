@@ -114,9 +114,8 @@ if(checkSession()) {
 					?>
                     <form method="post" action="/submit-edit-general/<?php echo encryptID($account_id) ?>" enctype="multipart/form-data">
                         <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title"><?php echo renderLang($account); ?></h3>
-                            </div>
+                            <!-- <div class="card-header">
+                            </div> -->
                             <!-- YOUR ACCOUNT -->
                             <div class="card-body">
                                 <div class="row">
@@ -281,7 +280,7 @@ if(checkSession()) {
 
                             <!-- FOOTER -->
                             <div class="card-footer text-right">
-                                <a href="/general" class="btn btn-secondary mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
+                                <a href="/general" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
                                 <button class="btn btn-primary"><i class="fa fa-upload mr-2"></i><?php echo renderLang($account_update_account); ?></button>
                             </div>
                         </div>
