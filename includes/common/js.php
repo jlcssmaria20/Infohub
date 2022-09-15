@@ -9,9 +9,12 @@
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="/dist/js/adminlte.min.js"></script>
 <script src="/assets/js/common.js"></script>
-<script src="/assets/js/jquery.js"></script>
+
 <!-- for live search in user -->
 <script src="/assets/js/search.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+<!-- for toast in user -->
 <script src="/assets/modal/js/lightslider.js"></script> 
 <script src="/plugins/toastr/toastr.min.js"></script>
 
