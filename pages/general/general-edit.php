@@ -236,13 +236,16 @@ if(checkSession()) {
                                                 <?php $err = isset($_SESSION['sys_general_edit_photo_err']) ? 1 : 0; ?>
                                                 <div class="form-group">
                                                     <label for="photo" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_image); ?></label> 
+                                                   
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+                                                    
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="photo" name="photo">
                                                         <label for="photo" class="custom-file-label"><?php echo $user_photo; ?></label>
                                                         <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_photo_err'].'</p>'; unset($_SESSION['sys_general_edit_photo_err']); } ?>
                                                         <input type="hidden" name="file_src" value="<?php echo $user_photo; ?>">
                                                     </div>
+                                                    <p><?php echo renderLang($settings_general_msg2);?>
                                                 </div>
                                             </div>
                                             

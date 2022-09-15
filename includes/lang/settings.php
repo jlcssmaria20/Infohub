@@ -80,4 +80,10 @@ $settings_notifications = array(
 	'Notifications',
 	'通知'
 );
+
+//general
+$settings_general_msg2= array(
+	'Hard refresh or CTRL + F5 to see updated photo.',
+	'更新された写真を見るにはハードリフレッシュまたはCTRL + F5を押してください。'
+);
 ?>
