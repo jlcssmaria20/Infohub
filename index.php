@@ -100,7 +100,7 @@ $total = 4;
                     <?php
                     // The list of items to be displayed on screen.
                     $x = array();
-                    $sql = $pdo->prepare("SELECT * FROM announcements ORDER BY id ASC LIMIT 4");
+                    $sql = $pdo->prepare("SELECT * FROM announcements WHERE announcements_status = 0 ORDER BY id ASC LIMIT 4");
                     $sql->execute();
                     $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 

@@ -34,7 +34,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <span >Important Announcements</span>
                 </h2>
                 <div class="announcements-row">
-                    <ul class="list-inline mb-4">
+                    <ul class="list-inline mb-4 d-flex flex-wrap">
                         <?php
                         // The list of items to be displayed on screen.
                         $x = array();

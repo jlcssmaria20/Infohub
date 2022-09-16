@@ -189,6 +189,7 @@ if(checkSession()) {
 													<div class="form-group">
 														<input type="text" class="form-control" id="linkname" name="linkname<?php echo $count ?>" value="<?php echo $data['file_linkname'] ?>">
 														<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
+														<input type="hidden" name="folder_id" value="<?php echo $data['document_id']?>">
 													</div>
 												</div>
 

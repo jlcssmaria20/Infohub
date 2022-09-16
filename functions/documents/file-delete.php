@@ -16,10 +16,25 @@ if(checkSession()) {
 		// PROCESS FORM
 		$id = decryptID($_GET['id']);
 		
-		// delete file from document table
-		$sql = $pdo->prepare("DELETE FROM files WHERE id = :id");
+		$sql = $pdo->prepare("SELECT * FROM files WHERE id = :id LIMIT 1");
 		$sql->bindParam(":id",$id);
 		$sql->execute();
+
+		// check if ID exists
+		if($sql->rowCount()) {
+
+			$data = $sql->fetch(PDO::FETCH_ASSOC);
+			$document_id = $data['document_id'];
+
+			// delete file from document table
+			
+			$sql = $pdo->prepare("DELETE FROM files WHERE id = :id LIMIT 1");
+			$sql->bindParam(":id",$id);
+			$sql->execute();
+
+			header('location: /edit-document/'.encryptID($document_id).'');
+		}
+
 
 		$err_code = 0;
 		
@@ -29,5 +44,4 @@ if(checkSession()) {
 
 	}
 }
-header('location: /edit-document/'.encryptID('1').'');
 ?>
