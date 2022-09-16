@@ -5,7 +5,7 @@ section.main-area.col-s-9.d-column.mb-4 {
 li.list-dl-item {
     float: left;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 8px;
     border-radius: 5px;
     border: solid 1px var(--gray);

@@ -198,9 +198,12 @@ $users_modal_delete_msg1 = array(
 	'このユーザーを削除しますか？'
 );
 $users_modal_delete_msg2 = array(
-	'It is discouraged to delete a record.<br>Please consider deactivating the user account instead.',
-	'過去の情報に影響が出るため削除は推奨しません。<br>
-	代わりにユーザーアカウントを無効にすることを検討してください。'
+	'It is discouraged to delete a record.',
+	'過去の情報に影響が出るため削除は推奨しません。'
+);
+$users_modal_delete_msg3 = array(
+	'Please consider deactivating the user account instead.',
+	'代わりにユーザーアカウントを無効にすることを検討してください。'
 );
 
 // FORM MESSAGES

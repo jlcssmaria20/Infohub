@@ -64,7 +64,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($team_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['team_name']; ?></h1>
+							<h1><i class="fa fa-handshake mr-3"></i><?php echo renderLang($team_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['team_name']; ?></h1>
 						</div>
 					</div>
 					
@@ -130,7 +130,7 @@ if(checkSession()) {
 	<?php if(checkPermission('team-delete')) { ?>
 	<!-- MODAL -->
 	<div class="modal fade" id="delete_team_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header bg-danger">
 					<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
@@ -138,11 +138,11 @@ if(checkSession()) {
 				<form action="/submit-delete-team/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 					<input type="hidden" name="team_id" id="delete_team_id" value="4">
 					<div class="modal-body">
-						<p><?= renderLang($team_modal_delete_msg1); ?></p>
+						<p class="m-0"><?= renderLang($team_modal_delete_msg1); ?></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
 						<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
 					</div>
 				</form>

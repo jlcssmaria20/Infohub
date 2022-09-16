@@ -55,7 +55,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($team); ?></h1>
+							<h1><i class="fa fa-handshake mr-3"></i><?php echo renderLang($team); ?></h1>
 						</div>
 					</div>
 					
@@ -102,25 +102,18 @@ if(checkSession()) {
 											$data_count++;
 											$team_id = encryptID($data['id']);
 
+											$count =  $pdo->prepare("SELECT * FROM `users` WHERE `team_id` = ".$data['id']);
+											$count->execute();
+											$total_data_count = $count->rowCount();
+
 											echo '<tr>';
 
 												// TEAM Name
 												echo '<td>'.$data['team_name'].'</td>';
 
 												// NUMBER OF USERS
-												echo '<td>0</td>';
+												echo '<td>'.$total_data_count.'</td>';
 
-												// echo '<td>';
-
-												// // get from USERS table
-												// $sql2 = $pdo->prepare("SELECT user_id, team_id, temp_del FROM users WHERE team_id = :team_id AND temp_del=0");
-												// $sql2->bindParam(":team_id",$data['team_id']);
-												// $sql2->execute();
-												// $users_ctr = $sql2->rowCount();
-
-												// echo number_format($users_ctr,0,'.',',');
-
-												// echo '</td>';
 												// OPTIONS
 												echo '<td>';
 

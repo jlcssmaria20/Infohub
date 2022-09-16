@@ -55,7 +55,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fas fa-folder-open-o mr-3"></i><?php echo renderLang($documents); ?></h1>
+							<h1><i class="fas fa-file mr-3"></i><?php echo renderLang($documents); ?></h1>
 						</div>
 					</div>
 					
@@ -160,10 +160,10 @@ if(checkSession()) {
 						<h4 class="modal-title"><?= renderLang($modal_add_confirmation) ?></h4>
 					</div>
 					<form action="/submit-add-document" method="post" id="add_form">
-						<div class="modal-body p-4">
+						<div class="modal-body">
 							<!-- FOLDER NAME -->
 							
-							<div class="form-group">
+							<div class="form-group w-100 m-0">
 								<?php $err = isset($_SESSION['sys_documents_add_name_err']) ? 1 : 0; ?>
 								<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> 
 								<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
