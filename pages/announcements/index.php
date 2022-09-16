@@ -56,7 +56,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6 col-12">
-							<h1><i class="fa fa-users mr-3"></i><?php echo renderLang($announcements); ?></h1>
+							<h1><i class="fa fa-bullhorn mr-3"></i><?php echo renderLang($announcements); ?></h1>
 						</div>
 					</div>
 					

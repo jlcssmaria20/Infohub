@@ -2,10 +2,6 @@ section.main-area.col-s-9.d-column.mb-4 {
   margin: 70px 0 0;
   min-height: 100vh;
 }
-.announcement-row  {
-    display: flex;
-    flex-wrap: wrap;
-  }
   .col_4_2_1 img {
     width: 100%;
     box-shadow: 2px 2px grey;

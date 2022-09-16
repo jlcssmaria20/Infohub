@@ -202,19 +202,19 @@ if(checkSession()) {
 	<?php if(checkPermission('announcements-delete')) { ?>
 	<!-- MODAL -->
 	<div class="modal fade" id="delete_announcements_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header bg-danger">
 					<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
 				</div>
 				<form action="/submit-delete-announcements/<?php echo encryptID($id) ?>" method="post" id="form_delete">
-					<input type="hidden" name="announcements_id" id="delete_announcements_id" value="4">
-					<div class="modal-body">
-						<p><?= renderLang($announcements_modal_delete_msg1); ?></p>
+					<div class="modal-body px-5 py-4">
+						<input type="hidden" name="announcements_id" id="delete_announcements_id" value="4">
+						<p class="m-0"><?= renderLang($announcements_modal_delete_msg1); ?></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+						<button type="button" class="btn btn-default border" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
 						<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
 					</div>
 				</form>

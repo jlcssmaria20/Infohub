@@ -203,10 +203,11 @@ if(checkSession()) {
 				</div>
 				<form action="/delete-admin" method="post" id="form_delete">
 					<input type="hidden" name="id" value="<?php echo encryptID($id); ?>">
-					<div class="modal-body">
-						<p><?php echo renderLang($admins_modal_delete_msg1); ?></p>
-						<p><?php echo renderLang($admins_modal_delete_msg2); ?></p>
-						<hr>
+					<div class="modal-body align-items-start">
+						<p class="font-weight-bold">
+							<?php echo renderLang($admins_modal_delete_msg1); ?><br>
+							<span class="font-weight-normal text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?php echo renderLang($admins_modal_delete_msg2); ?></span>
+						</p>
 						<div class="form-group is-invalid">
 							<label for="modal_confirm_delete_upass"><?php echo renderLang($enter_password); ?></label>
 							<input type="password" class="form-control required" id="modal_confirm_delete_upass" name="upass" placeholder="<?php echo renderLang($enter_password_placeholder); ?>" required autocomplete="off">

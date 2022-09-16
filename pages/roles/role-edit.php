@@ -196,10 +196,16 @@ if(checkSession()) {
 			</div>
 			<form action="/delete-role" method="post" id="form_delete">
 				<input type="hidden" name="role_id" value="<?php echo encryptID($role_id); ?>">
-				<div class="modal-body">
-					<p><?php echo renderLang($roles_modal_delete_msg1); ?></p>
-					<p><?php echo renderLang($roles_modal_delete_msg2); ?></p>
-					<hr>
+				<div class="modal-body align-items-start">
+					<p class="font-weight-bold">
+						<?php echo renderLang($roles_modal_delete_msg1); ?><br>
+						<span class="font-weight-normal text-danger">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+							<?php echo renderLang($roles_modal_delete_msg2); ?><br>
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+							<?php echo renderLang($roles_modal_delete_msg3); ?>
+						</span>
+					</p>
 					<div class="form-group is-invalid">
 						<label for="modal_confirm_delete_upass"><?php echo renderLang($enter_password); ?></label>
 						<input type="password" class="form-control" id="modal_confirm_delete_upass" name="upass" placeholder="<?php echo renderLang($enter_password_placeholder); ?>" required autocomplete="off">
@@ -207,7 +213,7 @@ if(checkSession()) {
 					<div class="modal-error alert alert-danger"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?php echo renderLang($modal_cancel); ?></button>
+					<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?php echo renderLang($modal_cancel); ?></button>
 					<input type="submit" class="btn btn-danger btn-delete" value="<?php echo renderLang($modal_confirm_delete); ?>"><!--<i class="fa fa-check mr-2"></i>-->
 				</div>
 			</form>

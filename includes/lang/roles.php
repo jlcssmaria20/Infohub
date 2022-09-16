@@ -65,10 +65,14 @@ $roles_modal_delete_msg1 = array(
 	'この役割を削除しますか？'
 );
 $roles_modal_delete_msg2 = array(
-	'Deleting this role will remove it from the database permanently.<br>Deleting a role will affect <strong>user accounts</strong> and their <em>access</em> or <em>permissions</em> in the system.',
-	'この役割を削除すると、データベースから永久に削除されます。<br>役割を削除すると、システムのユーザーアカウントとそのアクセスまたはアクセス許可に影響します。'
+	'Deleting this role will remove it from the database permanently.',
+	'この役割を削除すると、データベースから永久に削除されます。'
 );
 
+$roles_modal_delete_msg3 = array(
+	'Deleting a role will affect <strong>user accounts</strong> and their <em>access</em> or <em>permissions</em> in the system.',
+	'役割を削除すると、システムのユーザーアカウントとそのアクセスまたはアクセス許可に影響します。'
+);
 // FORM MESSAGES
 $roles_role_name_required = array(
 	'Role name is required.',

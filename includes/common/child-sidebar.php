@@ -92,7 +92,7 @@
 						<!-- TEAMS -->
 						<li class="nav-item">
 							<a href="/teams" class="nav-link js-scroll-trigger<?php if($page == 'teams') { echo ' active'; } ?>">
-								<i class="nav-icon fa fa-users"></i>
+								<i class="nav-icon fa fa-handshake"></i>
 								<p> Teams</p>
 							</a>
 						</li>

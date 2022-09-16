@@ -230,7 +230,7 @@ if(checkSession()) {
 	<?php if(checkPermission('webinar-events-delete')) { ?>
 	<!-- MODAL -->
 	<div class="modal fade" id="delete_webinar_events_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header bg-danger">
 					<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
@@ -238,11 +238,11 @@ if(checkSession()) {
 				<form action="/submit-delete-webinar-and-events/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 					<input type="hidden" name="webinar_events_id" id="delete_webinar_events_id" value="4">
 					<div class="modal-body">
-						<p><?= renderLang($webinar_events_modal_delete_msg1); ?></p>
+						<p class="m-0"><?= renderLang($webinar_events_modal_delete_msg1); ?></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
 						<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
 					</div>
 				</form>

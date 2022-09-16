@@ -68,7 +68,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-file-text-o mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
+							<h1><i class="fa fa-file mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
 						</div>
 					</div>
 					
@@ -201,7 +201,7 @@ if(checkSession()) {
 												
 												<div class="col-lg-3">
 													<div>
-														<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-files-o mr-2"></i><?php echo renderLang($document_copy) ?></button>
+														<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-link mr-2"></i><?php echo renderLang($document_copy) ?></button>
 
 														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 													</div>
@@ -232,19 +232,19 @@ if(checkSession()) {
 	<!-- DELETE WHOLE DOCUMENT MODAL -->
 	<?php if(checkPermission('document-delete')) { ?>
 		<div class="modal fade" id="delete_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 					<div class="modal-header bg-danger">
 						<h4 class="modal-title"><?= renderLang($modal_delete_confirmation) ?></h4>
 					</div>
 					<form action="/submit-delete-document/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 						<input type="hidden" name="document_id" id="delete_document_id" value="4">
-						<div class="modal-body p-4">
-							<p class="fs-3"><?= renderLang($document_modal_delete_msg1); ?></p>
+						<div class="modal-body">
+							<p class="m-0"><?= renderLang($document_modal_delete_msg1); ?></p>
 							<div class="message_delete"></div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
 							<button type="submit" class="btn btn-danger btn-confirm"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_delete) ?></button>
 						</div>
 					</form>
