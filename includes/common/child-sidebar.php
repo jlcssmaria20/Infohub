@@ -73,7 +73,7 @@
 				?>
 				<li class="nav-item has-treeview <?php echo $tree_open; ?>">
 					<a href="#" class="nav-link js-scroll-trigger<?php echo $tree_active; ?>">
-						<i class="nav-icon fas fa-user-secret"></i>
+						<i class="nav-icon fas fa-cubes"></i>
 						<p><i class="nav-icon right fa fa-angle-left"></i> Administrator</p>
 					</a>
 					<ul class="nav nav-treeview">

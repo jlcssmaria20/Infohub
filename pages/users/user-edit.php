@@ -167,7 +167,7 @@ if(checkSession()) {
 <body class="hold-transition sidebar-mini layout-fixed">
 	
 	<!-- WRAPPER -->
-	<div class="wrapper">
+	<div class="wrapper"  style="height:105vh">
 		
 		<?php
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-header.php');
@@ -175,7 +175,7 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="height:105vh">
 		
 			<!-- CONTENT HEADER -->
 			<section class="content-header">
@@ -217,7 +217,7 @@ if(checkSession()) {
 								<div class="row">
 									
 									<!-- USER STATUS -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-lg-3">
 										<?php $err = isset($_SESSION['sys_users_edit_user_status_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="user_status" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($lang_status); ?></label> <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
@@ -235,12 +235,8 @@ if(checkSession()) {
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_user_status_err'].'</p>'; unset($_SESSION['sys_users_edit_user_status_err']); } ?>
 										</div>
 									</div>
-								</div>
-
-								<div class="row">
-
 									<!-- team -->
-									<div class="col-lg-6 col-md-8 col-sm-4">
+									<div class="col-lg-3">
 										<?php $err = isset($_SESSION['sys_users_edit_team_id_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="team_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo "User Designation"; ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
@@ -267,7 +263,7 @@ if(checkSession()) {
 									</div>
 
 									<!-- EMPLOYEE ID -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-lg-3">
 										<?php $err = isset($_SESSION['sys_users_edit_employee_id_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="employee_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_employee_id); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
@@ -275,10 +271,6 @@ if(checkSession()) {
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_employee_id_err'].'</p>'; unset($_SESSION['sys_users_edit_employee_id_err']); } ?>
 										</div>
 									</div>
-
-								</div>
-
-								<div class="row">
 
 									<!-- EMAIL -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
@@ -292,6 +284,9 @@ if(checkSession()) {
 											<?php if($user_email_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_email_err'].'</p>'; unset($_SESSION['sys_users_edit_email_err']); } ?>
 										</div>
 									</div>
+
+								</div>
+								<div class="row">
 
 									<!-- LEVEL -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
@@ -346,10 +341,6 @@ if(checkSession()) {
 										</div>
 									</div>
 
-								</div><!-- row -->
-								<div class="row">
-
-
 									<!-- HIRE DATE -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php $err = isset($_SESSION['sys_users_edit_hiredate_err']) ? 1 : 0; ?>
@@ -382,7 +373,7 @@ if(checkSession()) {
 								</div>
 								<div class="row">
 									<!-- MANTRA IN LIFE -->
-									<div class="col-lg-5 col-md-4 col-sm-2">
+									<div class="col-lg-6">
 										<?php
 										$mantra_in_life_err = 0;
 										if(isset($_SESSION['sys_users_edit_mantra_in_life_err'])) { $mantra_in_life_err = 1; }
@@ -394,7 +385,7 @@ if(checkSession()) {
 										</div>
 									</div>
 									<!-- SKILLS -->
-									<div class="col-lg-5 col-md-4 col-sm-2">
+									<div class="col-lg-6">
 										<?php
 										$skills_err = 0;
 										if(isset($_SESSION['sys_users_edit_skills_err'])) { $skills_err = 1; }
@@ -408,22 +399,6 @@ if(checkSession()) {
 
 								</div>
 								<hr>
-								
-								<div class="row">
-									<!-- NICKNAME -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$nickname_err = 0;
-										if(isset($_SESSION['sys_users_edit_nickname_err'])) { $nickname_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="nickname" class="mr-1<?php if($nickname_err) { echo ' text-danger'; } ?>"><?php if($nickname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_nickname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>" value="<?php echo $user_nickname; ?>" required>
-											<?php if($nickname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_nickname_err'].'</p>'; unset($_SESSION['sys_users_edit_nickname_err']); } ?>
-										</div>
-									</div>
-								</div>
-
 								<div class="row">
 
 									<!-- FIRSTNAME -->
@@ -468,7 +443,18 @@ if(checkSession()) {
 								</div>
 								
 								<div class="row">
-									
+									<!-- NICKNAME -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<?php
+										$nickname_err = 0;
+										if(isset($_SESSION['sys_users_edit_nickname_err'])) { $nickname_err = 1; }
+										?>
+										<div class="form-group">
+											<label for="nickname" class="mr-1<?php if($nickname_err) { echo ' text-danger'; } ?>"><?php if($nickname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_nickname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>" value="<?php echo $user_nickname; ?>" required>
+											<?php if($nickname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_nickname_err'].'</p>'; unset($_SESSION['sys_users_edit_nickname_err']); } ?>
+										</div>
+									</div>
 									<!-- GENDER -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php
@@ -541,7 +527,7 @@ if(checkSession()) {
 									?>
 								</ul>
 
-								<button class="btn btn-secondary clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
+								<button class="btn btn-default clear mt-2 btn-clear-roles"><i class="fa fa-times mr-2"></i><?php echo renderLang($users_clear_roles); ?></button>
 
 							</div><!-- card-body -->
 							<div class="card-footer text-right">
