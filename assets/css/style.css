@@ -260,10 +260,11 @@ img.modal-img {
     img.myImg {
       width: 210px;
     }
- 
+    .list-inline-item{
+      width: 200px;
+    }
     .list-inline-item:not(:last-child) {
        margin-inline: 5px;
-      
     }
     .list-inline-item img {
       width: 200px;
