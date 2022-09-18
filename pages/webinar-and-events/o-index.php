@@ -60,7 +60,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             foreach($row as $key => $data) {
                                 // echo $data['date_set'];
                                 $x = $key +1;
-                                if($data['webinar_status'] != 0) {
+                                if($data['webinar_status'] != 2) {
                                     if($data['id'] != 0) {
                                     // jan
                                     
