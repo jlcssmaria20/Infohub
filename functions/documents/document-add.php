@@ -64,7 +64,7 @@ if(checkSession()) {
 			);
 		
 			$sql->execute($bind_param);
-			$sql->debugDumpParams();
+			// $sql->debugDumpParams();
 
 			$_SESSION['sys_document_suc'] = renderLang($document_added);
 			header('location: /documents');

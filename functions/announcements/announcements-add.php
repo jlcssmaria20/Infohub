@@ -113,7 +113,7 @@ if(checkSession()) {
 			);
 			
 			$sql->execute($bind_param);
-			$sql->debugDumpParams();
+			// $sql->debugDumpParams();
 
 			$_SESSION['sys_img'] = $filepath;
 			
