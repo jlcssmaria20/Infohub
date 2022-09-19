@@ -203,6 +203,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     // October
                                     elseif(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 7) == 'October') {
                                         echo '<h3 style="display:none ; font-size: 1.3rem;" class="for-october-class_'.$counteroct.'" id="subheading'.$key.' ">For October</h3>' ;
+                                        echo '<li class="list-inline-item">';
                                             echo '<span class="center mt-2" >';
                                                 echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
                                             echo '</span>';  

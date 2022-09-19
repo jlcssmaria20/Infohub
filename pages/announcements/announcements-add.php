@@ -105,7 +105,7 @@ if(checkSession()) {
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="10" id="details" placeholder="<?php echo renderLang($announcements_details_placeholder) ?>" minlength="4" maxlength="50" name="details" required></textarea>
+											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="10" id="details" placeholder="<?php echo renderLang($announcements_details_placeholder) ?>" minlength="4" name="details" required></textarea>
 											
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_details_err'].'</p>'; unset($_SESSION['sys_announcements_add_details_err']); } ?>
 										</div>

@@ -42,17 +42,16 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 	<!-- LOGIN BOX -->
 	<div class="login-box">
 		
-		<!-- LOGO -->
-		<div class="login-logo">
-			<a href="#">DX INFO HUB</a>
-		</div><!-- login-logo -->
 		
 		<!-- CARD -->
 		<div class="card">
 			
 			<!-- CARD BODY -->
-			<div class="card-body login-card-body">
-				<p class="login-box-msg"><?php echo renderLang($login_message_1); ?></p>		
+			<div class="card-body login-card-body rounded">
+				<div class="text-center mb-3">
+					<img src="/assets/images/circle.png" alt="Info Hub!" class="img-circle w-25">
+				</div>
+				<p class="login-box-msg">DX INFO HUB</p>		
 				<form action="/submit-login" method="post">
 					<div class="input-group mb-3">
 						<input type="text" id="uname" class="form-control" name="uname" placeholder="<?php echo renderLang($login_login_placeholder); ?>"<?php if($cookie_login_value != '') { echo ' value="'.$cookie_login_value.'"'; } else { if(isset($_SESSION['sys_login_uname'])) { echo ' value="'.$_SESSION['sys_login_uname'].'"'; } } ?> required>
@@ -90,7 +89,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 						</div>
 					</div>
                     <hr>
-                    <div class="text-center bold"><a  href="/"><strong>Go to DX Infohub</strong></a></div>
+                    <div class="text-center bold"><a  href="/"><strong>Go to DX Info Hub</strong></a></div>
 					
 				</form>
 

@@ -55,7 +55,7 @@ $announcements_details_placeholder = array(
 	''
 );
 $announcements_img_label = array(
-	'Image (Maximum 500KB)',
+	'Image (Maximum 2000KB)',
 	''
 );
 $announcements_img_placeholder = array(
@@ -137,6 +137,14 @@ $announcements_messages_deleted = array(
 );
 $announcements__not_found = array(
 	'Announcement Data not found!',
+	''
+);
+$settings_general_update_invalid_file_type = array(
+	'Invalid Image',
+	''
+);
+$settings_general_update_exceeds_size = array(
+	'Image size exceed 2,000 KB',
 	''
 );
 ?>

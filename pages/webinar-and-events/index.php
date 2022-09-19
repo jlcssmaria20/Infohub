@@ -23,6 +23,7 @@ if(checkSession()) {
 		$sql_query = 'SELECT * FROM webinarandevents'.$where; // set sql statement
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
+		$users_arr = getTable('users');
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,8 +93,9 @@ if(checkSession()) {
 									<thead>
 										<tr>
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
-											<th><?php echo renderLang($webinar_events_img); ?></th>
-											<th class="w-50"><?php echo renderLang($webinar_events_description); ?></th>
+											<th style="width:20%"><?php echo renderLang($webinar_events_img); ?></th>
+											<th><?php echo renderLang($webinar_events_description); ?></th>
+											<th><?php echo renderLang($webinar_events_schedule_date); ?></th>
 											<th></th>
 										</tr>
 									</thead>
@@ -108,16 +110,34 @@ if(checkSession()) {
 											$data_count++;
 											$webinar_id = encryptID($data['id']);
 
+											$host =  $pdo->prepare("SELECT user_firstname, user_lastname FROM `users` WHERE `user_employee_id` = ".$data['webinar_host']);
+											$host->execute();
 											echo '<tr>';
 
 												// TITLE
-												echo '<td><h5>'.$data['webinar_title'].'</h5><br><br><em>'.$data['date_created'].'</em></td>';
+												echo '<td><h5>'.$data['webinar_title'].'</h5><br><br><b>'.renderLang($webinar_events_created_at) .':</b><em> ' .$data['date_created'].'</em></td>';
 												// IMAGE
 												echo '<td><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
 
 												// DESCRIPTION
-												echo '<td>'.$data['webinar_description'].'</td>';
+												echo '<td><b>'.renderLang($webinar_events_host) .':</b> ';
+												foreach($users_arr as $user) {
+													if($user['user_employee_id'] == $data['webinar_host']) {
+														echo $user['user_firstname'].' '.$user['user_lastname'];
+														break;
+													}
+												}
+												echo ' ('.$data['webinar_host'].') ';
+												?>
+												<?php
+												echo '<br><br>' .$data['webinar_description'].'</td>';
 
+												// SCHEDULE DATE
+												echo '<td>';
+													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+
+												echo '</td>';
+												
                                                 // STATUS
 												// STATUS
 												// echo '<td>';
