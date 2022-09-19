@@ -257,9 +257,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
        <!--- MODAL POP-UP AREA --->
         <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
-            <div id="myModal<?php echo $x ?>" class="modal modal-color">
-                <div class="modal-body">
-                    <img class="modal-img" alt="Webinar and Events">
+            <div id="myModal<?php echo $x ?>" class="modal modal-color ">
+                <div class="modal-body my-5">
+                    <img class="modal-img mt-5" alt="Webinar and Events">
                     <div class="text-left">
                         <p class="modal-name"></p>
                         <p class="modal-details"></p>
