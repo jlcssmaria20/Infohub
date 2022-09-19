@@ -99,6 +99,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         $('.closem').click(function() {
             for (let i = 1; i < <?php echo $total + 1?>; i++) {
             $("div#myModal"+i).attr("style", "display: none !important");
+            $("body").removeClass("modal-open");
             }
         });
         
