@@ -129,7 +129,7 @@ if(checkSession()) {
 											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="3" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
 										</div>
 										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_description_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_description_err']); } ?>
-									</div><!-- /col-->
+									</div>
 
 									<!-- WEBINAR IMAGES-->
 									<div class="col-lg-3 col-md-4 col-sm-2">

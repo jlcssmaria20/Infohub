@@ -25,6 +25,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     <title>DX Infohub - Professional Bio</title>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     <link href="/assets/css/profile.css" rel="stylesheet">
@@ -51,9 +52,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 foreach($row as $key => $data) {
                     if($data['user_status'] != 1) {
                         ?>
-                            <img src='/assets/images/team-images/<?php echo $data['user_photo']?>' class='myImg'>
+                            <img src='/assets/images/team-images/<?php echo $data['user_photo']?>' class='myImg' style="filter: none">
                             <p class="name mt-3"><b><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></b></p>
-                            <p class="details"><?php echo $data["user_mantra_in_life"]; ?></p>
+                            <p class="details">❝ <?php echo $data["user_mantra_in_life"]; ?> ❞</p>
                             <div class="details">
                                 <?php 
                                     	foreach($positions_arr as $position) {

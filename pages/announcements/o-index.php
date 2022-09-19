@@ -83,10 +83,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <p class="modal-details"></p>
                     <div id="caption<?php echo $x ?>">
                     </div>
-                    <div class="text-right">
-                        <div class="text-right my-3">
-                            <button class="btn btn-primary closem">Close</button>
-                        </div>
+                    <div class="text-center my-3">
+                        <button class="btn btn-primary closem">Close</button>
                     </div>
                 </div>
             </div>

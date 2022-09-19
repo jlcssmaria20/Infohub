@@ -79,7 +79,7 @@ if(checkSession()) {
 				}
 	
 				// check file size
-				if ($_FILES['img']['size'] > 200000) {
+				if ($_FILES['img']['size'] > 500000) {
 					$err++;
 					$_SESSION['sys_announcements_img_err'] = renderLang($settings_general_update_exceeds_size);
 				}

@@ -51,11 +51,11 @@ $announcements_details_label = array(
 	''
 );
 $announcements_details_placeholder = array(
-	'e.g This national holiday is...',
+	'e.g This announcement is about...',
 	''
 );
 $announcements_img_label = array(
-	'Image (Maximum 200KB)',
+	'Image (Maximum 500KB)',
 	''
 );
 $announcements_img_placeholder = array(
@@ -63,7 +63,7 @@ $announcements_img_placeholder = array(
 	''
 );
 $announcements_title_placeholder = array(
-	'e.g. 2022 National Holidays',
+	'e.g. National Holidays',
 	''
 );
 $announcements_clear_roles = array(
