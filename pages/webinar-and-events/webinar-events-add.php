@@ -77,7 +77,7 @@ if(checkSession()) {
 											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="host" required>
 												<?php
 													$sql = $pdo->prepare("SELECT *
-														FROM users");
+														FROM users WHERE user_status = 0 AND temp_del = 0");
 													$sql->execute();
 													echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
