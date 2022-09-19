@@ -34,7 +34,9 @@ function renderConfirmDelete($err_code,$session_name,$variable_name) {
 	switch($err_code) {
 		case 0:
 			$_SESSION[$session_name] = renderLang($GLOBALS[$variable_name]);
-			 echo '1';
+			if(($session_name == 'sys_users_suc') || ($session_name == 'sys_roles_suc')){
+				echo '1';
+			}
 			break;
 		case 1:
 			echo '0,'.renderLang($GLOBALS['modal_session_expired']);
