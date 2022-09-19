@@ -136,6 +136,7 @@ img.modal-img {
       padding: 10px 12px;
     }
     .nav-link .fa {
+      width: 10px;
       margin-right: 15px;
       font-size: 15px;
     }
