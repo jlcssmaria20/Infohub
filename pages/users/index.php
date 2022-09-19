@@ -21,7 +21,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
-	<title><?php echo $dx."User Profile"; ?></title>
+	<title><?php echo $dx."Teams"; ?></title>
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     <link href="/assets/css/user.css" rel="stylesheet">
     

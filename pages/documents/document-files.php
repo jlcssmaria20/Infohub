@@ -24,7 +24,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+        <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
         <title><?php echo $dx."Document Files"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
         <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
@@ -58,9 +58,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     <input type="hidden" class="copied">
                                 
                                     
-                                    <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>">
+                                    <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
                                         <li class="list-dl-item text-left">
-                                            <i class="fa fa-copy" id="fa" aria-hidden="true" title="Copy"></i>
+                                            <i class="fa fa-copy" id="fa" aria-hidden="true"></i>
                                             <b>File Name:</b>
                                             <?php  echo $data['file_linkname']; ?>
                                             <br>

@@ -22,7 +22,7 @@ $total = 4;
         </div>
         <section class="main-area col-s-9 d-column mb-5" >
             <div class="clearfix mb-2">
-                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden h-100">
                     <?php
                     $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC");
                     $sql->execute();
