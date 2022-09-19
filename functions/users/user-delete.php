@@ -27,7 +27,7 @@ if(checkSession()) {
 					$sql->bindParam(":admin_id",$account_id);
 					$sql->execute();
 					$data = $sql->fetch(PDO::FETCH_ASSOC);
-					$upass_db =$data['admin_password'];
+					$upass_db = $data['admin_password'];
 					break;
 				case 'user':
 					$sql = $pdo->prepare("SELECT user_id, user_password FROM users WHERE user_id = :user_id LIMIT 1");
@@ -87,4 +87,5 @@ if(checkSession()) {
 }
 
 renderConfirmDelete($err_code,'sys_users_suc','users_messages_user_removed');
+header('location: /users');
 ?>

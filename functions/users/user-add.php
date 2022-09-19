@@ -263,6 +263,11 @@ if(checkSession()) {
 			// $new_pass = randomPassword();
 			// $user_password = encryptStr($new_pass);
 			$role_ids = ','.$role_ids.',';
+			if($gender == 0){
+				$user_photo = 'avatar2.png';
+			} else {
+				$user_photo = 'avatar5.png';
+			}
 			
 			// update account language table
 			$sql = $pdo->prepare("INSERT INTO users(
@@ -314,7 +319,7 @@ if(checkSession()) {
 				':user_middlename'    => $middlename,
 				':user_lastname'      => $lastname,
 				':user_nickname'      => $nickname,
-				':user_photo'         => $_SESSION['sys_photo'],
+				':user_photo'         => $user_photo,
 				':user_level'         => $level,
 				':user_gender'        => $gender,
 				':user_position'      => $position_id,
