@@ -270,13 +270,13 @@ if(checkSession()) {
 		$('#form_delete').submit(function(e) {
 			e.preventDefault();
 			var post_url = $(this).attr("action");
-			showLoading()
+			// showLoading()
 			$.ajax({
 				url: post_url,
 				type: 'POST',
 				data : form_data
 			}).done(function(response){
-				hideLoading()
+				// hideLoading()
 				$('.btn-delete').prop('disabled', false);
 				var response_arr = response.split(',');
 				if(response_arr[0] == 1) { // val is 1

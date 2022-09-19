@@ -87,5 +87,4 @@ if(checkSession()) {
 }
 
 renderConfirmDelete($err_code,'sys_users_suc','users_messages_user_removed');
-header('location: /users');
 ?>
