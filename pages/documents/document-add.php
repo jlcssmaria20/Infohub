@@ -83,7 +83,7 @@ if(checkSession()) {
 											
 											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" required>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" required>
 											
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_name_err'].'</p>'; unset($_SESSION['sys_document_add_name_err']); } ?>
 										</div>
@@ -106,7 +106,7 @@ if(checkSession()) {
 												
 												<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 												
-												<input type="text" class="form-control required<?php if($filename_err) { echo ' is-invalid'; } ?>" id="filename" name="filename[]" placeholder="<?php echo renderLang($document_filename_placeholder); ?>" required>
+												<input type="text" class="form-control required<?php if($filename_err) { echo ' is-invalid'; } ?>" id="filename" name="filename[]"  minlength="4" maxlength="50"  placeholder="<?php echo renderLang($document_filename_placeholder); ?>" required>
 												
 												<?php if($filename_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_filename_err'].'</p>'; unset($_SESSION['sys_document_add_filename_err']); } ?>
 											</div>

@@ -75,13 +75,13 @@ if(checkSession()) {
 					) {
 						$err++;
 					}
-					$_SESSION['sys_announcements_img_err'] = renderLang($settings_general_update_invalid_file_type);
+					$_SESSION['sys_announcements_edit_img_err'] = renderLang($settings_general_update_invalid_file_type);
 				}
 	
 				// check file size
-				if ($_FILES['img']['size'] > 500000) {
+				if ($_FILES['img']['size'] > 2000000) {
 					$err++;
-					$_SESSION['sys_announcements_img_err'] = renderLang($settings_general_update_exceeds_size);
+					$_SESSION['sys_announcements_edit_img_err'] = renderLang($settings_general_update_exceeds_size);
 				}
 			}
 	

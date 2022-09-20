@@ -66,7 +66,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+	<link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
 	<title><?php echo $dx."Edit Webinar and Events"; ?></title>
 	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>

@@ -22,8 +22,10 @@ if(checkSession()) {
 		if($sql->rowCount()) {
 
 			// PROCESS FORM
-			$date_set = $_POST['schedule_date'];
 			
+			$date_set1 = $_POST['schedule_date'];
+			$date_set = date('Ymd',strtotime($date_set1));
+	
 			//host
 			$host = '';
 			if(isset($_POST['host'])) {
