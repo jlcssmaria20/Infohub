@@ -283,9 +283,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             $('.closem').click(function() {
                 for (let i = 1; i < <?php echo $total + 1?>; i++) {
                 $("div#myModal"+i).attr("style", "display: none !important");
-                $("body").removeClass("modal-open");}
+                $("div#myModal"+i).css('background-color', 'rgb(0 0 0 / 90%)');
+                $("body").removeClass("modal-open");
+            }
             });
-            $(".modal").css('background-color', 'rgb(0 0 0 / 90%)');
+           
             // $("h3#subheading6").attr("style", "display: block !important; width:100%;overflow:hidden;font-size:0px;");
             $(".webinarandevent1").attr("style","display:none");
             $(".for-january-class_0").show();
