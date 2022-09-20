@@ -200,6 +200,7 @@ if(checkSession()) {
 		  readURL(this);
 		});
 		
+		$("#title").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
 	</script>
 	
 </body>

@@ -261,7 +261,7 @@ if(checkSession()) {
 			var i = 1;
 			$('#add').click(function() {
 				if (i <= 20) {
-				$('#dynamic_field').append('<div class="row" id="row' + i + '"> <div id="col" class="col-lg-3"><div class="form-group"><input type="text"  minlength="4" maxlength="30" class="form-control" id="linkname' + i + '" name="linkname[]" value="" placeholder="<?php echo renderLang($document_linkname_placeholder); ?> ' + i + '" required></div></div>  <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="link' + i + '" name="link[]" value="" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?> ' + i + '" required> </div></div><div class="col-lg-3"><button type="button" class="btn btn-danger btn_remove hidden"><?php echo renderLang($document_remove_link); ?></button></div> </div>')
+				$('#dynamic_field').append('<div class="row" id="row' + i + '"> <div id="col" class="col-lg-3"><div class="form-group"><input type="text"  minlength="4" maxlength="50" class="form-control" id="linkname" name="linkname[]" value="" placeholder="<?php echo renderLang($document_linkname_placeholder); ?> ' + i + '" required></div></div>  <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="link' + i + '" name="link[]" value="" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?> ' + i + '" required> </div></div><div class="col-lg-3"><button type="button" class="btn btn-danger btn_remove hidden"><?php echo renderLang($document_remove_link); ?></button></div> </div>')
 				
 				i++;
 
@@ -310,6 +310,8 @@ if(checkSession()) {
 			document.execCommand("copy");
 			navigator.clipboard.writeText(copyText.value);
 		}
+		$("#name").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+		$("#linkname").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
 	</script>
 	
 </body>

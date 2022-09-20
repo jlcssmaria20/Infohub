@@ -41,7 +41,7 @@ if(checkSession()) {
 	
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" >
 	
 	<!-- WRAPPER -->
 	<div class="wrapper">
@@ -58,7 +58,7 @@ if(checkSession()) {
 			<section class="content-header">
 				<div class="container-fluid">
 					
-					<div class="row mb-2">
+					<div class="row">
 						<div class="col-sm-6 col-12">
 							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events); ?></h1>
 						</div>
@@ -68,7 +68,7 @@ if(checkSession()) {
 			</section><!-- content-header -->
 
 			<!-- Main content -->
-			<section class="content">
+			<section class="content pb-5">
 				<div class="container-fluid">
 					
 					<?php

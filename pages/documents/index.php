@@ -183,6 +183,9 @@ if(checkSession()) {
 	<?php } ?>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
+	<script>
+		$("#name").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+	</script>
 </body>
 
 </html>

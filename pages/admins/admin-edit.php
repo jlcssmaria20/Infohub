@@ -116,7 +116,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_admins_edit_username_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="username" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($admins_username); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="username" name="username" placeholder="<?php echo renderLang($admins_username_placeholder); ?>" value="<?php echo $admin_username; ?>" required>
+											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" maxlength="50"  id="username" name="username" placeholder="<?php echo renderLang($admins_username_placeholder); ?>" value="<?php echo $admin_username; ?>" required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_admins_edit_username_err'].'</p>'; unset($_SESSION['sys_admins_edit_username_err']); } ?>
 										</div>
 									</div>
@@ -155,7 +155,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="firstname" class="mr-1<?php if($firstname_err) { echo ' text-danger'; } ?>"><?php if($firstname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($admins_firstname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($firstname_err) { echo ' is-invalid'; } ?>" id="firstname" name="firstname" placeholder="<?php echo renderLang($admins_firstname_placeholder); ?>" value="<?php echo $admin_firstname; ?>" required>
+											<input type="text" class="form-control required<?php if($firstname_err) { echo ' is-invalid'; } ?>" maxlength="30" id="firstname" name="firstname" placeholder="<?php echo renderLang($admins_firstname_placeholder); ?>" value="<?php echo $admin_firstname; ?>" required>
 											<?php if($firstname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_admins_edit_firstname_err'].'</p>'; unset($_SESSION['sys_admins_edit_firstname_err']); } ?>
 										</div>
 									</div>
@@ -168,7 +168,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="lastname" class="mr-1<?php if($lastname_err) { echo ' text-danger'; } ?>"><?php if($lastname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($admins_lastname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($lastname_err) { echo ' is-invalid'; } ?>" id="lastname" name="lastname" placeholder="<?php echo renderLang($admins_lastname_placeholder); ?>" value="<?php echo $admin_lastname; ?>" required>
+											<input type="text" class="form-control required<?php if($lastname_err) { echo ' is-invalid'; } ?>" maxlength="30" id="lastname" name="lastname" placeholder="<?php echo renderLang($admins_lastname_placeholder); ?>" value="<?php echo $admin_lastname; ?>" required>
 											<?php if($lastname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_admins_edit_lastname_err'].'</p>'; unset($_SESSION['sys_admins_edit_lastname_err']); } ?>
 										</div>
 									</div>
@@ -259,6 +259,12 @@ if(checkSession()) {
 			});
 			
 		});
+		
+		$("#username").keypress(function(e){ if(e.target.value.length==30){ alert("Ooops. Character limit reached."); } });
+			
+			$("#firstname").keypress(function(e){ if(e.target.value.length==30){ alert("Ooops. Character limit reached."); } });
+			
+			$("#lastname").keypress(function(e){ if(e.target.value.length==30){ alert("Ooops. Character limit reached."); } });
 	</script>
 	
 </body>

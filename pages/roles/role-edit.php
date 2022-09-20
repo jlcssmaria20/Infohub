@@ -290,6 +290,9 @@ if(checkSession()) {
 		});
 		
 	});
+	
+			
+	$("#role_name").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } })
 </script>
 
 </body>

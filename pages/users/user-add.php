@@ -105,7 +105,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_users_add_employee_id_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="employee_id" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_employee_id); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="employee_id" name="employee_id" placeholder="<?php echo renderLang($users_employee_id_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_employee_id_val'])) { echo ' value="'.$_SESSION['sys_users_add_employee_id_val'].'"'; } ?> required>
+											<input type="text" minlength="4" maxlength="20" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="employee_id" name="employee_id" placeholder="<?php echo renderLang($users_employee_id_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_employee_id_val'])) { echo ' value="'.$_SESSION['sys_users_add_employee_id_val'].'"'; } ?> required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_employee_id_err'].'</p>'; unset($_SESSION['sys_users_add_employee_id_err']); } ?>
 										</div>
 									</div>
@@ -138,7 +138,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_users_add_email_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="email" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_email); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="email" minlength="5" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="email" name="email" placeholder="<?php echo renderLang($users_email_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_email_val'])) { echo ' value="'.$_SESSION['sys_users_add_email_val'].'"'; } ?> required>
+											<input type="email" minlength="5" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="email" name="email" placeholder="<?php echo renderLang($users_email_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_email_val'])) { echo ' value="'.$_SESSION['sys_users_add_email_val'].'"'; } ?> required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_email_err'].'</p>'; unset($_SESSION['sys_users_add_email_err']); } ?>
 										</div>
 									</div>
@@ -214,7 +214,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="mantra_in_life" class="mr-1<?php if($mantra_in_life_err) { echo ' text-danger'; } ?>"><?php if($mantra_in_life_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_mantra_in_life); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($mantra_in_life_err) { echo ' is-invalid'; } ?>" id="mantra_in_life" name="mantra_in_life" placeholder="<?php echo renderLang($users_mantra_in_life_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_mantra_in_life_val'])) { echo ' value="'.$_SESSION['sys_users_add_mantra_in_life_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($mantra_in_life_err) { echo ' is-invalid'; } ?>" minlength="4" maxlength="200" id="mantra_in_life" name="mantra_in_life" placeholder="<?php echo renderLang($users_mantra_in_life_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_mantra_in_life_val'])) { echo ' value="'.$_SESSION['sys_users_add_mantra_in_life_val'].'"'; } ?> required>
 											<?php if($mantra_in_life_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_mantra_in_life_err'].'</p>'; unset($_SESSION['sys_users_add_mantra_in_life_err']); } ?>
 										</div>
 									</div>
@@ -227,7 +227,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="skills" class="mr-1<?php if($skills_err) { echo ' text-danger'; } ?>"><?php if($skills_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_skills); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($skills_err) { echo ' is-invalid'; } ?>" id="skills" name="skills" placeholder="<?php echo renderLang($users_skills_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_skills_val'])) { echo ' value="'.$_SESSION['sys_users_add_skills_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($skills_err) { echo ' is-invalid'; } ?>"  minlength="4" maxlength="200" id="skills" name="skills" placeholder="<?php echo renderLang($users_skills_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_skills_val'])) { echo ' value="'.$_SESSION['sys_users_add_skills_val'].'"'; } ?> required>
 											<?php if($skills_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_skills_err'].'</p>'; unset($_SESSION['sys_users_add_skills_err']); } ?>
 										</div>
 									</div>
@@ -245,7 +245,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="firstname" class="mr-1<?php if($firstname_err) { echo ' text-danger'; } ?>"><?php if($firstname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_firstname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($firstname_err) { echo ' is-invalid'; } ?>" id="firstname" name="firstname" placeholder="<?php echo renderLang($users_firstname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_firstname_val'])) { echo ' value="'.$_SESSION['sys_users_add_firstname_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($firstname_err) { echo ' is-invalid'; } ?>" minlength="1" maxlength="50"  id="firstname" name="firstname" placeholder="<?php echo renderLang($users_firstname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_firstname_val'])) { echo ' value="'.$_SESSION['sys_users_add_firstname_val'].'"'; } ?> required>
 											<?php if($firstname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_firstname_err'].'</p>'; unset($_SESSION['sys_users_add_firstname_err']); } ?>
 										</div>
 									</div>
@@ -258,7 +258,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="middlename" class="mr-1<?php if($middlename_err) { echo ' text-danger'; } ?>"><?php if($middlename_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_middlename); ?></label>
-											<input type="text" class="form-control<?php if($middlename_err) { echo ' is-invalid'; } ?>" id="middlename" name="middlename" placeholder="<?php echo renderLang($users_middlename_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_middlename_val'])) { echo ' value="'.$_SESSION['sys_users_add_middlename_val'].'"'; } ?>>
+											<input type="text" class="form-control<?php if($middlename_err) { echo ' is-invalid'; } ?>" minlength="1" maxlength="50"  id="middlename" name="middlename" placeholder="<?php echo renderLang($users_middlename_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_middlename_val'])) { echo ' value="'.$_SESSION['sys_users_add_middlename_val'].'"'; } ?>>
 											<?php if($middlename_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_middlename_err'].'</p>'; unset($_SESSION['sys_users_add_middlename_err']); } ?>
 										</div>
 									</div>
@@ -271,7 +271,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="lastname" class="mr-1<?php if($lastname_err) { echo ' text-danger'; } ?>"><?php if($lastname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_lastname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($lastname_err) { echo ' is-invalid'; } ?>" id="lastname" name="lastname" placeholder="<?php echo renderLang($users_lastname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_lastname_val'])) { echo ' value="'.$_SESSION['sys_users_add_lastname_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($lastname_err) { echo ' is-invalid'; } ?>" minlength="1" maxlength="50"  id="lastname" name="lastname" placeholder="<?php echo renderLang($users_lastname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_lastname_val'])) { echo ' value="'.$_SESSION['sys_users_add_lastname_val'].'"'; } ?> required>
 											<?php if($lastname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_lastname_err'].'</p>'; unset($_SESSION['sys_users_add_lastname_err']); } ?>
 										</div>
 									</div>
@@ -286,7 +286,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="nickname" class="mr-1<?php if($nickname_err) { echo ' text-danger'; } ?>"><?php if($nickname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_nickname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_nickname_val'])) { echo ' value="'.$_SESSION['sys_users_add_nickname_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" minlength="1" maxlength="50"  id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_nickname_val'])) { echo ' value="'.$_SESSION['sys_users_add_nickname_val'].'"'; } ?> required>
 											<?php if($nickname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_nickname_err'].'</p>'; unset($_SESSION['sys_users_add_nickname_err']); } ?>
 										</div>
 									</div>
