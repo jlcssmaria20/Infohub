@@ -1,10 +1,7 @@
 <?php
 // $numrows = $_SESSION['sys_data']['data_per_page']; // set number of rows to display
 
-$numrows = 20;
-
-
-
+$numrows = 5;
 $page_ctr = 1; // set as default page count
 if(isset($_GET['p'])) { // check if pagination is clicked
 	$page_ctr = $_GET['p'];

@@ -14,5 +14,8 @@ v1-2-0 September 08, 2022 -Kim
 //Latest database given by maam julcess, together with correct table for 'webinarandevents'.
 v1-5-1 September 08, 2022 -Cess
 //latest database that is already deployed in the test server
+v1-6-0 September 20, 2022 -Cess
+//truncated sql, remove old tables
+//dont delete roles
 
  

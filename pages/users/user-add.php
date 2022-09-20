@@ -83,7 +83,7 @@ if(checkSession()) {
 													$select_val = $_SESSION['sys_users_add_team_id_val'];
 												}
 												$sql = $pdo->prepare("SELECT *
-													FROM teams 
+													FROM teams WHERE temp_del = 0
 													ORDER BY  team_name ASC");
 												$sql->execute();
 												echo '<option value="0">'.renderLang($user_set_designation).'</option>';
