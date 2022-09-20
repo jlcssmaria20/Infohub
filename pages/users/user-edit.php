@@ -245,7 +245,7 @@ if(checkSession()) {
 												
 												$select_val = $team_id;
 												$sql = $pdo->prepare("SELECT *
-													FROM teams 
+													FROM teams WHERE temp_del = 0
 													ORDER BY  team_name ASC");
 												$sql->execute();
 												echo '<option value="0">'.renderLang($user_set_designation).'</option>';
