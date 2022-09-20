@@ -97,7 +97,7 @@ if(checkSession()) {
 									<tbody>
 										<?php
 										$data_count = 0;
-										$sql = $pdo->prepare("SELECT * FROM announcements ". $where ." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM announcements ". $where ." ORDER BY id DESC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 

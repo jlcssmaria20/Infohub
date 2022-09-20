@@ -37,6 +37,16 @@ if(checkSession()) {
 				} 
 			}
 
+			//speaker
+			$speaker = '';
+			if(isset($_POST['speaker'])) {
+				$speaker = htmlentities(trim($_POST['speaker']));
+				$_SESSION['sys_webinar_events_edit_speaker_val'] = $speaker;
+				if(strlen($speaker) == 0) {
+					$err++;
+					$_SESSION['sys_webinar_events_edit_speaker_err'] = renderLang($webinar_events_speaker_required);
+				} 
+			}
 			// title
 			$title = '';
 			if(isset($_POST['title'])) {
@@ -83,6 +93,7 @@ if(checkSession()) {
                     //UPDATE WEBINAR TABLE
                     $update = $pdo->prepare("UPDATE webinarandevents SET
                         webinar_host 		= :webinar_host,
+                        webinar_speaker		= :webinar_speaker,
                         webinar_title 		= :webinar_title,
                         webinar_description = :webinar_description,
                         webinar_img 		= :webinar_img,
@@ -93,6 +104,7 @@ if(checkSession()) {
                     $bind_param = array(
                         ':webinar_id'            		=> $webinar_id,
                         ':webinar_host'  				=> $host,
+                        ':webinar_speaker'  			=> $speaker,
                         ':webinar_title'  	    		=> $title,
                         ':webinar_description'  		=> $description,
                         ':webinar_img'   				=> $picture,
@@ -107,6 +119,7 @@ if(checkSession()) {
                     //UPDATE WEBINAR TABLE
                     $update = $pdo->prepare("UPDATE webinarandevents SET
                         webinar_host 		= :webinar_host,
+                        webinar_speaker		= :webinar_speaker,
                         webinar_title 		= :webinar_title,
                         webinar_description = :webinar_description,
                         webinar_img 		= :webinar_img,
@@ -117,6 +130,7 @@ if(checkSession()) {
                     $bind_param = array(
                         ':webinar_id'            		=> $webinar_id,
                         ':webinar_host'  				=> $host,
+                        ':webinar_speaker' 				=> $speaker,
                         ':webinar_title'  	  			=> $title,
                         ':webinar_description'  		=> $description,
                         ':webinar_img'   				=> $picture,

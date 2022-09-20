@@ -213,7 +213,7 @@ img.modal-img {
     }
     .announcement li a:hover {
         color: var(--blue);
-        text-decoration: none;
+        text-decoration: underline;
     }
     .webinar-row {
         overflow: hidden;

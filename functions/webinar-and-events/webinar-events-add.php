@@ -65,6 +65,16 @@ if(checkSession()) {
 				$_SESSION['sys_webinar_events_add_host_err'] = renderLang($webinar_events_host_required);
 			} 
 		}
+		// SPEAKER
+		$speaker = '';
+		if(isset($_POST['speaker'])) {
+			$speaker = htmlentities(trim($_POST['speaker']));
+			$_SESSION['sys_webinar_events_add_speaker_val'] = $speaker;
+			if(strlen($speaker) == 0) {
+				$err++;
+				$_SESSION['sys_webinar_events_add_speaker_err'] = renderLang($webinar_events_speaker_required);
+			} 
+		}
 
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors
@@ -81,35 +91,11 @@ if(checkSession()) {
 
 			$_SESSION['month_set'] = $month_set;
 
-            //INSERT DATA
-            /* $insert = $pdo->prepare("INSERT INTO webinarandevents(
-                `user_id`,
-                webinar_events_title,
-                webinar_events_description,
-                webinar_events_img,
-                webinar_events_schedule_date
-            ) VALUES(
-                :user_id,
-                :webinar_events_title,
-                :webinar_events_description,
-                :webinar_events_img,
-                :webinar_events_schedule_date
-            )");
-
-            $bind_param = array(
-                ':user_id'  				    => $host,
-                ':webinar_events_title'  	    => $title,
-                ':webinar_events_description'  	=> $description,
-                ':webinar_events_img'   		=> $picture,
-                ':webinar_events_schedule_date'	=> $schedule_date
-            );
-
-            $insert->execute($bind_param); */
-
 			$sql = $pdo->prepare("INSERT INTO webinarandevents(
                	id,
                 `user_id`,
 				webinar_host,
+				webinar_speaker,
                 webinar_title,
                 webinar_description,
                 webinar_img,
@@ -121,6 +107,7 @@ if(checkSession()) {
 				NULL,
                 :user_id,
                 :webinar_host,
+                :webinar_speaker,
                 :webinar_title,
                 :webinar_description,
                 :webinar_img,
@@ -131,6 +118,7 @@ if(checkSession()) {
             $bind_param = array(
                 ':user_id'  				    => $_SESSION['sys_id'],
 				':webinar_host'                 => $host,
+				':webinar_speaker'              => $speaker,
                 ':webinar_title'  	    		=> $title,
                 ':webinar_description'  		=> $description,
                 ':webinar_img'   				=> $picture,

@@ -103,7 +103,9 @@ if(checkSession()) {
                                     <?php
 										$data_count = 0;
 										// $sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE temp_del = 0");
-                                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
+
+                    $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
+
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
@@ -128,6 +130,14 @@ if(checkSession()) {
 													}
 												}
 												echo ' ('.$data['webinar_host'].') ';
+												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+												foreach($users_arr as $user) {
+													if($user['user_employee_id'] == $data['webinar_speaker']) {
+														echo $user['user_firstname'].' '.$user['user_lastname'];
+														break;
+													}
+												}
+												echo ' ('.$data['webinar_speaker'].') ';
 												?>
 												<?php
 												echo '<br><br><pre style="white-space: pre-wrap;">'.$data['webinar_description'].'</pre></td>';

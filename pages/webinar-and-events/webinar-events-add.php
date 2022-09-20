@@ -88,8 +88,28 @@ if(checkSession()) {
 											</select>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_host_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_host_err']); } ?>
 										</div>
-									</div><!-- /col-->
+									</div>
 
+									<!-- WEBINAR SPEAKER -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<?php $err = isset($_SESSION['sys_webinar_events_add_speaker_err']) ? 1 : 0; ?>
+										<div class="form-group">
+											<label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker" required>
+												<?php
+													$sql = $pdo->prepare("SELECT *
+														FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,1,%'");
+													$sql->execute();
+													echo '<option value="" hidden>'.renderLang($webinar_events_select_speaker).'</option>';
+													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+														echo '<option value="'.$data['user_employee_id'].'"';
+														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+													}
+												?>
+											</select>
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_speaker_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_speaker_err']); } ?>
+										</div>
+									</div>
 									<!-- WEBINAR TITLE -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php $err = isset($_SESSION['sys_webinar_events_add_title_err']) ? 1 : 0; ?>
