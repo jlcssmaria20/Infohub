@@ -51,7 +51,7 @@ if(checkSession()) {
 			// description
 			$description = '';
 			if(isset($_POST['description'])) {
-				// $description = htmlentities(trim($_POST['description']));
+				$description = $_POST['description'];
 				$_SESSION['sys_webinar_events_edit_description_val'] = $description;
 				if(strlen($description) == 0) {
 					$err++;
