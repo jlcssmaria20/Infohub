@@ -40,7 +40,7 @@ if(checkSession()) {
 		// DETAILS
 		$details = '';
 		if(isset($_POST['details'])) {
-			$details = htmlentities(trim($_POST['details']));
+			// $details = htmlentities(trim($_POST['details']));
 			$_SESSION['sys_announcements_add_details_val'] = $details;
 			if(strlen($details) == 0) {
 				$err++;
