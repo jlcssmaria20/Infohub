@@ -181,7 +181,7 @@ if(checkSession()) {
                                         <div class="form-group">
                                         	<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> 
 											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-                                            <textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" minlength="4" maxlength="50" rows="3" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"><?php echo $description; ?></textarea>
+                                            <textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" minlength="4" rows="10" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"><?php echo $description; ?></textarea>
                                         </div>
                                         <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_description_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_description_err']); } ?>
                                     </div><!-- /col-->

@@ -73,7 +73,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'">';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                echo  '<p data2="'.$data['webinar_description'].'"> </p>';
+                                                echo  '<pre style="white-space: normal;display:none;">'.$data['webinar_description'].'</pre>';
                                             echo '</a>';  
                                         echo '</li>';
                                         $counter++;
@@ -263,7 +263,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <img class="modal-img mt-5" alt="Webinar and Events">
                     <div class="text-left">
                         <p class="modal-name"></p>
-                        <p class="modal-details"></p>
+                        <pre style="white-space: pre-wrap;width:600px;color:white;" class="modal-details"></pre>
                     <div id="caption<?php echo $x ?>">
                     </div>
                     <div class="text-center my-3">
@@ -310,7 +310,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             var modalTarget = $(this).attr('data-target');
             var modalImg = $(this).find('img').attr('src'); 
             var modalName = $(this).find('h2').attr('data1');
-            var modaldetails = $(this).find('p').attr('data2')
+            var modaldetails = $(this).find('pre').html();
 
             $('#'+ modalTarget).show();
             $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)

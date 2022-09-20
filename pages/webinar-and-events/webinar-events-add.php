@@ -122,17 +122,17 @@ if(checkSession()) {
 								<div class="row">
 
 									<!-- WEBINAR DESCRIPTION-->
-									<div class="col-lg-6 col-md-4 col-sm-2">
+									<div class="col-7">
 										<?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="3" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
+											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="10" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
 										</div>
 										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_description_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_description_err']); } ?>
 									</div>
 
 									<!-- WEBINAR IMAGES-->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-3">
 										<?php $err = isset($_SESSION['sys_webinar_events_add_img_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
@@ -141,15 +141,10 @@ if(checkSession()) {
 												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="picture" name="picture" accept="image/*" required>
 												<label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
+												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="#" style="display: none; height:150px;">
 											</div>
 										</div>
 									</div><!-- /col-->
-									
-									<!-- WEBINAR PREVIEW-->
-									<div class="col-lg-3">
-										<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="#" style="display: none; height:200px;">
-									</div><!-- /col-->
-
 								</div><!-- /row-->
 								
 							</div><!-- card-body -->

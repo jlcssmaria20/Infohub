@@ -97,7 +97,7 @@ if(checkSession()) {
 								<div class="row">
 
 									<!-- DETAILS -->
-									<div class="col-8">
+									<div class="col-7">
 										<?php
 										$details_err = 0;
 										if(isset($_SESSION['sys_announcements_add_details_err'])) { $details_err = 1; }
@@ -112,7 +112,7 @@ if(checkSession()) {
 									</div>
 									
 									<!-- IMAGE -->
-									<div class="col-4">
+									<div class="col-3">
 										<?php $err = isset($_SESSION['sys_announcements_add_img_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 

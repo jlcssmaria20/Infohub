@@ -130,7 +130,7 @@ if(checkSession()) {
 												echo ' ('.$data['webinar_host'].') ';
 												?>
 												<?php
-												echo '<br><br>' .$data['webinar_description'].'</td>';
+												echo '<br><br><pre style="white-space: pre-wrap;">'.$data['webinar_description'].'</pre></td>';
 
 												// SCHEDULE DATE
 												echo '<td>';
