@@ -94,6 +94,15 @@ $webinar_events_select_host = array(
 	''
 );
 
+$webinar_events_speaker = array(
+	'Speaker',
+	''
+);
+
+$webinar_events_select_speaker = array(
+	'-- Select Speaker --',
+	''
+);
 $webinar_events_delete = array(
 	'Delete Webinar and Event',
 	''
