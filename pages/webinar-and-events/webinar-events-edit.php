@@ -157,7 +157,7 @@ if(checkSession()) {
                                             <select class="form-control select2 required" name="speaker" required>
                                                 <?php
                                                     $sql = $pdo->prepare("SELECT *
-                                                        FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,1,%'");
+                                                        FROM users WHERE user_status = 0 AND temp_del = 0");
                                                     $sql->execute();
                                                     while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
                                                         echo '<option value="'.$data['user_employee_id'].'"';
