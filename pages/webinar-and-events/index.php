@@ -103,7 +103,7 @@ if(checkSession()) {
                                     <?php
 										$data_count = 0;
 										// $sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE temp_del = 0");
-                                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY id DESC LIMIT ".$sql_start.",".$numrows);
+										$sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
