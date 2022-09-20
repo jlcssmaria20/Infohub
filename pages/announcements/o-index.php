@@ -99,6 +99,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         $('.closem').click(function() {
             for (let i = 1; i < <?php echo $total + 1?>; i++) {
             $("div#myModal"+i).attr("style", "display: none !important");
+            $("div#myModal"+i).css('background-color', 'rgb(0 0 0 / 90%)');
             $("body").removeClass("modal-open");
             }
         });
@@ -111,7 +112,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             $("body").removeClass("modal-open");
         });
 
-
+      
+        for (let i = 1; i < <?php echo $total + 1?>; i++) {
+            $("div#myModal"+i).css('background-color', 'rgb(0 0 0 / 90%)');
+        }
+      
         // Get the modal1
         $('.js-modal').on('click', function() {
             var modalTarget = $(this).attr('data-target');
