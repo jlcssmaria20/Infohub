@@ -55,7 +55,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                     echo $data['announcements_title'];
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
-                                                echo  '<p data2="'.$data['announcements_details'].'"> </p>';
+                                                echo  '<pre style="white-space: normal;display:none;">'.$data['announcements_details'].'</pre>';
                                         echo '</a>';
                                     echo '</li>';
                                 
@@ -80,7 +80,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 <img class="modal-img mt-5">
                 <div class="text-left">
                     <p class="modal-name"></p>
-                    <p class="modal-details"></p>
+                    <pre style="white-space: pre-wrap;width:600px;color:white;" class="modal-details"></pre>
                     <div id="caption<?php echo $x ?>">
                     </div>
                     <div class="text-center my-3">
@@ -122,8 +122,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             var modalTarget = $(this).attr('data-target');
             var modalImg = $(this).find('img').attr('src'); 
             var modalName = $(this).find('h2').attr('data1');
-            var modaldetails = $(this).find('p').attr('data2')
-
+            var modaldetails = $(this).find('pre').html();
 
             $('#'+ modalTarget).show();
             $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)

@@ -210,7 +210,7 @@ if(checkSession()) {
 				<form action="/submit-delete-announcements/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 					<div class="modal-body px-5 py-4">
 						<input type="hidden" name="announcements_id" id="delete_announcements_id" value="4">
-						<p class="m-0"><?= renderLang($announcements_modal_delete_msg1); ?></p>
+						<p class="m-0"><?php echo renderLang($delete_confirmation_new)."<u><strong> ".$data['announcements_title']. "</u></strong> Announcement?" ?></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">

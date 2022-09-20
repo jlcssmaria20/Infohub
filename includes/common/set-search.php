@@ -25,16 +25,6 @@ if($page != 'system-log') {
 	$sql_temp_del = " AND ".$page.".temp_del=0";
 }
 
-// // filter center for USER account mode
-// $center_filter = '';
-// if(
-// 	$_SESSION['sys_account_mode'] == 'user' && $page != 'roles' && $page != 'ips'
-// ) {
-// 	if($page != 'admins') {
-// 		$center_filter = " AND ".$page.".center_id = ".$_SESSION['sys_center_id'];
-// 	}
-// }
-
 // if keywords array exists, create the WHERE clause for query
 if(isset($keywords_arr)) {
 	foreach($keywords_arr as $keyword) {
@@ -42,21 +32,21 @@ if(isset($keywords_arr)) {
 		if($where == '') {
 			foreach($fields_arr as $field) {
 				if($where == '') {
-					$where .= " WHERE ".$field." LIKE '%".$keyword."%'";
+					$where .= " WHERE ".$field." LIKE '%".$keyword."%' AND temp_del = 0";
 				} else {
-					$where .= " OR ".$field." LIKE '%".$keyword."%'";
+					$where .= " OR ".$field." LIKE '%".$keyword."%' AND temp_del = 0";
 				}
 			}
 		} else {
 			foreach($fields_arr as $field) {
-				$where .= " OR ".$field." LIKE '%".$keyword."%'";
+				$where .= " OR ".$field." LIKE '%".$keyword."%' AND temp_del = 0";
 			}
 		}
 	}
 } else {
 	if($where == '' && $page != 'system-log') {
 
-		 $where = " WHERE ".$page.".temp_del=0";
+		 $where = " WHERE temp_del=0";
 	}
 }
 ?>

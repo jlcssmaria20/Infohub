@@ -113,7 +113,7 @@ if(checkSession()) {
 												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail"></td>';
 
 												// DETAILS
-												echo '<td>'.$data['announcements_details'].'</td>';
+												echo '<td><pre style="white-space: pre-wrap;">'.$data['announcements_details'].'</pre></td>';
 
 												// OPTIONS
 												echo '<td>';

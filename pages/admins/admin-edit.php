@@ -205,7 +205,7 @@ if(checkSession()) {
 					<input type="hidden" name="id" value="<?php echo encryptID($id); ?>">
 					<div class="modal-body align-items-start">
 						<p class="font-weight-bold">
-							<?php echo renderLang($admins_modal_delete_msg1); ?><br>
+							<?php echo renderLang($admins_modal_delete_msg1)." <u>".$data['admin_username']. "</u> as Admin?" ?><br>
 							<span class="font-weight-normal text-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <?php echo renderLang($admins_modal_delete_msg2); ?></span>
 						</p>
 						<div class="form-group is-invalid">

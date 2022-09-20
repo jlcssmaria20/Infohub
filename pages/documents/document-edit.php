@@ -241,7 +241,7 @@ if(checkSession()) {
 					<form action="/submit-delete-document/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 						<input type="hidden" name="document_id" id="delete_document_id" value="4">
 						<div class="modal-body">
-							<p class="m-0"><?= renderLang($document_modal_delete_msg1); ?></p>
+							<p class="m-0"><?php echo renderLang($delete_confirmation_new)." <u><strong> ".$document_name. "</u></strong> Document?" ?></p>
 							<div class="message_delete"></div>
 						</div>
 						<div class="modal-footer">
