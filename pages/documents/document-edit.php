@@ -100,7 +100,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_document_edit_name_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> 
-											<input type="text" minlength="4" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" value="<?php echo $document_name; ?>" required>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" value="<?php echo $document_name; ?>" required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_name_err'].'</p>'; unset($_SESSION['sys_document_edit_name_err']); } ?>
 										</div>
 									</div>
@@ -127,7 +127,7 @@ if(checkSession()) {
 											
 											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											
-											<input type="text" minlength="4" maxlength="30" class="form-control required<?php if($linkname_err) { echo ' is-invalid'; } ?>" id="linkname" name="linkname[]" placeholder="<?php echo renderLang($document_linkname_placeholder); ?>" value="" >
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($linkname_err) { echo ' is-invalid'; } ?>" id="linkname" name="linkname[]" placeholder="<?php echo renderLang($document_linkname_placeholder); ?>" value="" >
 											
 											<?php if($linkname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_linkname_err'].'</p>'; unset($_SESSION['sys_document_add_linkname_err']); } ?>
 										</div>

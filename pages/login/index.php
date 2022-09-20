@@ -104,7 +104,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 		</div><!-- card -->
 		
 		<div class="login-footer">
-			<p>Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</p>
+			<p class="text-center">Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</p>
 		</div>
 		
 	</div>

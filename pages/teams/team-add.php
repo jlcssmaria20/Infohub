@@ -75,7 +75,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_team_add_name_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="team_name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($team_name_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="team_name" name="team_name" placeholder="<?php echo renderLang($team_name_placeholder); ?>"<?php if(isset($_SESSION['sys_team_add_name_val'])) { echo ' value="'.$_SESSION['sys_team_add_name_val'].'"'; } ?> required>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="team_name" name="team_name" placeholder="<?php echo renderLang($team_name_placeholder); ?>"<?php if(isset($_SESSION['sys_team_add_name_val'])) { echo ' value="'.$_SESSION['sys_team_add_name_val'].'"'; } ?> required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_team_add_name_err'].'</p>'; unset($_SESSION['sys_team_add_name_err']); } ?>
 										</div>
 									</div>

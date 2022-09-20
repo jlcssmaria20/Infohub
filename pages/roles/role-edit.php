@@ -119,7 +119,7 @@ if(checkSession()) {
 									?>
 									<div class="form-group">
 										<label for="role_name" class="mr-1<?php if($role_name_err) { echo ' text-danger'; } ?>"><?php if($role_name_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($roles_role_name); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-										<input type="text" minlength="4" class="form-control required<?php if($role_name_err) { echo ' is-invalid'; } ?>" id="role_name" name="role_name" placeholder="<?php echo renderLang($roles_role_name_placeholder); ?>" value="<?php echo $role_name; ?>" required>
+										<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($role_name_err) { echo ' is-invalid'; } ?>" id="role_name" name="role_name" placeholder="<?php echo renderLang($roles_role_name_placeholder); ?>" value="<?php echo $role_name; ?>" required>
 										<?php if($role_name_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_roles_edit_role_name_err'].'</p>'; unset($_SESSION['sys_roles_edit_role_name_err']); } ?>
 									</div>
 								</div>
