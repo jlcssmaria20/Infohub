@@ -95,7 +95,7 @@ if(checkSession()) {
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
 											<th style="width:25%"><?php echo renderLang($webinar_events_img); ?></th>
 											<th><?php echo renderLang($webinar_events_description); ?></th>
-											<th><?php echo renderLang($webinar_events_schedule_date); ?></th>
+											<th style="width:10%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
 											<th style="width:35px;"></th>
 										</tr>
 									</thead>
@@ -103,7 +103,7 @@ if(checkSession()) {
                                     <?php
 										$data_count = 0;
 										// $sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE temp_del = 0");
-                                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+                                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
