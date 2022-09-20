@@ -559,7 +559,7 @@ if(checkSession()) {
 					<div class="modal-body align-items-start">
 						<input type="hidden" name="id" value="<?php echo $id; ?>">
 						<p class="font-weight-bold">
-							<?php echo renderLang($users_modal_delete_msg1); ?><br>
+						<?php echo renderLang($users_modal_delete_msg1)." <u><strong> ".$user_firstname.' '.$user_lastname. "</u></strong> from Users?" ?></p><br>
 							<span class="font-weight-normal text-danger">
 								<i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
 								<?php echo renderLang($users_modal_delete_msg2); ?><br>

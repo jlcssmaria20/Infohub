@@ -138,7 +138,7 @@ if(checkSession()) {
 				<form action="/submit-delete-team/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 					<input type="hidden" name="team_id" id="delete_team_id" value="4">
 					<div class="modal-body">
-						<p class="m-0"><?= renderLang($team_modal_delete_msg1); ?></p>
+						<p class="m-0"><?php echo renderLang($delete_confirmation_new)." <u><strong> ".$data['team_name']. "</u></strong> Team?" ?></p></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">

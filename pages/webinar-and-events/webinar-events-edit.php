@@ -238,7 +238,7 @@ if(checkSession()) {
 				<form action="/submit-delete-webinar-and-events/<?php echo encryptID($id) ?>" method="post" id="form_delete">
 					<input type="hidden" name="webinar_events_id" id="delete_webinar_events_id" value="4">
 					<div class="modal-body">
-						<p class="m-0"><?= renderLang($webinar_events_modal_delete_msg1); ?></p>
+						<p class="m-0"><?php echo renderLang($delete_confirmation_new)." <u><strong> ".$title. "</u></strong> from webinar and events?" ?></p></p>
 						<div class="message_delete"></div>
 					</div>
 					<div class="modal-footer">

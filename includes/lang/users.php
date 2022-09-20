@@ -194,8 +194,8 @@ $users_skills_required = array(
 
 // MODALS
 $users_modal_delete_msg1 = array(
-	'Are you sure you want to delete this user?',
-	'このユーザーを削除しますか？'
+	'Are you sure you want to delete',
+	''
 );
 $users_modal_delete_msg2 = array(
 	'It is discouraged to delete a record.',

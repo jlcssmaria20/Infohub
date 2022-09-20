@@ -201,4 +201,10 @@ $lang_downloads = array(
 	'Downloads',
 	''
 );
+
+$delete_confirmation_new = array(
+	'Are you sure you want to delete',
+	''
+
+)
 ?>

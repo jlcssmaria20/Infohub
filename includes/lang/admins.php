@@ -90,8 +90,8 @@ $admins_admin_logs = array(
 
 // MODALS
 $admins_modal_delete_msg1 = array(
-	'Are you sure you want to delete this admin?',
-	'この管理者を削除してもよろしいですか？'
+	'Are you sure you want to remove ',
+	''
 );
 $admins_modal_delete_msg2 = array(
 	'Deleting this admin will remove it from the database permanently.',
