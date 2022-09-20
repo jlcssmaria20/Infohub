@@ -176,6 +176,9 @@ if(checkSession()) {
 			});
 		<?php } ?>
 		});
+		
+			
+		$("#team_name").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } })
 	</script>
 	
 </body>
