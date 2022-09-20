@@ -93,10 +93,10 @@ if(checkSession()) {
 									<thead>
 										<tr>
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
-											<th style="width:20%"><?php echo renderLang($webinar_events_img); ?></th>
+											<th style="width:25%"><?php echo renderLang($webinar_events_img); ?></th>
 											<th><?php echo renderLang($webinar_events_description); ?></th>
 											<th><?php echo renderLang($webinar_events_schedule_date); ?></th>
-											<th></th>
+											<th style="width:35px;"></th>
 										</tr>
 									</thead>
 									<tbody>
