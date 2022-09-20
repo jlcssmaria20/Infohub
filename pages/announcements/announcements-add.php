@@ -97,7 +97,7 @@ if(checkSession()) {
 								<div class="row">
 
 									<!-- DETAILS -->
-									<div class="col-7">
+									<div class="col-8">
 										<?php
 										$details_err = 0;
 										if(isset($_SESSION['sys_announcements_add_details_err'])) { $details_err = 1; }

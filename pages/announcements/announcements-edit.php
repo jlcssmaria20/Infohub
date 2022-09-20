@@ -163,7 +163,7 @@ if(checkSession()) {
 											
 									
 									<!-- IMAGE -->
-									<div class="col-4">
+									<div class="col-3">
 										<?php $err = isset($_SESSION['sys_announcements_edit_img_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 

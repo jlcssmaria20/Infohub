@@ -142,7 +142,7 @@ if(checkSession()) {
 								<div class="row">
 
 									<!-- WEBINAR DESCRIPTION-->
-									<div class="col-7">
+									<div class="col-8">
 										<?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>

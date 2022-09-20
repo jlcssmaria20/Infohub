@@ -205,7 +205,7 @@ if(checkSession()) {
                                 <div class="row">
 
                                     <!-- WEBINAR DESCRIPTION-->
-                                    <div class="col-lg-6 col-md-4 col-sm-2">
+                                    <div class="col-8">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                         	<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> 
@@ -216,7 +216,7 @@ if(checkSession()) {
                                     </div><!-- /col-->
                     
                                     <!-- WEBINAR IMAGES-->
-                                    <div class="col-lg-3 col-md-4 col-sm-2">
+                                    <div class="col-3">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_img_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
@@ -226,13 +226,9 @@ if(checkSession()) {
                                                 <label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
                                                 <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
 												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
+												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="height:150px;">
                                             </div>
                                         </div>
-                                    </div><!-- /col-->
-
-                                    <!-- WEBINAR PREVIEW-->
-                                    <div class="col-lg-3">
-                                        <img id="picture_display" class="img-thumbnail  mt-3 w-100" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="height:200px;">
                                     </div><!-- /col-->
 
                                 </div><!-- /row-->
