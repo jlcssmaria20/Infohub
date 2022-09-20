@@ -22,7 +22,7 @@ $total = 4;
         </div>
         <section class="main-area col-s-9 d-column mb-5" >
             <div class="clearfix mb-2">
-                <ul id="image-gallery" class="gallery list-unstyled cS-hidden h-100">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                     <?php
                     $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC");
                     $sql->execute();
@@ -48,7 +48,7 @@ $total = 4;
                             if($data['id'] != $LastID) {
                                 if($data['id'] != 0) {
                                     echo '<li data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'"> ';
-                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0;width:100%;'>";
+                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0;width:100%;height:593px'>";
                                         // echo '<div class="text">The text of slide one</div>';
                                     echo '</li>';
                                 }     
@@ -58,7 +58,7 @@ $total = 4;
                     ?>
                 </ul> 
             </div>
-            <a href="/o-webinar-and-events" class="btn btn-block btn-primary">See all events</a>
+            <a href="/o-webinar-and-events" class="btn btn-block btn-primary">See All Events</a>
         </section>
         
         <!-- <section class="main-area col-s-9 d-column mb-5" >
@@ -96,11 +96,11 @@ $total = 4;
                     <span><i class="fa fa-bullhorn"></i>&nbsp; IMPORTANT ANNOUNCEMENTS</span>
                 </h2>
                 <div class="announcement-row">
-                    <ul>
+                    <ul class="w-50">
                     <?php
                     // The list of items to be displayed on screen.
                     $x = array();
-                    $sql = $pdo->prepare("SELECT * FROM announcements WHERE announcements_status = 0 ORDER BY id ASC LIMIT 4");
+                    $sql = $pdo->prepare("SELECT * FROM announcements WHERE announcements_status = 0 ORDER BY id DESC LIMIT 4");
                     $sql->execute();
                     $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -120,7 +120,7 @@ $total = 4;
                     ?>
                     </ul>
                 </div>
-                <a href="/o-announcements" class="btn btn-primary">See all announcements</a>
+                <a href="/o-announcements" class="btn btn-primary">See All Announcements</a>
             </div>
         </section>
     </div><!-- container -->
