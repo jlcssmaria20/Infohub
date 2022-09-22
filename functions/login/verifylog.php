@@ -99,12 +99,12 @@ if(isset($_POST['submit-login'])) {
 				$_SESSION['sys_fullname'] = $data['user_firstname'].' '.$data['user_lastname'];
 				if($data['user_photo'] == '') {
 					if($data['user_gender'] == 0) {
-						$_SESSION['sys_photo'] = 'avatar2.png';
+						$_SESSION['sys_photo'] = '/assets/images/team-images/avatar2.png';
 					} else {
-						$_SESSION['sys_photo'] = 'avatar5.png';
+						$_SESSION['sys_photo'] = '/assets/images/team-images/avatar5.png';
 					}
 				} else {
-					$_SESSION['sys_photo'] = $data['user_photo'];
+					$_SESSION['sys_photo'] = '/assets/images/team-images/'.$data['user_photo'];
 				}
 				$_SESSION['sys_center_id'] = $data['center_id'];
 				$_SESSION['sys_role_ids'] = $data['role_ids']; 

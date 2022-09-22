@@ -287,6 +287,7 @@ if(checkSession()) {
 				}
 			}
 			$user_photo_is_default = 0;
+			$user_photo = '';
 			//check if user photo is the default photo that was set by system
 			if(($data['user_photo'] == 'avatar2.png') || ($data['user_photo'] == 'avatar5.png')){
 				$user_photo_is_default = 1;

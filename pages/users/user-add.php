@@ -86,7 +86,7 @@ if(checkSession()) {
 													FROM teams WHERE temp_del = 0
 													ORDER BY  team_name ASC");
 												$sql->execute();
-												echo '<option value="0">'.renderLang($user_set_designation).'</option>';
+												echo '<option value="">'.renderLang($user_set_designation).'</option>';
 												while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 													echo '<option value="'.$data['id'].'"';
 													if($select_val == $data['id']) {

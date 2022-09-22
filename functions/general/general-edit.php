@@ -67,13 +67,13 @@ if(checkSession()) {
 				) {
 					$err++;
 				}
-				$_SESSION['sys_general_photo_err'] = renderLang($settings_general_update_invalid_file_type);
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 			}
 
 			// check file size
 			if ($_FILES['photo']['size'] > 200000) {
 				$err++;
-				$_SESSION['sys_general_photo_err'] = renderLang($settings_general_update_exceeds_size);
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			}
 		}
 
@@ -178,6 +178,7 @@ if(checkSession()) {
 
 				$filepath = '/assets/images/team-images/'.$photo;
 
+				$_SESSION['sys_photo'] = $filepath;
 				// update account language table
 				$sql = $pdo->prepare("UPDATE users SET
 					user_skills 			= :user_skills,

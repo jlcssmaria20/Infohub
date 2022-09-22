@@ -75,7 +75,7 @@ if(checkSession()) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <title><?php echo $dx."General (Update Account)"; ?></title>
-	
+	<link rel="stylesheet" href="/assets/css/general.css">
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	
 </head>
@@ -232,7 +232,7 @@ if(checkSession()) {
                                             </div>
                                          
                                             <!-- IMAGE -->
-                                            <div class="col-4">
+                                            <div class="col-5">
                                                 <?php $err = isset($_SESSION['sys_general_edit_photo_err']) ? 1 : 0; ?>
                                                 <div class="form-group">
                                                     <label for="photo" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_image); ?></label> 
@@ -245,6 +245,7 @@ if(checkSession()) {
                                                         <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_photo_err'].'</p>'; unset($_SESSION['sys_general_edit_photo_err']); } ?>
                                                         <input type="hidden" name="file_src" value="<?php echo $user_photo; ?>">
                                                     </div>
+                                                    <br><br>
                                                     <p><?php echo renderLang($settings_general_msg2);?>
                                                 </div>
                                             </div>

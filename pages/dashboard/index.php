@@ -52,7 +52,6 @@ if(checkSession()) {
 						
 						<!-- ACTIVE USERS -->
 						<?php
-						if(checkPermission('users')) {
 							$sql = $pdo->prepare("SELECT user_id, user_status FROM users WHERE user_status = 0");
 							$sql->execute();
 							$active_users = $sql->rowCount();
@@ -66,10 +65,11 @@ if(checkSession()) {
 									<div class="icon">
 										<i class="fa fa-users"></i>
 									</div>
+									<?php if(checkPermission('users')) { ?>
 									<a href="/users" class="small-box-footer"><?php echo "more info"; ?> <i class="fas fa-arrow-circle-right"></i></a>
+									<?php } ?>
 								</div>
 							</div>
-						<?php } ?>
 					</div><!-- row -->
 					
 					<div class="row mt-2">

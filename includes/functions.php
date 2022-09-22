@@ -389,6 +389,7 @@ function clearSessions() {
 		'middlename',
 		'lastname',
 		'nickname',
+		'photo',
 		'position',
 		'roles',
 		'hiredate',

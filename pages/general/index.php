@@ -157,7 +157,7 @@ if(checkSession()) {
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="nickname" class="mr-1">	<?php echo renderLang($account_nickname);  ?> </label>
-												<p>"<?php echo $data['user_nickname'] ?>"</p>
+												<p><?php echo $data['user_nickname'] ?></p>
 											</div>
 										</div>
 										<!-- GENDER-->

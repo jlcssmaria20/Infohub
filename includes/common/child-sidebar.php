@@ -10,7 +10,7 @@
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
 				<?php
-					echo '<img src="/assets/images/team-images/'.$_SESSION['sys_photo'].'" class="img-circle elevation-2" alt="User Image">';
+					echo '<img src="'.$_SESSION['sys_photo'].'" class="img-circle elevation-2" alt="User Image">';
 				?>
 			</div>
 			<div class="info">
