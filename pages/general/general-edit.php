@@ -224,7 +224,7 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname_label); ?>" value="<?php echo $user_nickname ?>" required>
+                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname); ?>" value="<?php echo $user_nickname ?>" required>
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_nickname_err'].'</p>'; unset($_SESSION['sys_general_edit_nickname_err']); } ?>
                                                 </div>

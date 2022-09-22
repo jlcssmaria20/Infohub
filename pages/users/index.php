@@ -37,8 +37,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 <span>Meet the Team</span>
             </h2>
             
-            <div class="announcement-row mr-4">
-                <div class="d-flex justify-content-end mr-4">
+            <div class="announcement-row">
+                <div class="d-flex justify-content-end">
                     <!-- SEARCH -->
                     <div class="mr-3">
                         <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search" class="form-control rounded mr-2 px-2 ">
