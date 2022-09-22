@@ -92,7 +92,7 @@ img.modal-img {
       box-sizing: border-box;
     }  
     .container {
-      margin: 0 auto;
+      margin-right: 40px;
       width: 90%;
     }
     .container::after {
@@ -310,7 +310,7 @@ img.modal-img {
       .col-s-6 {width: 50%;}
       .col-s-7 {width: 58.33%;}
       .col-s-8 {width: 66.66%;}
-      .col-s-9 {width: 70%;}
+      .col-s-9 {width: 75%;}
       .col-s-10 {width: 83.33%;}
       .col-s-11 {width: 91.66%;}
       .col-s-12 {width: 100%;}
@@ -330,12 +330,11 @@ img.modal-img {
       .col-10 {width: 83.33%;}
       .col-11 {width: 91.66%;}
       .col-12 {width: 100%;}
-      .main-area {overflow: hidden;max-width: 70%;}
+      .main-area {overflow: hidden;max-width: 75%;}
     }
     @media only screen and (min-width: 768px) {
         .main-area {
             float: right;
-            margin-top:45px;
         }
     }
 
