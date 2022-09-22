@@ -161,17 +161,26 @@ if(checkSession()) {
 											</div>
 										</div>
 										<!-- GENDER-->
+										
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="gender" class="mr-1">	<?php echo renderLang($account_gender);  ?> </label>
-												<p><?php echo $data['user_gender'] ?></p>
+												<?php 
+													foreach($gender_arr as $gender) {
+														if($data['user_gender'] == $gender[0]) {
+															echo '<p>'.renderLang($gender[1]).'</p>';
+														}
+													}
+												
+												?>
 											</div>
 										</div>
 										<!-- HIREDATE -->
 										<div class="col-lg-4">
 											<div class="form-group">
 												<label for="hiredate" class="mr-1">	<?php echo renderLang($account_hiredate);  ?> </label>
-												<p><?php echo $data['user_hiredate'] ?></p>
+												<?php $date = date_create($data['user_hiredate']);?>
+												<p><?php echo  date_format($date, 'F j, Y'); ?></p>
 											</div>
 										</div>
 									</div>
