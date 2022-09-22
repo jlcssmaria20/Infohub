@@ -286,7 +286,11 @@ if(checkSession()) {
 					$_SESSION['sys_users_edit_user_status_err'] = 'Please select a valid status.';
 				}
 			}
-
+			$user_photo_is_default = 0;
+			//check if user photo is the default photo that was set by system
+			if(($data['user_photo'] == 'avatar2.png') || ($data['user_photo'] == 'avatar5.png')){
+				$user_photo_is_default = 1;
+			}
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors
 
@@ -313,6 +317,15 @@ if(checkSession()) {
 				if($gender != $data['user_gender']) {
 					$tmp = 'users_gender::'.$data['user_gender'].'=='.$gender;
 					array_push($change_logs,$tmp);
+					if($user_photo_is_default){
+						if($gender == 0){
+							$user_photo = 'avatar2.png';
+						} else {
+							$user_photo = 'avatar5.png';
+						}
+					} else {
+						$user_photo = $data['user_photo'];
+					}			
 				}
 				if($position_id != $data['user_position']) {
 					$tmp = 'users_position::'.$data['user_position'].'=='.$position_id;
@@ -376,6 +389,7 @@ if(checkSession()) {
 							user_middlename = :user_middlename,
 							user_lastname = :user_lastname,
 							user_nickname = :user_nickname,
+							user_photo = :user_photo,
 							user_gender = :user_gender,
 							user_mobile = :user_mobile,
 							user_position = :user_position,
@@ -396,6 +410,7 @@ if(checkSession()) {
 						':user_middlename'    => $middlename,
 						':user_lastname'      => $lastname,
 						':user_nickname'      => $nickname,
+						':user_photo'         => $user_photo,
 						':user_gender'        => $gender,
 						':user_mobile'        => $user_mobile,
 						':user_position'      => $position_id,

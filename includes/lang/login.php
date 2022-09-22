@@ -11,8 +11,8 @@ $login_message_1 = array(
 	'コーポレートスイート'
 );
 $login_login_placeholder = array(
-	'Username',
-	'ユーザー名'
+	'Email',
+	''
 );
 $login_password_placeholder = array(
 	'Password',
