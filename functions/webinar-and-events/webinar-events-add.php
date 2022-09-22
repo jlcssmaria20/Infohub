@@ -73,7 +73,18 @@ if(checkSession()) {
 			if(strlen($speaker) == 0) {
 				$err++;
 				$_SESSION['sys_webinar_events_add_speaker_err'] = renderLang($webinar_events_speaker_required);
-			} 
+			}
+		}
+
+		// OTHERS
+		$others = '';
+		if(isset($_POST['others'])) {
+			$others = htmlentities(trim($_POST['others']));
+			$others = ucwords(strtolower(trim($_POST['others'])));
+			$_SESSION['sys_webinar_events_add_others_val'] = $others;
+			if(strlen($others) == 0) {
+				$others = htmlentities(trim($_POST['speaker']));
+			}
 		}
 
 		// VALIDATE FOR ERRORS
@@ -118,7 +129,7 @@ if(checkSession()) {
             $bind_param = array(
                 ':user_id'  				    => $_SESSION['sys_id'],
 				':webinar_host'                 => $host,
-				':webinar_speaker'              => $speaker,
+				':webinar_speaker'              => $others,
                 ':webinar_title'  	    		=> $title,
                 ':webinar_description'  		=> $description,
                 ':webinar_img'   				=> $picture,

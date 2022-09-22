@@ -89,7 +89,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 						</div>
 					</div>
                     <hr>
-                    <div class="text-center bold"><a  href="/"><strong>Go to DX Info Hub</strong></a></div>
+                    <div class="text-center bold"><a  href="/"><strong><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>Go to DX Info Hub</strong></a></div>
 					
 				</form>
 
