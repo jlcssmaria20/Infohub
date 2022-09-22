@@ -321,8 +321,10 @@ if(checkSession()) {
 					if($user_photo_is_default){
 						if($gender == 0){
 							$user_photo = 'avatar2.png';
+							$_SESSION['sys_photo'] = '/assets/images/team-images/'.$user_photo;
 						} else {
 							$user_photo = 'avatar5.png';
+							$_SESSION['sys_photo'] = '/assets/images/team-images/'.$user_photo;
 						}
 					} else {
 						$user_photo = $data['user_photo'];
