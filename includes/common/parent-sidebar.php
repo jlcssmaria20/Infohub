@@ -1,4 +1,4 @@
-<nav class="navbar-nav mb-5 h-100">
+<nav class="navbar-nav mb-5 h-100 ">
   <div class="nav-title">
     <h1><img class="img-logo" src="/assets/images/dx-info-hub-logo.svg" alt="DX Info Hub" /></h1>
   </div>
@@ -30,7 +30,7 @@
     </li>  
   </ul>
 
-  <div class="nav-footer" style="margin-bottom: 60px;"><hr>
+  <div class="nav-footer" style="margin-bottom: 40px;"><hr>
     <ul>
       <li class="nav-item">
         <a class="nav-link js-scroll-trigger <?php if($page == 'login') { echo ' active'; } ?>" href="/login">
