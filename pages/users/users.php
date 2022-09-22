@@ -95,8 +95,6 @@ if(checkSession()) {
 							</div>
 						</div>
 						<div class="card-body">
-							<?php if($_SESSION['sys_account_mode'] == 'admin') { ?>
-
 								<!-- DATA TABLE -->
 								<div class="table-responsive">
 									<table id="table-data" class="table table-bordered table-striped table-hover">
@@ -209,32 +207,7 @@ if(checkSession()) {
 										</tbody>
 									</table>
 								</div><!-- table-responsive -->
-							<?php } else { ?>
-							
-								<!-- DATA TABLE -->
-								<div class="table-responsive">
-									<table id="table-data-user" class="table table-bordered table-striped table-hover">
-										<thead>
-											<tr>
-												<th><?php echo renderLang($users_employee_id); ?></th>
-												<th><?php echo renderLang($users_lastname); ?></th>
-												<th><?php echo renderLang($users_firstname); ?></th>
-												<th><?php echo renderLang($users_email); ?></th>
-												<th><?php echo renderLang($users_designation); ?></th>
-												<th><?php echo renderLang($roles_roles); ?></th>
-												<th><?php echo renderLang($lang_status); ?></th>
-												<th><?php echo renderLang($users_last_login); ?></th>
-												<th style="width:100px;"></th>
-											</tr>
-										</thead>
-										<tbody class="users-list">
-											<tr>
-												<td colspan="9"><?php echo renderLang($lang_loading); ?></td>
-											</tr>
-										</tbody>
-									</table>
-								</div><!-- table-responsive -->
-							<?php } ?>
+						
 						</div>
 					</div><!-- card -->
 					
