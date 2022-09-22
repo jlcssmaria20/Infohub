@@ -92,7 +92,7 @@ img.modal-img {
       box-sizing: border-box;
     }  
     .container {
-      margin-right: 40px;
+      margin: 0 auto;
       width: 90%;
     }
     .container::after {

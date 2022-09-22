@@ -32,7 +32,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
             </div>
 
-            <section class="main-area col-s-9 d-column mb-4" >
+            <section class="main-area col-s-9 d-column mb-4 ml-5" >
             <div class="announcement mb-4">
                 <h2 class="mb-3">
                     <span>Webinar and Events</span>
