@@ -17,41 +17,44 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <link href="/assets/css/documents.css" rel="stylesheet" />
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
-    <body>
+    <body id="documents">
         <div class="container">
             <div class="col-3 col-s-3 menu">
                 <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
             </div>
 
             <section class="main-area col-s-9 d-column mb-4">
-                <div class="mb-4">
+                <div class="announcement mb-4">
                     <h2 class="mb-3">
                         <span  style="color: var(--black);">Documents and Quick Links</span>
                     </h2>
-                    <ul class="list-inline mb-4">
-                        <?php
-                            $data_count = 0;
-                            $sql = $pdo->prepare("SELECT * FROM documents WHERE `document_status` = 0 ORDER BY id ASC");
-                            $sql->execute();
-                            while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+                    <div class="announcement-row">
 
-                            $data_count++;
-                            $document_id = encryptID($data['id']);
+                        <ul class="list-inline mb-4">
+                            <?php
+                                $data_count = 0;
+                                $sql = $pdo->prepare("SELECT * FROM documents WHERE `document_status` = 0 ORDER BY id ASC");
+                                $sql->execute();
+                                while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+
+                                $data_count++;
+                                $document_id = encryptID($data['id']);
+                                
+                                $count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
+                                $count->execute();
+                                $total_data_count = $count->rowCount();
                             
-                            $count =  $pdo->prepare("SELECT * FROM `files` WHERE `document_id` = ".$data['id']);
-                            $count->execute();
-                            $total_data_count = $count->rowCount();
-                        
-                            echo "<a href='/document-files/".$data["id"]."'>";
-                                echo '<li class="list-dl-item">';
-                                    echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
-                                    echo $data["document_name"];
-                                    echo ' ('. $total_data_count .') ';
-                                echo '</li>';
-                            echo  "</a>";
-                            }
-                        ?>
-                    </ul>
+                                echo "<a href='/document-files/".$data["id"]."'>";
+                                    echo '<li class="list-dl-item pl-3">';
+                                        echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
+                                        echo $data["document_name"];
+                                        echo ' ('. $total_data_count .') ';
+                                    echo '</li>';
+                                echo  "</a>";
+                                }
+                            ?>
+                        </ul>
+                    </div>
                 </div>
             </section>       
             </div>
