@@ -98,6 +98,15 @@ $webinar_events_speaker = array(
 	'Speaker',
 	''
 );
+$webinar_events_others = array(
+	'Others',
+	''
+);
+$webinar_events_other = array(
+	'Speaker Name',
+	''
+);
+
 
 $webinar_events_select_speaker = array(
 	'-- Select Speaker --',

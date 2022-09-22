@@ -38,7 +38,6 @@ if(checkSession()) {
 				$speaker = $_SESSION['sys_webinar_events_edit_speaker_val'];
 				unset($_SESSION['sys_webinar_events_edit_speaker_val']);
 			}
-
 			$title = $data['webinar_title'];
 			if(isset($_SESSION['sys_webinar_events_edit_title_val'])) {
 				$title = $_SESSION['sys_webinar_events_edit_title_val'];
@@ -65,6 +64,7 @@ if(checkSession()) {
 				$schedule_date = date('m/d/Y',strtotime($data['date_set']));
 			}
 	
+			$users_arr = getTable('users');
 ?>
 <!DOCTYPE html>
 <html>
@@ -151,39 +151,78 @@ if(checkSession()) {
 
 									<!-- WEBINAR SPEAKER -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
-                                        <?php $err = isset($_SESSION['sys_webinar_events_add_speaker_err']) ? 1 : 0; ?>
+                                        <?php $err = isset($_SESSION['sys_webinar_events_edit_speaker_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-                                            <select class="form-control select2 required" name="speaker" required>
-                                                <?php
-                                                    $sql = $pdo->prepare("SELECT *
-                                                        FROM users WHERE user_status = 0 AND temp_del = 0");
-                                                    $sql->execute();
-                                                    while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                                        echo '<option value="'.$data['user_employee_id'].'"';
+											
+											<br>
+                                            <select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker" onchange="yesnoCheck(this);" required>
+													<option value="others">Others</option>
+												<?php
+													
+													$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
+													$sql->execute();
+													
+													echo '>Others</option>';
+													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+														
+														echo '<option value="'.$data['user_employee_id'].'"';
                                                         if($speaker == $data['user_employee_id']){
 															echo ' selected';
 														}
 														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
-                                                    }
-                                                ?>
-                                            </select>
-                                            <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_speaker_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_speaker_err']); } ?>
+
+													}
+													
+												?>
+											</select>
+                                            <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_speaker_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_speaker_err']); } ?>
                                         </div>
                                     </div><!-- /col-->
 
+									
+
+									<!-- WEBINAR SPEAKER OTHERS-->
+									<div class="col-lg-3">
+                                        <?php $err = isset($_SESSION['sys_webinar_events_edit_others_err']) ? 1 : 0; ?>
+
+										<?php
+										foreach($users_arr as $user) {
+											if($user['user_employee_id'] == $speaker) {
+												
+												break;
+											}else{
+												?>
+												<div id="ifYes" class="form-group" style="display:block">
+													<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
+												
+													<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $speaker; ?>" >
+													
+													<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
+												</div>
+												<?php
+												break;
+											}
+										}
+										?>
+										
+									</div>
+                                </div>
+
+                                    <hr>
+
+                                <div class="row">
+
                                     <!-- WEBINAR TITLE -->
-                                    <div class="col-lg-3 col-md-4 col-sm-2">
+                                    <div class="col-lg-3">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_title_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_title); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                             <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($webinar_events_title_placeholder); ?>" value="<?php echo $title; ?>" required>
                                             <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_title_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_title_err']); } ?>
                                         </div>
-                                    </div>
 
                                     <!-- WEBINAR SCHEDULE DATE-->
-                                    <div class="col-lg-3 col-md-4 col-sm-2">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_schedule_date_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="schedule_date" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_schedule_date); ?></label> 
@@ -196,16 +235,10 @@ if(checkSession()) {
                                             </div>
                                         </div>
                                         <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_schedule_date_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_schedule_date_err']); } ?>
-                                    </div><!-- /col-->
-
-                                </div><!-- /row-->
-
-                                    <hr>
-
-                                <div class="row">
+                                    </div>
 
                                     <!-- WEBINAR DESCRIPTION-->
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                         	<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> 
@@ -308,6 +341,18 @@ if(checkSession()) {
 		});
 
 		$("#title").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+
+		
+		function yesnoCheck(that) {
+			if (that.value == "others") {
+				document.getElementById("ifYes").style.display = "block";
+				document.getElementById("others").required = true;
+			} else {
+				document.getElementById("ifYes").style.display = "";
+				document.getElementById("others").required = false;
+				document.getElementById("others").value = "";
+			}
+		}
 	</script>
 	
 </body>

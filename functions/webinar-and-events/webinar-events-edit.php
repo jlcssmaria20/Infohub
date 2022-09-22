@@ -13,7 +13,6 @@ if(checkSession()) {
 	
 		$err = 0;
 		$webinar_id = decryptID($_GET['id']);
-		
 		// check if ID exists
 		$sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE id = :webinar_id LIMIT 1");
 		$sql->bindParam(":webinar_id",$webinar_id);
@@ -22,7 +21,6 @@ if(checkSession()) {
 		if($sql->rowCount()) {
 
 			// PROCESS FORM
-			
 			$date_set1 = $_POST['schedule_date'];
 			$date_set = date('Ymd',strtotime($date_set1));
 	
@@ -36,17 +34,16 @@ if(checkSession()) {
 					$_SESSION['sys_webinar_events_edit_host_err'] = renderLang($webinar_events_host_required);
 				} 
 			}
-
-			//speaker
+			// SPEAKER
 			$speaker = '';
 			if(isset($_POST['speaker'])) {
-				$speaker = htmlentities(trim($_POST['speaker']));
+				$speaker = ucwords(strtolower(trim($_POST['others'])));
 				$_SESSION['sys_webinar_events_edit_speaker_val'] = $speaker;
 				if(strlen($speaker) == 0) {
-					$err++;
-					$_SESSION['sys_webinar_events_edit_speaker_err'] = renderLang($webinar_events_speaker_required);
-				} 
+					$speaker = htmlentities(trim($_POST['speaker']));
+				}
 			}
+
 			// title
 			$title = '';
 			if(isset($_POST['title'])) {
@@ -104,7 +101,7 @@ if(checkSession()) {
                     $bind_param = array(
                         ':webinar_id'            		=> $webinar_id,
                         ':webinar_host'  				=> $host,
-                        ':webinar_speaker'  			=> $speaker,
+                        ':webinar_speaker'  			=> $others,
                         ':webinar_title'  	    		=> $title,
                         ':webinar_description'  		=> $description,
                         ':webinar_img'   				=> $picture,
