@@ -286,7 +286,7 @@ if(checkSession()) {
 										?>
 										<div class="form-group">
 											<label for="nickname" class="mr-1<?php if($nickname_err) { echo ' text-danger'; } ?>"><?php if($nickname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_nickname); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" minlength="1" maxlength="50"  id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_nickname_val'])) { echo ' value="'.$_SESSION['sys_users_add_nickname_val'].'"'; } ?> required>
+											<input type="text" class="form-control required<?php if($nickname_err) { echo ' is-invalid'; } ?>" minlength="4" maxlength="50"  id="nickname" name="nickname" placeholder="<?php echo renderLang($users_nickname_placeholder); ?>"<?php if(isset($_SESSION['sys_users_add_nickname_val'])) { echo ' value="'.$_SESSION['sys_users_add_nickname_val'].'"'; } ?> required>
 											<?php if($nickname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_nickname_err'].'</p>'; unset($_SESSION['sys_users_add_nickname_err']); } ?>
 										</div>
 									</div>

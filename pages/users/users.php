@@ -262,7 +262,7 @@ if(checkSession()) {
 			
 			<?php if($_SESSION['sys_account_mode'] != 'admin') { ?>
 			
-				showLoading();
+				//showLoading();
 				$(".users-list").load('/functions/users/user-load.php');
 			
 			<?php } ?>
