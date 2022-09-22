@@ -1,4 +1,4 @@
-<nav class="navbar-nav mb-5 h-100">
+<nav class="navbar-nav mb-5 h-100 ">
   <div class="nav-title">
     <h1><img class="img-logo" src="/assets/images/dx-info-hub-logo.svg" alt="DX Info Hub" /></h1>
   </div>
