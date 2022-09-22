@@ -75,7 +75,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
                                             <div class="card card-primary card-outline">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Purpose</h5>
+                                                    <h5 class="card-title"> <?php  echo $data['file_linkname']; ?></h5>
                                                     <p class="card-text">
                                                     To guide designers and developers in building and designing digital products such as websites or applications aligned to TCAP brand.
                                                     In this way, designers and developers can build faster and design intentionally to deliver consistent experiences and best solutions for end-users.
