@@ -114,7 +114,7 @@ if(checkSession()) {
 										<tbody>
 											<?php
 											$data_count = 0;
-											$sql = $pdo->prepare("SELECT * FROM users".$where." ORDER BY user_status ASC, user_lastname ASC");
+											$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 ORDER BY user_lastname ASC");
 											$sql->execute();
 											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 
