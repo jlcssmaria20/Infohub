@@ -362,7 +362,7 @@ function clearSessions() {
 
 	//ANNOUNCEMENTS
 	$module = 'webinar_events';
-	$fields_arr = array('webinar_events','host','title','user_id','description','img','status', 'schedule_date');
+	$fields_arr = array('webinar_events','host','title', 'speaker', 'others', 'user_id','description','img','status', 'schedule_date');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 
 	// ADMINS

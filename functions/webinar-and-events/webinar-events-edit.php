@@ -101,7 +101,7 @@ if(checkSession()) {
                     $bind_param = array(
                         ':webinar_id'            		=> $webinar_id,
                         ':webinar_host'  				=> $host,
-                        ':webinar_speaker'  			=> $others,
+                        ':webinar_speaker'  			=> $speaker,
                         ':webinar_title'  	    		=> $title,
                         ':webinar_description'  		=> $description,
                         ':webinar_img'   				=> $picture,
