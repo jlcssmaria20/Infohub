@@ -60,28 +60,19 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     <input type="hidden" class="copied">
                                 
                                     
-                                    <button class="btn-block rounded border-0 p-0 btn bg-white" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
-                                        <li class="list-dl-item text-left">
-                                            <i class="fa fa-copy" id="fa" aria-hidden="true"></i>
-                                            <b>File Name:</b>
-                                            <?php  echo $data['file_linkname']; ?>
-                                            <br>
-                                            <b class="text-center">Link: </b>
-                                            <span class="" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
-                                        </li>
-                                    </button>
+                                   
                                     <div class="row">
-                                        <div class="col-lg-6">
-
+                                        <div class="col-lg">
                                             <div class="card card-primary card-outline">
                                                 <div class="card-body">
                                                     <h5 class="card-title"> <?php  echo $data['file_linkname']; ?></h5>
-                                                    <p class="card-text">
-                                                    To guide designers and developers in building and designing digital products such as websites or applications aligned to TCAP brand.
-                                                    In this way, designers and developers can build faster and design intentionally to deliver consistent experiences and best solutions for end-users.
-                                                    </p>
-                                                    <a href="#" class="card-link">Card link</a>
-                                                    <a href="#" class="card-link">Another link</a>
+                                                    <div class="text-right">
+                                                        <button class="btn btn-primary" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
+                                                        Copy Link
+                                                        </button>
+                                                        
+                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary">Go to Link</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
