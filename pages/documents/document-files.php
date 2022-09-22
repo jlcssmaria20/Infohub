@@ -42,7 +42,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <h2 class="mb-3">
                         <span  style="color: var(--black);">Documents and Quick Links > <?php  echo $data['document_name']; ?></span>
                     </h2>
+                    
                     <ul class="list-inline mb-4">
+
                         <?php 
                             //Display Files
                             $count = 0;
@@ -68,6 +70,23 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             <span class="" id="link<?php echo $count ?>"><?php echo $data['file_link'] ?></span>
                                         </li>
                                     </button>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+
+                                            <div class="card card-primary card-outline">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Purpose</h5>
+                                                    <p class="card-text">
+                                                    To guide designers and developers in building and designing digital products such as websites or applications aligned to TCAP brand.
+                                                    In this way, designers and developers can build faster and design intentionally to deliver consistent experiences and best solutions for end-users.
+                                                    </p>
+                                                    <a href="#" class="card-link">Card link</a>
+                                                    <a href="#" class="card-link">Another link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 
                           <?php 
                                  }
