@@ -73,7 +73,7 @@ if(checkSession()) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+	<link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     <title><?php echo $dx."General (Update Account)"; ?></title>
 	<link rel="stylesheet" href="/assets/css/general.css">
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
@@ -237,7 +237,7 @@ if(checkSession()) {
                                                 <div class="form-group">
                                                     <label for="photo" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_image); ?></label> 
                                                    
-                                                    <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+                                                    <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
                                                     
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="photo" name="photo">
