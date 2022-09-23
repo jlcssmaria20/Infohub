@@ -94,6 +94,7 @@ if(isset($_POST['submit-login'])) {
 				$user_id = $data['user_id'];
 				$lockout_timestamp = $data['lockout_timestamp'];
 				$_SESSION['sys_id'] = $data['user_id'];
+				$_SESSION['sys_employee_id'] = $data['user_employee_id'];
 				$_SESSION['sys_firstname'] = $data['user_firstname'];
 				$_SESSION['sys_lastname'] = $data['user_lastname'];
 				$_SESSION['sys_fullname'] = $data['user_firstname'].' '.$data['user_lastname'];

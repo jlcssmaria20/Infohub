@@ -5,6 +5,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 // check if user has existing session
 if(checkSession()) {
 
+	$users_arr = getTable('users');
+
 	
 ?>
 <!DOCTYPE html>
@@ -110,21 +112,85 @@ if(checkSession()) {
 							</div>
 
 					</div><!-- row -->
-					
-					<div class="row mt-2">
-						
-						<!-- LEFT COLUMN -->
-						<div class="col-md-6">
+					<?php 
+					if($_SESSION['sys_account_mode'] == 'user') {
+						$isAmbassador = 0;
+						$roles_arr = explode(",", $_SESSION['sys_role_ids']);
+						if (in_array(2, $roles_arr)){
+							$isAmbassador = 1;
+						}
+					 ?>
+					 <?php if($isAmbassador){ ?>
+						<div class="row mt-3">
+
+							<div class="col-sm-6">
+
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">[Ambassador] Assigned Webinar and Events List </h3>
+									</div>
+									<div class="card-body">
+
+										<div class="table-responsive">
+											<table id="table-data" class="table table-bordered table-striped table-hover">
+												<thead>
+													<tr>
+														<th class="text-center" style="width: 200px;">Title</th>
+														<th class="text-center">Speaker</th>
+														<th class="text-center">Date</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													$data_count = 0;
+													$sql = $pdo->prepare("SELECT *
+														FROM webinarandevents
+														WHERE webinar_host = :employee_id AND temp_del = 0
+														ORDER BY date_set DESC");
+														$bind_param = array(
+															'employee_id' => $_SESSION['sys_employee_id']
+														);
+														$sql->execute($bind_param);
+													
+													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+														$data_count++;
+													
+													
+														echo '<tr>';
+
+															// WEBINAR TITLE
+															echo '<td>'.$data['webinar_title'].'</td>';
+
+															// WEBINAR SPEAKER
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $data['webinar_speaker']) {
+																	echo '<td>'.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+																	break;
+																}
+															}
+
+															//WEBINAR SCHEDULE
+																			
+															echo '<td>';
+																echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+															echo '</td>';
+														
+
+													
+														echo '</tr>';
+													}
+													?>
+												</tbody>
+											</table>
+										</div><!-- table-responsive -->
+									</div>
+								</div><!-- card -->
+								
+							</div>
 							
-							
-						</div>
-						
-						<!-- RIGHT COLUMN -->
-						<div class="col-md-6">
-						</div>
-						
-					</div><!-- row -->
-					
+						</div><!-- row -->
+					<?php } ?>	
+				<?php } ?>	
 				</div><!-- container-fluid -->
 			</section><!-- content -->
 			
