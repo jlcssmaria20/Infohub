@@ -100,7 +100,6 @@ if(checkSession()) {
 										<thead>
 											<tr>
 												<th><?php echo renderLang($users_employee_id); ?></th>
-												<th></th>
 												<th><?php echo renderLang($users_lastname); ?></th>
 												<th><?php echo renderLang($users_firstname); ?></th>
 												<th><?php echo renderLang($users_email); ?></th>
@@ -108,7 +107,7 @@ if(checkSession()) {
 												<th><?php echo renderLang($roles_roles); ?></th>
 												<th><?php echo renderLang($lang_status); ?></th>
 												<th><?php echo renderLang($users_last_login); ?></th>
-												<th style="width:40px;"></th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -124,10 +123,8 @@ if(checkSession()) {
 												echo '<tr>';
 
 													// EMPLOYEE ID
-													echo '<td>'.$data['user_employee_id'].'</td>';
+													echo '<td><img src="assets/images/team-images/'.$data['user_photo'].'" class="table-avatar mr-3" alt="">'.$data['user_employee_id'].'</td>';
 
-													// IMAGE
-													echo '<td><img src="assets/images/team-images/'.$data['user_photo'].'" class="table-avatar" alt=""></td>';
 
 													// LASTNAME
 													echo '<td>'.$data['user_lastname'].'</td>';

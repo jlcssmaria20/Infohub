@@ -133,6 +133,10 @@ $document_copy = array(
 	'Copy',
 	''
 );
+$created_by = array(
+	'Created by',
+	''
+);
 // MODALS
 $document_modal_delete_msg1 = array(
 	'Are you sure you want to delete this folder?',

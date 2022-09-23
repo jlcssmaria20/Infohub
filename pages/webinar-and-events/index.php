@@ -93,10 +93,11 @@ if(checkSession()) {
 									<thead>
 										<tr>
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
-											<th style="width:25%"><?php echo renderLang($webinar_events_img); ?></th>
-											<th><?php echo renderLang($webinar_events_description); ?></th>
-											<th style="width:10%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
-											<th style="width:35px;"></th>
+											<th style="width:20%"><?php echo renderLang($webinar_events_img); ?></th>
+											<th style="width:25%"><?php echo renderLang($webinar_events_description); ?></th>
+											<th style="width:15%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
+											<th style="width:15%"><?php echo renderLang($created_by); ?></th>
+											<th style="5%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -147,26 +148,21 @@ if(checkSession()) {
 													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
 
 												echo '</td>';
-												
-                                                // STATUS
-												// STATUS
-												// echo '<td>';
-												// switch($data['webinar_status']) {
-												// 	case 0: $Events = 'Active'; break;
-												// 	case 1: $Events = 'Deleted'; break;	
-												// }
-											
-												// switch($Events) {
-												// 	case 'Active': $text_class = 'success'; break;
-												// 	case 'Deleted': $text_class = 'danger'; break;
-												// }
-												// echo '<span class="text-'.$text_class.'">'.$Events.'</span>';
-												// echo '</td>';
 
-												// OPTIONS
+												// CREATED BY
 												echo '<td>';
+													foreach($users_arr as $user) {
+														if($user['user_id'] == $data['user_id']) {
+															echo $user['user_firstname'].' '.$user['user_lastname'];
+															break;
+														}
+													}
+												echo '</td>';
+															
+												// OPTIONS
+												echo '<td  class="text-center">';
 
-													// EDIT ANNOUNCEMENTS
+													// EDIT WEBINAR ANG EVENTS
 													if(checkPermission('webinar-events-edit')) {
 														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-success btn-xs" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
 													}
