@@ -136,7 +136,7 @@ if(checkSession()) {
 				$tmp = 'user_nickname::'.$data['user_nickname'].'=='.$nickname;
 				array_push($change_logs,$tmp);
 			}
-			if($photo != $data['user_photo']) {
+			if($_FILES["photo"]['name'] != $data['user_photo']) {
 				$tmp = 'user_photo::'.$data['user_photo'].'=='.$photo;
 				array_push($change_logs,$tmp);
 			}
@@ -175,8 +175,8 @@ if(checkSession()) {
 				move_uploaded_file($_FILES["photo"]["tmp_name"], $inputFile);
 
 				$filepath = '/assets/images/team-images/'.$photo;
-
 				$_SESSION['sys_photo'] = $filepath;
+
 				// update account language table
 				$sql = $pdo->prepare("UPDATE users SET
 					user_skills 			= :user_skills,
