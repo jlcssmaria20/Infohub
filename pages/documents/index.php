@@ -21,7 +21,9 @@ if(checkSession()) {
 		
 		$sql_query = 'SELECT * FROM documents'.$where; // set sql statement
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
-	
+		
+		
+		$users_arr = getTable('users');
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,9 +91,10 @@ if(checkSession()) {
 								<table id="table-data" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
-											<th><?php echo renderLang($document_name_label); ?></th>
-											<th><?php echo renderLang($document_date_created); ?></th>
-											<th><?php echo renderLang($document_file_count); ?></th>
+											<th style="width: 20%"><?php echo renderLang($document_name_label); ?></th>
+											<th style="width: 25%"><?php echo renderLang($document_date_created); ?></th>
+											<th style="width: 20%"><?php echo renderLang($document_file_count); ?></th>
+											<th style="width: 20%"><?php echo renderLang($created_by); ?></th>
 											<th style="width: 5%"></th>
 										</tr>
 									</thead>
@@ -120,6 +123,18 @@ if(checkSession()) {
 
 												<!-- NUMBER OF FILES -->
 												<td><?php echo $total_data_count ?></td>
+
+												<!-- CREATED BY -->
+												<td>
+													<?php
+													foreach($users_arr as $user) {
+														if($user['user_id'] == $data['user_id']) {
+															echo $user['user_firstname'].' '.$user['user_lastname'];
+															break;
+														}
+													}
+												 	?>
+												</td>
 
 												<!-- EDIT DOCUMENT -->
 												<td class="text-center">

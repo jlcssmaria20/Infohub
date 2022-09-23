@@ -23,6 +23,8 @@ if(checkSession()) {
 		$sql_query = 'SELECT * FROM announcements'.$where; // set sql statement
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
+
+		$users_arr = getTable('users');
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,7 +92,8 @@ if(checkSession()) {
 										<tr>
 											<th style="width:25%"><?php echo renderLang($announcements_title_label); ?></th>
 											<th style="width:20%"><?php echo renderLang($announcements_img_label); ?></th>
-											<th style="width:50%"><?php echo renderLang($announcements_details_label); ?></th>
+											<th style="width:35%"><?php echo renderLang($announcements_details_label); ?></th>
+											<th style="width:15%"><?php echo renderLang($created_by); ?></th>
 											<th style="width:5%"></th>
 										</tr>
 									</thead>
@@ -115,6 +118,16 @@ if(checkSession()) {
 												// DETAILS
 												echo '<td><pre style="white-space: pre-wrap;">'.$data['announcements_details'].'</pre></td>';
 
+												// CREATED BY
+												echo '<td>';
+													foreach($users_arr as $user) {
+														if($user['user_id'] == $data['user_id']) {
+															echo $user['user_firstname'].' '.$user['user_lastname'];
+															break;
+														}
+													}
+												echo '</td>';
+															
 												// OPTIONS
 												echo '<td class="text-center">';
 
