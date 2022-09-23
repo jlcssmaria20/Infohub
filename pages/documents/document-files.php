@@ -40,7 +40,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             <section class="main-area col-s-9 d-column mb-4">
                 <div class="mb-4">
                     <h2 class="mb-3">
-                        <span  style="color: var(--black);">Documents and Quick Links > <?php  echo $data['document_name']; ?></span>
+                        <span  >Documents and Quick Links <i class="fa fa-angle-right mx-2 text-secondary" aria-hidden="true"></i> <?php  echo $data['document_name']; ?></span>
                     </h2>
                     
                     <ul class="list-inline mb-4">
@@ -58,20 +58,17 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     $count++; 
                                 ?>
                                     <input type="hidden" class="copied">
-                                
-                                    
-                                   
                                     <div class="row">
                                         <div class="col-lg">
-                                            <div class="card card-primary card-outline">
+                                            <div class="card card-secondary card-outline mx-1">
                                                 <div class="card-body">
-                                                    <h5 class="card-title"> <?php  echo $data['file_linkname']; ?></h5>
+                                                    <h5 class="card-title text-dark"> <?php  echo $data['file_linkname']; ?></h5>
                                                     <div class="text-right">
-                                                        <button class="btn btn-primary" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
-                                                        Copy Link
+                                                        <button class="btn" style="background-color: var(--blue); color:white;" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
+                                                        <i class="fa fa-clone mr-1" aria-hidden="true"></i> Copy Link
                                                         </button>
                                                         
-                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary">Go to Link</a>
+                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary" style="background-color: var(--blue); color:white;" ><i class="fa fa-link mr-1" aria-hidden="true"></i>Go to Link</a>
                                                     </div>
                                                 </div>
                                             </div>
