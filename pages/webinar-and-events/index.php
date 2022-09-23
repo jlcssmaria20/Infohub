@@ -94,9 +94,9 @@ if(checkSession()) {
 										<tr>
 											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
 											<th style="width:25%"><?php echo renderLang($webinar_events_img); ?></th>
-											<th><?php echo renderLang($webinar_events_description); ?></th>
-											<th style="width:10%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
-											<th style="width:35px;"></th>
+											<th style="width:30%"><?php echo renderLang($webinar_events_description); ?></th>
+											<th style="width:20%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
+											<th style="5%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -164,7 +164,7 @@ if(checkSession()) {
 												// echo '</td>';
 
 												// OPTIONS
-												echo '<td>';
+												echo '<td  class="text-center">';
 
 													// EDIT ANNOUNCEMENTS
 													if(checkPermission('webinar-events-edit')) {

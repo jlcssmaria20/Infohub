@@ -48,7 +48,7 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper" style="height:100vh;">
+		<div class="content-wrapper">
 			
 			<!-- CONTENT HEADER -->
 			<section class="content-header">
@@ -88,10 +88,10 @@ if(checkSession()) {
 								<table id="table-data" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
-											<th style="width:20%"><?php echo renderLang($announcements_title_label); ?></th>
-											<th><?php echo renderLang($announcements_img_label); ?></th>
-											<th class="w-50"><?php echo renderLang($announcements_details_label); ?></th>
-											<th></th>
+											<th style="width:25%"><?php echo renderLang($announcements_title_label); ?></th>
+											<th style="width:20%"><?php echo renderLang($announcements_img_label); ?></th>
+											<th style="width:50%"><?php echo renderLang($announcements_details_label); ?></th>
+											<th style="width:5%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -116,7 +116,7 @@ if(checkSession()) {
 												echo '<td><pre style="white-space: pre-wrap;">'.$data['announcements_details'].'</pre></td>';
 
 												// OPTIONS
-												echo '<td>';
+												echo '<td class="text-center">';
 
 													// EDIT ANNOUNCEMENTS
 													if(checkPermission('announcements-edit')) {
@@ -143,10 +143,10 @@ if(checkSession()) {
 		</div>
 		<!-- /.content-wrapper -->
 
-		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
-		
 	</div><!-- wrapper -->
 
+	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
+		
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	
 </body>

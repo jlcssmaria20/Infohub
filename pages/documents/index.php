@@ -92,7 +92,7 @@ if(checkSession()) {
 											<th><?php echo renderLang($document_name_label); ?></th>
 											<th><?php echo renderLang($document_date_created); ?></th>
 											<th><?php echo renderLang($document_file_count); ?></th>
-											<th style="width:35px;"></th>
+											<th style="width: 5%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -122,7 +122,7 @@ if(checkSession()) {
 												<td><?php echo $total_data_count ?></td>
 
 												<!-- EDIT DOCUMENT -->
-												<td>
+												<td class="text-center">
 													<?php
 													if(checkPermission('document-edit')) {
 														echo '<a href="/edit-document/'.$document_id.'" class="btn btn-success btn-xs" title="'.renderLang($document_edit).'"><i class="fas fa-pencil-alt"></i></a>';
