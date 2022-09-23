@@ -136,31 +136,7 @@ if(checkSession()) {
 							</div>
 						</div>
 						
-						<!-- ACTIVE USERS -->
-						<div class="col-lg-4 col-4">
-							<?php
-								$sql = $pdo->prepare("SELECT user_id, user_status FROM users WHERE user_status = 0");
-								$sql->execute();
-								$active_users = $sql->rowCount();
-							?>
-							<div class="small-box bg-white border border-secondary shadow dash-cardbox">
-								
-								<div class="inner pl-4 mb-2">
-									<span class="text-primary dash-number"><?php echo number_format($active_users,0,'.',','); ?></span><br>
-									<span class="text-primary dash-title"><?php echo "Active Users"; ?></span><br>
-									<span class="text-secondary dash-desc"><?php echo "Total number of Info Hub Users"; ?></span>
-								</div>
-								<div class="icon text-dark">
-									<i class="fa fa-users"></i>
-								</div>
-								<?php if(checkPermission('users')) { ?>
-									<a href="/users" class="small-box-footer footer-cardbox">
-									Know More <i class="fas fa-arrow-circle-right ml-2"></i>
-									</a>
-								<?php } ?>
-							</div>
-						</div>
-
+					
 					</div><!-- row -->
 					<?php 
 					if($_SESSION['sys_account_mode'] == 'user') {
