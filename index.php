@@ -15,12 +15,12 @@ $total = 4;
         <title><?php echo $dx."Home"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
-  <body>
+  <body id="home">
     <div class="container">
         <div class="col-3 col-s-3 menu">
             <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
         </div>
-        <section class="main-area col-s-9 d-column mb-5" >
+        <section class="main-area col-s-9 d-column mb-5 pl-5" >
             <div class="clearfix mb-2">
                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                     <?php
@@ -90,7 +90,7 @@ $total = 4;
             <a href="/dx-webinar-and-events" class="btn btn-primary">See more events</a>
         </section> -->
         
-        <section class="main-area col-s-9 d-column mb-5" >
+        <section class="main-area col-s-9 d-column mb-5 pl-5" >
             <div class="announcement mb-5">
                 <h2 class="mb-3"> 
                     <span><i class="fa fa-bullhorn"></i>&nbsp; IMPORTANT ANNOUNCEMENTS</span>

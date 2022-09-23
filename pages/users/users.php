@@ -37,7 +37,6 @@ if(checkSession()) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
 	<title><?php echo $dx."Users"; ?></title>
-	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php'); ?>
 	<link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -101,6 +100,7 @@ if(checkSession()) {
 										<thead>
 											<tr>
 												<th><?php echo renderLang($users_employee_id); ?></th>
+												<th></th>
 												<th><?php echo renderLang($users_lastname); ?></th>
 												<th><?php echo renderLang($users_firstname); ?></th>
 												<th><?php echo renderLang($users_email); ?></th>
@@ -125,6 +125,9 @@ if(checkSession()) {
 
 													// EMPLOYEE ID
 													echo '<td>'.$data['user_employee_id'].'</td>';
+
+													// IMAGE
+													echo '<td><img src="assets/images/team-images/'.$data['user_photo'].'" class="table-avatar" alt=""></td>';
 
 													// LASTNAME
 													echo '<td>'.$data['user_lastname'].'</td>';
