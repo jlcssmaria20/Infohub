@@ -1,0 +1,28 @@
+.dash-cardbox{
+    border-radius: 20px !important;
+}
+.dash-number{
+    font-size: 2rem;
+    font-weight: 700;
+}
+.dash-title{
+    font-size: 2.5rem;
+    font-weight: 700;
+
+}
+.dash-desc{
+    font-size: 1rem;
+}
+.user-cardbox{
+    background-color: #006DD3 ;
+}
+.webinar-cardbox{
+    background-color: #B57B00 ;
+}
+.announcement-cardbox{
+    background-color: #3F8005 ;
+}
+
+.footer-cardbox{
+    border-radius: 0 0 20px 20px;
+}
