@@ -11,6 +11,7 @@ if(checkSession()) {
         // clear sessions from forms
         clearSessions();
 
+        $teams_arr = getTable('teams');
         // set page
         $page = 'general';
 
@@ -126,7 +127,14 @@ if(checkSession()) {
                                             alt="User profile picture">
                                         </div>
                                         <h3 class="profile-username"><?php echo $_SESSION['sys_fullname']; ?></h3>
-                                        <p class="text-muted"><?php echo $data['user_email'] ?></p>
+                                        <?php
+										foreach($teams_arr as $team) {
+											if($team['id'] == $data['team_id']) {
+												echo '<p class="text-muted">'.$team['team_name'].'</p>';
+												break;
+											}
+										}
+									?>
                                     </div>
                                     <div class="col-lg-9">
                                         <div class="card-header pl-0">
@@ -224,7 +232,7 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname); ?>" value="<?php echo $user_nickname ?>" required>
+                                                    <input type="text" minlength="1" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname); ?>" value="<?php echo $user_nickname ?>" required>
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_nickname_err'].'</p>'; unset($_SESSION['sys_general_edit_nickname_err']); } ?>
                                                 </div>

@@ -23,8 +23,6 @@ if(checkSession()) {
 		$skills = '';
 		if(isset($_POST['skills'])) {
 			$skills = htmlentities(trim($_POST['skills']));
-			$skills = ucwords(strtolower(trim($_POST['skills'])));
-
 			$_SESSION['sys_general_edit_skills_val'] = $skills;
 			if(strlen($skills) == 0) {
 				$err++;

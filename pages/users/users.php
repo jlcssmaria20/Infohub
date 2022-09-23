@@ -142,7 +142,7 @@ if(checkSession()) {
 													echo '<td>';
 														foreach($teams_arr as $team) {
 															if($team['id'] == $data['team_id']) {
-																echo ' - '.$team['team_name'];
+																echo $team['team_name'];
 																break;
 															}
 														}

@@ -13,8 +13,11 @@ if(checkSession()) {
 		// set page
 		$page = 'general';
 
-		$account_id = $_SESSION['sys_id'];
 
+		$teams_arr = getTable('teams');
+
+		$account_id = $_SESSION['sys_id'];
+		
 		$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
 		$sql->bindParam(":user_id",$account_id);
 		$sql->execute();
@@ -89,7 +92,15 @@ if(checkSession()) {
 										alt="User profile picture">
 									</div>
 									<h3 class="profile-username"><?php echo $_SESSION['sys_fullname']; ?></h3>
-									<p class="text-muted"><?php echo $data['user_email'] ?></p>
+									<?php
+										foreach($teams_arr as $team) {
+											if($team['id'] == $data['team_id']) {
+												echo '<p class="text-muted">'.$team['team_name'].'</p>';
+												break;
+											}
+										}
+									?>
+									
 									<input type="hidden" value="<?php echo $account_id; ?>">
 								</div>
 								<div class="col-lg-9">
