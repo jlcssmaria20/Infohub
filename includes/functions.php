@@ -347,7 +347,7 @@ function clearSessions() {
 	
 	//DOCUMENTS
 	$module = 'documents';
-	$fields_arr = array('documents','name','linkname','link','status');
+	$fields_arr = array('documents','name','file_link','linkname','link','status');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 	
 	//ANNOUNCEMENTS

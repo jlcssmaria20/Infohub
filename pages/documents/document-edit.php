@@ -14,10 +14,27 @@ if(checkSession()) {
 		
 		// get document id
 		$id = decryptID($_GET['id']);
+		//get files and put in session
 		
+		if(!isset($_SESSION['sys_document_add_file_link_val'])) {
+			$files_arr = array();
+			$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id");
+			$sql->bindParam(":document_id", $id);
+			$sql->execute();
+			while($data_files = $sql->fetch(PDO::FETCH_ASSOC)) {	
+				$tmp = array($data_files['file_linkname'],$data_files['file_link']);	
+				array_push($files_arr,$tmp);
+			}
+			$_SESSION['sys_document_add_file_link_val'] = $files_arr;
+		}
+	//   print_r($_SESSION['sys_document_add_file_link_val']);
+	//   return;
+
 		$sql = $pdo->prepare("SELECT * FROM documents WHERE id = :documents_id LIMIT 1");
 		$sql->bindParam(":documents_id",$id);
 		$sql->execute();
+
+		
 
 		// check if ID exists
 		if($sql->rowCount()) {
@@ -34,6 +51,10 @@ if(checkSession()) {
 				$document_status = $_SESSION['sys_document_edit_status_val'];
 				unset($_SESSION['sys_document_edit_status_val']);
 			}
+
+
+
+
 	
 ?>
 <!DOCTYPE html>
@@ -176,7 +197,41 @@ if(checkSession()) {
 									</div>
 
 									<?php 
-										//Display Files
+
+									if(isset($_SESSION['sys_document_add_file_link_val'])) {
+
+										foreach($_SESSION['sys_document_add_file_link_val'] as $files){  ?>
+										
+										<div class="row">
+											<div class="col-lg-3">
+												<div class="form-group">
+													<input type="hidden" name="_linkname[]" value="<?php echo $data['file_linkname'] ?>">
+													<input type="hidden" name="_link[]" value="<?php echo $data['file_link'] ?>">
+													<input type="text" class="form-control" id="linkname" name="linkname[]" value="<?php echo $files[0] ?>">
+													<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
+													<input type="hidden" name="folder_id" value="<?php echo $data['document_id']?>">
+												</div>
+											</div>
+
+											
+											<div class="col-lg-6">
+												<div class="form-group">
+													<input type="text" class="form-control" id="link<?php echo $count ?>" name="link[]" value="<?php echo $files[1] ?>">
+												</div>
+											</div>
+											
+											<div class="col-lg-3">
+												<div>
+													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-link mr-2"></i><?php echo renderLang($document_copy) ?></button>
+
+													<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
+												</div>
+											</div>
+											</div>
+
+
+											<?php } ?>
+										<!-- //Display Files
 										$count = 0;
 										$sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
 										$sql->bindParam(":document_name", $data['document_name']);
@@ -187,7 +242,9 @@ if(checkSession()) {
 											<div class="row">
 												<div class="col-lg-3">
 													<div class="form-group">
-														<input type="text" class="form-control" id="linkname" name="linkname<?php echo $count ?>" value="<?php echo $data['file_linkname'] ?>">
+														<input type="hidden" name="_linkname[]" value="<?php echo $data['file_linkname'] ?>">
+														<input type="hidden" name="_link[]" value="<?php echo $data['file_link'] ?>">
+														<input type="text" class="form-control" id="linkname" name="linkname[]" value="<?php echo $data['file_linkname'] ?>">
 														<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
 														<input type="hidden" name="folder_id" value="<?php echo $data['document_id']?>">
 													</div>
@@ -196,7 +253,7 @@ if(checkSession()) {
 												
 												<div class="col-lg-6">
 													<div class="form-group">
-														<input type="text" class="form-control" id="link<?php echo $count ?>" name="link<?php echo $count ?>" value="<?php echo $data['file_link'] ?>">
+														<input type="text" class="form-control" id="link<?php echo $count ?>" name="link[]" value="<?php echo $data['file_link'] ?>">
 													</div>
 												</div>
 												
@@ -207,9 +264,8 @@ if(checkSession()) {
 														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 													</div>
 												</div>
-											</div>
-										<?php } 
-									?>
+											</div> -->
+										<?php } ?>
 								</div>
 							</div>
 
