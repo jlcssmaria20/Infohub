@@ -39,13 +39,11 @@ if(checkSession()) {
 			<section class="content-header">
 				<div class="container-fluid">
 					
-					<h1 class="mx-5 text-center">Welcome, <span><?php echo $_SESSION['sys_firstname']; ?> </span>!</h1>
-					
 				</div><!-- container-fluid -->
 			</section><!-- content-header -->
 
 			<!-- Main content -->
-			<section class="content m-5">
+			<section class="content m-3">
 				<div class="container-fluid">
 
 					<?php renderError('sys_permission_err'); ?>
@@ -92,7 +90,7 @@ if(checkSession()) {
 								<div class="inner pl-4 mb-2 text-light">
 									<span class="dash-number"><?php echo number_format($active_webinars,0,'.',','); ?></span><br>
 									<span class="dash-title">
-										<?php echo 'Upcoming Webinars' ?>
+										<?php echo 'Upcoming Webinar' ?>
 									</span><br>
 									<span class="dash-desc">Title: <?php echo $data['webinar_title'] ; ?></span>
 								</div>
