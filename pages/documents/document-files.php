@@ -61,15 +61,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     <div class="row">
                                         <div class="col-lg">
                                             <div class="card card-secondary card-outline mx-1">
-                                                <div class="card-body">
-                                                    <h5 class="card-title text-dark"> <?php  echo $data['file_linkname']; ?></h5>
+                                                <div class="card-body py-2">
+                                                    <h5 class="card-title text-dark m-1"><?php  echo $data['file_linkname']; ?></h5>
                                                     <div class="text-right">
                                                         <span id="link<?php echo $count?>" class="invisible"><?php echo $data['file_link'] ?></span>
-                                                        <button class="btn" style="background-color: var(--blue); color:white;" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
+                                                        <button class="btn border-primary bg-none mr-2" style="color:var(--blue);" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
                                                             <i class="fa fa-clone mr-1" aria-hidden="true"></i> Copy Link
                                                         </button>
 
-                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary" style="background-color: var(--blue); color:white;" ><i class="fa fa-link mr-1" aria-hidden="true"></i>Go to Link</a>
+                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary" style="background-color: var(--blue);" ><i class="fa fa-link mr-1" aria-hidden="true"></i>Go to Link</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
         
         <script>
-
+            
             //Tootltip
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
