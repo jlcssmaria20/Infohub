@@ -293,9 +293,9 @@ img.modal-img {
         float: right;
     }
 }
-.content-wrapper{
+/* .content-wrapper{
   height: 100vh;
-}
+} */
 
     /* For mobile phones: */
     [class*="col-"] {

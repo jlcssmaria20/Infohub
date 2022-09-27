@@ -50,7 +50,7 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="height:auto;">
 			
 			<!-- CONTENT HEADER -->
 			<section class="content-header">
@@ -154,10 +154,8 @@ if(checkSession()) {
 			</section><!-- content -->
 			
 		</div>
-		<!-- /.content-wrapper -->
-
-	</div><!-- wrapper -->
-
+		
+	</div>
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
 		
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
