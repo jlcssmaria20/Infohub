@@ -52,7 +52,7 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="">
 			
 			<!-- CONTENT HEADER -->
 			<section class="content-header">
@@ -105,7 +105,7 @@ if(checkSession()) {
 										$data_count = 0;
 										// $sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE temp_del = 0");
 
-                    $sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
+                    					$sql = $pdo->prepare("SELECT * FROM webinarandevents ". $where ." ORDER BY date_set DESC LIMIT ".$sql_start.",".$numrows);
 
 										$sql->execute();
 										while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -185,11 +185,11 @@ if(checkSession()) {
 			</section><!-- content -->
 			
 		</div>
-		<!-- /.content-wrapper -->
+		
 
 		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
 		
-	</div><!-- wrapper -->
+	</div>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
     <!-- DataTables -->
