@@ -24,18 +24,12 @@ if(checkSession()) {
 					$with_error = 0;
 					// $tmp = array();
 					array_push($links_arr,$_POST['linkname'][$i].'-'.$_POST['link'][$i]);
-					array_push($links_arr_insert,$_POST['linkname'][$i],$_POST['link'][$i]);
-
+					$tmp = array($_POST['linkname'][$i],$_POST['link'][$i]);
+					array_push($links_arr_insert,$tmp);
 				}
 			}
 		}
-		
-		
-		// print_r($links_arr);
-		// return;
-		$_SESSION['sys_document_add_file_link_val'] = $links_arr_insert;
-
-	
+		$_SESSION['sys_document_edit_file_link_val'] = $links_arr_insert;
 		// check if ID exists
 		$sql = $pdo->prepare("SELECT * FROM documents WHERE id = :document_id LIMIT 1");
 		$sql->bindParam(":document_id",$document_id);
@@ -100,7 +94,7 @@ if(checkSession()) {
 					$tmp = 'document_name::'.$data['document_name'].'=='.$name;
 					array_push($change_logs,$tmp);
 				}
-				$links_arr_prev= array();
+				$links_arr_prev = array();
 				//check changes in files table
 				$sql2 = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id ORDER BY id ASC");
 				$sql2->bindParam(":document_id",$document_id);
@@ -112,108 +106,60 @@ if(checkSession()) {
 						array_push($links_arr_prev,$data_files['file_linkname'].'-'.$data_files['file_link']);
 					}
 				} 
-
-				if(empty($links_arr_prev) && count($links_arr) > 0) {
-					foreach($links_arr_insert as $links){
-						//$whatIWant = substr($links[0], strpos($links[0], "-") + 0);  
-						$document_name = $links[0];
-						if($links[0] == "") {
-							$document_name = '';
-						}
-
-						$document_link = $links[1];
-						if($links[1] == "") {
-							$document_name = '';
-						}
-
-						$sql = $pdo->prepare("INSERT INTO files(
-							id,
-							`user_id`,
-							document_name,
-							document_id,
-							file_linkname,
-							file_link,
-							date_created
-						) VALUES(
-							NULL,
-							:user_id,
-							:document_name,
-							:document_id,
-							:file_linkname,
-							:file_link,
-							:date_created
-						)");
-					$bind_param = array(
-						':user_id'  				=> $_SESSION['sys_id'],
-						':document_name'  			=> $name,
-						':document_id'              => $document_id,
-						':file_linkname'			=> $links[0],
-						':file_link'				=> $links[1],
-						':date_created'				=> $current_date
-					); 
-					$sql->execute($bind_param);	
-					} 
-				} else {
-					//check if there's a difference in previous data and new data
-					
-					$result = array_diff($links_arr,$links_arr_prev);
-
-					//if there is a change
-					if(!empty($result)){
-
-						$tmp = 'prev::'.json_encode($links_arr).'=='.json_encode($links_arr_prev);
-						array_push($change_logs,$tmp);
-	
-						// if there is a change
-						$sql = $pdo->prepare("DELETE FROM files WHERE document_id = $document_id");
-						$sql->bindParam(":document_id",$document_id);
-						$sql->execute($bind_param);
-
-						if($sql) {
-							foreach($links_arr_insert as $links){
-
-								// $document_name = $links[0];
-								// if($links[0] == "") {
-								// 	$document_name = '';
-								// }
-		
-								// $document_link = $links[1];
-								// if($links[1] == "") {
-								// 	$document_name = '';
-								// }
-		
-								$sql = $pdo->prepare("INSERT INTO files(
-									id,
-									`user_id`,
-									document_name,
-									document_id,
-									file_linkname,
-									file_link,
-									date_created
-								) VALUES(
-									NULL,
-									:user_id,
-									:document_name,
-									:document_id,
-									:file_linkname,
-									:file_link,
-									:date_created
-								)");
-							$bind_param = array(
-								':user_id'  				=> $_SESSION['sys_id'],
-								':document_name'  			=> $name,
-								':document_id'              => $document_id,
-								':file_linkname'			=> $links[0],
-								':file_link'				=> $links[1],
-								':date_created'				=> $current_date
-							); 
-							$sql->execute($bind_param);
-							}
-						}
-					} 
 				
+				//compare
+				$toUpdate = 0;
+				if(empty($links_arr_prev) && (!empty($links_arr))){
+					$toUpdate = 1;
+				}
+				$result = array_diff($links_arr_prev, $links_arr);
+				if(!empty($result)){
+					$toUpdate = 1;
 				}
 
+				if($toUpdate){
+					$tmp = 'prev::'.json_encode($links_arr).'=='.json_encode($links_arr_prev);
+					array_push($change_logs,$tmp);	
+						// if there is a change
+						$sql_delete = $pdo->prepare("DELETE FROM files WHERE document_id = $document_id");
+						$sql_delete->bindParam(":document_id",$document_id);
+						$sql_delete->execute($bind_param);
+				
+
+					if($sql_delete) {
+						foreach($links_arr_insert as $links){
+
+							$sql = $pdo->prepare("INSERT INTO files(
+								id,
+								user_id,
+								document_name,
+								document_id,
+								file_linkname,
+								file_link,
+								date_created
+							) VALUES(
+								NULL,
+								:user_id,
+								:document_name,
+								:document_id,
+								:file_linkname,
+								:file_link,
+								:date_created
+							)");
+						$bind_param = array(
+							':user_id'  				=> $_SESSION['sys_id'],
+							':document_name'  			=> $name,
+							':document_id'              => $document_id,
+							':file_linkname'			=> $links[0],
+							':file_link'				=> $links[1],
+							':date_created'				=> $current_date
+						); 
+						$sql->execute($bind_param);
+						}
+					}
+				}
+				
+			
 				// check if there is are changes made
 				if(count($change_logs) > 0) {
 					

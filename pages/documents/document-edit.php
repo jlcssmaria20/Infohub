@@ -16,7 +16,7 @@ if(checkSession()) {
 		$id = decryptID($_GET['id']);
 		//get files and put in session
 		
-		if(!isset($_SESSION['sys_document_add_file_link_val'])) {
+		if(!isset($_SESSION['sys_document_edit_file_link_val'])) {
 			$files_arr = array();
 			$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id");
 			$sql->bindParam(":document_id", $id);
@@ -25,10 +25,11 @@ if(checkSession()) {
 				$tmp = array($data_files['file_linkname'],$data_files['file_link']);	
 				array_push($files_arr,$tmp);
 			}
-			$_SESSION['sys_document_add_file_link_val'] = $files_arr;
+			$_SESSION['sys_document_edit_file_link_val'] = $files_arr;
 		}
-	//   print_r($_SESSION['sys_document_add_file_link_val']);
-	//   return;
+		
+		// //print_r($_SESSION['sys_document_edit_file_link_val']);
+		// return;
 
 		$sql = $pdo->prepare("SELECT * FROM documents WHERE id = :documents_id LIMIT 1");
 		$sql->bindParam(":documents_id",$id);
@@ -133,49 +134,18 @@ if(checkSession()) {
 											<input type="text" class="form-control" id="date_created" name="date_created" value="<?php echo $data['date_created']; ?>" disabled>
 										</div>
 									</div>
-								</div>
-								<hr>
-								
-								<div class="row">
-									<!-- LINK NAME -->
-									<div class="col-lg-3">
-										<?php
-										$linkname_err = 0;
-										if(isset($_SESSION['sys_document_add_linkname_err'])) { $linkname_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="linkname" class="mr-1<?php if($linkname_err) { echo ' text-danger'; } ?>"><?php if($linkname_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_linkname_label); ?></label> 
-											
-											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											
-											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($linkname_err) { echo ' is-invalid'; } ?>" id="linkname" name="linkname[]" placeholder="<?php echo renderLang($document_linkname_placeholder); ?>" value="" >
-											
-											<?php if($linkname_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_linkname_err'].'</p>'; unset($_SESSION['sys_document_add_linkname_err']); } ?>
-										</div>
-											
-									</div>
 
-									<!-- LINK -->
-									<div class="col-lg-3">
-										<?php $err = isset($_SESSION['sys_announcements_add_docs_err']) ? 1 : 0; ?>
-										<div class="form-group">
-											<label for="link" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_link_label); ?></label> 
-											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="link" name="link[]" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?>" value="">
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_link_err'].'</p>'; unset($_SESSION['sys_announcements_add_link_err']); } ?>
-										</div>
-									</div>
-
-									<!-- ADD MORE LINK BUTTON -->
-									<div class="col-lg-3">
+									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="mt-3">
 											<button type="button" class="mt-3 btn btn-success addmore" name="add" id="add" ><i class="fas fa-plus-square mr-2"></i><?php echo renderLang($document_add_more_link); ?></button>
 										</div>
 									</div>
 								</div>
 
-								<div id="dynamic_field"></div>
 								<hr>
+								<div id="dynamic_field"></div>
+								<br>
+							
 
 								<div class="" id="link_div">
 									<div class="row">
@@ -197,21 +167,20 @@ if(checkSession()) {
 									</div>
 
 									<?php 
-
-									if(isset($_SESSION['sys_document_add_file_link_val'])) {
-
-										foreach($_SESSION['sys_document_add_file_link_val'] as $files){  ?>
+									if(count($_SESSION['sys_document_edit_file_link_val']) > 0) {
+										$count= 0;
+										foreach($_SESSION['sys_document_edit_file_link_val'] as $files){  
+										$count++;	?>
 										
 										<div class="row">
 											<div class="col-lg-3">
 												<div class="form-group">
-													<input type="hidden" name="_linkname[]" value="<?php echo $data['file_linkname'] ?>">
-													<input type="hidden" name="_link[]" value="<?php echo $data['file_link'] ?>">
+											
 													<input type="text" class="form-control" id="linkname" name="linkname[]" value="<?php echo $files[0] ?>">
 													<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
-													<input type="hidden" name="folder_id" value="<?php echo $data['document_id']?>">
+													<input type="hidden" name="folder_id" value="<?php echo $data['id']?>">
 												</div>
-											</div>
+											</div>	
 
 											
 											<div class="col-lg-6">
@@ -223,48 +192,13 @@ if(checkSession()) {
 											<div class="col-lg-3">
 												<div>
 													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-link mr-2"></i><?php echo renderLang($document_copy) ?></button>
-
-													<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
+													<a href="#" class="btn btn-danger btn-remove-link"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 												</div>
 											</div>
 											</div>
 
 
 											<?php } ?>
-										<!-- //Display Files
-										$count = 0;
-										$sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
-										$sql->bindParam(":document_name", $data['document_name']);
-										$sql->execute();
-										while ($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-											$count++; 
-											?>
-											<div class="row">
-												<div class="col-lg-3">
-													<div class="form-group">
-														<input type="hidden" name="_linkname[]" value="<?php echo $data['file_linkname'] ?>">
-														<input type="hidden" name="_link[]" value="<?php echo $data['file_link'] ?>">
-														<input type="text" class="form-control" id="linkname" name="linkname[]" value="<?php echo $data['file_linkname'] ?>">
-														<input type="hidden" name="id'<?php echo $count ?>" value="<?php echo $data['id']?>">
-														<input type="hidden" name="folder_id" value="<?php echo $data['document_id']?>">
-													</div>
-												</div>
-
-												
-												<div class="col-lg-6">
-													<div class="form-group">
-														<input type="text" class="form-control" id="link<?php echo $count ?>" name="link[]" value="<?php echo $data['file_link'] ?>">
-													</div>
-												</div>
-												
-												<div class="col-lg-3">
-													<div>
-														<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-link mr-2"></i><?php echo renderLang($document_copy) ?></button>
-
-														<a href="/delete-file/list/<?php echo encryptID($data['id'])?>" class="btn btn-danger"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
-													</div>
-												</div>
-											</div> -->
 										<?php } ?>
 								</div>
 							</div>
@@ -309,30 +243,37 @@ if(checkSession()) {
 			</div>
 		</div>
 	<?php } ?>
-
+	
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	<script>
+		function remove(row) {
+			$("#row" + row).remove();
+		}
 		//FOR ADDING MORE INPUT FOR linkS
 		$(document).ready(function() {
 			var i = 1;
 			$('#add').click(function() {
 				if (i <= 20) {
-				$('#dynamic_field').append('<div class="row" id="row' + i + '"> <div id="col" class="col-lg-3"><div class="form-group"><input type="text"  minlength="4" maxlength="50" class="form-control" id="linkname" name="linkname[]" value="" placeholder="<?php echo renderLang($document_linkname_placeholder); ?> ' + i + '" required></div></div>  <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="link' + i + '" name="link[]" value="" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?> ' + i + '" required> </div></div><div class="col-lg-3"><button type="button" class="btn btn-danger btn_remove hidden"><?php echo renderLang($document_remove_link); ?></button></div> </div>')
-				
+				$('#dynamic_field').append('<div class="row" data-value="value_' + i + '" id="row' + i + '"> <div id="col" class="col-lg-3"><div class="form-group"><input type="text"  minlength="4" maxlength="50" class="form-control" id="linkname" name="linkname[]" value="" placeholder="<?php echo renderLang($document_linkname_placeholder); ?> ' + i + '" required></div></div>  <div id="col" class="col-lg-3"><div class="form-group"><input type="text" class="form-control" id="link' + i + '" name="link[]" value="" placeholder="<?php echo renderLang($document_link_upload_placeholder); ?> ' + i + '" required> </div></div><div class="col-lg-3"><a href="#" onclick="remove(' + i + ')" class="btn btn-danger btn-remove-field btn-test" title="remove"><i class="fa fa-window-close mr-0"></i></a></div> </div>')
+				 
 				i++;
-
-				$('.btn_remove').removeClass('hidden');
 				}
 			});
-			$(document).on('click', '.btn_remove', function() {
-				/* var button_id = $(this).attr("id");
-				i--;
-				$('#row' + $('#dynamic_field div div div').length).remove();
-				if (i<=1) {
-				$('.btn_remove').addClass('hidden');
-				} */
-				$(this).closest('#dynamic_field .row').remove();
-			});
+			// $(document).on('click', '.btn_remove', function() {
+			// 	/* var button_id = $(this).attr("id");
+			// 	i--;
+			// 	$('#row' + $('#dynamic_field div div div').length).remove();
+			// 	if (i<=1) {
+			// 	$('.btn_remove').addClass('hidden');
+			// 	} */
+			// 	$(this).closest('#dynamic_field .row').remove();
+			// });
+		
+			$('.btn-remove-link').click(function(e) {
+				e.preventDefault();
+				$(this).closest('.row').remove();
+			}); 
+			
 		});
 		//FOR DELETING FOLDER
 		$(function() {

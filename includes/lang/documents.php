@@ -114,7 +114,7 @@ $document_link_upload_placeholder = array(
 	''
 );
 $document_add_more_link = array(
-	'Add More Links',
+	'Add Links',
 	''
 );
 $document_remove_link = array(

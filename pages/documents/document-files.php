@@ -68,8 +68,16 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         <button class="btn border-primary bg-none mr-2" style="color:var(--blue);" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
                                                             <i class="fa fa-clone mr-1" aria-hidden="true"></i> Copy Link
                                                         </button>
-
-                                                        <a href="<?php echo $data['file_link'] ?>" target="_blank" class="btn btn-primary" style="background-color: var(--blue);" ><i class="fa fa-link mr-1" aria-hidden="true"></i>Go to Link</a>
+                                                        <?php
+                                                            $drive_z_keyword = "Z:\DX";
+                                                            $file_link = $data['file_link'];
+                                                            if(strpos($file_link, $drive_z_keyword) !== false){
+                                                                //word found
+                                                                echo "<div style='display:inline;' title='Drive Z Link'><a href='#' class='btn btn-primary disabled' style='background-color: var(--blue);' ><i class='fa fa-link mr-1' aria-hidden='true'></i>Go to Link</a></div>";
+                                                            } else{
+                                                                echo "<a href='<?php echo $file_link; ?>' target='_blank' class='btn btn-primary' style='background-color: var(--blue);' ><i class='fa fa-link mr-1' aria-hidden='true'></i>Go to Link</a>";
+                                                            }       
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
