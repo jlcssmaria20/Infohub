@@ -75,7 +75,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                                 //word found
                                                                 echo "<div style='display:inline;' title='Drive Z Link'><a href='#' class='btn btn-primary disabled' style='background-color: var(--blue);' ><i class='fa fa-link mr-1' aria-hidden='true'></i>Go to Link</a></div>";
                                                             } else{
-                                                                echo "<a href='<?php echo $file_link; ?>' target='_blank' class='btn btn-primary' style='background-color: var(--blue);' ><i class='fa fa-link mr-1' aria-hidden='true'></i>Go to Link</a>";
+                                                                echo "<a href='$file_link' target='_blank' class='btn btn-primary' style='background-color: var(--blue);' ><i class='fa fa-link mr-1' aria-hidden='true'></i>Go to Link</a>";
                                                             }       
                                                         ?>
                                                     </div>
