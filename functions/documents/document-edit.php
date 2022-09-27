@@ -106,14 +106,23 @@ if(checkSession()) {
 						array_push($links_arr_prev,$data_files['file_linkname'].'-'.$data_files['file_link']);
 					}
 				} 
-				
+				// print_r($links_arr_prev);
+				// echo '<br>';
+				// print_r($links_arr);
+				// echo '<br>';
+				// print_r($links_arr_insert);
+				// echo '<br>';
+				sort($links_arr_prev);
+				sort($links_arr);
 				//compare
 				$toUpdate = 0;
-				if(empty($links_arr_prev) && (!empty($links_arr))){
-					$toUpdate = 1;
+				if(!empty($links_arr_prev)){
+					if($links_arr_prev != $links_arr){
+						$toUpdate = 1;
+					}
 				}
-				$result = array_diff($links_arr_prev, $links_arr);
-				if(!empty($result)){
+				
+				if(empty($links_arr_prev) && (!empty($links_arr))){
 					$toUpdate = 1;
 				}
 
