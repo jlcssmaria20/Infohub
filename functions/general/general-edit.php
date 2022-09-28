@@ -71,7 +71,7 @@ if(checkSession()) {
 			// check file size
 			if ($_FILES['photo']['size'] > 200000) {
 				$err++;
-				$_SESSION['sys_general_photo_err'] = renderLang($settings_general_update_exceeds_size);
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			}
 		}
 
