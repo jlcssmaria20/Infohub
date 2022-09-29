@@ -25,7 +25,6 @@ if(checkSession()) {
 		$title = '';
 		if(isset($_POST['title'])) {
 			$title = htmlentities(trim($_POST['title']));
-			$title = ucwords(strtolower(trim($_POST['title'])));
 			$_SESSION['sys_webinar_events_add_title_val'] = $title;
 			if(strlen($title) == 0) {
 				$err++;
@@ -86,17 +85,42 @@ if(checkSession()) {
 				$others = htmlentities(trim($_POST['speaker']));
 			}
 		}
+		$target_file = '';
+		if($_FILES["img"]['name'] != '') {
+			$file_info = getimagesize($_FILES['img']['tmp_name']);
 
+			if($file_info !== false) {} else {
+				$err++;
+				if(
+					$image_extension != "jpg" &&
+					$image_extension != "png" &&
+					$image_extension != "jpeg" &&
+					$image_extension != "gif"
+				) {
+					$err++;
+				}
+				$_SESSION['sys_webinar_events_add_img_err'] = renderLang($settings_general_update_invalid_file_type);
+			}
+
+			// check file size
+			if ($_FILES['img']['size'] > 2000000) {
+				$err++;
+				$_SESSION['sys_webinar_events_add_img_err'] = renderLang($settings_general_update_exceeds_size);
+			}
+		}
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors
 
             // IMAGE
-            $picture_tmp 	= $_FILES['picture']['tmp_name'];
-            $picture_name 	= $_FILES['picture']['name'];
-            $picture 		= time()."_".$picture_name;
-          
-			//MOVE IMAGE TO WEBINAR FOLDER
-            move_uploaded_file($picture_tmp, '../../assets/images/webinar-and-events/'.$picture);
+            $filename = $_FILES['img']['name'];
+			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/announcements/';
+			$target_file = $target_dir.basename($_FILES['img']['name']);
+			$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			$img = $filename;
+			$inputFile  = $target_dir.$img;
+			move_uploaded_file($_FILES["img"]["tmp_name"], $inputFile);
+			$filepath = '/assets/images/announcements/'.$img;
+
             
 			$month_set = substr($date_set, 0, 6);
 
@@ -132,7 +156,7 @@ if(checkSession()) {
 				':webinar_speaker'              => $others,
                 ':webinar_title'  	    		=> $title,
                 ':webinar_description'  		=> $description,
-                ':webinar_img'   				=> $picture,
+                ':webinar_img'   				=> $img,
                 ':date_set'						=> $date_set,
 				':month_set'					=> $month_set,
 				':date_created'					=> $current_date

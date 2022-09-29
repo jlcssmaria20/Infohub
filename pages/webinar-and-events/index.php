@@ -130,15 +130,16 @@ if(checkSession()) {
 														break;
 													}
 												}
-												echo ' ('.$data['webinar_host'].') ';
+												echo ' '.$data['webinar_host'].' ';
 												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+												
 												foreach($users_arr as $user) {
 													if($user['user_employee_id'] == $data['webinar_speaker']) {
 														echo $user['user_firstname'].' '.$user['user_lastname'];
 														break;
 													}
 												}
-												echo ' ('.$data['webinar_speaker'].') ';
+												echo ' '.$data['webinar_speaker'].' ';
 												?>
 												<?php
 												echo '<br><br><pre style="white-space: pre-wrap;">'.$data['webinar_description'].'</pre></td>';
