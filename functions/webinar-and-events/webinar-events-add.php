@@ -25,6 +25,7 @@ if(checkSession()) {
 		$title = '';
 		if(isset($_POST['title'])) {
 			$title = htmlentities(trim($_POST['title']));
+			$title = ucfirst(trim($_POST['title']));
 			$_SESSION['sys_webinar_events_add_title_val'] = $title;
 			if(strlen($title) == 0) {
 				$err++;
@@ -79,7 +80,7 @@ if(checkSession()) {
 		$others = '';
 		if(isset($_POST['others'])) {
 			$others = htmlentities(trim($_POST['others']));
-			$others = ucwords(strtolower(trim($_POST['others'])));
+			$others = ucfirst(trim($_POST['others']));
 			$_SESSION['sys_webinar_events_add_others_val'] = $others;
 			if(strlen($others) == 0) {
 				$others = htmlentities(trim($_POST['speaker']));

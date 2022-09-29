@@ -121,7 +121,7 @@ if(checkSession()) {
 		// NICKNAME
 		$nickname = '';
 		if(isset($_POST['nickname'])) {
-			$nickname = htmlentities(ucwords(strtolower(trim($_POST['nickname']))));
+			$nickname = htmlentities(ucwords(trim($_POST['nickname'])));
 			$_SESSION['sys_users_add_nickname_val'] = $nickname;
 			if(strlen($nickname) == 0) {
 				$err++;
@@ -137,7 +137,7 @@ if(checkSession()) {
 		// FIRSTNAME
 		$firstname = '';
 		if(isset($_POST['firstname'])) {
-			$firstname = htmlentities(ucwords(strtolower(trim($_POST['firstname']))));
+			$firstname = htmlentities(ucwords(trim($_POST['firstname'])));
 			$_SESSION['sys_users_add_firstname_val'] = $firstname;
 			if(strlen($firstname) == 0) {
 				$err++;
@@ -153,7 +153,7 @@ if(checkSession()) {
 		// MIDDLENAME
 		$middlename = '';
 		if(isset($_POST['middlename'])) {
-			$middlename = htmlentities(ucwords(strtolower(trim($_POST['middlename']))));
+			$middlename = htmlentities(ucwords(trim($_POST['middlename'])));
 			$_SESSION['sys_users_add_middlename_val'] = $middlename;
 			if(!validateNameV1($middlename)) {
 				$err++;
@@ -164,7 +164,7 @@ if(checkSession()) {
 		// LASTNAME
 		$lastname = '';
 		if(isset($_POST['lastname'])) {
-			$lastname = htmlentities(ucwords(strtolower(trim($_POST['lastname']))));
+			$lastname = htmlentities(ucwords(trim($_POST['lastname'])));
 			$_SESSION['sys_users_add_lastname_val'] = $lastname;
 			if(strlen($lastname) == 0) {
 				$err++;

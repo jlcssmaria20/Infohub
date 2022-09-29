@@ -27,7 +27,7 @@ if(checkSession()) {
 			$title = '';
 			if(isset($_POST['title'])) {
 				$title = htmlentities(trim($_POST['title']));
-				$title = ucwords(strtolower(trim($_POST['title'])));
+				$title = ucfirst(trim($_POST['title']));
 
 				$_SESSION['sys_announcements_edit_title_val'] = $title;
 				if(strlen($title) == 0) {
