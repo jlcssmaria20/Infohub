@@ -175,7 +175,7 @@ if(checkSession()) {
 											<label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
 											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											<div class="custom-file">
-												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="picture" name="picture" accept="image/*" required>
+												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" accept="image/*" required>
 												<label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
 												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="#" style="display: none; height:150px;">

@@ -69,20 +69,51 @@ if(checkSession()) {
 			//CURRENT DATE
 			$date_edited = date('F j, Y - l - h:i a', time());
 
+			//IMAGE
+			$target_file = '';
+			if($_FILES["img"]['name'] != '') {
+				$file_info = getimagesize($_FILES['img']['tmp_name']);
+	
+				if($file_info !== false) {} else {
+					$err++;
+					if(
+						$image_extension != "jpg" &&
+						$image_extension != "png" &&
+						$image_extension != "jpeg" &&
+						$image_extension != "gif"
+					) {
+						$err++;
+					}
+					$_SESSION['sys_webinar_events_edit_img_err'] = renderLang($settings_general_update_invalid_file_type);
+				}
+	
+				// check file size
+				if ($_FILES['img']['size'] > 2000000) {
+					$err++;
+					$_SESSION['sys_webinar_events_edit_img_err'] = renderLang($settings_general_update_exceeds_size);
+				}
+			}
+	
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors
 
 				// IMAGE
-                $picture_tmp 	= $_FILES['picture']['tmp_name'];
-                $picture_name 	= $_FILES['picture']['name'];
-                $picture 		= time()."_".$picture_name;
+				$filename = $_FILES['img']['name'];
+				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/announcements/';
+				$target_file = $target_dir.basename($_FILES['img']['name']);
+				$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 				
-				$picture = $picture_name;
-				if (empty($picture)) {
-					$picture = $_POST['file_src'];
+				$img = $filename;
+				if (empty($img)) {
+					$img = $_POST['file_src'];
 				}
+				$inputFile  = $target_dir.$img;
 
-                if ($picture_tmp !== "") {
+				move_uploaded_file($_FILES["img"]["tmp_name"], $inputFile);
+
+				$filepath = '/assets/images/announcements/'.$img;
+
+                if ($img_tmp !== "") {
 					
                     //MOVE IMAGE TO WEBINAR FOLDER
                     move_uploaded_file($picture_tmp, '../../assets/images/webinar-and-events/'.$picture);

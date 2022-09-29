@@ -231,7 +231,7 @@ if(checkSession()) {
                                         <?php $err = isset($_SESSION['sys_webinar_events_add_title_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_title); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-                                            <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($webinar_events_title_placeholder); ?>" value="<?php echo $title; ?>" required>
+                                            <input type="text" minlength="4" maxlength="100" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($webinar_events_title_placeholder); ?>" value="<?php echo $title; ?>" required>
                                             <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_title_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_title_err']); } ?>
                                         </div>
 
@@ -263,14 +263,14 @@ if(checkSession()) {
                     
                                     <!-- WEBINAR IMAGES-->
                                     <div class="col-3">
-                                        <?php $err = isset($_SESSION['sys_webinar_events_add_img_err']) ? 1 : 0; ?>
+                                        <?php $err = isset($_SESSION['sys_webinar_events_edit_img_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
                                             <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="picture" name="picture" accept="image/*">
+                                                <input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" accept="image/*">
                                                 <label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
-                                                <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
+                                                <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_img_err']); } ?>
 												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
 												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="height:150px;">
                                             </div>
@@ -353,7 +353,7 @@ if(checkSession()) {
 		  readURL(this);
 		});
 
-		$("#title").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
 		
 		function yesnoCheck(that) {
