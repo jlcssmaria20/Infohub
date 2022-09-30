@@ -18,7 +18,7 @@ if(checkSession()) {
         $date_set1 = $_POST['schedule_date'];
 		$date_set = date('Ymd',strtotime($date_set1));
 
-		$current_date = date('F j, Y - l - h:i a', time());
+		$current_date = date('F j, Y');
 		$_SESSION['date_set'] = $date_set;
 
 		// TITLE

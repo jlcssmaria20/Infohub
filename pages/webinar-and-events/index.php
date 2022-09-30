@@ -116,9 +116,9 @@ if(checkSession()) {
 											echo '<tr>';
 
 												// TITLE
-												echo '<td><h5>'.$data['webinar_title'].'</h5><br><br><b>'.renderLang($webinar_events_created_at) .':</b><em> ' .$data['date_created'].'</em></td>';
+												echo '<td><h5 class="mb-5">'.$data['webinar_title'].'</h5><p class="text-muted pt-4 mb-0">'.renderLang($webinar_events_created_at) .': ' .$data['date_created'].'</p></td>';
 												// IMAGE
-												echo '<td><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
+												echo '<td class="text-muted"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
 
 												// DESCRIPTION
 												//HOST

@@ -22,7 +22,7 @@ ul.user-list-item {
     padding: 11px 0;
 }
 #team .list-inline-item {
-    width: 200px;
+    width: 172px;
 }
 ul {
     list-style-type: none;
@@ -62,3 +62,13 @@ li b {
   color: #003E97;
 }
 
+@media (max-width: 1280px) {
+  #team .list-inline-item {
+    width: 162px;
+  }
+}
+@media (max-width: 1200px) {
+  #team .list-inline-item {
+    width: 172px;
+  }
+}

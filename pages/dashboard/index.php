@@ -92,7 +92,10 @@ if(checkSession()) {
 									<span class="dash-title">
 										<?php echo 'Upcoming Webinar' ?>
 									</span><br>
-									<span class="dash-desc">Title: <?php echo $data['webinar_title'] ; ?></span>
+									<div class="dash-desc w-75">
+										<span>Title: <?php echo $data['webinar_title'] ; ?></span>
+									</div>
+									
 								</div>
 								<div class="icon text-light">
 									<i class="fas fa-calendar-alt"></i>
@@ -121,7 +124,9 @@ if(checkSession()) {
 								<div class="inner pl-4 mb-2">
 									<span class="dash-number"><?php echo number_format($active_announcements,0,'.',','); ?></span><br>
 									<span class="dash-title"><?php echo 'Announcement' ?></span><br>
-									<span class="dash-desc">Title: <?php echo $data['announcements_title']; ?></span>
+									<div class="dash-desc w-75">
+										<span>Title: <?php echo $data['announcements_title']; ?></span>
+									</div>
 								</div>
 								<div class="icon  text-light">
 									<i class="fa fa-bullhorn"></i>

@@ -73,7 +73,7 @@ if(checkSession()) {
 			}
 		}
 		//CURRENT DATE
-		$current_date = date('F j, Y - l - h:i a', time());
+		$current_date = date('F j, Y');
 
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors

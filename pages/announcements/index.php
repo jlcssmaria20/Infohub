@@ -110,7 +110,8 @@ if(checkSession()) {
 											echo '<tr>';
 
 												// TITLE
-												echo '<td><h5>'.$data['announcements_title'].'</h5><br><br><em>'.$data['date_created'].'</em></td>';
+												echo '<td class="h-100"><h5 class="mb-5">'.$data['announcements_title'].'</h5>
+												<p class="text-muted pt-5 mb-0">'.renderLang($webinar_events_created_at) .': '.$data['date_created'].'</p></td>';
 
 												// IMAGE
 												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail"></td>';
