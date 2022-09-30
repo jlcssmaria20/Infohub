@@ -1,44 +1,6 @@
-#profile .myImg {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #9A9A9A;
-    object-fit: cover;
-    border-radius: 50%;
-    filter: contrast(100%) grayscale(100%);
-    align-self: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-#profile .btn .fa {
- margin-right: 10px;
-}
-#profile .col-5 {
-  margin: auto;
-  align-items: center;
-  
-}
-.details,
-.name {
-    margin-bottom: 5px;
-}
-.name {
-    font-size: 2.0rem;
-    color: var(--black);;
-    text-align: center;
-}
 p.details {
   font-family: 'Volkhov', serif;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-inline: 20%;
-}
-div.details {
-  background-color: #f7f7f7;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-inline: 20%;
-  margin-block: 50px;
 }
