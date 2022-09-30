@@ -123,7 +123,7 @@ if(checkSession()) {
 									<button type="button" class="btn btn-danger btn-delete mr-1" data-toggle="modal" data-target="#delete_webinar_events_modal"><i class="fa fa-trash mr-2"></i><?php echo renderLang($webinar_events_delete); ?></button>
 								</div>
 							</div>
-							<div class="card-body">
+							<div class="card-body pb-5">
 								
                                 <div class="row">
 									<!-- WEBINAR HOST -->
@@ -203,20 +203,25 @@ if(checkSession()) {
 
 											$user = $sql->fetch(PDO::FETCH_ASSOC);
 											?>
-												<div id="ifYes" class="form-group" style="display:none">
+												<div id="ifYes" class="form-group" style="display:none;">
+												<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
+												<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+												<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
+											
 											<?php
 
 										}else{
 											?>
-												<div id="ifYes" class="form-group" style="display:block">
+												<div id="ifYes" class="form-group" style="display:block;">
+												<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
+												<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+												<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" required>
+											
 											<?php
 
 										}
 										?>
-											<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
-											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
-											
+									
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
 										</div>
 									</div>
@@ -348,7 +353,7 @@ if(checkSession()) {
             }
         }
 
-		$("#picture").change(function(){
+		$("#img").change(function(){
 			$('#picture_display').show();
 		  readURL(this);
 		});
@@ -360,12 +365,9 @@ if(checkSession()) {
 			if (that.value == "others") {
 				document.getElementById("ifYes").style.display = "block";
 				document.getElementById("others").required = true;
-				document.getElementById("others").disable = false;
-				document.getElementById("others").value = "";
 			} else {
 				document.getElementById("ifYes").style.display = "none";
 				document.getElementById("others").required = false;
-				document.getElementById("others").disable = true;
 				document.getElementById("others").value = "";
 			}
 		}

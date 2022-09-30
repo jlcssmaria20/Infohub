@@ -37,7 +37,7 @@ if(checkSession()) {
 			// SPEAKER
 			$speaker = '';
 			if(isset($_POST['speaker'])) {
-				$speaker = ucwords(strtolower(trim($_POST['others'])));
+				$speaker = ucwords(trim($_POST['others']));
 				$_SESSION['sys_webinar_events_edit_speaker_val'] = $speaker;
 				if(strlen($speaker) == 0) {
 					$speaker = htmlentities(trim($_POST['speaker']));
@@ -100,7 +100,7 @@ if(checkSession()) {
 
 				// IMAGE
 				$filename = $_FILES['img']['name'];
-				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/announcements/';
+				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/webinar-and-events/';
 				$target_file = $target_dir.basename($_FILES['img']['name']);
 				$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 				
@@ -117,7 +117,7 @@ if(checkSession()) {
                 if ($img_tmp !== "") {
 					
                     //MOVE IMAGE TO WEBINAR FOLDER
-                    move_uploaded_file($picture_tmp, '../../assets/images/webinar-and-events/'.$picture);
+                    move_uploaded_file($picture_tmp, '../../assets/images/webinar-and-events/'.$img);
 
                     //UPDATE WEBINAR TABLE
                     $update = $pdo->prepare("UPDATE webinarandevents SET
@@ -136,7 +136,7 @@ if(checkSession()) {
                         ':webinar_speaker'  			=> $speaker,
                         ':webinar_title'  	    		=> $title,
                         ':webinar_description'  		=> $description,
-                        ':webinar_img'   				=> $picture,
+                        ':webinar_img'   				=> $img,
                         ':date_set'						=> $date_set,
                         ':date_edited'					=> $date_edited
                     );
@@ -162,7 +162,7 @@ if(checkSession()) {
                         ':webinar_speaker' 				=> $speaker,
                         ':webinar_title'  	  			=> $title,
                         ':webinar_description'  		=> $description,
-                        ':webinar_img'   				=> $picture,
+                        ':webinar_img'   				=> $img,
                         ':date_set'						=> $date_set,
                         ':date_edited'					=> $date_edited
                     );

@@ -114,7 +114,7 @@ if(checkSession()) {
 
             // IMAGE
             $filename = $_FILES['img']['name'];
-			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/announcements/';
+			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/webinar-and-events/';
 			$target_file = $target_dir.basename($_FILES['img']['name']);
 			$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 			$img = $filename;
