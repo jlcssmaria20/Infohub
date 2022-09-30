@@ -365,6 +365,7 @@ if(checkSession()) {
 			if (that.value == "others") {
 				document.getElementById("ifYes").style.display = "block";
 				document.getElementById("others").required = true;
+				document.getElementById("others").value = "";
 			} else {
 				document.getElementById("ifYes").style.display = "none";
 				document.getElementById("others").required = false;

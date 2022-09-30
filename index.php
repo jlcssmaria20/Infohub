@@ -32,7 +32,7 @@ $total = 4;
                     if($data['webinar_status'] != 2) {
                         if($data['id'] != 0) {
                         echo '<div data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'">';
-                            echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' style='width:100%;'>";
+                            echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' style='width:100%; height: 593px; '>";
                         echo '</div>';
                         }
                     }
@@ -48,7 +48,7 @@ $total = 4;
                             if($data['id'] != $LastID) {
                                 if($data['id'] != 0) {
                                     echo '<li data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'"> ';
-                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0;width:100%;height:605px; min-height:593px;'>";
+                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0; width:100%; height: 593px; '>";
                                         // echo '<div class="text">The text of slide one</div>';
                                     echo '</li>';
                                 }     
