@@ -218,7 +218,6 @@ img.modal-img {
     }
     .announcement li a:hover {
       color: var(--blue);
-      text-decoration: underline;
     }
     .moving-left .fa {
     transition: transform 0.3s ease;
