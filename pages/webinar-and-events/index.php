@@ -14,9 +14,8 @@ if(checkSession()) {
 
 		// set page
 		$page = 'webinarandevents';
-		
 		// set fields from table to search on
-		$fields_arr = array('webinar_title','webinar_description');
+		$fields_arr = array('webinar_title','webinar_description','webinar_host','webinar_speaker');
 		$search_placeholder = renderLang($webinar_events_title);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
@@ -24,6 +23,7 @@ if(checkSession()) {
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
 		$users_arr = getTable('users');
+		
 ?>
 <!DOCTYPE html>
 <html>
