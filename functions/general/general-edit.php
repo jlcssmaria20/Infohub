@@ -136,7 +136,7 @@ if(checkSession()) {
 				$tmp = 'user_nickname::'.$data['user_nickname'].'=='.$nickname;
 				array_push($change_logs,$tmp);
 			}
-			if($_FILES["photo"]['name'] != $data['user_photo']) {
+			if($photo != $data['user_photo']) {
 				$tmp = 'user_photo::'.$data['user_photo'].'=='.$photo;
 				array_push($change_logs,$tmp);
 			}
