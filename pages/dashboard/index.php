@@ -197,7 +197,9 @@ if(checkSession()) {
 																	break;
 																}
 															}
-
+															if($user['user_employee_id'] != $data['webinar_speaker']) {
+																echo '<td>'. $data['webinar_speaker'] .'</td>';
+															}
 															//WEBINAR SCHEDULE
 																			
 															echo '<td>';
