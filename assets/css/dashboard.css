@@ -8,10 +8,12 @@
 .dash-title{
     font-size: 2rem;
     font-weight: 700;
-
 }
-.dash-desc{
+.dash-desc span{
     font-size: 1rem;
+    letter-spacing: 0.03rem;
+    display: inline-block;
+    max-width: 250px;
 }
 .user-cardbox{
     background-color: #006DD3 ;

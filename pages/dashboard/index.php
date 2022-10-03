@@ -58,7 +58,7 @@ if(checkSession()) {
 								$active_users = $sql->rowCount();
 							?>
 							<div class="small-box shadow dash-cardbox user-cardbox text-light">
-								<div class="inner pl-4 mb-2">
+								<div class="inner pl-4 mb-3">
 									<span class="dash-number"><?php echo number_format($active_users,0,'.',','); ?></span><br>
 									<span class="dash-title"><?php echo "Active Users"; ?></span><br>
 									<span class="dash-desc"><?php echo "Total number of Info Hub Users"; ?></span>
@@ -93,7 +93,7 @@ if(checkSession()) {
 										<?php echo 'Upcoming Webinar' ?>
 									</span><br>
 									<div class="dash-desc w-75">
-										<span>Title: <?php echo $data['webinar_title'] ; ?></span>
+										<span class="text-truncate">Title: <?php echo $data['webinar_title'] ; ?></span>
 									</div>
 									
 								</div>
@@ -125,7 +125,7 @@ if(checkSession()) {
 									<span class="dash-number"><?php echo number_format($active_announcements,0,'.',','); ?></span><br>
 									<span class="dash-title"><?php echo 'Announcement' ?></span><br>
 									<div class="dash-desc w-75">
-										<span>Title: <?php echo $data['announcements_title']; ?></span>
+										<span class="text-truncate">Title: <?php echo $data['announcements_title']; ?></span>
 									</div>
 								</div>
 								<div class="icon  text-light">

@@ -382,7 +382,17 @@ if(checkSession()) {
 
 				// check if there is are changes made
 				if(count($change_logs) > 0) {
-
+					if($user_photo_is_default){
+						if($gender == 0){
+							$user_photo = 'avatar2.png';
+							$_SESSION['sys_photo'] = '/assets/images/team-images/'.$user_photo;
+						} else {
+							$user_photo = 'avatar5.png';
+							$_SESSION['sys_photo'] = '/assets/images/team-images/'.$user_photo;
+						}
+					} else {
+						$user_photo = $data['user_photo'];
+					}			
 					// update account language table
 					$sql = $pdo->prepare("UPDATE users SET
 							user_employee_id = :user_employee_id,

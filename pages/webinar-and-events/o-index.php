@@ -473,7 +473,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <div id="caption<?php echo $x ?>">
                     </div>
                     <div class="text-center my-3">
-                        <button class="btn btn-primary closem">Close</button>
+                        <button class="btn btn-primary closem px-4">Close</button>
                     </div>
 
                 </div>
