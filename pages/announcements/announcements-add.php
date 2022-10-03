@@ -85,7 +85,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_announcements_add_title_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_title_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_title_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_title_val'].'"'; } ?> required>
+											<input type="text" minlength="4" maxlength="100" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" placeholder="<?php echo renderLang($announcements_title_placeholder); ?>"<?php if(isset($_SESSION['sys_announcements_add_title_val'])) { echo ' value="'.$_SESSION['sys_announcements_add_title_val'].'"'; } ?> required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_add_title_err'].'</p>'; unset($_SESSION['sys_announcements_add_title_err']); } ?>
 										</div>
 									</div>
@@ -162,21 +162,6 @@ if(checkSession()) {
 		//replace the "Choose a file" label
 		$(this).next('.custom-file-label').html(img);
 		});
-		//for details text editor
-		/* $('#details').summernote({
-			placeholder: 'This announcement is about...',
-			tabsize: 2,
-			height: 100,
-			toolbar: [
-				// [groupName, [list of button]]
-				['style', ['bold', 'italic', 'underline', 'clear']],
-				['font', ['strikethrough', 'superscript', 'subscript']],
-				['fontsize', ['fontsize']],
-				['color', ['color']],
-				['para', ['ul', 'ol']],
-				['height', ['height']]
-			]
-		}); */
 
 		function readURL(input){
             if(input.files && input.files[0]){
@@ -193,7 +178,7 @@ if(checkSession()) {
 		  readURL(this);
 		});
 
-		$("#title").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 	</script>
 	
 </body>

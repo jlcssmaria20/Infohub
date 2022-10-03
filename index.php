@@ -15,6 +15,7 @@ $total = 4;
         <title><?php echo $dx."Home"; ?></title>
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/links.php');  ?>
     </head>
+
   <body id="home">
     <div class="container">
         <div class="col-3 col-s-3 menu">
@@ -32,7 +33,7 @@ $total = 4;
                     if($data['webinar_status'] != 2) {
                         if($data['id'] != 0) {
                         echo '<div data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'">';
-                            echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' style='width:100%;'>";
+                            echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' style='width:100%; height: 593px; '>";
                         echo '</div>';
                         }
                     }
@@ -48,7 +49,7 @@ $total = 4;
                             if($data['id'] != $LastID) {
                                 if($data['id'] != 0) {
                                     echo '<li data-thumb="/assets/images/webinar-and-events/'.$data['webinar_img'].'"> ';
-                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0;width:100%;height:605px; min-height:593px;'>";
+                                        echo "<img src='/assets/images//webinar-and-events/".$data['webinar_img']."' style='margin:0; width:100%; height: 593px; '>";
                                         // echo '<div class="text">The text of slide one</div>';
                                     echo '</li>';
                                 }     
@@ -108,9 +109,9 @@ $total = 4;
                         $x = $key +1;
                         if($data['announcements_status'] != 2) {
                             if($data['id'] != 0) {
-                                echo '<li >';
+                                echo '<li class="moving-left">';
                                     echo '<a href="/o-announcements" style="padding: 0 10px 0 0">';
-                                        echo  $data['announcements_title'];
+                                        echo  '<span  class="d-inline-block text-truncate" style="max-width: 250px;">' . $data['announcements_title'] .'</span>';
                                         echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
                                     echo '</a>';
                                 echo '</li>';

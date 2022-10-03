@@ -6,6 +6,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
  $user_id = (isset($_GET['id']) ? $_GET['id'] : '');
  $positions_arr = getTable('positions');		
+ $teams_arr = getTable('teams');	
  $sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
  $sql->bindParam(":user_id",$user_id);
  $sql->execute();
@@ -38,10 +39,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
         </div>
         <section class="main-area col-s-9 d-column mb-4">
-			<div class="announcement mb-4">
-				<h2 class="mb-3"  style="color:var(--blue);" >
-					<span>Professional Bio</span>
-				</h2>
+			<div class="announcement mb-2">
+				<h2 class="mb-3"><span>Professional Bio</span></h2>
 			</div>
             <?php
                 // PROFILE DETAILS
@@ -52,37 +51,67 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 foreach($row as $key => $data) {
                     if($data['user_status'] != 1) {
                         ?>
-                            <img src='/assets/images/team-images/<?php echo $data['user_photo']?>' class='myImg' style="filter: none">
-                            <p class="name mt-3"><b><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></b></p>
-                            <p class="details">❝ <?php echo $data["user_mantra_in_life"]; ?> ❞</p>
-                            <div class="details">
-                                <?php 
-                                    	foreach($positions_arr as $position) {
-                                            if($position['position_id'] == $data["user_position"]) {
-                                               echo  '<p><b>Position: </b>'.$position["position_name"].'</p>';
-                                                break;
+                    <div class="row mx-5 information">
+                        <div class="col- text-center mx-5">
+                            <div class="m-3">
+                                <img class="profile-user-img img-fluid img-circle border" style="height:200px;width:200px;"
+                                src='/assets/images/team-images/<?php echo $data['user_photo']?>' 
+                                alt="User profile picture">
+                            </div>
+                            <h3 class="profile-username"><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></h3>
+                            <p class="mb-5"><?php echo $data["user_employee_id"] ?></p>
+                                
+                      
+                            <p class="text-primary text-center font-weight-bold">Mantra in Life</p>
+                            <p class="details mb-5">❝ <?php echo $data["user_mantra_in_life"]; ?> ❞</p>
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-3 bg-light info-box">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-primary font-weight-bold mb-2">Team</span>
+                                            <?php
+                                                foreach($teams_arr as $team) {
+                                                    if($team['id'] == $data['team_id']) {
+                                                        echo '<span class="info-box-number text-center text-muted">'.$team['team_name'].'</span>';
+                                                        break;
+                                                    }
+                                                }
+                                            ?>                          
+                                        </div>                                    
+                                    </div>
+                                    <div class="col-sm-4 bg-light info-box mx-3">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-primary font-weight-bold mb-2">Technical Skills</span>
+                                            <span class="info-box-number text-center text-muted mb-2"><?php echo $data["user_skills"]; ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 bg-light info-box ">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-primary font-weight-bold  mb-2">Position</span>
+                                            <?php 
+                                            foreach($positions_arr as $position) {
+                                                if($position['position_id'] == $data["user_position"]) {
+                                                echo  '<span class="info-box-number text-center text-muted">'.$position["position_name"].'</span>';
+                                                    break;
+                                                }
                                             }
-                                        }
-                                ?>
-                    
-                                <p><b>Technical Skills: </b><?php echo $data["user_skills"]; ?></p>
-                                <?php 
-                                $sql = $pdo->prepare("SELECT team_name FROM teams WHERE id ='". $data['team_id']."'");
-                                $sql->execute();
-                                $row = $sql->fetchAll(PDO::FETCH_ASSOC);
-                                foreach($row as $data) {
-                                    echo '<p><b>Current Team: </b>'.$data["team_name"].'</p>'; 
-                                }
-                                ?>
-                            </div>
+                                        ?>                                    
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
                             
-                            <div class="text-right">
-                                <a href="/o-teams" class="btn btn-primary text-right">
-                                    <i class="fa fa-arrow-left mr-2"></i>
-                                    <?php echo renderLang($btn_back); ?>
-                                </a>
-                            </div>
-                    <?php } 
+                        </div>
+                    </div>
+                    
+                    <div class="text-right m-5">
+                        <a href="/o-teams" class="btn btn-primary">
+                            <i class="fa fa-arrow-left "></i>
+                            <?php echo renderLang($btn_back); ?>
+                        </a>
+                    </div>
+                <?php } 
                 } 
             ?>
         </section>

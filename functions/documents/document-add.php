@@ -22,7 +22,7 @@ if(checkSession()) {
 		$name = '';
 		if(isset($_POST['name'])) {
 			$name = htmlentities(trim($_POST['name']));
-			$name = ucwords(strtolower(trim($_POST['name'])));
+			$name = ucfirst(trim($_POST['name']));
 			$_SESSION['sys_document_add_name_val'] = $name;
 			if(strlen($name) == 0) {
 				$err++;

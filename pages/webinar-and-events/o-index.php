@@ -89,8 +89,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                             echo '</a>';  
                                         echo '</li>';
                                         $counter++;
@@ -120,8 +122,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterfeb++;
@@ -150,8 +154,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countermar++;
@@ -180,8 +186,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterapr++;
@@ -211,8 +219,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countermay++;
@@ -241,8 +251,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterjun++;
@@ -271,8 +283,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterjul++;
@@ -301,8 +315,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counteraug++;
@@ -331,8 +347,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countersep++;
@@ -361,8 +379,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counteroct++;
@@ -391,8 +411,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counternov++;
@@ -421,8 +443,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 														break;
 													}
 												}
-                                                echo ' '.$data['webinar_speaker'].' ';
-                                                echo ' <br>'.$data['webinar_description'].'</pre>';
+                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
+                                                echo ' <br><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterdec++;

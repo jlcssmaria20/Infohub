@@ -217,8 +217,15 @@ img.modal-img {
       transition: 0.2s;
     }
     .announcement li a:hover {
-        color: var(--blue);
-        text-decoration: underline;
+      color: var(--blue);
+    }
+    .moving-left .fa {
+    transition: transform 0.3s ease;
+    transform: translateX(0px);
+    }
+    .moving-left:hover .fa{
+    transform: translateX(20px);
+    color: var(--blue);
     }
     .webinar-row {
         overflow: hidden;

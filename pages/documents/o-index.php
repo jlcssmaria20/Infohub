@@ -45,7 +45,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                 $total_data_count = $count->rowCount();
                             
                                 echo "<a href='/document-files/".$data["id"]."'>";
-                                    echo '<li class="list-dl-item pl-3">';
+                                    echo '<li class="list-dl-item pl-3 moving-left">';
                                         echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
                                         echo $data["document_name"];
                                         echo ' ('. $total_data_count .') ';

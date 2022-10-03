@@ -51,7 +51,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     echo '<li class="list-inline-item">';
                                         echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                             echo '<img src="assets/images/announcements/'.$data['announcements_img'].'" class="myImg">';
-                                                echo '<br><span class="text-center w-100 mt-2" >';
+                                                echo '<br><span class="d-inline-block text-truncate" style="max-width: 200px;" >';
                                                     echo $data['announcements_title'];
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';

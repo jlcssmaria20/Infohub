@@ -18,13 +18,14 @@ if(checkSession()) {
         $date_set1 = $_POST['schedule_date'];
 		$date_set = date('Ymd',strtotime($date_set1));
 
-		$current_date = date('F j, Y - l - h:i a', time());
+		$current_date = date('F j, Y');
 		$_SESSION['date_set'] = $date_set;
 
 		// TITLE
 		$title = '';
 		if(isset($_POST['title'])) {
 			$title = htmlentities(trim($_POST['title']));
+			$title = ucfirst(trim($_POST['title']));
 			$_SESSION['sys_webinar_events_add_title_val'] = $title;
 			if(strlen($title) == 0) {
 				$err++;
@@ -79,7 +80,7 @@ if(checkSession()) {
 		$others = '';
 		if(isset($_POST['others'])) {
 			$others = htmlentities(trim($_POST['others']));
-			$others = ucwords(strtolower(trim($_POST['others'])));
+			$others = ucfirst(trim($_POST['others']));
 			$_SESSION['sys_webinar_events_add_others_val'] = $others;
 			if(strlen($others) == 0) {
 				$others = htmlentities(trim($_POST['speaker']));
@@ -113,7 +114,7 @@ if(checkSession()) {
 
             // IMAGE
             $filename = $_FILES['img']['name'];
-			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/announcements/';
+			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/webinar-and-events/';
 			$target_file = $target_dir.basename($_FILES['img']['name']);
 			$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 			$img = $filename;

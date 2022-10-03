@@ -17,7 +17,7 @@ if(checkSession()) {
 		$title = '';
 		if(isset($_POST['title'])) {
 			$title = htmlentities(trim($_POST['title']));
-			$title = ucwords(strtolower(trim($_POST['title'])));
+			$title = ucfirst(trim($_POST['title']));
 			$_SESSION['sys_announcements_add_title_val'] = $title;
 			if(strlen($title) == 0) {
 				$err++;
@@ -73,7 +73,7 @@ if(checkSession()) {
 			}
 		}
 		//CURRENT DATE
-		$current_date = date('F j, Y - l - h:i a', time());
+		$current_date = date('F j, Y');
 
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors

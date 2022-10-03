@@ -112,7 +112,7 @@ if(checkSession()) {
 									<button type="button" class="btn btn-danger btn-delete mr-1" data-toggle="modal" data-target="#delete_announcements_modal"><i class="fa fa-trash mr-2"></i><?php echo renderLang($announcements_delete_announcements); ?></button>
 								</div>
 							</div>
-							<div class="card-body">
+							<div class="card-body pb-5">
 								
 								<div class="row">
 
@@ -172,10 +172,11 @@ if(checkSession()) {
 												<input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img">
 												<label for="img" class="custom-file-label"><?php echo $announcements_img; ?></label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_img_err'].'</p>'; unset($_SESSION['sys_announcements_edit_img_err']); } ?>
-												<img src="/assets/images/announcements/<?php echo $announcements_img; ?>" class="img-thumbnail  mt-3 w-100" style="height:150px;">
+												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="/assets/images/announcements/<?php echo $announcements_img; ?>" style="height:150px;">
 												<input type="hidden" name="file_src" value="<?php echo $announcements_img; ?>">
+
 											</div>
-										</div>
+										</div> 
 									</div>
 
 								</div><!-- row -->
@@ -261,20 +262,21 @@ if(checkSession()) {
 			//replace the "Choose a file" label
 			$(this).next('.custom-file-label').html(img);
 		});
-		//for details text editor
-		/* $('#details').summernote({
-			tabsize: 2,
-			height: 100,
-			toolbar: [
-				// [groupName, [list of button]]
-				['style', ['bold', 'italic', 'underline', 'clear']],
-				['font', ['strikethrough', 'superscript', 'subscript']],
-				['fontsize', ['fontsize']],
-				['color', ['color']],
-				['para', ['ul', 'ol']],
-				['height', ['height']]
-			]
-		}); */
+		
+		function readURL(input){
+            if(input.files && input.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#picture_display').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+		$("#img").change(function(){
+			$('#picture_display').show();
+		  readURL(this);
+		});
 
 		$("#title").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
 	</script>

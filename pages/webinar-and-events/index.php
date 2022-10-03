@@ -113,33 +113,33 @@ if(checkSession()) {
 											$data_count++;
 											$webinar_id = encryptID($data['id']);
 
-											$host =  $pdo->prepare("SELECT user_firstname, user_lastname FROM `users` WHERE `user_employee_id` = ".$data['webinar_host']);
-											$host->execute();
 											echo '<tr>';
 
 												// TITLE
-												echo '<td><h5>'.$data['webinar_title'].'</h5><br><br><b>'.renderLang($webinar_events_created_at) .':</b><em> ' .$data['date_created'].'</em></td>';
+												echo '<td><h5 class="mb-5">'.$data['webinar_title'].'</h5><p class="text-muted pt-4 mb-0">'.renderLang($webinar_events_created_at) .': ' .$data['date_created'].'</p></td>';
 												// IMAGE
-												echo '<td><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
+												echo '<td class="text-muted"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
 
 												// DESCRIPTION
-												echo '<td><b>'.renderLang($webinar_events_host) .':</b> ';
+												//HOST
+												echo '<td><b>'.renderLang($webinar_events_host) .':</b> ';												
 												foreach($users_arr as $user) {
 													if($user['user_employee_id'] == $data['webinar_host']) {
 														echo $user['user_firstname'].' '.$user['user_lastname'];
 														break;
 													}
 												}
-												echo ' '.$data['webinar_host'].' ';
+												//SPEAKER
 												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
-												
 												foreach($users_arr as $user) {
 													if($user['user_employee_id'] == $data['webinar_speaker']) {
 														echo $user['user_firstname'].' '.$user['user_lastname'];
 														break;
 													}
 												}
-												echo ' '.$data['webinar_speaker'].' ';
+												if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
+													echo $data['webinar_speaker'];
+												}
 												?>
 												<?php
 												echo '<br><br><pre style="white-space: pre-wrap;">'.$data['webinar_description'].'</pre></td>';
