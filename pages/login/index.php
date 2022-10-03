@@ -38,7 +38,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 </script>
 
 <body class="hold-transition overflow-hidden">
-	<nav class="main-header navbar navbar-expand navbar-white navbar-light ml-0 px-4">
+	<nav class="navbar navbar-expand navbar-white navbar-light ml-0 px-4">
 		
 		<!-- NAV LEFT -->
 		<ul class="navbar-nav">
