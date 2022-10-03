@@ -147,9 +147,15 @@ if(checkSession()) {
 												// SCHEDULE DATE
 												echo '<td>';
 													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-
+													$date = new DateTime($data['date_set']);
+													$now = new DateTime();
+													
+													if($date < $now) {
+														echo '<br><span class="right badge badge-primary">Done</span>';
+													}else{
+														echo '<br><span class="right badge badge-warning">Upcoming</span>';
+													}
 												echo '</td>';
-
 												// CREATED BY
 												echo '<td>';
 													foreach($users_arr as $user) {

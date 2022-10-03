@@ -76,12 +76,12 @@ if(checkSession()) {
 						<!-- WEBINARS -->
 						<div class="col-lg-4 col-4">
 							<?php
-								$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0  ORDER BY id DESC LIMIT 1 ");
+								$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW() ORDER BY date_set ASC LIMIT 1");
 								$sql->execute();
 								
 								while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 								
-									$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0");
+									$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW()");
 									$count->execute();
 									$active_webinars = $count->rowCount();
 
