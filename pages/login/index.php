@@ -37,78 +37,96 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
   gtag('config', 'G-DXDG9F8NFW');
 </script>
 
-<body class="hold-transition login-page">
-	
+<body class="hold-transition overflow-hidden">
+	<nav class="navbar navbar-expand navbar-white navbar-light ml-0 px-4">
+		
+		<!-- NAV LEFT -->
+		<ul class="navbar-nav">
+			
+			<li class="nav-item d-flex align-items-center py-2">
+				<img src="/assets/images/favicon.png" alt=""class="mr-3" style="width:50px"> <h4 class="mb-0">Digital Experience Info Hub</h4>
+			</li>
+			
+		</ul>
+
+		<!-- NAV RIGHT -->
+		<ul class="navbar-nav ml-auto">
+			
+			<li class="nav-item">
+				<a  href="/">
+					<strong>
+						<i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+						Go to DX Info Hub
+					</strong>
+				</a>
+			</li>
+			
+		</ul><!-- nav right -->
+		
+	</nav>
 	<!-- LOGIN BOX -->
-	<div class="login-box">
-		
-		
-		<!-- CARD -->
-		<div class="card">
-			
-			<!-- CARD BODY -->
-			<div class="card-body login-card-body rounded">
-				<div class="text-center mb-3">
-					<img src="/assets/images/circle.png" alt="Info Hub!" class="img-circle w-25">
+	<div class="row d-flex justify-content-center align-items-center">
+		<div class="col ">
+			<div class="w-50 m-auto">
+				<div class="card-body">
+					<h1 class="my-3"><?php echo renderLang($login_sign_in); ?></h1>
+					<form action="/submit-login" method="post">
+						<div class="input-group mb-3">
+							<input type="text" id="uname" class="form-control" name="uname" placeholder="<?php echo renderLang($login_login_placeholder); ?>"<?php if($cookie_login_value != '') { echo ' value="'.$cookie_login_value.'"'; } else { if(isset($_SESSION['sys_login_uname'])) { echo ' value="'.$_SESSION['sys_login_uname'].'"'; } } ?> required>
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-user"></span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="input-group mb-3">
+							<input type="password" id="upass" class="form-control" name="upass" placeholder="<?php echo renderLang($login_password_placeholder); ?>"<?php if($cookie_login_password != '') { echo ' value="'.$cookie_login_password.'"'; } ?> required>
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+						
+						<?php
+						renderError('sys_login_err');
+						renderSuccess('sys_login_suc');
+
+						?>
+						
+						<div class="row align-items-center my-4">
+							<div class="col-6">
+								<div class="icheck-primary">
+									<input type="checkbox" id="remember_me" name="remember_me" value="1"<?php if(isset($spooder_creds)) { echo ' checked'; } ?>>
+									<label for="remember_me"><?php echo renderLang($login_remember_me); ?></label>
+								</div>
+							</div>
+							<div class="col-6 text-right">
+								<a href="#" class="text-secondary font-weight-bold">Forgot Password?</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<button type="submit" name="submit-login" class="btn btn-block text-light" style="background-color: var(--blue)"><?php echo renderLang($login_sign_in); ?></button>
+							</div>
+						</div>
+						<hr>
+						<div class="text-center">
+							<span>Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</span>				
+						</div>
+					</form>					
 				</div>
-				<p class="login-box-msg">DX INFO HUB</p>		
-				<form action="/submit-login" method="post">
-					<div class="input-group mb-3">
-						<input type="text" id="uname" class="form-control" name="uname" placeholder="<?php echo renderLang($login_login_placeholder); ?>"<?php if($cookie_login_value != '') { echo ' value="'.$cookie_login_value.'"'; } else { if(isset($_SESSION['sys_login_uname'])) { echo ' value="'.$_SESSION['sys_login_uname'].'"'; } } ?> required>
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
-							</div>
-						</div>
-					</div>
-					
-					<div class="input-group mb-3">
-						<input type="password" id="upass" class="form-control" name="upass" placeholder="<?php echo renderLang($login_password_placeholder); ?>"<?php if($cookie_login_password != '') { echo ' value="'.$cookie_login_password.'"'; } ?> required>
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
-						</div>
-					</div>
-					
-					<?php
-					renderError('sys_login_err');
-					renderSuccess('sys_login_suc');
-
-					?>
-					
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<input type="checkbox" id="remember_me" name="remember_me" value="1"<?php if(isset($spooder_creds)) { echo ' checked'; } ?>>
-								<label for="remember_me"><?php echo renderLang($login_remember_me); ?></label>
-							</div>
-						</div>
-						<div class="col-4">
-							<button type="submit" name="submit-login" class="btn btn-primary btn-block btn-flat"><?php echo renderLang($login_sign_in); ?></button>
-						</div>
-					</div>
-                    <hr>
-                    <div class="text-center bold"><a  href="/"><strong><i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>Go to DX Info Hub</strong></a></div>
-					
-				</form>
-
-<!--
-				<p class="mb-1">
-					<a href="#"><?php //echo renderLang($login_forgot_password); ?></a>
-				</p>
--->
-				
 			</div>
-			
-		</div><!-- card -->
-		
-		<div class="login-footer">
-			<p class="text-center">Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</p>
+
 		</div>
-		
+		<div class="col">
+			<div class="ml-auto">
+				<img src="assets/images/website.png" alt="" style="width:600px;">
+			</div>
+		</div>
 	</div>
-	<!-- /.login-box -->
+
 
 	<!-- JAVASCRIPT -->
 	<script src="/plugins/jquery/jquery.min.js"></script>

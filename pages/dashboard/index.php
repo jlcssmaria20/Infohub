@@ -58,7 +58,7 @@ if(checkSession()) {
 								$active_users = $sql->rowCount();
 							?>
 							<div class="small-box shadow dash-cardbox user-cardbox text-light">
-								<div class="inner pl-4 mb-2">
+								<div class="inner pl-4 mb-3">
 									<span class="dash-number"><?php echo number_format($active_users,0,'.',','); ?></span><br>
 									<span class="dash-title"><?php echo "Active Users"; ?></span><br>
 									<span class="dash-desc"><?php echo "Total number of Info Hub Users"; ?></span>
@@ -76,12 +76,12 @@ if(checkSession()) {
 						<!-- WEBINARS -->
 						<div class="col-lg-4 col-4">
 							<?php
-								$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0  ORDER BY id DESC LIMIT 1 ");
+								$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW() ORDER BY date_set ASC LIMIT 1");
 								$sql->execute();
 								
 								while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 								
-									$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0");
+									$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW()");
 									$count->execute();
 									$active_webinars = $count->rowCount();
 
@@ -93,7 +93,7 @@ if(checkSession()) {
 										<?php echo 'Upcoming Webinar' ?>
 									</span><br>
 									<div class="dash-desc w-75">
-										<span>Title: <?php echo $data['webinar_title'] ; ?></span>
+										<span class="text-truncate">Title: <?php echo $data['webinar_title'] ; ?></span>
 									</div>
 									
 								</div>
@@ -125,7 +125,7 @@ if(checkSession()) {
 									<span class="dash-number"><?php echo number_format($active_announcements,0,'.',','); ?></span><br>
 									<span class="dash-title"><?php echo 'Announcement' ?></span><br>
 									<div class="dash-desc w-75">
-										<span>Title: <?php echo $data['announcements_title']; ?></span>
+										<span class="text-truncate">Title: <?php echo $data['announcements_title']; ?></span>
 									</div>
 								</div>
 								<div class="icon  text-light">

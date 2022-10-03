@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="border-bottom:0">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 	
 	<!-- NAV LEFT -->
 	<ul class="navbar-nav">

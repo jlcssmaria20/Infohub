@@ -14,9 +14,8 @@ if(checkSession()) {
 
 		// set page
 		$page = 'webinarandevents';
-		
 		// set fields from table to search on
-		$fields_arr = array('webinar_title','webinar_description');
+		$fields_arr = array('webinar_title','webinar_description','webinar_host','webinar_speaker');
 		$search_placeholder = renderLang($webinar_events_title);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
@@ -24,6 +23,7 @@ if(checkSession()) {
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-pagination.php');
 	
 		$users_arr = getTable('users');
+		
 ?>
 <!DOCTYPE html>
 <html>
@@ -142,14 +142,20 @@ if(checkSession()) {
 												}
 												?>
 												<?php
-												echo '<br><br><pre style="white-space: pre-wrap;">'.$data['webinar_description'].'</pre></td>';
+												echo '<br><br><pre style="white-space: pre-wrap;" class="p-0">'.$data['webinar_description'].'</pre></td>';
 
 												// SCHEDULE DATE
 												echo '<td>';
 													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-
+													$date = new DateTime($data['date_set']);
+													$now = new DateTime();
+													
+													if($date < $now) {
+														echo '<br><span class="right badge badge-primary">Done</span>';
+													}else{
+														echo '<br><span class="right badge badge-warning">Upcoming</span>';
+													}
 												echo '</td>';
-
 												// CREATED BY
 												echo '<td>';
 													foreach($users_arr as $user) {

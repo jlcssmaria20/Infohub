@@ -38,7 +38,7 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper" style="height:105vh">
+		<div class="content-wrapper">
 			
 			<!-- CONTENT HEADER -->
 			<section class="content-header">

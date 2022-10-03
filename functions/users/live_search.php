@@ -17,7 +17,7 @@ $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 foreach($row as $key => $data) {
 	$id = $data['team_id'];
 	if($id != '0') {
-		if($data['user_status'] != '2') {
+		if($data['user_status'] == '0') {
 
 			echo "<li class='list-inline-item text-center'><a href='/o-user-profile/".$data['user_id']."'>
 			<img src='/assets/images/team-images/".$data['user_photo']."'>";
