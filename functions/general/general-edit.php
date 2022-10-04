@@ -54,6 +54,7 @@ if(checkSession()) {
 		$target_file = '';
 		if($_FILES["photo"]['name'] != '') {
 			$file_info = getimagesize($_FILES['photo']['tmp_name']);
+			$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 			if($file_info !== false) {} else {
 				$err++;
 				if(
