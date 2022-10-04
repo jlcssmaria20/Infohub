@@ -54,7 +54,7 @@ if(checkSession()) {
 		$target_file = '';
 		if($_FILES["photo"]['name'] != '') {
 			$file_info = getimagesize($_FILES['photo']['tmp_name']);
-			$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);;
+			$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
 			if($file_info !== false) {} else {
 				if(
 					$image_extension != "jpg" &&
@@ -73,6 +73,9 @@ if(checkSession()) {
 				$err++;
 				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			}
+		} else {
+			$err++;
+			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 		}
 
 		// FIRSTNAME
@@ -164,7 +167,7 @@ if(checkSession()) {
 				$filename = $_FILES['photo']['name'];
 				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
 				$target_file = $target_dir.basename($_FILES['photo']['name']);
-				$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+				$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
 
 				$photo = $filename;
 				if (empty($photo)) {
