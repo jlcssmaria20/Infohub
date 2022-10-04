@@ -160,7 +160,7 @@ if(checkSession()) {
 									<a class="nav-item nav-link upcoming" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"><h4 class="mt-2  ml-3">Accomplished</h4> </a>
 								</div>
 							</nav>
-							<div class="tab-content shadow p-3" id="nav-tabContent" style="width:70%">
+							<div class="tab-content shadow p-3" id="nav-tabContent" style="width:73%">
 								<div class="tab-pane fade show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> 
 									<h5 class="my-3">Here's a list of upcoming webinar and events assigned to you!</h5>
 									<table id="table" class="table table-hover">
@@ -189,16 +189,16 @@ if(checkSession()) {
 													// WEBINAR SPEAKER
 													foreach($users_arr as $user) {
 														if($user['user_employee_id'] == $data['webinar_speaker']) {
-															echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+															echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
 															break;
 														}
 													}
 													if($user['user_employee_id'] != $data['webinar_speaker']) {
-														echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'.renderLang($webinar_events_speaker).': '. $data['webinar_speaker'] .'</td>';
+														echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'.renderLang($webinar_events_speaker).': '. $data['webinar_speaker'] .'</td>';
 													}
 													//WEBINAR SCHEDULE
 																	
-													echo '<td style="width: 15%;"  class="align-middle text-muted font-weight-bold">';
+													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
 														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
 													echo '</td>';
 												
