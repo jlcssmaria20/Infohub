@@ -79,7 +79,7 @@ if(checkSession()) {
 						<div class="card-header">
 							
 							<div class="card-tools">
-								<a href="/edit-general/<?php echo $account_id ?>" class="btn btn-primary btn-md"><i class="fa fa-pencil-alt mr-2"></i><?php echo renderLang($account_edit); ?></a><?php } ?>
+								<a href="/edit-general/<?php echo encryptID($account_id) ?>" class="btn btn-primary btn-md"><i class="fa fa-pencil-alt mr-2"></i><?php echo renderLang($account_edit); ?></a><?php } ?>
 							</div>
 						</div>
 						 <!-- YOUR ACCOUNT -->

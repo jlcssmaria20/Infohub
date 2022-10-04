@@ -52,9 +52,8 @@ if(checkSession()) {
 		}
 		// PHOTO
 		$target_file = '';
-		if($_FILES["photo"]['name'] != '') {
+		if($_FILES["photo"]['name'] != '') {		
 			$file_info = getimagesize($_FILES['photo']['tmp_name']);
-
 			if($file_info !== false) {} else {
 				$err++;
 				if(
@@ -67,7 +66,6 @@ if(checkSession()) {
 				}
 				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 			}
-
 			// check file size
 			if ($_FILES['photo']['size'] > 2000000) {
 				$err++;
@@ -112,9 +110,9 @@ if(checkSession()) {
 			$mobile = trim($_POST['mobile']);
 			if (!preg_match('/^[0-9]*$/', $mobile)) {
 				$err++;
-				$_SESSION['sys_users_edit_user_mobile_err'] = renderLang($users_mobile_err);
+				$_SESSION['sys_general_edit_user_mobile_err'] = renderLang($users_mobile_err);
 			}else{
-				$_SESSION['sys_users_edit_user_mobile_val'] = $mobile;
+				$_SESSION['sys_general_edit_user_mobile_val'] = $mobile;
 			}
 		}
 			
@@ -222,7 +220,7 @@ if(checkSession()) {
 		$_SESSION['sys_general_edit_err'] = renderLang($form_id_not_found);
 	}
 	
-	header('location: /edit-general/'.encryptID($announcements_id));
+	header('location: /edit-general/'.encryptID($user_id));
 	
 } else { // no session found, redirect to login page
 
