@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1A273A">
 	<!-- LOGO -->	
 	<a href="#" class="brand-link mt-1">
 		<img src="/assets/images/logo-rrx.png" alt="<?php echo renderLang($dx); ?>" class="brand-image img-circle elevation-3 ml-2 float-none" style="width:35px; height:50px; ">

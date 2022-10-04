@@ -33,15 +33,18 @@ if(checkSession()) {
 		?>
 
 		<!-- CONTENT -->
-		<div class="content-wrapper bg-white">
-			
-			<!-- CONTENT HEADER -->
+		<div class="content-wrapper">
 			<section class="content-header">
 				<div class="container-fluid">
 					
+					<div class="row">
+						<div class="col-sm-6 col-12">
+							<h1><i class="fa fa-tachometer-alt mr-3"></i>Dashboard</h1>
+						</div>
+					</div>
+					
 				</div><!-- container-fluid -->
 			</section><!-- content-header -->
-
 			<!-- Main content -->
 			<section class="content m-3">
 				<div class="container-fluid">
@@ -140,7 +143,7 @@ if(checkSession()) {
 						</div>
 						
 					
-					</div><!-- row -->
+					</div>
 					<?php 
 					if($_SESSION['sys_account_mode'] == 'user') {
 						$isAmbassador = 0;
@@ -150,80 +153,122 @@ if(checkSession()) {
 						}
 					 ?>
 					 <?php if($isAmbassador){ ?>
-						<div class="row mt-3">
+						<div class="row my-4 mx-1">
+							<nav class="w-100">
+								<div class="nav nav-tabs " id="product-tab" role="tablist">
+									<a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true"><h4 class="mt-2 ml-3">Upcoming</h4> </a>
+									<a class="nav-item nav-link upcoming" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false"><h4 class="mt-2  ml-3">Accomplished</h4> </a>
+								</div>
+							</nav>
+							<div class="tab-content shadow p-3" id="nav-tabContent" style="width:73%">
+								<div class="tab-pane fade show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> 
+									<h5 class="my-3">Here's a list of upcoming webinar and events assigned to you!</h5>
+									<table id="table" class="table table-hover">
+									
+										<tbody>
+											<?php
+											$data_count = 0;
+											$sql = $pdo->prepare("SELECT *
+												FROM webinarandevents
+												WHERE webinar_host = :employee_id AND temp_del = 0 AND date_set > NOW()
+												ORDER BY date_set ASC LIMIT 5");
+												$bind_param = array(
+													'employee_id' => $_SESSION['sys_employee_id']
+												);
+												$sql->execute($bind_param);
+											
+											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+												$data_count++;
+											
+											
+												echo '<tr>';
 
-							<div class="col-sm-6">
+													// WEBINAR TITLE
+													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
 
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">[Ambassador] Assigned Webinar and Events List </h3>
-									</div>
-									<div class="card-body">
-
-										<div class="table-responsive">
-											<table id="table-data" class="table table-bordered table-striped table-hover">
-												<thead>
-													<tr>
-														<th class="text-center" style="width: 200px;">Title</th>
-														<th class="text-center">Speaker</th>
-														<th class="text-center">Date</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php
-													$data_count = 0;
-													$sql = $pdo->prepare("SELECT *
-														FROM webinarandevents
-														WHERE webinar_host = :employee_id AND temp_del = 0
-														ORDER BY date_set DESC");
-														$bind_param = array(
-															'employee_id' => $_SESSION['sys_employee_id']
-														);
-														$sql->execute($bind_param);
-													
-													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-														$data_count++;
-													
-													
-														echo '<tr>';
-
-															// WEBINAR TITLE
-															echo '<td>'.$data['webinar_title'].'</td>';
-
-															// WEBINAR SPEAKER
-															foreach($users_arr as $user) {
-																if($user['user_employee_id'] == $data['webinar_speaker']) {
-																	echo '<td>'.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
-																	break;
-																}
-															}
-															if($user['user_employee_id'] != $data['webinar_speaker']) {
-																echo '<td>'. $data['webinar_speaker'] .'</td>';
-															}
-															//WEBINAR SCHEDULE
-																			
-															echo '<td>';
-																echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-															echo '</td>';
-														
-
-													
-														echo '</tr>';
+													// WEBINAR SPEAKER
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $data['webinar_speaker']) {
+															echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+															break;
+														}
 													}
-													?>
-												</tbody>
-											</table>
-										</div><!-- table-responsive -->
-									</div>
-								</div><!-- card -->
+													if($user['user_employee_id'] != $data['webinar_speaker']) {
+														echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'.renderLang($webinar_events_speaker).': '. $data['webinar_speaker'] .'</td>';
+													}
+													//WEBINAR SCHEDULE
+																	
+													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
+														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+													echo '</td>';
+												
+
+											
+												echo '</tr>';
+											}
+											?>
+										</tbody>
+									</table>
+								</div>
+								<div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
+									<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
+									<table id="table" class="table table-hover">
+									
+										<tbody>
+											<?php
+											$data_count = 0;
+											$sql = $pdo->prepare("SELECT *
+												FROM webinarandevents
+												WHERE webinar_host = :employee_id AND temp_del = 0 AND date_set < NOW()
+												ORDER BY date_set ASC LIMIT 5");
+												$bind_param = array(
+													'employee_id' => $_SESSION['sys_employee_id']
+												);
+												$sql->execute($bind_param);
+											
+											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+												$data_count++;
+											
+											
+												echo '<tr>';
+
+													// WEBINAR TITLE
+													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
+
+													// WEBINAR SPEAKER
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $data['webinar_speaker']) {
+															echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+															break;
+														}
+													}
+													if($user['user_employee_id'] != $data['webinar_speaker']) {
+														echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'. $data['webinar_speaker'] .'</td>';
+													}
+													//WEBINAR SCHEDULE
+																	
+													echo '<td style="width: 15%;"  class="align-middle text-muted font-weight-bold">';
+														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+													echo '</td>';
+												
+
+											
+												echo '</tr>';
+											}
+											?>
+										</tbody>
+									</table>
+								</div>
 								
 							</div>
-							
-						</div><!-- row -->
+						</div>
 					<?php } ?>	
+
+
+
 				<?php } ?>	
-				</div><!-- container-fluid -->
-			</section><!-- content -->
+				</div>
+			</section>
 			
 		</div>
 		<!-- /.content-wrapper -->
