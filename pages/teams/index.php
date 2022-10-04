@@ -84,12 +84,12 @@ if(checkSession()) {
 							
 							<!-- DATA TABLE -->
 							<div class="table-responsive">
-								<table id="table-data" class="table table-bordered table-striped table-hover">
+								<table id="table-data" class="table table-striped table-hover">
 									<thead>
 										<tr>
-											<th><?php echo renderLang($team_name_label); ?></th>
-											<th><?php echo renderLang($team_users_label); ?></th>
-											<th style="width:35px;"></th>
+											<th style="width:50%"><?php echo renderLang($team_name_label); ?></th>
+											<th class="text-center"><?php echo renderLang($team_users_label); ?></th>
+											<th style="width:10%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -112,14 +112,14 @@ if(checkSession()) {
 												echo '<td>'.$data['team_name'].'</td>';
 
 												// NUMBER OF USERS
-												echo '<td>'.$total_data_count.'</td>';
+												echo '<td class="text-center">'.$total_data_count.'</td>';
 
 												// OPTIONS
-												echo '<td>';
+												echo '<td class="text-center">';
 
 													// EDIT team
 													if(checkPermission('team-edit')) {
-														echo '<a href="/edit-team/'.$team_id.'" class="btn btn-success btn-xs" title="'.renderLang($team_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-team/'.$team_id.'" class="btn btn-outline-success" title="'.renderLang($team_edit).'"><i class="fas fa-edit"></i> '. renderLang($edit) .'</a>';
 													}
 
 												echo '</td>'; // end options

@@ -21,7 +21,7 @@
 
       <!-- THE TEAM -->
       <li class="nav-item">
-      <a class="nav-link js-scroll-trigger <?php if($page == 'o-users') { echo ' active'; } ?>" href="/o-teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-teams') { echo ' active'; } ?>" href="/o-teams"><i class="fa fa-users" aria-hidden="true"></i>THE TEAM</a>
     </li>
 
       <!-- ANNOUNCEMENTS -->

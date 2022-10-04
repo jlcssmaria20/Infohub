@@ -96,7 +96,7 @@ if(checkSession()) {
 						<div class="card-body">
 								<!-- DATA TABLE -->
 								<div class="table-responsive">
-									<table id="table-data" class="table table-bordered table-striped table-hover">
+									<table id="table-data" class="table table-striped table-hover">
 										<thead>
 											<tr>
 												<th><?php echo renderLang($users_employee_id); ?></th>
@@ -196,7 +196,7 @@ if(checkSession()) {
 													// echo '<a href="#" class="btn btn-primary btn-xs" title="'.renderLang($users_view_user).'" style="padding: 1.5px 7px;" target="_blank"><i class="fas fa-info" aria-hidden="true"></i></a>';
 
 													if(checkPermission('user-edit')) {
-														echo '<a href="/edit-user/'.$user_id.'" class="btn btn-success btn-xs" title="'.renderLang($users_edit_user).'" ><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-user/'.$user_id.'" class="btn btn-outline-success" title="'.renderLang($users_edit_user).'" ><i class="fas fa-edit"></i></a>';
 													}
 
 													echo '</td>'; // end options

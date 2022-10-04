@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&display=swap');
 :root{
   --blue: #006DD3;
   --gray: #E7E7E7;
@@ -8,8 +7,7 @@
   --black: #121212;
 }
 body p, a{
-  font-size: 1.1rem;
-  /* letter-spacing: .05rem; */
+  font-size: 1.2rem;
 }
 .modal {
   overflow-y: auto;
@@ -81,10 +79,8 @@ img.modal-img {
     max-width: 1300px !important;
 }
 pre{
-  /* font-family: 'Inter Tight', sans-serif; */
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1rem;
-  /* letter-spacing: .05rem; */
+  font-size: 1.1rem;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-weight: bold !important;
@@ -95,6 +91,7 @@ pre{
       font-family: 'Source Sans Pro', sans-serif;
       color: var(--black);
       height: 100%;
+      font-size:1.1rem;
     }
     * {
       box-sizing: border-box;
@@ -119,7 +116,7 @@ pre{
     }
     
     a.nav-link.js-scroll-trigger {
-      padding: 10px 12px;
+      padding: 10px 11px;
     }
     .nav-link .fa {
       width: 10px;
@@ -209,6 +206,9 @@ pre{
       color: #000;
     }
 
+    .forgot-password:hover{
+      text-decoration: underline !important;
+    }
     .announcement li {
       padding: 5px 0;
     }
@@ -361,4 +361,5 @@ pre{
 			border-radius: 50%;
 			display: inline;
 			width: 2.5rem;
+			height: 2.5rem;
 		}

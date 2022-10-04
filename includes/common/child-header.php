@@ -16,7 +16,7 @@
 		</li>
 		<?php } ?> -->
 		<li class="nav-item">
-			<p class="server-date"><i class="far fa-calendar-alt mr-2"></i><?php echo renderLang($header_server_date); ?> <?php echo date('F j, Y - l', time()); ?></p>
+			<p class="server-date text-secondary "><i class="far fa-calendar-alt mr-2"></i><?php echo renderLang($header_server_date); ?> <?php echo date('F j, Y ', time()); ?></p>
 		</li>
 		
 	</ul><!-- nav left -->
