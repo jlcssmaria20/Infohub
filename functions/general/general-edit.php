@@ -52,7 +52,7 @@ if(checkSession()) {
 		}
 		// PHOTO
 		$target_file = '';
-		if($_FILES["photo"]['name'] != '') {		
+		if($_FILES["photo"]['name'] != '') {
 			$file_info = getimagesize($_FILES['photo']['tmp_name']);
 			if($file_info !== false) {} else {
 				$err++;
@@ -66,6 +66,7 @@ if(checkSession()) {
 				}
 				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 			}
+
 			// check file size
 			if ($_FILES['photo']['size'] > 2000000) {
 				$err++;
