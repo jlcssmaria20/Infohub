@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 :root{
   --blue: #006DD3;
   --gray: #E7E7E7;
@@ -9,7 +8,6 @@
 }
 body p, a{
   font-size: 1.1rem;
-  /* letter-spacing: .05rem; */
 }
 .modal {
   overflow-y: auto;
@@ -81,10 +79,8 @@ img.modal-img {
     max-width: 1300px !important;
 }
 pre{
-  /* font-family: 'Inter Tight', sans-serif; */
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1rem;
-  /* letter-spacing: .05rem; */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   font-weight: bold !important;
@@ -92,9 +88,11 @@ pre{
 }
 
     body {
-      font-family: 'Source Sans Pro', sans-serif;
+      /* font-family: 'Source Sans Pro', sans-serif; */
+      font-family: 'Poppins', sans-serif;
       color: var(--black);
       height: 100%;
+      font-size:1.1rem;
     }
     * {
       box-sizing: border-box;
@@ -119,7 +117,7 @@ pre{
     }
     
     a.nav-link.js-scroll-trigger {
-      padding: 10px 12px;
+      padding: 10px 11px;
     }
     .nav-link .fa {
       width: 10px;
@@ -177,7 +175,7 @@ pre{
     }
     .col-3.col-s-3.menu {
       position: relative;
-      padding: 45px 30px 7px 30px;
+      padding: 45px 20px 7px 30px;
       box-shadow: 0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);
       clip-path: inset(0px -15px 0px 0px);
      
@@ -209,6 +207,9 @@ pre{
       color: #000;
     }
 
+    .forgot-password:hover{
+      text-decoration: underline !important;
+    }
     .announcement li {
       padding: 5px 0;
     }
@@ -361,4 +362,5 @@ pre{
 			border-radius: 50%;
 			display: inline;
 			width: 2.5rem;
+			height: 2.5rem;
 		}

@@ -89,15 +89,14 @@ if(checkSession()) {
 							
 							<!-- DATA TABLE -->
 							<div class="table-responsive">
-								<table id="table-data" class="table table-bordered table-striped table-hover">
+								<table id="table-data" class="table table-striped table-hover">
 									<thead>
-										<tr>
-											<th style="width:20%"><?php echo renderLang($webinar_events_title); ?></th>
+										<tr class="text-dark">
 											<th style="width:20%"><?php echo renderLang($webinar_events_img); ?></th>
-											<th style="width:25%"><?php echo renderLang($webinar_events_description); ?></th>
-											<th style="width:15%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
-											<th style="width:15%"><?php echo renderLang($created_by); ?></th>
-											<th style="5%"></th>
+											<th style="width:40%"><?php echo renderLang($webinar_events_title); ?></th>
+											<th class="text-center" style="width:15%"><?php echo renderLang($webinar_events_schedule_date); ?></th>
+											<th class="text-center" style="width:15%"><?php echo renderLang($created_by); ?></th>
+											<th style="width:10%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -113,16 +112,14 @@ if(checkSession()) {
 											$data_count++;
 											$webinar_id = encryptID($data['id']);
 
-											echo '<tr>';
+											echo '<tr >';
+
+												// IMAGE
+												echo '<td class="align-middle"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail p-0"></td>';
 
 												// TITLE
-												echo '<td><h5 class="mb-5">'.$data['webinar_title'].'</h5><p class="text-muted pt-4 mb-0">'.renderLang($webinar_events_created_at) .': ' .$data['date_created'].'</p></td>';
-												// IMAGE
-												echo '<td class="text-muted"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="img-thumbnail"></td>';
-
-												// DESCRIPTION
-												//HOST
-												echo '<td><b>'.renderLang($webinar_events_host) .':</b> ';												
+												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
+												<b>'.renderLang($webinar_events_host) .':</b> ';												
 												foreach($users_arr as $user) {
 													if($user['user_employee_id'] == $data['webinar_host']) {
 														echo $user['user_firstname'].' '.$user['user_lastname'];
@@ -142,10 +139,11 @@ if(checkSession()) {
 												}
 												?>
 												<?php
-												echo '<br><br><pre style="max-width: 250px;"  class="p-0 text-truncate">'.$data['webinar_description'].'</pre></td>';
-
+												echo '<br><pre style="max-width: 400px;"  class="p-0 text-truncate"><b>'. renderLang($webinar_events_description) .'</b>: '.$data['webinar_description'].'</pre>
+												</td>';
+												
 												// SCHEDULE DATE
-												echo '<td>';
+												echo '<td class="align-middle text-center">';
 													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
 													$date = new DateTime($data['date_set']);
 													$now = new DateTime();
@@ -157,21 +155,22 @@ if(checkSession()) {
 													}
 												echo '</td>';
 												// CREATED BY
-												echo '<td>';
+												echo '<td class="align-middle text-center">';
 													foreach($users_arr as $user) {
 														if($user['user_id'] == $data['user_id']) {
 															echo $user['user_firstname'].' '.$user['user_lastname'];
 															break;
 														}
 													}
-												echo '</td>';
+													
+												echo '<br><em class="text-secondary font-weight-bold text-sm">'.$data['date_created'] .'</em></td>';
 															
 												// OPTIONS
-												echo '<td  class="text-center">';
+												echo '<td class="align-middle text-center">';
 
 													// EDIT WEBINAR ANG EVENTS
 													if(checkPermission('webinar-events-edit')) {
-														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-success btn-xs" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-webinar-and-events/'.$webinar_id.'" class="btn btn-outline-success" title="'.renderLang($webinar_events_edit).'"><i class="fas fa-edit"></i> '.renderLang($edit).'</a>';
 													}
 
 												echo '</td>'; // end options

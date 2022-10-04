@@ -166,4 +166,12 @@ $webinar_events_modal_delete_msg2 = array(
 );
 
 
+$edit = array(
+	'Edit',
+	''
+);
+$image= array(
+	'Image',
+	''
+)
 ?>

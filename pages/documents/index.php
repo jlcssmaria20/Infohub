@@ -88,14 +88,14 @@ if(checkSession()) {
 							
 							<!-- DATA TABLE -->
 							<div class="table-responsive">
-								<table id="table-data" class="table table-bordered table-striped table-hover">
+								<table id="table-data" class="table table-striped table-hover">
 									<thead>
-										<tr>
-											<th style="width: 20%"><?php echo renderLang($document_name_label); ?></th>
-											<th style="width: 25%"><?php echo renderLang($document_date_created); ?></th>
-											<th style="width: 20%"><?php echo renderLang($document_file_count); ?></th>
-											<th style="width: 20%"><?php echo renderLang($created_by); ?></th>
-											<th style="width: 5%"></th>
+										<tr class="text-dark">
+											<th style="width: 25%"><?php echo renderLang($document_name_label); ?></th>
+											<th class="text-center" style="width: 13%"><?php echo renderLang($document_file_count); ?></th>
+											<th class="text-center" style="width: 20%"><?php echo renderLang($created_by); ?></th>
+											<th class="text-center" style="width: 22%"><?php echo renderLang($document_date_created); ?></th>
+											<th style="width: 10%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -114,18 +114,15 @@ if(checkSession()) {
 											?>
 											<tr>
 												<!-- FOLDER NAME -->
-												<td>
-													<h6><?php echo $data['document_name'] ?></h6>
+												<td class="align-middle">
+													<span class="font-weight-bold"><?php echo $data['document_name'] ?></span>
 												</td>
 
-												<!-- DATE CREATED -->
-												<td><?php echo $data['date_created'] ?></td>
-
 												<!-- NUMBER OF FILES -->
-												<td><?php echo $total_data_count ?></td>
+												<td class="align-middle text-center"><?php echo $total_data_count ?></td>
 
 												<!-- CREATED BY -->
-												<td>
+												<td class="align-middle text-center">
 													<?php
 													foreach($users_arr as $user) {
 														if($user['user_id'] == $data['user_id']) {
@@ -136,11 +133,14 @@ if(checkSession()) {
 												 	?>
 												</td>
 
+												<!-- DATE CREATED -->
+												<td class="align-middle text-center"><span><?php echo $data['date_created'] ?></span></td>
+
 												<!-- EDIT DOCUMENT -->
-												<td class="text-center">
+												<td class="align-middle text-center">
 													<?php
 													if(checkPermission('document-edit')) {
-														echo '<a href="/edit-document/'.$document_id.'" class="btn btn-success btn-xs" title="'.renderLang($document_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-document/'.$document_id.'" class="btn btn-outline-success btn-s" title="'.renderLang($document_edit).'"><i class="fas fa-edit"></i> '.renderLang($edit).' </a>';
 													}
 													?>
 												</td>

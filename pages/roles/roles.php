@@ -83,13 +83,13 @@ if(checkSession()) {
 						
 						<!-- DATA TABLE -->
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped table-hover">
+							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th><?php echo renderLang($roles_role_name); ?></th>
-										<th><?php echo renderLang($lang_permissions); ?></th>
-										<th><?php echo renderLang($lang_number_of_users); ?></th>
-										<th style="width:35px;"></th>
+										<th style="width:15%;"><?php echo renderLang($roles_role_name); ?></th>
+										<th style="width:60%;"><?php echo renderLang($lang_permissions); ?></th>
+										<th style="width:15%;" class="text-center"><?php echo renderLang($lang_number_of_users); ?></th>
+										<th style="width:10%;"></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -105,7 +105,7 @@ if(checkSession()) {
 										echo '<tr>';
 
 											// ROLE NAME
-											echo '<td>'.$data['role_name'].'</td>';
+											echo '<td class="align-middle">'.$data['role_name'].'</td>';
 
 											// DISPLAY PERMISSIONS
 											echo '<td>';
@@ -166,7 +166,7 @@ if(checkSession()) {
 											echo '</td>'; // end display permissions
 
 											// NUMBER OF USERS
-											echo '<td>';
+											echo '<td class="text-center align-middle">';
 
 												//get from USERS table
 												$sql2 = $pdo->prepare("SELECT user_id, role_ids, temp_del FROM users WHERE role_ids LIKE '%,".decryptID($role_id).",%' AND temp_del=0");
@@ -179,11 +179,11 @@ if(checkSession()) {
 											echo '</td>';
 
 											// OPTIONS
-											echo '<td>';
+											echo '<td class="text-center align-middle">';
 
 												// EDIT ROLE
 												if(checkPermission('role-edit')) {
-													echo '<a href="/edit-role/'.$role_id.'" class="btn btn-success btn-xs" title="'.renderLang($roles_edit_role).'"><i class="fas fa-pencil-alt"></i></a>';
+													echo '<a href="/edit-role/'.$role_id.'" class="btn btn-outline-success" title="'.renderLang($roles_edit_role).'"><i class="fas fa-edit"></i> '. renderLang($edit).'</a>';
 												}
 
 											echo '</td>'; // end options

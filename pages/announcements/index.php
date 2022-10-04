@@ -87,14 +87,13 @@ if(checkSession()) {
 							
 							<!-- DATA TABLE -->
 							<div class="table-responsive">
-								<table id="table-data" class="table table-bordered table-striped table-hover">
+								<table id="table-data" class="table table-striped table-hover">
 									<thead>
-										<tr>
-											<th style="width:25%"><?php echo renderLang($announcements_title_label); ?></th>
-											<th style="width:20%"><?php echo renderLang($announcements_img_label); ?></th>
-											<th style="width:35%"><?php echo renderLang($announcements_details_label); ?></th>
-											<th style="width:15%"><?php echo renderLang($created_by); ?></th>
-											<th style="width:5%"></th>
+										<tr class="text-dark">
+											<th style="width:20%"><?php echo renderLang($image); ?></th>
+											<th style="width:50%"><?php echo renderLang($announcements_title_label).' and '.renderLang($announcements_details_label); ?></th>
+											<th class="text-center"style="width:20%"><?php echo renderLang($created_by); ?></th>
+											<th style="width:10%"></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -109,32 +108,28 @@ if(checkSession()) {
 
 											echo '<tr>';
 
-												// TITLE
-												echo '<td class="h-100"><h5 class="mb-5">'.$data['announcements_title'].'</h5>
-												<p class="text-muted pt-5 mb-0">'.renderLang($webinar_events_created_at) .': '.$data['date_created'].'</p></td>';
-
 												// IMAGE
-												echo '<td><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail"></td>';
+												echo '<td class="align-middle"><img src="assets/images/announcements/'.$data['announcements_img'].'" class=" img-thumbnail p-0"></td>';
 
-												// DETAILS
-												echo '<td><pre style="white-space: pre-wrap;">'.$data['announcements_details'].'</pre></td>';
+												// TITLE
+												echo '<td class="align-middle"><h4 class=" font-weight-bold">'.$data['announcements_title'].'</h4><pre  style="max-width: 400px;"  class="p-0 text-truncate"><b>'.renderLang($announcements_details_label).':</b> '.$data['announcements_details'].'</pre></td>';
 
 												// CREATED BY
-												echo '<td>';
+												echo '<td class="align-middle text-center">';
 													foreach($users_arr as $user) {
 														if($user['user_id'] == $data['user_id']) {
 															echo $user['user_firstname'].' '.$user['user_lastname'];
 															break;
 														}
 													}
-												echo '</td>';
+												echo '<br><em class="text-secondary font-weight-bold text-sm">'.$data['date_created'] .'</em></td>';
 															
 												// OPTIONS
-												echo '<td class="text-center">';
+												echo '<td class="align-middle text-center">';
 
 													// EDIT ANNOUNCEMENTS
 													if(checkPermission('announcements-edit')) {
-														echo '<a href="/edit-announcements/'.$announcements_id.'" class="btn btn-success btn-xs" title="'.renderLang($announcements_edit).'"><i class="fas fa-pencil-alt"></i></a>';
+														echo '<a href="/edit-announcements/'.$announcements_id.'" class="btn btn-outline-success btn-s" title="'.renderLang($announcements_edit).'"><i class="fas fa-edit"></i> '.renderLang($edit).'</a>';
 													}
 
 												echo '</td>'; // end options

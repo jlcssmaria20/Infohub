@@ -53,11 +53,9 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 		<ul class="navbar-nav ml-auto">
 			
 			<li class="nav-item">
-				<a  href="/">
-					<strong>
-						<i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
-						Go to DX Info Hub
-					</strong>
+				<a  href="/" class="btn btn-outline-primary">
+					<i class="fa fa-arrow-left mr-2" aria-hidden="true"></i>
+					Go to DX Info Hub
 				</a>
 			</li>
 			
@@ -103,7 +101,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 								</div>
 							</div>
 							<div class="col-6 text-right">
-								<a href="#" class="text-secondary font-weight-bold">Forgot Password?</a>
+								<a href="#" class="text-primary font-weight-bold p-0 forgot-password" style="font-size:1rem;">Forgot Password?</a>
 							</div>
 						</div>
 						<div class="row">
