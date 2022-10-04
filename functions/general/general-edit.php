@@ -60,6 +60,10 @@ if(checkSession()) {
 					$image_extension != "jpg" &&
 					$image_extension != "png" &&
 					$image_extension != "jpeg" &&
+					$image_extension != "JPG" &&
+					$image_extension != "PNG" &&
+					$image_extension != "JPEG" &&
+					$image_extension != "GIF" &&
 					$image_extension != "gif"
 				) {
 					$err++;
