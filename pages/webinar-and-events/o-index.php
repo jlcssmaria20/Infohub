@@ -469,7 +469,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     <img class="modal-img mt-5" alt="Webinar and Events">
                     <div class="text-left">
                         <p class="modal-name"></p>
-                        <pre style="white-space: pre-wrap;width:600px;color:white; font-size: 16px; font-family: 'Source Sans Pro', sans-serif;" class="modal-details"></pre>
+                        <pre style="white-space: pre-wrap;width:600px;color:white; font-size: 16px;" class="modal-details"></pre>
                     <div id="caption<?php echo $x ?>">
                     </div>
                     <div class="text-center my-3">
