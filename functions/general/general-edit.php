@@ -63,8 +63,9 @@ if(checkSession()) {
 					$image_extension != "gif"
 				) {
 					$err++;
+					$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 				}
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
+				
 			}
 
 			// check file size
