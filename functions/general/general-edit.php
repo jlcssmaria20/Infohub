@@ -73,9 +73,6 @@ if(checkSession()) {
 				$err++;
 				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			}
-		} else {
-			$err++;
-			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 		}
 
 		// FIRSTNAME
