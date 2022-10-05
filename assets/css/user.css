@@ -64,11 +64,15 @@ li b {
 
 @media (max-width: 1280px) {
   #team .list-inline-item {
-    width: 162px;
+    width: 200px;
+    height: 230px;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 1200px) {
   #team .list-inline-item {
     width: 172px;
+    height: 230px;
+    margin-bottom: 10px;
   }
 }
