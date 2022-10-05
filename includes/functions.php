@@ -377,9 +377,9 @@ function clearSessions() {
 
 
 	//GENERAL
-	$module = 'general';
-	$fields_arr = array('general','skills','mantra','nickname','firstname','middlename','lastname','user_mobile');
-	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+	// $module = 'general';
+	// $fields_arr = array('general','skills','mantra','nickname','firstname','middlename','lastname','user_mobile');
+	// unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 
 	// USERS
 	$module = 'users';
