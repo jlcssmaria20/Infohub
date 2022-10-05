@@ -111,7 +111,7 @@ $total = 4;
                             if($data['id'] != 0) {
                                 echo '<li class="moving-left">';
                                     echo '<a href="/o-announcements" style="padding: 0 10px 0 0">';
-                                        echo  '<span  class="d-inline-block text-truncate" style="max-width: 250px;">' . $data['announcements_title'] .'</span>';
+                                        echo  '<span  class="d-inline-block text-truncate" style="max-width: 300px;">' . $data['announcements_title'] .'</span>';
                                         echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
                                     echo '</a>';
                                 echo '</li>';
