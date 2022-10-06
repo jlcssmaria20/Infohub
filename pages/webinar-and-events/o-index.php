@@ -76,22 +76,28 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
                                                 echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                             echo '</a>';  
                                         echo '</li>';
@@ -108,23 +114,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                   echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -140,23 +153,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -172,23 +192,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -205,23 +232,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                   echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -237,23 +271,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -269,23 +310,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -301,23 +349,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -333,23 +388,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -365,23 +427,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -397,23 +466,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                   echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                     echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                  
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
@@ -429,23 +505,30 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                   echo  '<pre style="white-space: normal;display:none;">Host: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
+                                                
+                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $hosts = explode(',', $data['webinar_host']);
+                                                foreach($hosts as $host) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $host) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                }
                                                 echo ' <br>Speaker: ';
-                                                foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
-													}
-												}
-                                                if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
-												}
+                                                $speakers = explode(',', $data['webinar_speaker']);
+                                                foreach($speakers as $speaker) {
+                                                    foreach($users_arr as $user) {
+                                                        if($user['user_employee_id'] == $speaker) {
+                                                            echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+                                                            break;
+                                                        }
+                                                    }
+                                                    if ($user['user_employee_id'] != $speaker) {
+                                                        echo $speaker.', ';
+                                                    }
+                                                }
                                                 echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
