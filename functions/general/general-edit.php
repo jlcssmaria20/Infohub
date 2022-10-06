@@ -68,6 +68,7 @@ if(checkSession()) {
 				
 			}
 
+			
 			// check file size
 			if ($_FILES["photo"]['error'] == 1) {
 				$err++;
