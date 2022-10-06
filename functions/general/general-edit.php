@@ -43,7 +43,7 @@ if(checkSession()) {
 		$nickname = '';
 		if(isset($_POST['nickname'])) {
 			$nickname = htmlentities(trim($_POST['nickname']));
-			$nickname = ucwords(strtolower(trim($_POST['nickname'])));
+			$nickname = ucfirst(trim($_POST['nickname']));
 			$_SESSION['sys_general_edit_nickname_val'] = $nickname;
 			if(strlen($nickname) == 0) {
 				$err++;
@@ -79,7 +79,7 @@ if(checkSession()) {
 		$firstname = '';
 		if(isset($_POST['firstname'])) {
 			$firstname = htmlentities(trim($_POST['firstname']));
-			$firstname = ucwords(strtolower(trim($_POST['firstname'])));
+			$firstname = ucfirst(trim($_POST['firstname']));
 			$_SESSION['sys_general_edit_firstname_val'] = $firstname;
 			if(strlen($firstname) == 0) {
 				$err++;
@@ -90,14 +90,14 @@ if(checkSession()) {
 		$middlename = '';
 		if(isset($_POST['middlename'])) {
 			$middlename = htmlentities(trim($_POST['middlename']));
-			$middlename = ucwords(strtolower(trim($_POST['middlename'])));
+			$middlename = ucfirst(trim($_POST['middlename']));
 			$_SESSION['sys_general_edit_middlename_val'] = $middlename;
 		}
 		// LASTNAME
 		$lastname = '';
 		if(isset($_POST['lastname'])) {
 			$lastname = htmlentities(trim($_POST['lastname']));
-			$lastname = ucwords(strtolower(trim($_POST['lastname'])));
+			$lastname = ucfirst(trim($_POST['lastname']));
 			$_SESSION['sys_general_edit_lastname_val'] = $lastname;
 			if(strlen($lastname) == 0) {
 				$err++;

@@ -107,6 +107,15 @@ $webinar_events_other = array(
 	''
 );
 
+$add_host = array(
+	'Add Host',
+	''
+);
+
+$add_speaker = array(
+	'Add Speaker',
+	''
+);
 
 $webinar_events_select_speaker = array(
 	'-- Select Speaker --',

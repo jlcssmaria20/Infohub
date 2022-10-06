@@ -24,27 +24,8 @@ if(checkSession()) {
 			$date_set1 = $_POST['schedule_date'];
 			$date_set = date('Ymd',strtotime($date_set1));
 	
-			//host
-			$host = '';
-			if(isset($_POST['host'])) {
-				$host = htmlentities(trim($_POST['host']));
-				$_SESSION['sys_webinar_events_edit_host_val'] = $host;
-				if(strlen($host) == 0) {
-					$err++;
-					$_SESSION['sys_webinar_events_edit_host_err'] = renderLang($webinar_events_host_required);
-				} 
-			}
-			// SPEAKER
-			$speaker = '';
-			if(isset($_POST['speaker'])) {
-				$speaker = ucwords(trim($_POST['others']));
-				$_SESSION['sys_webinar_events_edit_speaker_val'] = $speaker;
-				if(strlen($speaker) == 0) {
-					$speaker = htmlentities(trim($_POST['speaker']));
-				}
-			}
 
-			// title
+			// TITLE
 			$title = '';
 			if(isset($_POST['title'])) {
 				$title = htmlentities(trim($_POST['title']));
@@ -56,7 +37,7 @@ if(checkSession()) {
 				} 
 			}
 			
-			// description
+			// DESCRIPTION
 			$description = '';
 			if(isset($_POST['description'])) {
 				$description = $_POST['description'];
@@ -94,7 +75,13 @@ if(checkSession()) {
 					$_SESSION['sys_webinar_events_edit_img_err'] = renderLang($settings_general_update_exceeds_size);
 				}
 			}
-	
+
+			//HOST
+			$hosts = implode(',', (array)$_POST['host']);
+			
+			//SPEAKERS
+			$speakers = implode(',', (array)$_POST['others']);
+			
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors
 
@@ -132,8 +119,8 @@ if(checkSession()) {
                     
                     $bind_param = array(
                         ':webinar_id'            		=> $webinar_id,
-                        ':webinar_host'  				=> $host,
-                        ':webinar_speaker'  			=> $speaker,
+                        ':webinar_host'  				=> $hosts,
+                        ':webinar_speaker'  			=> $speakers,
                         ':webinar_title'  	    		=> $title,
                         ':webinar_description'  		=> $description,
                         ':webinar_img'   				=> $img,

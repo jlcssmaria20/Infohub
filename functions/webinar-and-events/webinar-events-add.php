@@ -56,7 +56,7 @@ if(checkSession()) {
 			} 
 		}
 		// HOST
-		$host = '';
+		/* $host = '';
 		if(isset($_POST['host'])) {
 			$host = htmlentities(trim($_POST['host']));
 			$_SESSION['sys_webinar_events_add_host_val'] = $host;
@@ -64,28 +64,25 @@ if(checkSession()) {
 				$err++;
 				$_SESSION['sys_webinar_events_add_host_err'] = renderLang($webinar_events_host_required);
 			} 
-		}
+		} */
+/* 
 		// SPEAKER
 		$speaker = '';
 		if(isset($_POST['speaker'])) {
 			$speaker = htmlentities(trim($_POST['speaker']));
-			$_SESSION['sys_webinar_events_add_speaker_val'] = $speaker;
-			if(strlen($speaker) == 0) {
-				$err++;
-				$_SESSION['sys_webinar_events_add_speaker_err'] = renderLang($webinar_events_speaker_required);
+			$speaker = implode(',', (array)$_POST['speaker']);
+			if(strlen($speaker) == "others") {
+				$speaker = implode(',', (array)$_POST['others']);
 			}
 		}
-
+ */
 		// OTHERS
-		$others = '';
-		if(isset($_POST['others'])) {
-			$others = htmlentities(trim($_POST['others']));
-			$others = ucfirst(trim($_POST['others']));
-			$_SESSION['sys_webinar_events_add_others_val'] = $others;
-			if(strlen($others) == 0) {
-				$others = htmlentities(trim($_POST['speaker']));
-			}
-		}
+
+		$speakers = implode(',', (array)$_POST['others']);
+		//HOST
+		$hosts = implode(',', (array)$_POST['host']);
+			
+		//IMAGE
 		$target_file = '';
 		if($_FILES["img"]['name'] != '') {
 			$file_info = getimagesize($_FILES['img']['tmp_name']);
@@ -126,45 +123,46 @@ if(checkSession()) {
 			$month_set = substr($date_set, 0, 6);
 
 			$_SESSION['month_set'] = $month_set;
+			
+			
+				$sql = $pdo->prepare("INSERT INTO webinarandevents(
+					id,
+					`user_id`,
+					webinar_host,
+					webinar_speaker,
+					webinar_title,
+					webinar_description,
+					webinar_img,
+					date_set,
+					month_set,
+					date_created
 
-			$sql = $pdo->prepare("INSERT INTO webinarandevents(
-               	id,
-                `user_id`,
-				webinar_host,
-				webinar_speaker,
-                webinar_title,
-                webinar_description,
-                webinar_img,
-                date_set,
-				month_set,
-				date_created
+				) VALUES(
+					NULL,
+					:user_id,
+					:webinar_host,
+					:webinar_speaker,
+					:webinar_title,
+					:webinar_description,
+					:webinar_img,
+					:date_set,
+					:month_set,
+					:date_created
+				)");
+				$bind_param = array(
+					':user_id'  				    => $_SESSION['sys_id'],
+					':webinar_host'                 => $hosts,
+					':webinar_speaker'              => $speakers,
+					':webinar_title'  	    		=> $title,
+					':webinar_description'  		=> $description,
+					':webinar_img'   				=> $img,
+					':date_set'						=> $date_set,
+					':month_set'					=> $month_set,
+					':date_created'					=> $current_date
+				);
 
-            ) VALUES(
-				NULL,
-                :user_id,
-                :webinar_host,
-                :webinar_speaker,
-                :webinar_title,
-                :webinar_description,
-                :webinar_img,
-                :date_set,
-				:month_set,
-				:date_created
-            )");
-            $bind_param = array(
-                ':user_id'  				    => $_SESSION['sys_id'],
-				':webinar_host'                 => $host,
-				':webinar_speaker'              => $others,
-                ':webinar_title'  	    		=> $title,
-                ':webinar_description'  		=> $description,
-                ':webinar_img'   				=> $img,
-                ':date_set'						=> $date_set,
-				':month_set'					=> $month_set,
-				':date_created'					=> $current_date
-            );
-
-            $sql->execute($bind_param);
-
+				$sql->execute($bind_param);
+			
 
 			$_SESSION['sys_webinar_events_suc'] = renderLang($webinar_events_added);
 			header('location: /webinarandevents');
