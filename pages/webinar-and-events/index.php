@@ -119,23 +119,33 @@ if(checkSession()) {
 
 												// TITLE
 												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
-												<b>'.renderLang($webinar_events_host) .':</b> ';												
-												foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_host']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
+												<b>'.renderLang($webinar_events_host) .':</b> ';
+												
+												$hosts = explode(',', $data['webinar_host']);
+												foreach($hosts as $host) {
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $host) {
+															echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+															break;
+														}
 													}
 												}
+												
+																								
+												
 												//SPEAKER
 												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
-												foreach($users_arr as $user) {
-													if($user['user_employee_id'] == $data['webinar_speaker']) {
-														echo $user['user_firstname'].' '.$user['user_lastname'];
-														break;
+												$speakers = explode(',', $data['webinar_speaker']);
+												foreach($speakers as $speaker) {
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $speaker) {
+															echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+															break;
+														}
 													}
-												}
-												if ($user['user_employee_id'] != $data['webinar_speaker'] ) {
-													echo $data['webinar_speaker'];
+													if ($user['user_employee_id'] != $speaker) {
+														echo $speaker .', ';
+													}
 												}
 												?>
 												<?php

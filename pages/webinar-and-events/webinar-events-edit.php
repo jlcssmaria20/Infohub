@@ -127,36 +127,41 @@ if(checkSession()) {
 								
                                 <div class="row">
 									<!-- WEBINAR HOST -->
-                                    <div class="col-lg-3 col-md-4 col-sm-2">
-                                        <?php $err = isset($_SESSION['sys_webinar_events_add_host_err']) ? 1 : 0; ?>
+                                    <div class="col-lg-3">
+                                        <?php $err = isset($_SESSION['sys_webinar_events_edit_host_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="host" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_host); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-                                            <select class="form-control select2 required" name="host" required>
-                                                <?php
-                                                    $sql = $pdo->prepare("SELECT *
-                                                        FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
-                                                    $sql->execute();
-                                                    while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                                        echo '<option value="'.$data['user_employee_id'].'"';
-                                                        if($host == $data['user_employee_id']){
-															echo ' selected';
-														}
+                                            <select class="form-control select2 required" name="host[]">
+												<?php
+													$sql = $pdo->prepare("SELECT *	FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
+													$sql->execute();
+													echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
+													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+														echo '<option value="'.$data['user_employee_id'].'"';
 														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
-                                                    }
-                                                ?>
+													}
+												?>
                                             </select>
                                             <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_host_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_host_err']); } ?>
                                         </div>
-                                    </div><!-- /col-->
+                                    </div>
+
+									<!-- ADD MORE HOST BUTTON -->
+									<div class="col-lg-1 mr-3">
+										<div class="form-group">
+											<label for="a"></label>
+											<button type="button" class="btn btn-outline-success btn-xs addmorehost form-control mt-2" name="addhost" id="addhost" ><i class="fas fa-plus-square"></i> <?php echo renderLang($add_host); ?></button>
+										</div>
+									</div>
 
 									<!-- WEBINAR SPEAKER -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
+									<div class="col-lg-3">
                                         <?php $err = isset($_SESSION['sys_webinar_events_edit_speaker_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											
 											<br>
-                                            <select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker" onchange="yesnoCheck(this);" required>
+                                            <select onchange="myFunction(this);" class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker" onchange="yesnoCheck(this);" required>
 													
 												<?php
 													
@@ -171,7 +176,7 @@ if(checkSession()) {
 												
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 														
-														echo '<option value="'.$data['user_employee_id'].'"';
+														echo '<option value="'.$data['user_employee_id'].'" id="'.$data['user_employee_id'].'"';
                                                         if($others == $data['user_employee_id']){
 															echo ' selected';
 														}
@@ -184,51 +189,185 @@ if(checkSession()) {
 											</select>
                                             <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_speaker_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_speaker_err']); } ?>
                                         </div>
-                                    </div><!-- /col-->
-
-									
+                                    </div>
 
 									<!-- WEBINAR SPEAKER OTHERS-->
 									<div class="col-lg-3">
                                         <?php $err = isset($_SESSION['sys_webinar_events_edit_others_err']) ? 1 : 0; ?>
-
-										<?php
-														
-										$sql = $pdo->prepare("SELECT user_employee_id FROM users WHERE user_employee_id = :user_employee_id LIMIT 1");
-										$sql->bindParam(":user_employee_id",$others);
-										$sql->execute();
-
-										// check if ID exists
-										if($sql->rowCount()) {
-
-											$user = $sql->fetch(PDO::FETCH_ASSOC);
-											?>
-												<div id="ifYes" class="form-group" style="display:none;">
-												<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
-												<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-												<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
-											
-											<?php
-
-										}else{
-											?>
-												<div id="ifYes" class="form-group" style="display:block;">
-												<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
-												<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-												<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" required>
-											
-											<?php
-
-										}
-										?>
-									
-											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
+										
+										<div id="ifYes" class="form-group">
+										 
+											<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="" required>
+										
+										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
 										</div>
 									</div>
-                                </div>
+									
+									<!-- ADD MORE SPEAKER BUTTON -->
+									<div class="col-lg-1">
+										<div class="form-group">
+											<label for="a"></label>
+											<button type="button" class="btn btn-outline-success btn-xs addmorespeaker form-control mt-2" style="width:90px;" name="addspeaker" id="addspeaker" ><i class="fas fa-plus-square"></i> <?php echo renderLang($add_speaker); ?></button>
+										</div>
+									</div>
+								</div>
+						
+								<!-- DISPLAY HOST AND SPEAKERS -->
+								<div class="row">
+									<!-- WEBINAR HOST -->
+									<div class="col-4">
+										<?php
+											$sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE id = " .$id);
+											$sql->execute();
+											while($dataa = $sql->fetch(PDO::FETCH_ASSOC)) {
+												$hosts = explode(',', $dataa['webinar_host']);//what will do here
+												foreach($hosts as $host) {
+												?>
+												<div class="row">
+													<div class="col-lg-9">
+														<?php $err = isset($_SESSION['sys_webinar_events_edit_host_err']) ? 1 : 0; ?>
+														<div class="form-group">
+															
+															<select class="form-control select2 required" name="host[]" required>
+																<?php
+																	$sql = $pdo->prepare("SELECT *
+																		FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
+																	$sql->execute();
+																	while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+																		echo '<option value="'.$data['user_employee_id'].'"';
+																		if($host == $data['user_employee_id']){
+																			echo ' selected';
+																		}
+																		echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+																	}
+																?>
+															</select>
+															<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_host_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_host_err']); } ?>
+														</div>
+													</div>
+														<!-- REMOVE HOST BUTTON -->
+													<div class="col-lg-2">
+														<div class="form-group">
+															<button type="button" class="btn btn-outline-danger btn-remove-host form-control" name="removehost" id="removehost" ><i class="fas fa-window-close"></i></button>
+														</div>
+													</div>
+												</div>
+												<?php
+												}
+											}
+										?>
+									</div>
+									<!-- WEBINAR SPEAKER -->
+									<div class="col-lg-7">
+											<!-- WEBINAR SPEAKER -->
+											<?php
+												$sql = $pdo->prepare("SELECT * FROM webinarandevents WHERE id = " .$id);
+												$sql->execute();
+												while($dataa = $sql->fetch(PDO::FETCH_ASSOC)) {
+													$speakers = explode(',', $dataa['webinar_speaker']);//what will do here
+													foreach($speakers as $others) {
+													?>
+													<div class="row">
+														<!-- WEBINAR SPEAKER-->
+														<div class="col-lg-5 mx-3">
+															<?php $err = isset($_SESSION['sys_webinar_events_edit_speaker_err']) ? 1 : 0; ?>
+															<div class="form-group">
+																<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker" onchange="yesnoCheck(this);" style="width:228px" required>
+																		
+																	<?php
+																		
+																		$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
+																		$sql->execute();
+																		
+																		echo '<option value="others"';
+																		if($others == "others"){
+																			echo ' selected';
+																		}
+																		echo '>Others</option>';
+																	
+																		while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+																			
+																			echo '<option value="'.$data['user_employee_id'].'"';
+																			if($others == $data['user_employee_id']){
+																				echo ' selected';
+																			}
+																			echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 
-                                    <hr>
+																		}
+																		
+																	?>
+																	
+																</select>
+																<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_speaker_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_speaker_err']); } ?>
+															</div>
+														</div>
 
+														<!-- WEBINAR SPEAKER OTHERS-->
+														<div class="col-lg-5">
+															<?php $err = isset($_SESSION['sys_webinar_events_edit_others_err']) ? 1 : 0; ?>
+
+															<?php
+															
+															$sql = $pdo->prepare("SELECT user_employee_id FROM users WHERE user_employee_id = :user_employee_id LIMIT 1");
+															$sql->bindParam(":user_employee_id",$others);
+															$sql->execute();
+
+															// check if ID exists
+															if($sql->rowCount()) {
+
+																$user = $sql->fetch(PDO::FETCH_ASSOC);
+																?>
+																	<div id="ifYes" class="form-group" style="display: ;">
+																	
+																	<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
+																
+																<?php
+
+															}else{
+																?>
+																	<div id="ifYes" class="form-group" style="display:block;">
+																	
+																	<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" required>
+																
+																<?php
+
+															}
+															?>
+														
+																<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
+															</div>
+														</div>
+																	
+														<!-- REMOVE SPEAKER BUTTON -->
+														<div class="col-lg-1">
+															<div class="form-group">
+																<button type="button" class="btn btn-outline-danger btn-remove-speaker form-control" name="removespeaker" id="removespeaker" ><i class="fas fa-window-close"></i></button>
+															</div>
+														</div>
+													</div>
+													<?php
+													}
+												}
+											?>
+											
+											
+										</div>
+									
+								</div>
+
+								<!-- ADD MORE HOST AND SPEAKER INPUTS -->
+								<div class="row">
+									<div class="col-lg-4 mr-3">
+										<div id="host_field"></div>
+									</div>
+									<div class="col-lg-7">
+										<div id="speaker_field"></div>
+									</div>
+								</div>
+
+                                <hr>
                                 <div class="row">
 
                                     <!-- WEBINAR TITLE -->
@@ -360,18 +499,122 @@ if(checkSession()) {
 
 		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
-		
 		function yesnoCheck(that) {
 			if (that.value == "others") {
 				document.getElementById("ifYes").style.display = "block";
 				document.getElementById("others").required = true;
-				document.getElementById("others").value = "";
 			} else {
-				document.getElementById("ifYes").style.display = "none";
+				document.getElementById("ifYes").style.display = "block";
 				document.getElementById("others").required = false;
-				document.getElementById("others").value = "";
 			}
 		}
+		
+		function myFunction(element){
+			document.getElementById("others").value = element.options[element.selectedIndex].id;
+		}
+		function myFunction1(element){
+			document.getElementById("others1").value = element.options[element.selectedIndex].id;
+		}
+		function myFunction2(element){
+			document.getElementById("others2").value = element.options[element.selectedIndex].id;
+		}
+		function myFunction3(element){
+			document.getElementById("others3").value = element.options[element.selectedIndex].id;
+		}
+		$('select[name*="speaker"]').on('change', function() {
+			$('select[name*="speaker"] option').attr('disabled', false); 
+			$('select[name*="speaker"]').each(function() {
+				var val = this.value;
+				$('select[name*="speaker"]').not(this).find('option').filter(function() { 
+				return this.value === val;
+				}).prop('disabled', true); 
+			});
+		}).change(); 
+		
+		$('select[name*="host"]').on('change', function() {
+			$('select[name*="host"] option').attr('disabled', false); 
+			$('select[name*="host"]').each(function() {
+				var val = this.value;
+				$('select[name*="host"]').not(this).find('option').filter(function() { 
+				return this.value === val;
+				}).prop('disabled', true); 
+			});
+		}).change(); 
+
+		
+		//ADD AND REMOVE HOST 
+		function removeHost(row) {
+			$("#row" + row).remove();
+		}
+		$(document).ready(function() {
+			var i = 1;
+			$('#addhost').click(function() {
+				if (i <= 5) {
+				$('#host_field').append('<div class="row" data-value="value_' + i + '" id="row' + i + '"> <div class="col-lg-9"><div class="form-group"><select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="host[]" style="width: 228px;" required><?php
+							$sql = $pdo->prepare("SELECT *
+								FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
+							$sql->execute();
+							echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
+							while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+								echo '<option value="'.$data['user_employee_id'].'"';
+								echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+							}
+						?>
+					</select></div></div><a href="#" onclick="removeHost(' + i + ')" class="btn btn-danger  ml-2 mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div>')
+				 
+				i++;
+				
+				}
+			});
+			$('.btn-remove-host').click(function(e) {
+				e.preventDefault();
+				$(this).closest('.row').remove();
+			}); 
+				
+		});
+
+		
+		//ADD AND REMOVE SPEAKER 
+		function removeSpeaker(row) {
+			$("#row" + row).remove();
+		}
+		$(document).ready(function() {
+			var i = 1;
+			$('#addspeaker').click(function() {
+				if (i <= 5) {
+				$('#speaker_field').append('<div class="row" data-value="value_' + i + '" id="row' + i + '"><div class="col-lg-5 mr-2"><div class="form-group"><select onchange="myFunction' + i + '(this);" class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" name="speaker[]" style="width: 228px;" onchange="yesnoCheck(this);" required><?php
+					echo '<option value="others"';
+					if(isset($_SESSION['sys_webinar_events_add_speaker_val'])) {
+						if($_SESSION['sys_webinar_events_add_speaker_val'] == 'others') {
+							echo ' selected';
+						}
+					}
+					echo '>Others</option>';
+				
+					$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
+					$sql->execute();
+					
+					while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+						echo '<option value="'.$data['user_employee_id'].'" id="'.$data['user_employee_id'].'"';
+						echo '> ['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+					}
+					
+				?>
+			</select></div></div><div class="col-lg-5"><div id="ifYes" class="form-group" style=""><input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> required ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
+				 
+				i++;
+				
+				}
+			});	
+			$('.btn-remove-speaker').click(function(e) {
+				e.preventDefault();
+				$(this).closest('.row').remove();
+			}); 
+			
+		});
+
+
+
 	</script>
 	
 </body>

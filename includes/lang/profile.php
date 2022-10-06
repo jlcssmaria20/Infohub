@@ -81,7 +81,7 @@ $account_nickname = array(
 	'フルネーム'
 );
 $account_image = array(
-	'Image (Maximum 2000KB)',
+	'Image (Max 2000KB)',
 	''
 );
 $choose_image = array(

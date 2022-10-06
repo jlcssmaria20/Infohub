@@ -55,7 +55,7 @@ $announcements_details_placeholder = array(
 	''
 );
 $announcements_img_label = array(
-	'Image (Maximum 2000KB)',
+	'Image (Max 2000KB)',
 	''
 );
 $announcements_img_placeholder = array(

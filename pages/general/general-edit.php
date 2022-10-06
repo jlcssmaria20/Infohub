@@ -193,7 +193,7 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input type="text" minlength="1" maxlength="10" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="firstname" name="firstname" placeholder="<?php echo renderLang($account_firstname_label); ?>" value="<?php echo $user_firstname ?>" required>
+                                                    <input type="text" minlength="1" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="firstname" name="firstname" placeholder="<?php echo renderLang($account_firstname_label); ?>" value="<?php echo $user_firstname ?>" required>
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_firstname_err'].'</p>'; unset($_SESSION['sys_general_edit_firstname_err']); } ?>
                                                 </div>
@@ -204,7 +204,7 @@ if(checkSession()) {
                                                 <div class="form-group">
                                                     <label for="middlename" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_middlename_label); ?></label>
 
-                                                    <input type="text" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="middlename" name="middlename" placeholder="<?php echo renderLang($account_middlename_label); ?>" value="<?php echo $user_middlename ?>">
+                                                    <input type="text" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="middlename" name="middlename" placeholder="<?php echo renderLang($account_middlename_label); ?>" value="<?php echo $user_middlename ?>">
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_middlename_err'].'</p>'; unset($_SESSION['sys_general_edit_middlename_err']); } ?>
                                                 </div>
@@ -217,7 +217,7 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input type="text" minlength="1" maxlength="10" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="lastname" name="lastname" placeholder="<?php echo renderLang($account_lastname_label); ?>" value="<?php echo $user_lastname ?>" required>
+                                                    <input type="text" minlength="1" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="lastname" name="lastname" placeholder="<?php echo renderLang($account_lastname_label); ?>" value="<?php echo $user_lastname ?>" required>
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_lastname_err'].'</p>'; unset($_SESSION['sys_general_edit_lastname_err']); } ?>
                                                 </div>
@@ -232,7 +232,7 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input type="text" minlength="1" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname); ?>" value="<?php echo $user_nickname ?>" required>
+                                                    <input type="text" minlength="1" maxlength="10" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="nickname" name="nickname" placeholder="<?php echo renderLang($account_nickname); ?>" value="<?php echo $user_nickname ?>" required>
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_nickname_err'].'</p>'; unset($_SESSION['sys_general_edit_nickname_err']); } ?>
                                                 </div>
