@@ -199,6 +199,7 @@ if(checkSession()) {
 																	$sql = $pdo->prepare("SELECT *
 																		FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
 																	$sql->execute();
+																	echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 																	while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 																		echo '<option value="'.$data['user_employee_id'].'"';
 																		if($host == $data['user_employee_id']){
