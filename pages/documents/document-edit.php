@@ -27,7 +27,7 @@ if(checkSession()) {
 			}
 			$_SESSION['sys_document_edit_file_link_val'] = $files_arr;
 		}
-		
+
 		// //print_r($_SESSION['sys_document_edit_file_link_val']);
 		// return;
 

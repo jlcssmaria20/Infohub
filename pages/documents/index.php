@@ -140,6 +140,9 @@ if(checkSession()) {
 												<td class="align-middle text-center">
 													<?php
 													if(checkPermission('document-edit')) {
+														if(isset($_SESSION['sys_document_edit_file_link_val'])){
+															unset($_SESSION['sys_document_edit_file_link_val']);
+														}
 														echo '<a href="/edit-document/'.$document_id.'" class="btn btn-outline-success btn-s" title="'.renderLang($document_edit).'"><i class="fas fa-edit"></i> '.renderLang($edit).' </a>';
 													}
 													?>
