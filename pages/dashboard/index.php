@@ -6,7 +6,6 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 if(checkSession()) {
 
 	$users_arr = getTable('users');
-
 	
 ?>
 <!DOCTYPE html>
@@ -167,35 +166,60 @@ if(checkSession()) {
 									
 										<tbody>
 											<?php
+											
+										
 											$data_count = 0;
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
-												WHERE webinar_host = :employee_id AND temp_del = 0 AND date_set > NOW()
-												ORDER BY date_set ASC LIMIT 5");
+												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set > NOW()
+												ORDER BY date_set ASC");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
 												$sql->execute($bind_param);
 											
-											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+												while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 												$data_count++;
 											
 											
 												echo '<tr>';
 
-													// WEBINAR TITLE
-													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
+												// WEBINAR IMAGE
+												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
 
-													// WEBINAR SPEAKER
+												// TITLE
+												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
+												<b>'.renderLang($webinar_events_host) .':</b> ';
+												
+												//HOST
+												$hosts = explode(',', $data['webinar_host']);
+												foreach($hosts as $host) {
 													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $data['webinar_speaker']) {
-															echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+														if($user['user_employee_id'] == $host) {
+															echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
 															break;
 														}
 													}
-													if($user['user_employee_id'] != $data['webinar_speaker']) {
-														echo '<td style="width: 60%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'.renderLang($webinar_events_speaker).': '. $data['webinar_speaker'] .'</td>';
+												}
+												
+												//SPEAKER
+												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+												$speakers = explode(',', $data['webinar_speaker']);
+												foreach($speakers as $speaker) {
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $speaker) {
+															echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+															break;
+														}
 													}
+													if ($user['user_employee_id'] != $speaker) {
+														echo $speaker .', ';
+													}
+												}
+												?>
+												<?php
+												echo '
+												</td>';
 													//WEBINAR SCHEDULE
 																	
 													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
@@ -217,10 +241,11 @@ if(checkSession()) {
 										<tbody>
 											<?php
 											$data_count = 0;
+											
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
-												WHERE webinar_host = :employee_id AND temp_del = 0 AND date_set < NOW()
-												ORDER BY date_set ASC LIMIT 5");
+												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker))AND temp_del = 0 AND date_set < NOW()
+												ORDER BY date_set ASC");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
@@ -229,22 +254,45 @@ if(checkSession()) {
 											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 												$data_count++;
 											
-											
+												$webinar_id = encryptID($data['id']);
 												echo '<tr>';
 
-													// WEBINAR TITLE
-													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
+												// WEBINAR IMAGE
+												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
 
-													// WEBINAR SPEAKER
+												// TITLE
+												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
+												<b>'.renderLang($webinar_events_host) .':</b> ';
+												
+												//HOST
+												$hosts = explode(',', $data['webinar_host']);
+												foreach($hosts as $host) {
 													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $data['webinar_speaker']) {
-															echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>' .renderLang($webinar_events_speaker).': '.$user['user_firstname'].' '.$user['user_lastname'].'</td>';
+														if($user['user_employee_id'] == $host) {
+															echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
 															break;
 														}
 													}
-													if($user['user_employee_id'] != $data['webinar_speaker']) {
-														echo '<td style="width: 65%;"  class="align-middle"><h4>'.$data['webinar_title'] .'</h4>'. $data['webinar_speaker'] .'</td>';
+												}
+												
+												//SPEAKER
+												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+												$speakers = explode(',', $data['webinar_speaker']);
+												foreach($speakers as $speaker) {
+													foreach($users_arr as $user) {
+														if($user['user_employee_id'] == $speaker) {
+															echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+															break;
+														}
 													}
+													if ($user['user_employee_id'] != $speaker) {
+														echo $speaker .', ';
+													}
+												}
+												?>
+												<?php
+												echo '
+												</td>';
 													//WEBINAR SCHEDULE
 																	
 													echo '<td style="width: 15%;"  class="align-middle text-muted font-weight-bold">';
