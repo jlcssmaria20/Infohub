@@ -1,9 +1,9 @@
 <?php
 // INCLUDES
-$page = 'dashboard';
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 // check if user has existing session
 if(checkSession()) {
+	$page = 'dashboard';
 
 	$users_arr = getTable('users');
 	
@@ -21,7 +21,7 @@ if(checkSession()) {
 	
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-fixed">
 	
 	<!-- WRAPPER -->
 	<div class="wrapper">
@@ -188,7 +188,7 @@ if(checkSession()) {
 												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
 
 												// TITLE
-												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
+												echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
 												<b>'.renderLang($webinar_events_host) .':</b> ';
 												
 												//HOST
@@ -261,7 +261,7 @@ if(checkSession()) {
 												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
 
 												// TITLE
-												echo '<td class=" align-middle"><h4 class="font-weight-bold">'.$data['webinar_title'].'</h4>
+												echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
 												<b>'.renderLang($webinar_events_host) .':</b> ';
 												
 												//HOST
@@ -295,7 +295,7 @@ if(checkSession()) {
 												</td>';
 													//WEBINAR SCHEDULE
 																	
-													echo '<td style="width: 15%;"  class="align-middle text-muted font-weight-bold">';
+													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
 														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
 													echo '</td>';
 												

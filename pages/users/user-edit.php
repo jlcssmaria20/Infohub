@@ -183,7 +183,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-user-secret mr-3"></i><?php echo renderLang($users_edit_user); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo '['.$data['user_employee_id'].']'.' '.$data['user_firstname'].' '.$data['user_lastname'];  ?></h1>
+							<h1><i class="far fa-user mr-3"></i><?php echo renderLang($users_edit_user); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo '['.$data['user_employee_id'].']'.' '.$data['user_firstname'].' '.$data['user_lastname'];  ?></h1>
 						</div>
 					</div>
 					

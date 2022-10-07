@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1A273A">
 	<!-- LOGO -->	
-	<a href="#" class="brand-link mt-1">
-		<img src="/assets/images/logo-rrx.png" alt="<?php echo renderLang($dx); ?>" class="brand-image img-circle elevation-3 ml-2 float-none" style="width:35px; height:50px; ">
-		<span class="brand-text font-weight-light"><?php echo "DX Info Hub"; ?></span>
+	<a href="/dashboard" class="brand-link py-">
+		<img src="/assets/images/logowhite.png" alt="<?php echo renderLang($dx); ?>" class="brand-image elevation-3 ml-2 float-none" style="width:35px; height:25px; ">
+		<span class="brand-text font-weight-light ml-3"><?php echo "DX Info Hub"; ?></span>
 	</a>
 	<!-- SIDEBAR -->
 	<div class="sidebar">
@@ -14,7 +14,7 @@
 				?>
 			</div>
 			<div class="info">
-				<a href='#' style="" class="d-block"><?php echo $_SESSION['sys_fullname']; ?></a>
+				<a href='/general' class="d-inline-block text-truncate" style="max-width: 190px;"><?php echo $_SESSION['sys_fullname']; ?></a>
 			</div>
 		</div>
 
@@ -24,20 +24,20 @@
 				
                 <!-- Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fas fa-tachometer-alt" aria-hidden="true"></i><p> Dashboard</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'dashboard') { echo ' active'; } ?>" href="/dashboard"> <i class="nav-icon fa fa-tachometer-alt" aria-hidden="true"></i><p> Dashboard</p> </a>
                 </li>
 				
                 <?php if(checkPermission('webinar-and-events')) { ?>
                   <!-- WEBINAR AND EVENTS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="nav-icon fa fa-calendar" aria-hidden="true"></i><p> Webinar and Events</p> </a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'webinarandevents') { echo ' active'; } ?>" href="/webinarandevents"><i class="nav-icon far fa-calendar-alt " aria-hidden="true"></i><p> Webinar and Events</p> </a>
                 </li>
 				<?php } ?>
 
 				<?php if(checkPermission('documents')) { ?>
                 <!-- DOCUMENTS AND QUICK LINKS -->
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="nav-icon fa fa-file" aria-hidden="true"></i><p> Documents and Quick Links</p></a>
+                    <a class="nav-link js-scroll-trigger <?php if($page == 'documents') { echo ' active'; } ?>" href="/documents"><i class="nav-icon far fa-file-alt" aria-hidden="true"></i><p> Documents and Quick Links</p></a>
                 </li>
 				<?php } ?>
                 <!-- THE TEAM -->

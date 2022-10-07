@@ -99,7 +99,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col">
-							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['webinar_title']; ?></h1>
+							<h1><i class="far fa-calendar-alt mr-3"></i><?php echo renderLang($webinar_events_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['webinar_title']; ?></h1>
 						</div>
 					</div>
 					

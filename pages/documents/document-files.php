@@ -66,7 +66,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                     <div class="text-right">
                                                         <span id="link<?php echo $count?>" class="invisible"><?php echo $data['file_link'] ?></span>
                                                         <button class="btn border-primary bg-none mr-2" style="color:var(--blue);" onClick="copyLink(<?php echo $count ?>)" name="copy<?php echo $count?>" title="Copy this link to access file.">
-                                                            <i class="fa fa-clone mr-1" aria-hidden="true"></i> Copy Link
+                                                            <i class="fas fa-paperclip mr-1" aria-hidden="true"></i> Copy Link
                                                         </button>
                                                         <?php
                                                             $drive_z_keyword = "Z:\DX";

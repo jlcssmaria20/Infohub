@@ -57,7 +57,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fas fa-file mr-3"></i><?php echo renderLang($documents); ?></h1>
+							<h1><i class="far fa-file-alt mr-3"></i><?php echo renderLang($documents); ?></h1>
 						</div>
 					</div>
 					
@@ -101,7 +101,7 @@ if(checkSession()) {
 									<tbody>
 										<?php
 											$data_count = 0;
-											$sql = $pdo->prepare("SELECT * FROM documents ".$where." ORDER BY id ASC LIMIT ".$sql_start.",".$numrows);
+											$sql = $pdo->prepare("SELECT * FROM documents ".$where." ORDER BY id DESC LIMIT ".$sql_start.",".$numrows);
 											$sql->execute();
 											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 

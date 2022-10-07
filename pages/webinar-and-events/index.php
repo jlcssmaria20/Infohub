@@ -60,7 +60,7 @@ if(checkSession()) {
 					
 					<div class="row">
 						<div class="col-sm-6 col-12">
-							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events); ?></h1>
+							<h1><i class="far fa-calendar-alt mr-3"></i><?php echo renderLang($webinar_events); ?></h1>
 						</div>
 					</div>
 					

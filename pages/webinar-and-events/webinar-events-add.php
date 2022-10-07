@@ -45,7 +45,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-calendar mr-3"></i><?php echo renderLang($webinar_events_add); ?></h1>
+							<h1><i class="far fa-calendar-alt mr-3"></i><?php echo renderLang($webinar_events_add); ?></h1>
 						</div>
 					</div>
 					

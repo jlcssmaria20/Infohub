@@ -123,17 +123,16 @@ if(checkSession()) {
 												echo '<tr>';
 
 													// EMPLOYEE ID
-													echo '<td><img src="assets/images/team-images/'.$data['user_photo'].'" class="table-avatar mr-3" alt="">'.$data['user_employee_id'].'</td>';
-
+													echo '<td class="align-middle"><img src="assets/images/team-images/'.$data['user_photo'].'" class="table-avatar mr-3" alt="">'.$data['user_employee_id'].'</td>';
 
 													// LASTNAME
-													echo '<td>'.$data['user_lastname'].'</td>';
+													echo '<td class="align-middle">'.$data['user_lastname'].'</td>';
 
 													// FIRSTNAME
-													echo '<td>'.$data['user_firstname'].'</td>';
+													echo '<td class="align-middle">'.$data['user_firstname'].'</td>';
 
 													// USER NAME
-													echo '<td>'.$data['user_email'].'</a></td>';
+													echo '<td class="align-middle">'.$data['user_email'].'</a></td>';
 
 													// DESIGNATION
 													echo '<td>';
@@ -164,16 +163,16 @@ if(checkSession()) {
 															if($status[0] == $data['user_status']) {
 																switch($data['user_status']) {
 																	case 0:
-																		echo '<span class="text-success">'.renderLang($status[1]).'</span>';
+																		echo '<span class="text-success px-2 rounded" style="background-color:#D2FBF0">'.renderLang($status[1]).'</span>';
 																		break;
 																	case 1:
-																		echo '<span class="text-warning">'.renderLang($status[1]).'</span>';
+																		echo '<span class="text-secondary px-2 rounded" style="background-color:#FDF6B2">'.renderLang($status[1]).'</span>';
 																		break;
 																	case 1.5:
-																		echo '<span class="text-danger">'.renderLang($status[1]).'</span>';
+																		echo '<span class="text-danger px-2 rounded" style="background-color:#FDD4D4">'.renderLang($status[1]).'</span>';
 																		break;
 																	case 2:
-																		echo '<span class="text-danger">'.renderLang($status[1]).'</span>';
+																		echo '<span class="text-danger px-2 rounded" style="background-color:#FDD4D4">'.renderLang($status[1]).'</span>';
 																		break;
 																}
 															}

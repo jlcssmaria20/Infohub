@@ -90,7 +90,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fa fa-file mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
+							<h1><i class="far fa-file-alt mr-3"></i><?php echo renderLang($document_edit); ?> <small><i class="fa fa-chevron-right ml-2 mr-2"></i></small> <?php  echo $data['document_name']; ?></h1>
 						</div>
 					</div>
 					
@@ -191,7 +191,7 @@ if(checkSession()) {
 											
 											<div class="col-lg-3">
 												<div>
-													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fa fa-link mr-2"></i><?php echo renderLang($document_copy) ?></button>
+													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fas fa-paperclip mr-2"></i><?php echo renderLang($document_copy) ?></button>
 													<a href="#" class="btn btn-danger btn-remove-link"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 												</div>
 											</div>
