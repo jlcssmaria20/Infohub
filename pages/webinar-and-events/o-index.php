@@ -75,7 +75,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'">';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -85,7 +87,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -98,7 +100,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                             echo '</a>';  
                                         echo '</li>';
                                         $counter++;
@@ -114,8 +116,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -125,7 +128,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -138,7 +141,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterfeb++;
@@ -152,9 +155,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -164,7 +168,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -177,7 +181,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countermar++;
@@ -191,9 +195,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -203,7 +208,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -216,7 +221,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterapr++;
@@ -232,8 +237,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -243,7 +249,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -256,7 +262,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countermay++;
@@ -270,9 +276,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -282,7 +289,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -295,7 +302,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterjun++;
@@ -309,9 +316,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -321,7 +329,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -334,7 +342,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterjul++;
@@ -348,9 +356,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -360,7 +369,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -373,7 +382,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counteraug++;
@@ -387,9 +396,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -399,7 +409,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -412,7 +422,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $countersep++;
@@ -426,9 +436,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';                                                  
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -438,7 +449,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -451,7 +462,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counteroct++;
@@ -465,9 +476,10 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '</span>';  
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
-                                                  echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                  
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -477,7 +489,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -490,7 +502,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counternov++;
@@ -505,8 +517,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                             echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
                                                 echo "<img src='/assets/images/webinar-and-events/".$data['webinar_img']."' class='myImg'>";
                                                 echo  '<h2 data1="'.$data['webinar_title'].'"> </h2>';
-                                                
-                                                echo  '<pre style="white-space: normal;display:none;">Host: ';
+                                                $data_date =  $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+                                                echo '<h4 datadate="'.$data_date.'"></h4>';
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Host: </b>';
                                                 $hosts = explode(',', $data['webinar_host']);
                                                 foreach($hosts as $host) {
                                                     foreach($users_arr as $user) {
@@ -516,7 +529,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         }
                                                     }
                                                 }
-                                                echo ' <br>Speaker: ';
+                                                echo ' <br><b>Speaker:</b> ';
                                                 $speakers = explode(',', $data['webinar_speaker']);
                                                 foreach($speakers as $speaker) {
                                                     foreach($users_arr as $user) {
@@ -529,7 +542,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                         echo $speaker.', ';
                                                     }
                                                 }
-                                                echo ' <br><br>Description: <br>'.$data['webinar_description'].'</pre>';
+                                                echo ' <br><br><b>Description: </b><br>'.$data['webinar_description'].'</pre>';
                                                 echo '</a>';  
                                         echo '</li>';
                                         $counterdec++;
@@ -541,29 +554,41 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                     </ul>
                 </div>
             </section>
-
             </div>
         </div>
 
        <!--- MODAL POP-UP AREA --->
         <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
             <div id="myModal<?php echo $x ?>" class="modal">
-                <div class="modal-body my-5">
-                    <img class="modal-img mt-5" alt="Webinar and Events">
-                    <div class="text-left">
-                        <p class="modal-name"></p>
-                        <pre style="white-space: pre-wrap;width:600px;color:white; font-size: 16px;" class="modal-details"></pre>
-                    <div id="caption<?php echo $x ?>">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h4 class="modal-title modal-date"></h4>
+                            <button type="button" class="closem close mt-1" data-dismiss="modal" aria-label="Close" style="font-size:3rem;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <p class="modal-name"></p>
+                                    <pre style="white-space: pre-wrap;" class="modal-details"></pre>
+                                    <div id="caption<?php echo $x ?>"></div>
+                                </div>
+                                <div class="col-lg-5 text-right">
+                                    <img class="modal-img" alt="Webinar and Events">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-primary closem" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="text-center my-3">
-                        <button class="btn btn-primary closem px-4">Close</button>
-                    </div>
-
+                    
                 </div>
-                </div>
-                
             </div>
         <?php } ?>
+
 
         <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>
         <script src="assets/modal/js/lightslider.js"></script> 
@@ -599,11 +624,13 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             var modalTarget = $(this).attr('data-target');
             var modalImg = $(this).find('img').attr('src'); 
             var modalName = $(this).find('h2').attr('data1');
+            var modalDate = $(this).find('h4').attr('datadate');
             var modaldetails = $(this).find('pre').html();
 
             $('#'+ modalTarget).show();
             $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
             $('#'+ modalTarget).find('.modal-name').html(modalName)
+            $('#'+ modalTarget).find('.modal-date').html(modalDate)
             $('#'+ modalTarget).find('.modal-details').html(modaldetails)
             });
 
