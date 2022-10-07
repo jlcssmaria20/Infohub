@@ -375,6 +375,12 @@ function clearSessions() {
 	$fields_arr = array('role','role_name','role_permissions');
 	unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
 
+
+	//GENERAL
+	// $module = 'general';
+	// $fields_arr = array('general','skills','mantra','nickname','firstname','middlename','lastname','user_mobile');
+	// unsetSessions($module,$fields_arr,$process_arr,$data_type_arr);
+
 	// USERS
 	$module = 'users';
 	$fields_arr = array(
@@ -389,7 +395,6 @@ function clearSessions() {
 		'middlename',
 		'lastname',
 		'nickname',
-		'photo',
 		'position',
 		'roles',
 		'hiredate',

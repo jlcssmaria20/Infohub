@@ -54,9 +54,8 @@ if(checkSession()) {
 		$target_file = '';
 		if($_FILES["photo"]['name'] != '') {
 			$file_info = getimagesize($_FILES['photo']['tmp_name']);
-
+			$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
 			if($file_info !== false) {} else {
-				$err++;
 				if(
 					$image_extension != "jpg" &&
 					$image_extension != "png" &&
@@ -64,12 +63,14 @@ if(checkSession()) {
 					$image_extension != "gif"
 				) {
 					$err++;
+					$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
 				}
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
+				
 			}
 
+			
 			// check file size
-			if ($_FILES['photo']['size'] > 2000000) {
+			if ($_FILES["photo"]['error'] == 1) {
 				$err++;
 				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			}
@@ -112,9 +113,9 @@ if(checkSession()) {
 			$mobile = trim($_POST['mobile']);
 			if (!preg_match('/^[0-9]*$/', $mobile)) {
 				$err++;
-				$_SESSION['sys_users_edit_user_mobile_err'] = renderLang($users_mobile_err);
+				$_SESSION['sys_general_edit_user_mobile_err'] = renderLang($users_mobile_err);
 			}else{
-				$_SESSION['sys_users_edit_user_mobile_val'] = $mobile;
+				$_SESSION['sys_general_edit_user_mobile_val'] = $mobile;
 			}
 		}
 			
@@ -164,7 +165,7 @@ if(checkSession()) {
 				$filename = $_FILES['photo']['name'];
 				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
 				$target_file = $target_dir.basename($_FILES['photo']['name']);
-				$image_extension = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+				$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
 
 				$photo = $filename;
 				if (empty($photo)) {
@@ -222,7 +223,7 @@ if(checkSession()) {
 		$_SESSION['sys_general_edit_err'] = renderLang($form_id_not_found);
 	}
 	
-	header('location: /edit-general/'.encryptID($announcements_id));
+	header('location: /edit-general/'.encryptID($user_id));
 	
 } else { // no session found, redirect to login page
 
