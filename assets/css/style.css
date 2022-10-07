@@ -22,11 +22,10 @@ body p, a{
 }
 p.modal-name,
 p.modal-details {
-  color: var(--white);
+  color: var(--blue);
   font-size: 16px;
   margin: 0 auto;
   width: 600px;
-  text-align: justify;
 }
 body.modal-open {
   overflow: hidden;
@@ -60,8 +59,7 @@ ul.user-list-item {
   margin: 20px 0;
 }
 img.modal-img {
-  height: 400px;
-  object-fit: contain;
+  height: 250px;
 }
 .btn {
   border-radius: 5px;
