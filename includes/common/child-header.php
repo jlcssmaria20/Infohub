@@ -51,7 +51,7 @@
 		<!-- SETTINGS -->
 		<li class="nav-item">
 			<a class="nav-link btn-logout" id="logout" href="/logout" title="<?php echo renderLang($lang_logout); ?>">
-				<i class="fas fa-sign-out-alt"></i>
+				<i class="fas fa-sign-out-alt text-primary"></i>
 			</a>
 		</li>
 		

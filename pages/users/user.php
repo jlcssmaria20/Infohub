@@ -121,7 +121,7 @@ if(checkSession()) {
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1>
-								<i class="fa fa-user-secret mr-3"></i><?php echo renderLang($users_user); ?>
+								<i class="fa fa-user mr-3"></i><?php echo renderLang($users_user); ?>
 								&raquo;
 								<?php echo $fullname; ?>
 							</h1>

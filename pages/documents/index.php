@@ -57,7 +57,7 @@ if(checkSession()) {
 					
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1><i class="fas fa-file mr-3"></i><?php echo renderLang($documents); ?></h1>
+							<h1><i class="far fa-file-alt mr-3"></i><?php echo renderLang($documents); ?></h1>
 						</div>
 					</div>
 					
