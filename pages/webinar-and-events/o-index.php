@@ -562,9 +562,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             <div id="myModal<?php echo $x ?>" class="modal">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-primary">
                             <h4 class="modal-title modal-date"></h4>
-                            <button type="button" class="closem close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="closem close mt-1" data-dismiss="modal" aria-label="Close" style="font-size:3rem;">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
