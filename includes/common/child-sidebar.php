@@ -7,14 +7,14 @@
 	<!-- SIDEBAR -->
 	<div class="sidebar">
 		<!-- SIDEBAR PROFILE -->
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+		<div class="user-panel my-3 d-flex">
 			<div class="image">
 				<?php
 					echo '<img src="'.$_SESSION['sys_photo'].'" class="img-circle elevation-2" alt="User Image">';
 				?>
 			</div>
 			<div class="info">
-				<a href='/general' class="d-inline-block text-truncate" style="max-width: 190px;"><?php echo $_SESSION['sys_fullname']; ?></a>
+				<a href='/general' class="d-inline-block text-truncate" style="max-width: 190px;font-size:12px"><?php echo $_SESSION['sys_fullname']; ?></a>
 			</div>
 		</div>
 
