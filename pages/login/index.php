@@ -64,9 +64,9 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 	</nav>
 	<!-- LOGIN BOX -->
 	<div class="row d-flex justify-content-center align-items-center">
-		<div class="col ">
+		<div class="col">
 			<div class="w-50 m-auto">
-				<div class="card-body">
+				<div class="card-body p-0">
 					<h1 class="my-3"><?php echo renderLang($login_sign_in); ?></h1>
 					<form action="/submit-login" method="post">
 						<div class="input-group mb-3">
@@ -119,8 +119,8 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 
 		</div>
 		<div class="col">
-			<div class="ml-auto">
-				<img src="assets/images/website.png" alt="" style="width:600px;">
+			<div class="m-auto">
+				<img src="assets/images/website.png" alt="" style="width:550px;">
 			</div>
 		</div>
 	</div>

@@ -11,12 +11,12 @@
 
       <!-- WEBINAR AND EVENTS -->
       <li class="nav-item">
-      <a class="nav-link js-scroll-trigger <?php if($page == 'o-webinar-and-events') { echo ' active'; } ?>" href="/o-webinar-and-events"><i class="fa fa-calendar" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-webinar-and-events') { echo ' active'; } ?>" href="/o-webinar-and-events"><i class="fa far fa-calendar-alt" aria-hidden="true"></i>WEBINAR AND EVENTS</a>
     </li>
 
       <!-- DOCUMENTS AND QUICK LINKS -->
       <li class="nav-item">
-      <a class="nav-link js-scroll-trigger <?php if($page == 'o-documents') { echo ' active'; } ?>" href="/o-documents"><i class="fa fa-file" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
+      <a class="nav-link js-scroll-trigger <?php if($page == 'o-documents') { echo ' active'; } ?>" href="/o-documents"><i class="fa far fa-file-alt" aria-hidden="true"></i>DOCUMENTS AND QUICK LINKS</a>
     </li>
 
       <!-- THE TEAM -->

@@ -172,7 +172,7 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
 												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set > NOW()
-												ORDER BY date_set ASC");
+												ORDER BY date_set ASC LIMIT 10");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
@@ -192,12 +192,25 @@ if(checkSession()) {
 												<b>'.renderLang($webinar_events_host) .':</b> ';
 												
 												//HOST
+												$host_count_handler = 0;
 												$hosts = explode(',', $data['webinar_host']);
 												foreach($hosts as $host) {
 													foreach($users_arr as $user) {
 														if($user['user_employee_id'] == $host) {
-															echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-															break;
+															$hosts_count = count($hosts) - 1;
+															if ($host_count_handler == $hosts_count){
+																echo $user['user_firstname'].' '.$user['user_lastname'];
+																$host_count_handler = 0;
+															} else {
+																if ($host_count_handler == count($hosts)-2){
+																	echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
+																	$host_count_handler++;
+																} else {
+																	echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+																	$host_count_handler++;
+
+																}
+															}
 														}
 													}
 												}
@@ -205,15 +218,25 @@ if(checkSession()) {
 												//SPEAKER
 												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
 												$speakers = explode(',', $data['webinar_speaker']);
+												$speaker_count_handler = 0;
+												$speakers_arr = count($speakers)-2;
 												foreach($speakers as $speaker) {
 													foreach($users_arr as $user) {
 														if($user['user_employee_id'] == $speaker) {
-															echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+															echo $user['user_firstname'].' '.$user['user_lastname'];
+															$speaker_count_handler++;
 															break;
 														}
 													}
 													if ($user['user_employee_id'] != $speaker) {
-														echo $speaker .', ';
+														echo $speaker;
+														$speaker_count_handler++;
+													}
+
+													if ($speaker_count_handler <= $speakers_arr) {
+														echo ', ';
+													} else if ($speaker_count_handler == $speakers_arr+1) {
+														echo ' and ';
 													}
 												}
 												?>
@@ -245,7 +268,7 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
 												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker))AND temp_del = 0 AND date_set < NOW()
-												ORDER BY date_set ASC");
+												ORDER BY date_set ASC LIMIT 10");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
@@ -265,12 +288,25 @@ if(checkSession()) {
 												<b>'.renderLang($webinar_events_host) .':</b> ';
 												
 												//HOST
+												$host_count_handler = 0;
 												$hosts = explode(',', $data['webinar_host']);
 												foreach($hosts as $host) {
 													foreach($users_arr as $user) {
 														if($user['user_employee_id'] == $host) {
-															echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-															break;
+															$hosts_count = count($hosts) - 1;
+															if ($host_count_handler == $hosts_count){
+																echo $user['user_firstname'].' '.$user['user_lastname'];
+																$host_count_handler = 0;
+															} else {
+																if ($host_count_handler == count($hosts)-2){
+																	echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
+																	$host_count_handler++;
+																} else {
+																	echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+																	$host_count_handler++;
+
+																}
+															}
 														}
 													}
 												}
@@ -278,15 +314,25 @@ if(checkSession()) {
 												//SPEAKER
 												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
 												$speakers = explode(',', $data['webinar_speaker']);
+												$speaker_count_handler = 0;
+												$speakers_arr = count($speakers)-2;
 												foreach($speakers as $speaker) {
 													foreach($users_arr as $user) {
 														if($user['user_employee_id'] == $speaker) {
-															echo $user['user_firstname'].' '.$user['user_lastname'].', ';
+															echo $user['user_firstname'].' '.$user['user_lastname'];
+															$speaker_count_handler++;
 															break;
 														}
 													}
 													if ($user['user_employee_id'] != $speaker) {
-														echo $speaker .', ';
+														echo $speaker;
+														$speaker_count_handler++;
+													}
+
+													if ($speaker_count_handler <= $speakers_arr) {
+														echo ', ';
+													} else if ($speaker_count_handler == $speakers_arr+1) {
+														echo ' and ';
 													}
 												}
 												?>
