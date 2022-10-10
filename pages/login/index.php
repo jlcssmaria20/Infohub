@@ -118,9 +118,11 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 			</div>
 
 		</div>
-		<div class="col">
-			<div class="m-auto">
-				<img src="assets/images/website.png" alt="" style="width:550px;">
+		<div class="col align-items-start">
+			<div class="w-100 m-auto">
+				<div style="height:500px;">
+					<img src="assets/images/website.svg" class="" alt="" style="opacity: .9; width:600px;">
+				</div>
 			</div>
 		</div>
 	</div>
