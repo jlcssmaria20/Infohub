@@ -172,7 +172,7 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
 												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set > NOW()
-												ORDER BY date_set ASC");
+												ORDER BY date_set ASC LIMIT 10");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
@@ -268,7 +268,7 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
 												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker))AND temp_del = 0 AND date_set < NOW()
-												ORDER BY date_set ASC");
+												ORDER BY date_set ASC LIMIT 10");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
