@@ -101,7 +101,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 								</div>
 							</div>
 							<div class="col-6 text-right">
-								<a href="#" class="text-primary font-weight-bold p-0 forgot-password" style="font-size:1rem;">Forgot Password?</a>
+								<a href="/o-teams" class="text-primary font-weight-bold p-0 forgot-password" style="font-size:1rem;">Forgot Password?</a>
 							</div>
 						</div>
 						<div class="row">
@@ -118,9 +118,11 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 			</div>
 
 		</div>
-		<div class="col">
-			<div class="m-auto">
-				<img src="assets/images/website.png" alt="" style="width:550px;">
+		<div class="col align-items-start">
+			<div class="w-100 m-auto">
+				<div style="height:500px;">
+					<img src="assets/images/website.svg" class="" alt="" style="opacity: .9; width:600px;">
+				</div>
 			</div>
 		</div>
 	</div>
