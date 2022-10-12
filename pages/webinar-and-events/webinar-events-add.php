@@ -186,7 +186,15 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_webinar_events_add_description_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_description); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<textarea class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" rows="10" name="description" placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"></textarea>
+											<textarea 
+												class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" 
+												maxlength=2000
+												onchange="testLength(this)"
+												onkeyup="testLength(this)"
+												onpaste="testLength(this)" 
+												rows="10" name="description" 
+												placeholder="<?php echo renderLang($webinar_events_description_placeholder); ?>"
+											></textarea>
 										</div>
 										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_description_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_description_err']); } ?>
 									</div>
@@ -236,6 +244,14 @@ if(checkSession()) {
 		//$('#summernote').summernote()
 		bsCustomFileInput.init();
 
+		//description maxlength
+		var maxLength = 2000;
+		function testLength(ta) {
+			if(ta.value.length > maxLength) {
+				ta.value = ta.value.substring(0, maxLength);
+			}
+		}
+
 		$('input[name="schedule_date"]').daterangepicker({
 			singleDatePicker: true
 		});
@@ -257,49 +273,47 @@ if(checkSession()) {
 		
 		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
-		function yesnoCheck(that) {
-			if (that.value == "others") {
-				document.getElementById("ifYes").style.display = "block";
-				document.getElementById("others").required = true;
-				document.getElementById("others").disabled = false;
-			} else {
-				document.getElementById("ifYes").style.display = "block";
-				document.getElementById("others").required = false;
-				document.getElementById("others").disabled = true;
-			}
-		}
-
 		function myFunction(element){
 			document.getElementById("others").value = element.options[element.selectedIndex].id;
+			if (element.value == "others") {
+				document.getElementById("ifYes").style.visibility = "visible";
+				document.getElementById("others").required = true;
+			} else {
+				document.getElementById("ifYes").style.visibility = "hidden";
+				document.getElementById("others").required = false;
+			}
 		}
 		function myFunction1(element){
 			document.getElementById("others1").value = element.options[element.selectedIndex].id;
+			if (element.value == "others") {
+				document.getElementById("ifYes1").style.visibility = "visible";
+				document.getElementById("others1").required = true;
+			} else {
+				document.getElementById("ifYes1").style.visibility = "hidden";
+				document.getElementById("others1").required = false;
+			}
 		}
 		function myFunction2(element){
 			document.getElementById("others2").value = element.options[element.selectedIndex].id;
+			if (element.value == "others") {
+				document.getElementById("ifYes2").style.visibility = "visible";
+				document.getElementById("others2").required = true;
+			} else {
+				document.getElementById("ifYes2").style.visibility = "hidden";
+				document.getElementById("others2").required = false;
+			}
 		}
 		function myFunction3(element){
 			document.getElementById("others3").value = element.options[element.selectedIndex].id;
+			if (element.value == "others") {
+				document.getElementById("ifYes3").style.visibility = "visible";
+				document.getElementById("others3").required = true;
+			} else {
+				document.getElementById("ifYes3").style.visibility = "hidden";
+				document.getElementById("others3").required = false;
+			}
 		}
-		$('select[name*="speaker"]').on('change', function() {
-			$('select[name*="speaker"] option').attr('disabled', false); 
-			$('select[name*="speaker"]').each(function() {
-				var val = this.value;
-				$('select[name*="speaker"]').not(this).find('option').filter(function() { 
-				return this.value === val;
-				}).prop('disabled', true); 
-			});
-		}).change(); 
 		
-		$('select[name*="host"]').on('change', function() {
-			$('select[name*="host"] option').attr('disabled', false); 
-			$('select[name*="host"]').each(function() {
-				var val = this.value;
-				$('select[name*="host"]').not(this).find('option').filter(function() { 
-				return this.value === val;
-				}).prop('disabled', true); 
-			});
-		}).change(); 
 		
 		//ADD AND REMOVE HOST 
 		function removeHost(row) {
@@ -354,7 +368,7 @@ if(checkSession()) {
 					}
 					
 				?>
-			</select></div></div><div class="col-lg-5"><div id="ifYes" class="form-group" style=""><input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> required ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
+			</select></div></div><div class="col-lg-5"><div id="ifYes'+i+'" class="form-group" style=""><input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> required ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
 				 
 				i++;
 				

@@ -18,7 +18,7 @@ if(checkSession()) {
 		
 		if(!isset($_SESSION['sys_document_edit_file_link_val'])) {
 			$files_arr = array();
-			$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id");
+			$sql = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id ORDER BY id DESC");
 			$sql->bindParam(":document_id", $id);
 			$sql->execute();
 			while($data_files = $sql->fetch(PDO::FETCH_ASSOC)) {	
