@@ -147,7 +147,11 @@ if(checkSession()) {
 					if($_SESSION['sys_account_mode'] == 'user') {
 						$isAmbassador = 0;
 						$roles_arr = explode(",", $_SESSION['sys_role_ids']);
-						if (in_array(2, $roles_arr)){
+						if (in_array(1, $roles_arr)){
+							$isAmbassador = 1;
+						}else if (in_array(2, $roles_arr)){
+							$isAmbassador = 1;
+						}else if (in_array(3, $roles_arr)){
 							$isAmbassador = 1;
 						}
 					 ?>
@@ -166,92 +170,90 @@ if(checkSession()) {
 									
 										<tbody>
 											<?php
-											
-										
 											$data_count = 0;
 											$sql = $pdo->prepare("SELECT *
-												FROM webinarandevents
-												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set > NOW()
-												ORDER BY date_set ASC LIMIT 10");
-												$bind_param = array(
-													'employee_id' => $_SESSION['sys_employee_id']
-												);
-												$sql->execute($bind_param);
-											
+											FROM webinarandevents
+											WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set > NOW()
+											ORDER BY date_set ASC LIMIT 10");
+											$bind_param = array(
+												'employee_id' => $_SESSION['sys_employee_id']
+											);
+											$sql->execute($bind_param);
+											if($sql->rowCount() > 0) {
+
 												while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-												$data_count++;
-											
-											
-												echo '<tr>';
-
-												// WEBINAR IMAGE
-												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
-
-												// TITLE
-												echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
-												<b>'.renderLang($webinar_events_host) .':</b> ';
+													$data_count++;
 												
-												//HOST
-												$host_count_handler = 0;
-												$hosts = explode(',', $data['webinar_host']);
-												foreach($hosts as $host) {
-													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $host) {
-															$hosts_count = count($hosts) - 1;
-															if ($host_count_handler == $hosts_count){
-																echo $user['user_firstname'].' '.$user['user_lastname'];
-																$host_count_handler = 0;
-															} else {
-																if ($host_count_handler == count($hosts)-2){
-																	echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
-																	$host_count_handler++;
-																} else {
-																	echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-																	$host_count_handler++;
+												
+													echo '<tr>';
 
+													// WEBINAR IMAGE
+													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
+
+													// TITLE
+													echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
+													<b>'.renderLang($webinar_events_host) .':</b> ';
+													
+													//HOST
+													$host_count_handler = 0;
+													$hosts = explode(',', $data['webinar_host']);
+													foreach($hosts as $host) {
+														foreach($users_arr as $user) {
+															if($user['user_employee_id'] == $host) {
+																$hosts_count = count($hosts) - 1;
+																if ($host_count_handler == $hosts_count){
+																	echo $user['user_firstname'].' '.$user['user_lastname'];
+																	$host_count_handler = 0;
+																} else {
+																	if ($host_count_handler == count($hosts)-2){
+																		echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
+																		$host_count_handler++;
+																	} else {
+																		echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+																		$host_count_handler++;
+
+																	}
 																}
 															}
 														}
 													}
-												}
-												
-												//SPEAKER
-												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
-												$speakers = explode(',', $data['webinar_speaker']);
-												$speaker_count_handler = 0;
-												$speakers_arr = count($speakers)-2;
-												foreach($speakers as $speaker) {
-													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $speaker) {
-															echo $user['user_firstname'].' '.$user['user_lastname'];
+													
+													//SPEAKER
+													echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+													$speakers = explode(',', $data['webinar_speaker']);
+													$speaker_count_handler = 0;
+													$speakers_arr = count($speakers)-2;
+													foreach($speakers as $speaker) {
+														foreach($users_arr as $user) {
+															if($user['user_employee_id'] == $speaker) {
+																echo $user['user_firstname'].' '.$user['user_lastname'];
+																$speaker_count_handler++;
+																break;
+															}
+														}
+														if ($user['user_employee_id'] != $speaker) {
+															echo $speaker;
 															$speaker_count_handler++;
-															break;
+														}
+
+														if ($speaker_count_handler <= $speakers_arr) {
+															echo ', ';
+														} else if ($speaker_count_handler == $speakers_arr+1) {
+															echo ' and ';
 														}
 													}
-													if ($user['user_employee_id'] != $speaker) {
-														echo $speaker;
-														$speaker_count_handler++;
-													}
-
-													if ($speaker_count_handler <= $speakers_arr) {
-														echo ', ';
-													} else if ($speaker_count_handler == $speakers_arr+1) {
-														echo ' and ';
-													}
+													?>
+													<?php
+													echo '
+													</td>';
+														//WEBINAR SCHEDULE
+														echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
+															echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+														echo '</td>';
+													echo '</tr>';
 												}
-												?>
-												<?php
-												echo '
-												</td>';
-													//WEBINAR SCHEDULE
-																	
-													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
-														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-													echo '</td>';
-												
-
-											
-												echo '</tr>';
+											}else{
+												echo 'No webinar and events assigned to you.';
 											}
 											?>
 										</tbody>
@@ -273,82 +275,85 @@ if(checkSession()) {
 													'employee_id' => $_SESSION['sys_employee_id']
 												);
 												$sql->execute($bind_param);
-											
-											while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-												$data_count++;
-											
-												$webinar_id = encryptID($data['id']);
-												echo '<tr>';
+												if($sql->rowCount() > 0) {
+													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+														$data_count++;
+													
+														$webinar_id = encryptID($data['id']);
+														echo '<tr>';
 
-												// WEBINAR IMAGE
-												echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
+														// WEBINAR IMAGE
+														echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded"></td>';
 
-												// TITLE
-												echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
-												<b>'.renderLang($webinar_events_host) .':</b> ';
-												
-												//HOST
-												$host_count_handler = 0;
-												$hosts = explode(',', $data['webinar_host']);
-												foreach($hosts as $host) {
-													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $host) {
-															$hosts_count = count($hosts) - 1;
-															if ($host_count_handler == $hosts_count){
-																echo $user['user_firstname'].' '.$user['user_lastname'];
-																$host_count_handler = 0;
-															} else {
-																if ($host_count_handler == count($hosts)-2){
-																	echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
-																	$host_count_handler++;
-																} else {
-																	echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-																	$host_count_handler++;
+														// TITLE
+														echo '<td class=" align-middle"><h5 class="font-weight-bold">'.$data['webinar_title'].'</h5>
+														<b>'.renderLang($webinar_events_host) .':</b> ';
+														
+														//HOST
+														$host_count_handler = 0;
+														$hosts = explode(',', $data['webinar_host']);
+														foreach($hosts as $host) {
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $host) {
+																	$hosts_count = count($hosts) - 1;
+																	if ($host_count_handler == $hosts_count){
+																		echo $user['user_firstname'].' '.$user['user_lastname'];
+																		$host_count_handler = 0;
+																	} else {
+																		if ($host_count_handler == count($hosts)-2){
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
+																			$host_count_handler++;
+																		} else {
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+																			$host_count_handler++;
 
+																		}
+																	}
 																}
 															}
 														}
-													}
-												}
-												
-												//SPEAKER
-												echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
-												$speakers = explode(',', $data['webinar_speaker']);
-												$speaker_count_handler = 0;
-												$speakers_arr = count($speakers)-2;
-												foreach($speakers as $speaker) {
-													foreach($users_arr as $user) {
-														if($user['user_employee_id'] == $speaker) {
-															echo $user['user_firstname'].' '.$user['user_lastname'];
-															$speaker_count_handler++;
-															break;
+														
+														//SPEAKER
+														echo '<br><b>'.renderLang($webinar_events_speaker) .':</b> ';
+														$speakers = explode(',', $data['webinar_speaker']);
+														$speaker_count_handler = 0;
+														$speakers_arr = count($speakers)-2;
+														foreach($speakers as $speaker) {
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $speaker) {
+																	echo $user['user_firstname'].' '.$user['user_lastname'];
+																	$speaker_count_handler++;
+																	break;
+																}
+															}
+															if ($user['user_employee_id'] != $speaker) {
+																echo $speaker;
+																$speaker_count_handler++;
+															}
+
+															if ($speaker_count_handler <= $speakers_arr) {
+																echo ', ';
+															} else if ($speaker_count_handler == $speakers_arr+1) {
+																echo ' and ';
+															}
 														}
-													}
-													if ($user['user_employee_id'] != $speaker) {
-														echo $speaker;
-														$speaker_count_handler++;
-													}
+														?>
+														<?php
+														echo '
+														</td>';
+															//WEBINAR SCHEDULE
+																			
+															echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
+																echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
+															echo '</td>';
+														
 
-													if ($speaker_count_handler <= $speakers_arr) {
-														echo ', ';
-													} else if ($speaker_count_handler == $speakers_arr+1) {
-														echo ' and ';
+													
+														echo '</tr>';
 													}
+												}else{
+													echo 'No webinar and events assigned to you.';
 												}
-												?>
-												<?php
-												echo '
-												</td>';
-													//WEBINAR SCHEDULE
-																	
-													echo '<td style="width: 20%;"  class="align-middle text-muted font-weight-bold">';
-														echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-													echo '</td>';
-												
-
-											
-												echo '</tr>';
-											}
 											?>
 										</tbody>
 									</table>
@@ -356,11 +361,7 @@ if(checkSession()) {
 								
 							</div>
 						</div>
-					<?php } ?>	
-
-
-
-				<?php } ?>	
+					<?php }  } ?>	
 				</div>
 			</section>
 			
