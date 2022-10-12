@@ -155,7 +155,17 @@ if(checkSession()) {
 										<div class="form-group">
 											<label for="details" class="mr-1<?php if($details_err) { echo ' text-danger'; } ?>"><?php if($details_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_details_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											
-											<textarea class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>" id="details" minlength="4" name="details" rows="10" placeholder="<?php echo renderLang($announcements_details_placeholder); ?>" required><?php echo $announcements_details; ?></textarea>
+											<textarea class="form-control required<?php if($details_err) { echo ' is-invalid'; } ?>" 
+												id="details" 
+												minlength="4"
+												maxlength=2000
+												onchange="testLength(this)"
+												onkeyup="testLength(this)"
+												onpaste="testLength(this)"
+												name="details" 
+												rows="10" 
+												placeholder="<?php echo renderLang($announcements_details_placeholder); ?>" required
+											><?php echo $announcements_details; ?></textarea>
 											
 											<?php if($details_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_announcements_edit_details_err'].'</p>'; unset($_SESSION['sys_announcements_edit_details_err']); } ?>
 										</div>
@@ -231,6 +241,14 @@ if(checkSession()) {
 	<script src="/dist/js/demo.js"></script>
 	
 	<script>
+		//FOR DETAIS MAXLENGTH
+		var maxLength = 2000;
+		function testLength(ta) {
+			if(ta.value.length > maxLength) {
+				ta.value = ta.value.substring(0, maxLength);
+			}
+		}
+
 		$(function() {
 			<?php if(checkPermission('announcements-delete')) { ?>
 			$('html').on('click', '.btn-delete', function(e) {

@@ -48,7 +48,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                         <?php 
                             //Display Files
                             $count = 0;
-                            $sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name");
+                            $sql = $pdo->prepare("SELECT * FROM files WHERE document_name = :document_name ORDER BY id DESC");
                             $sql->bindParam(":document_name", $data['document_name']);
                             $sql->execute();
 

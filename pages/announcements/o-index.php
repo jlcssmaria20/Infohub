@@ -55,7 +55,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                     echo $data['announcements_title'];
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
-                                                echo  '<pre style="white-space: normal;display:none;">'.$data['announcements_details'].'</pre>';
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Description: </b><br>'.$data['announcements_details'].'</pre>';
                                         echo '</a>';
                                     echo '</li>';
                                 
@@ -75,20 +75,34 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
 
     <!--- MODAL POP-UP AREA --->
     <?php for ($x = 1; $x <= $total +1; $x++) {  ?>
-        <div id="myModal<?php echo $x ?>" class="modal">
-            <div class="modal-body my-5">
-                <img class="modal-img mt-5">
-                <div class="text-left">
-                    <p class="modal-name"></p>
-                    <pre style="white-space: pre-wrap;width:600px;color:white;font-size: 16px;" class="modal-details"></pre>
-                    <div id="caption<?php echo $x ?>">
-                    </div>
-                    <div class="text-center my-3">
-                        <button class="btn btn-primary closem px-4">Close</button>
+    <div id="myModal<?php echo $x ?>" class="modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title font-weight-normal">Announcement</h4>
+                    <button type="button" class="closem close mt-0" data-dismiss="modal" aria-label="Close" style="font-size:3rem;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-7 text-justify">
+                            <p class="modal-name p-2 text-left"></p>
+                            <pre style="white-space: pre-wrap;" class="modal-details"></pre>
+                            <div id="caption<?php echo $x ?>"></div>
+                        </div>
+                        <div class="col-lg-5 text-right">
+                            <img class="modal-img mt-5">
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-primary closem" data-dismiss="modal">Close</button>
+                </div>
+
             </div>
         </div>
+    </div>
     <?php } ?>
 
     <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-footer.php');  ?>

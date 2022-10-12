@@ -853,15 +853,16 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header bg-primary">
-                            <h4 class="modal-title modal-date"></h4>
-                            <button type="button" class="closem close mt-1" data-dismiss="modal" aria-label="Close" style="font-size:3rem;">
+                            <h4 class="modal-title font-weight-normal">Webinar and Event Details</h4>
+                            <button type="button" class="closem close mt-0" data-dismiss="modal" aria-label="Close" style="font-size:3rem;">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-7">
-                                    <p class="modal-name"></p>
+                                    <p class="modal-name p-2 mb-1"></p>
+									<p class="modal-date ml-2 text-muted font-weight-bold"></p>
                                     <pre style="white-space: pre-wrap;" class="modal-details"></pre>
                                     <div id="caption<?php echo $x ?>"></div>
                                 </div>

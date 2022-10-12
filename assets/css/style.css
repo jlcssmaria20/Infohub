@@ -59,6 +59,10 @@ ul.user-list-item {
   opacity: unset;
   margin: 20px 0;
 }
+
+.closem:focus{
+  outline: none;
+}
 img.modal-img {
   height: 250px;
 }
