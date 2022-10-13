@@ -69,7 +69,7 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<?php
-					renderError('sys_document_add_err');
+					renderError('sys_document_err');
 					renderSuccess('sys_document_suc');
 					?>
 					
@@ -77,7 +77,7 @@ if(checkSession()) {
 						<div class="card-header">
 							<h3 class="card-title"><?php echo renderLang($document_list); ?></h3>
 							<div class="card-tools">
-								<button type="button" class="btn btn-primary btn-delete mr-1" data-toggle="modal" data-target="#add_document_modal">
+								<button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#add_document_modal">
 									<i class="fa fa-plus mr-2"></i><?php echo renderLang($document_add_document); ?>
 								</button>
 							</div>
@@ -91,10 +91,10 @@ if(checkSession()) {
 								<table id="table-data" class="table table-striped table-hover">
 									<thead>
 										<tr class="text-dark">
-											<th style="width: 25%"><?php echo renderLang($document_name_label); ?></th>
-											<th class="text-center" style="width: 13%"><?php echo renderLang($document_file_count); ?></th>
+											<th style="width: 35%"><?php echo renderLang($document_name_label); ?></th>
+											<th style="width: 20%"><?php echo renderLang($document_description_label); ?></th>
+											<th class="text-center" style="width: 15%"><?php echo renderLang($document_file_count); ?></th>
 											<th class="text-center" style="width: 20%"><?php echo renderLang($created_by); ?></th>
-											<th class="text-center" style="width: 22%"><?php echo renderLang($document_date_created); ?></th>
 											<th style="width: 10%"></th>
 										</tr>
 									</thead>
@@ -117,6 +117,10 @@ if(checkSession()) {
 												<td class="align-middle">
 													<span class="font-weight-bold"><?php echo $data['document_name'] ?></span>
 												</td>
+												<!-- FOLDER DESCRIPTION -->
+												<td class="align-middle">
+													<span class="d-inline-block text-truncate" style="max-width: 200px;"><?php echo $data['document_description'] ?></span>
+												</td>
 
 												<!-- NUMBER OF FILES -->
 												<td class="align-middle text-center"><?php echo $total_data_count ?></td>
@@ -131,10 +135,7 @@ if(checkSession()) {
 														}
 													}
 												 	?>
-												</td>
-
-												<!-- DATE CREATED -->
-												<td class="align-middle text-center"><span><?php echo $data['date_created'] ?></span></td>
+												<br><em class="text-secondary font-weight-bold text-sm"><?php echo $data['date_created'] ?></em></td>
 
 												<!-- EDIT DOCUMENT -->
 												<td class="align-middle text-center">
@@ -172,7 +173,7 @@ if(checkSession()) {
 	<?php if(checkPermission('document-add')) { ?>
 		<!-- MODAL -->
 		<div class="modal fade" id="add_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
 					<div class="modal-header" style="background-color: #FCCD2F">
 						<h4 class="modal-title"><?= renderLang($modal_add_confirmation) ?></h4>
@@ -189,6 +190,14 @@ if(checkSession()) {
 								<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" required>
 								<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_name_err'].'</p>'; unset($_SESSION['sys_document_add_name_err']); } ?>
 							</div>
+							<div class="form-group w-100 mt-5">
+								<?php $err = isset($_SESSION['sys_documents_add_name_err']) ? 1 : 0; ?>
+								<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_description_label); ?></label> 
+								<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+								
+								<input type="text" minlength="1" maxlength="100" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="description" name="description" placeholder="<?php echo renderLang($document_description_placeholder); ?>" required>
+								<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_add_description_err'].'</p>'; unset($_SESSION['sys_document_add_description_err']); } ?>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
@@ -203,6 +212,7 @@ if(checkSession()) {
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	<script>
 		$("#name").keypress(function(e){ if(e.target.value.length==50){ alert("Ooops. Character limit reached."); } });
+		$("#description").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 	</script>
 </body>
 

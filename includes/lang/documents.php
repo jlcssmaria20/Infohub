@@ -54,6 +54,10 @@ $document_name_label = array(
 	'Folder Name',
 	''
 );
+$document_description_label = array(
+	'Description',
+	''
+);
 $document_firstname_label = array(
 	'First Name',
 	'名'
@@ -80,6 +84,10 @@ $document_last_login = array(
 );
 $document_name_placeholder = array(
 	'HMO Related links',
+	''
+);
+$document_description_placeholder = array(
+	'This document is for ...',
 	''
 );
 $document_clear_roles = array(

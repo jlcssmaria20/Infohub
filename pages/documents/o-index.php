@@ -45,10 +45,11 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                 $total_data_count = $count->rowCount();
                             
                                 echo "<a href='/document-files/".$data["id"]."'>";
-                                    echo '<li class="list-dl-item pl-3 moving-left">';
-                                        echo '<i class="fa fa-arrow-right" id="fa" aria-hidden="true"></i>';
-                                        echo $data["document_name"];
-                                        echo ' ('. $total_data_count .') ';
+                                    echo '<li class="list-dl-item p-3 moving-left">';
+                                        echo '<i class="fa fa-arrow-right" style="padding: 11px 30px;" id="fa" aria-hidden="true"></i>';
+                                        echo '<h5 class="font-weight-bold text-dark m-0">'.$data["document_name"];
+                                        echo ' ('. $total_data_count .') </h5>';
+                                        echo '<span class="text-secondary" style="font-size:1rem;">'.$data["document_description"] .'</span>';
                                     echo '</li>';
                                 echo  "</a>";
                                 }
