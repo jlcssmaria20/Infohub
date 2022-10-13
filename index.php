@@ -17,7 +17,7 @@ $total = 4;
     </head>
 
   <body id="home">
-    <div class="container">
+    <div class="container" style="min-height:100vh;">
         <div class="col-3 col-s-3 menu">
             <?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/parent-sidebar.php');  ?>
         </div>
