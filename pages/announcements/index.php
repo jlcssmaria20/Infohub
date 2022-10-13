@@ -16,8 +16,8 @@ if(checkSession()) {
 		$page = 'announcements';
 		
 		// set fields from table to search on
-		$fields_arr = array('announcements_details','announcements_img');
-		$search_placeholder = renderLang($announcements_title_label);
+		$fields_arr = array('announcements_title', 'announcements_details');
+		$search_placeholder = renderLang($announcements_title_label).', '. renderLang($announcements_details_label);
 		require($_SERVER['DOCUMENT_ROOT'].'/includes/common/set-search.php');
 		
 		$sql_query = 'SELECT * FROM announcements'.$where; // set sql statement
