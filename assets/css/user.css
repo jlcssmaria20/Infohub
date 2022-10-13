@@ -62,17 +62,13 @@ li b {
   color: #003E97;
 }
 
-@media (max-width: 1280px) {
-  #team .list-inline-item {
-    width: 200px;
-    height: 230px;
-    margin-bottom: 10px;
-  }
-}
-@media (max-width: 1200px) {
+@media (max-width: 1380px) {
   #team .list-inline-item {
     width: 172px;
-    height: 230px;
-    margin-bottom: 10px;
+  }
+}
+@media (max-width: 1280px) {
+  #team .list-inline-item {
+    width: 160px;
   }
 }
