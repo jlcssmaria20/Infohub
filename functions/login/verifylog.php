@@ -85,7 +85,7 @@ if(isset($_POST['submit-login'])) {
 
 
 			$user_password = '';
-			$sql = $pdo->prepare("SELECT * FROM users WHERE user_email = :user_email LIMIT 1");
+			$sql = $pdo->prepare("SELECT * FROM users WHERE user_email = :user_email AND user_status = 0 LIMIT 1");
 			$sql->bindParam(":user_email",$uname);
 			$sql->execute();
 			while($data = $sql->fetch(PDO::FETCH_ASSOC)) {

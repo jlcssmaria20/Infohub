@@ -62,7 +62,14 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox user-cardbox text-light">
 								<div class="inner pl-4 mb-3">
 									<span class="dash-number"><?php echo number_format($active_users,0,'.',','); ?></span><br>
-									<span class="dash-title"><?php echo "Active Users"; ?></span><br>
+									<?php
+									if ($active_users > 1) {
+										echo '<span class="dash-title">Active Users</span><br>';
+									}else{
+										echo '<span class="dash-title">Active User</span><br>';
+									}
+									?>
+									
 									<span class="dash-desc"><?php echo "Total number of Info Hub Users"; ?></span>
 								</div>
 								<div class="icon text-light">
@@ -91,9 +98,14 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox webinar-cardbox">
 								<div class="inner pl-4 mb-2 text-light">
 									<span class="dash-number"><?php echo number_format($active_webinars,0,'.',','); ?></span><br>
-									<span class="dash-title">
-										<?php echo 'Upcoming Webinar' ?>
-									</span><br>
+									
+									<?php
+									if ($active_webinars > 1) {
+										echo '<span class="dash-title">Upcoming Webinars</span><br>';
+									}else{
+										echo '<span class="dash-title">Upcoming Webinar</span><br>';
+									}
+									?>
 									<div class="dash-desc w-75">
 										<span class="text-truncate">Title: <?php echo $data['webinar_title'] ; ?></span>
 									</div>
@@ -125,7 +137,13 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox announcement-cardbox text-light">
 								<div class="inner pl-4 mb-2">
 									<span class="dash-number"><?php echo number_format($active_announcements,0,'.',','); ?></span><br>
-									<span class="dash-title"><?php echo 'Announcement' ?></span><br>
+									<?php
+									if ($active_announcements > 1) {
+										echo '<span class="dash-title">Announcements</span><br>';
+									}else{
+										echo '<span class="dash-title">Announcement</span><br>';
+									}
+									?>
 									<div class="dash-desc w-75">
 										<span class="text-truncate">Title: <?php echo $data['announcements_title']; ?></span>
 									</div>
