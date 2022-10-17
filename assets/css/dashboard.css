@@ -56,3 +56,8 @@
     background-color: #fff;
     border-radius: 0px 20px 20px 20px;
 }
+
+.custom-badge-dashboard{
+    background-color: #05C4A1;
+    color: white;
+}
