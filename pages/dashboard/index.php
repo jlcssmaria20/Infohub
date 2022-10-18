@@ -222,7 +222,7 @@ if(checkSession()) {
 																if($user['user_employee_id'] == $host) {
 																	$hosts_count = count($hosts) - 1;
 																	if ($host_count_handler == $hosts_count){
-																		echo $user['user_firstname'].' '.$user['user_lastname'];
+																		echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> ';
 																		$host_count_handler = 0;
 																	} else {
 																		
@@ -244,7 +244,7 @@ if(checkSession()) {
 																if($user['user_employee_id'] == $host) {
 																	$hosts_count = count($hosts) - 1;
 																	if ($host_count_handler == $hosts_count){
-																		echo $user['user_firstname'].' '.$user['user_lastname'];
+																		echo $user['user_firstname'].' '.$user['user_lastname'].'</span> ';
 																		$host_count_handler = 0;
 																	} else {
 																		if ($host_count_handler == count($hosts)-2){
@@ -273,7 +273,7 @@ if(checkSession()) {
 														echo '<span class="badge bg-success font-weight-normal">';
 															foreach($users_arr as $user) {
 																if($user['user_employee_id'] == $speaker) {
-																	echo $user['user_firstname'].' '.$user['user_lastname'];
+																	echo $user['user_firstname'].' '.$user['user_lastname'].'</span> ';
 																	$speaker_count_handler++;
 																	break;
 																}
