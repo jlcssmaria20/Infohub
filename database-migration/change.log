@@ -17,5 +17,8 @@ v1-5-1 September 08, 2022 -Cess
 v1-6-0 September 20, 2022 -Cess
 //truncated sql, remove old tables
 //dont delete roles
-
+v1-8-0 October 13, 2022 - Kim
+//added document description 
+v1-9-0 October 18, 2022 - Kim
+//db with correct data
  

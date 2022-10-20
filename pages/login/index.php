@@ -101,7 +101,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 								</div>
 							</div>
 							<div class="col-6 text-right">
-								<a href="/o-teams" class="text-primary font-weight-bold p-0 forgot-password" style="font-size:1rem;">Forgot Password?</a>
+								<!-- <a href="/o-teams" class="text-primary font-weight-bold p-0 forgot-password" style="font-size:1rem;">Forgot Password?</a> -->
 							</div>
 						</div>
 						<div class="row">

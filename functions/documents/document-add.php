@@ -16,7 +16,7 @@ if(checkSession()) {
 		//GET USER ID
 		$id = $_SESSION['sys_id'];
 		//CURRENT DATE
-		$current_date = date('F j, Y - l - h:i a', time());
+		$current_date = date('F j, Y');
 
 		// name
 		$name = '';
@@ -41,7 +41,16 @@ if(checkSession()) {
 				}
 			}
 		}
-		
+		$description = '';
+		if(isset($_POST['description'])) {
+			$description = htmlentities(trim($_POST['description']));
+			$description = ucfirst(trim($_POST['description']));
+			$_SESSION['sys_document_add_description_val'] = $description;
+			if(strlen($description) == 0) {
+				$err++;
+				$_SESSION['sys_document_add_description_err'] = renderLang($document_description_required);
+			}
+		}
 		// VALIDATE FOR ERRORS
 		if($err == 0) { // there are no errors
 
@@ -50,16 +59,19 @@ if(checkSession()) {
 					id,
 					`user_id`,
 					document_name,
+					document_description,
 					date_created
 				) VALUES(
 					NULL,
 					:user_id,
 					:document_name,
+					:document_description,
 					:date_created
 				)");
 			$bind_param = array(
 				':user_id'  				=> $_SESSION['sys_id'],
 				':document_name'  			=> $name,
+				':document_description'		=> $description,
 				':date_created'				=> $current_date
 			);
 		
@@ -71,7 +83,7 @@ if(checkSession()) {
 			
 		} else { // error found
 			
-			$_SESSION['sys_document_add_err'] = renderLang($document_name_exists);
+			$_SESSION['sys_document_err'] = renderLang($document_name_exists);
 			header('location: /documents');
 			
 		}

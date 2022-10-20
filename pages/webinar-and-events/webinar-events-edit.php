@@ -501,13 +501,13 @@ if(checkSession()) {
 		
 		//ADD AND REMOVE HOST 
 		function removeHost(row) {
-			$("#row" + row).remove();
+			$("#rowhost" + row).remove();
 		}
 		$(document).ready(function() {
 			var i = 1;
 			$('#addhost').click(function() {
 				if (i <= 3) {
-				$('#host_field').append('<div class="row" data-value="value_' + i + '" id="row' + i + '"> <div class="col-lg-9"><div class="form-group"><select class="w-100 form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="host' + i + '" name="host[]"required><?php
+				$('#host_field').append('<div class="row" data-value="value_' + i + '" id="rowhost' + i + '"> <div class="col-lg-9"><div class="form-group"><select class="w-100 form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="host' + i + '" name="host[]"required><?php
 							$sql = $pdo->prepare("SELECT *
 								FROM users WHERE user_status = 0 AND temp_del = 0 AND role_ids LIKE '%,3,%'");
 							$sql->execute();
@@ -533,13 +533,13 @@ if(checkSession()) {
 		
 		//ADD AND REMOVE SPEAKER 
 		function removeSpeaker(row) {
-			$("#row" + row).remove();
+			$("#rowspeaker" + row).remove();
 		}
 		$(document).ready(function() {
 			var i = 1;
 			$('#addspeaker').click(function() {
 				if (i <= 3) {
-				$('#speaker_field').append('<div class="row" data-value="value_' + i + '" id="row' + i + '"><div class="col-lg-5 mr-3"><div class="form-group"><select onchange="myFunction' + i + '(this);" class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="speaker' + i + '" name="speaker[]" style="width: 250px;" onchange="yesnoCheck(this);" required><?php
+				$('#speaker_field').append('<div class="row" data-value="value_' + i + '" id="rowspeaker' + i + '"><div class="col-lg-5 mr-3"><div class="form-group"><select onchange="myFunction' + i + '(this);" class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="speaker' + i + '" name="speaker[]" style="width: 250px;" onchange="yesnoCheck(this);" required><?php
 					echo '<option value="others"';
 					if(isset($_SESSION['sys_webinar_events_add_speaker_val'])) {
 						if($_SESSION['sys_webinar_events_add_speaker_val'] == 'others') {

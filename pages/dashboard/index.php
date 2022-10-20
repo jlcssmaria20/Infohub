@@ -62,7 +62,14 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox user-cardbox text-light">
 								<div class="inner pl-4 mb-3">
 									<span class="dash-number"><?php echo number_format($active_users,0,'.',','); ?></span><br>
-									<span class="dash-title"><?php echo "Active Users"; ?></span><br>
+									<?php
+									if ($active_users > 1) {
+										echo '<span class="dash-title">Active Users</span><br>';
+									}else{
+										echo '<span class="dash-title">Active User</span><br>';
+									}
+									?>
+									
 									<span class="dash-desc"><?php echo "Total number of Info Hub Users"; ?></span>
 								</div>
 								<div class="icon text-light">
@@ -91,9 +98,14 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox webinar-cardbox">
 								<div class="inner pl-4 mb-2 text-light">
 									<span class="dash-number"><?php echo number_format($active_webinars,0,'.',','); ?></span><br>
-									<span class="dash-title">
-										<?php echo 'Upcoming Webinar' ?>
-									</span><br>
+									
+									<?php
+									if ($active_webinars > 1) {
+										echo '<span class="dash-title">Upcoming Webinars</span><br>';
+									}else{
+										echo '<span class="dash-title">Upcoming Webinar</span><br>';
+									}
+									?>
 									<div class="dash-desc w-75">
 										<span class="text-truncate">Title: <?php echo $data['webinar_title'] ; ?></span>
 									</div>
@@ -125,7 +137,13 @@ if(checkSession()) {
 							<div class="small-box shadow dash-cardbox announcement-cardbox text-light">
 								<div class="inner pl-4 mb-2">
 									<span class="dash-number"><?php echo number_format($active_announcements,0,'.',','); ?></span><br>
-									<span class="dash-title"><?php echo 'Announcement' ?></span><br>
+									<?php
+									if ($active_announcements > 1) {
+										echo '<span class="dash-title">Announcements</span><br>';
+									}else{
+										echo '<span class="dash-title">Announcement</span><br>';
+									}
+									?>
 									<div class="dash-desc w-75">
 										<span class="text-truncate">Title: <?php echo $data['announcements_title']; ?></span>
 									</div>
@@ -198,24 +216,51 @@ if(checkSession()) {
 													$host_count_handler = 0;
 													$hosts = explode(',', $data['webinar_host']);
 													foreach($hosts as $host) {
-														foreach($users_arr as $user) {
-															if($user['user_employee_id'] == $host) {
-																$hosts_count = count($hosts) - 1;
-																if ($host_count_handler == $hosts_count){
-																	echo $user['user_firstname'].' '.$user['user_lastname'];
-																	$host_count_handler = 0;
-																} else {
-																	if ($host_count_handler == count($hosts)-2){
-																		echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
-																		$host_count_handler++;
+														if ($host == $_SESSION['sys_employee_id']) {
+														echo '<span class="badge bg-success font-weight-normal font-weight-normal">';
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $host) {
+																	$hosts_count = count($hosts) - 1;
+																	if ($host_count_handler == $hosts_count){
+																		echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> ';
+																		$host_count_handler = 0;
 																	} else {
-																		echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-																		$host_count_handler++;
+																		
+																		if ($host_count_handler == count($hosts)-2){
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> and ';
+																			$host_count_handler++;
+																		} else {
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> , ';
+																			$host_count_handler++;
 
+																		}
 																	}
 																}
 															}
+															
+														
+														}else{
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $host) {
+																	$hosts_count = count($hosts) - 1;
+																	if ($host_count_handler == $hosts_count){
+																		echo $user['user_firstname'].' '.$user['user_lastname'].'</span> ';
+																		$host_count_handler = 0;
+																	} else {
+																		if ($host_count_handler == count($hosts)-2){
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .'</span>  and ';
+																			$host_count_handler++;
+																		} else {
+																			echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> , ';
+																			$host_count_handler++;
+
+																		}
+																	}
+																}
+															}
+									
 														}
+														
 													}
 													
 													//SPEAKER
@@ -224,22 +269,43 @@ if(checkSession()) {
 													$speaker_count_handler = 0;
 													$speakers_arr = count($speakers)-2;
 													foreach($speakers as $speaker) {
-														foreach($users_arr as $user) {
-															if($user['user_employee_id'] == $speaker) {
-																echo $user['user_firstname'].' '.$user['user_lastname'];
-																$speaker_count_handler++;
-																break;
+														if ($speaker == $_SESSION['sys_employee_id']) {
+														echo '<span class="badge bg-success font-weight-normal">';
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $speaker) {
+																	echo $user['user_firstname'].' '.$user['user_lastname'].'</span> ';
+																	$speaker_count_handler++;
+																	break;
+																}
 															}
-														}
-														if ($user['user_employee_id'] != $speaker) {
-															echo $speaker;
-															$speaker_count_handler++;
-														}
-
-														if ($speaker_count_handler <= $speakers_arr) {
-															echo ', ';
-														} else if ($speaker_count_handler == $speakers_arr+1) {
-															echo ' and ';
+															if ($user['user_employee_id'] != $speaker) {
+																echo $speaker;
+																$speaker_count_handler++;
+															}
+															echo '</span>';
+															if ($speaker_count_handler <= $speakers_arr) {
+																echo ', ';
+															} else if ($speaker_count_handler == $speakers_arr+1) {
+																echo ' and ';
+															}
+														
+														}else{
+															foreach($users_arr as $user) {
+																if($user['user_employee_id'] == $speaker) {
+																	echo $user['user_firstname'].' '.$user['user_lastname'];
+																	$speaker_count_handler++;
+																	break;
+																}
+															}
+															if ($user['user_employee_id'] != $speaker) {
+																echo $speaker;
+																$speaker_count_handler++;
+															}
+															if ($speaker_count_handler <= $speakers_arr) {
+																echo ', ';
+															} else if ($speaker_count_handler == $speakers_arr+1) {
+																echo ' and ';
+															}
 														}
 													}
 													?>
@@ -293,23 +359,47 @@ if(checkSession()) {
 														$host_count_handler = 0;
 														$hosts = explode(',', $data['webinar_host']);
 														foreach($hosts as $host) {
-															foreach($users_arr as $user) {
-																if($user['user_employee_id'] == $host) {
-																	$hosts_count = count($hosts) - 1;
-																	if ($host_count_handler == $hosts_count){
-																		echo $user['user_firstname'].' '.$user['user_lastname'];
-																		$host_count_handler = 0;
-																	} else {
-																		if ($host_count_handler == count($hosts)-2){
-																			echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
-																			$host_count_handler++;
+															if ($host == $_SESSION['sys_employee_id']) {
+															echo '<span class="badge bg-success font-weight-normal">';
+																foreach($users_arr as $user) {
+																	if($user['user_employee_id'] == $host) {
+																		$hosts_count = count($hosts) - 1;
+																		if ($host_count_handler == $hosts_count){
+																			echo $user['user_firstname'].' '.$user['user_lastname'];
+																			$host_count_handler = 0;
 																		} else {
-																			echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
-																			$host_count_handler++;
-
+																			if ($host_count_handler == count($hosts)-2){
+																				echo $user['user_firstname'].' '.$user['user_lastname'] .'</span> and ';
+																				$host_count_handler++;
+																			} else {
+																				echo $user['user_firstname'].' '.$user['user_lastname'] .'</span>, ';
+																				$host_count_handler++;
+	
+																			}
 																		}
 																	}
 																}
+															echo '</span>';
+															}else{
+																foreach($users_arr as $user) {
+																	if($user['user_employee_id'] == $host) {
+																		$hosts_count = count($hosts) - 1;
+																		if ($host_count_handler == $hosts_count){
+																			echo $user['user_firstname'].' '.$user['user_lastname'];
+																			$host_count_handler = 0;
+																		} else {
+																			if ($host_count_handler == count($hosts)-2){
+																				echo $user['user_firstname'].' '.$user['user_lastname'] .' and ';
+																				$host_count_handler++;
+																			} else {
+																				echo $user['user_firstname'].' '.$user['user_lastname'] .', ';
+																				$host_count_handler++;
+	
+																			}
+																		}
+																	}
+																}
+										
 															}
 														}
 														
@@ -319,22 +409,43 @@ if(checkSession()) {
 														$speaker_count_handler = 0;
 														$speakers_arr = count($speakers)-2;
 														foreach($speakers as $speaker) {
-															foreach($users_arr as $user) {
-																if($user['user_employee_id'] == $speaker) {
-																	echo $user['user_firstname'].' '.$user['user_lastname'];
-																	$speaker_count_handler++;
-																	break;
+															if ($speaker == $_SESSION['sys_employee_id']) {
+															echo '<span class="badge bg-success font-weight-normal">';
+																foreach($users_arr as $user) {
+																	if($user['user_employee_id'] == $speaker) {
+																		echo $user['user_firstname'].' '.$user['user_lastname'];
+																		$speaker_count_handler++;
+																		break;
+																	}
 																}
-															}
-															if ($user['user_employee_id'] != $speaker) {
-																echo $speaker;
-																$speaker_count_handler++;
-															}
-
-															if ($speaker_count_handler <= $speakers_arr) {
-																echo ', ';
-															} else if ($speaker_count_handler == $speakers_arr+1) {
-																echo ' and ';
+																echo '</span>';
+																if ($user['user_employee_id'] != $speaker) {
+																	echo $speaker;
+																	$speaker_count_handler++;
+																}
+																if ($speaker_count_handler <= $speakers_arr) {
+																	echo ', ';
+																} else if ($speaker_count_handler == $speakers_arr+1) {
+																	echo '<span class="text-dark font-weight-normal"> and </span>';
+																}
+															
+															}else{
+																foreach($users_arr as $user) {
+																	if($user['user_employee_id'] == $speaker) {
+																		echo $user['user_firstname'].' '.$user['user_lastname'];
+																		$speaker_count_handler++;
+																		break;
+																	}
+																}
+																if ($user['user_employee_id'] != $speaker) {
+																	echo $speaker;
+																	$speaker_count_handler++;
+																}
+																if ($speaker_count_handler <= $speakers_arr) {
+																	echo ', ';
+																} else if ($speaker_count_handler == $speakers_arr+1) {
+																	echo ' and ';
+																}
 															}
 														}
 														?>

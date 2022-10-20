@@ -66,6 +66,18 @@ if(checkSession()) {
 				}
 			}
 
+			// FOLDER DESCRIPTION
+			$description = '';
+			if(isset($_POST['description'])) {
+				$description = htmlentities(trim($_POST['description']));
+				$description = ucfirst(trim($_POST['description']));
+
+				$_SESSION['sys_document_edit_description_val'] = $description;
+				if(strlen($description) == 0) {
+					$err++;
+					$_SESSION['sys_document_edit_description_err'] = renderLang($document_description_required);
+				} 
+			}
 			// STATUS
 			$document_status = 0;
 			if(isset($_POST['document_status'])) {
@@ -92,6 +104,10 @@ if(checkSession()) {
 				$change_logs = array();
 				if($name != $data['document_name']) {
 					$tmp = 'document_name::'.$data['document_name'].'=='.$name;
+					array_push($change_logs,$tmp);
+				}
+				if($description != $data['document_description']) {
+					$tmp = 'document_description::'.$data['document_description'].'=='.$description;
 					array_push($change_logs,$tmp);
 				}
 				$links_arr_prev = array();
@@ -175,12 +191,14 @@ if(checkSession()) {
 					// update documents table
 					$sql = $pdo->prepare("UPDATE documents SET
 						document_name = :document_name,
+						document_description = :document_description,
 						date_edited = :date_edited
 					    WHERE id = :document_id");
 					
 					$bind_param = array(
 						':document_id'          => $document_id,
 						':document_name'   	    => $name,
+						':document_description' => $description,
 						':date_edited'			=> $current_date
 					);
 					$sql->execute($bind_param);

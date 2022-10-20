@@ -99,15 +99,15 @@ if(checkSession()) {
 									<table id="table-data" class="table table-striped table-hover">
 										<thead>
 											<tr>
-												<th><?php echo renderLang($users_employee_id); ?></th>
-												<th><?php echo renderLang($users_lastname); ?></th>
-												<th><?php echo renderLang($users_firstname); ?></th>
-												<th><?php echo renderLang($users_email); ?></th>
-												<th><?php echo renderLang($users_designation); ?></th>
-												<th><?php echo renderLang($roles_roles); ?></th>
-												<th><?php echo renderLang($lang_status); ?></th>
-												<th><?php echo renderLang($users_last_login); ?></th>
-												<th></th>
+												<th style="width:15%"><?php echo renderLang($users_employee_id); ?></th>
+												<th style="width:10%"><?php echo renderLang($users_lastname); ?></th>
+												<th style="width:10%"><?php echo renderLang($users_firstname); ?></th>
+												<th style="width:10%"><?php echo renderLang($users_email); ?></th>
+												<th style="width:10%"><?php echo renderLang($users_designation); ?></th>
+												<th style="width:15%"><?php echo renderLang($roles_roles); ?></th>
+												<th style="width:10%"><?php echo renderLang($lang_status); ?></th>
+												<th style="width:10%"><?php echo renderLang($users_last_login); ?></th>
+												<th style="width:5%"></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -132,7 +132,7 @@ if(checkSession()) {
 													echo '<td class="align-middle">'.$data['user_firstname'].'</td>';
 
 													// USER NAME
-													echo '<td class="align-middle">'.$data['user_email'].'</a></td>';
+													echo '<td class="align-middle text-truncate" style="max-width: 150px;">'.$data['user_email'].'</a></td>';
 
 													// DESIGNATION
 													echo '<td>';
@@ -182,7 +182,7 @@ if(checkSession()) {
 													// LAST LOGIN
 													echo '<td>';
 														if($data['user_last_login'] > 0) {
-															echo date('Ymd',$data['user_last_login']).' &middot; '.date('H:i:s',$data['user_last_login']);
+															echo '<span class="align middle text-truncate" style="max-width: 70px;">'.date('Ymd',$data['user_last_login']).' &middot; '.date('H:i:s',$data['user_last_login']) .'</span>';
 														} else {
 															echo '-';
 														}

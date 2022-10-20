@@ -60,7 +60,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                     <input type="hidden" class="copied">
                                     <div class="row">
                                         <div class="col-lg">
-                                            <div class="card card-secondary card-outline mx-1">
+                                            <div class="card card-secondary mx-1" style="border-top: 2px solid #cbcdcf;">
                                                 <div class="card-body py-2">
                                                     <div class="row">
                                                         <div class="col-8"><h5 class="card-title text-dark m-1"><?php  echo $data['file_linkname']; ?></h5></div>

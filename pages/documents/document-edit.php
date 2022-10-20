@@ -47,15 +47,16 @@ if(checkSession()) {
 				$document_name = $_SESSION['sys_document_edit_name_val'];
 				unset($_SESSION['sys_document_edit_name_val']);
 			}
+			$document_description = $data['document_description'];
+			if(isset($_SESSION['sys_document_edit_description_val'])) {
+				$document_description = $_SESSION['sys_document_edit_description_val'];
+				unset($_SESSION['sys_document_edit_description_val']);
+			}
 			$document_status = $data['document_status'];
 			if(isset($_SESSION['sys_document_edit_status_val'])) {
 				$document_status = $_SESSION['sys_document_edit_status_val'];
 				unset($_SESSION['sys_document_edit_status_val']);
 			}
-
-
-
-
 	
 ?>
 <!DOCTYPE html>
@@ -122,11 +123,21 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_document_edit_name_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_name_label); ?></label> 
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 											<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="name" name="name" placeholder="<?php echo renderLang($document_name_placeholder); ?>" value="<?php echo $document_name; ?>" required>
 											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_name_err'].'</p>'; unset($_SESSION['sys_document_edit_name_err']); } ?>
 										</div>
 									</div>
-									
+									<!-- FOLDER DESCRIPTION -->
+									<div class="col-lg-3 col-md-4 col-sm-2">
+										<?php $err = isset($_SESSION['sys_document_edit_description_err']) ? 1 : 0; ?>
+										<div class="form-group">
+											<label for="description" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($document_description_label); ?></label>  
+											<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+											<input type="text" minlength="1" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="description" name="description" placeholder="<?php echo renderLang($document_description_placeholder); ?>" value="<?php echo $document_description; ?>" required>
+											<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_document_edit_description_err'].'</p>'; unset($_SESSION['sys_document_edit_description_err']); } ?>
+										</div>
+									</div>
 									<!-- DATE CREATED -->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="form-group">
@@ -137,7 +148,7 @@ if(checkSession()) {
 
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<div class="mt-3">
-											<button type="button" class="mt-3 btn btn-success addmore" name="add" id="add" ><i class="fas fa-plus-square mr-2"></i><?php echo renderLang($document_add_more_link); ?></button>
+											<button type="button" class="mt-3 btn btn-outline-success addmore" name="add" id="add" ><i class="fas fa-plus-square mr-2"></i><?php echo renderLang($document_add_more_link); ?></button>
 										</div>
 									</div>
 								</div>
@@ -191,8 +202,8 @@ if(checkSession()) {
 											
 											<div class="col-lg-3">
 												<div>
-													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-info" name="copy<?php echo $count?>"><i class="fas fa-paperclip mr-2"></i><?php echo renderLang($document_copy) ?></button>
-													<a href="#" class="btn btn-danger btn-remove-link"><i class="fa fa-ban mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
+													<button type="button" onClick="copyLink(<?php echo $count ?>)" class="mr-1 btn btn-outline-primary" name="copy<?php echo $count?>"><i class="fas fa-paperclip mr-2"></i><?php echo renderLang($document_copy) ?></button>
+													<a href="#" class="btn btn-outline-danger btn-remove-link"><i class="fas fa-window-close mr-2"></i><?php echo renderLang($document_delete_file) ?></a>
 												</div>
 											</div>
 											</div>

@@ -33,35 +33,38 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
         </div>
         <section class="main-area col-s-9 d-column mb-4 ml-5" >
         <div class="announcement mb-4">
-            <h2 class="mb-3">
-                <span>Meet the Team</span>
-            </h2>
-            
-            <div class="announcement-row">
-                <div class="d-flex justify-content-end">
-                    <!-- SEARCH -->
-                    <div class="mr-3">
-                        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search" class="form-control rounded mr-2 px-2 ">
-                    </div>
-
-                    <!-- FILTER BY TEAM -->
-                    <div class="">
-                        <select id="multiSelectSearch" name="multiSelectSearch" title="All" class="form-control rounded">
-                            <option value=""><a href="window.location.reload()">All</option>
-                            <?php
-                            $sql = $pdo->prepare("SELECT * FROM teams");
-                            $sql->execute();
-                            $row = $sql->fetchAll(PDO::FETCH_ASSOC);
-                            foreach($row as $data) {
-                                if($data['team_status'] != '2') {
-                                    echo '<option value="'.$data["id"].'">'.$data["team_name"].'</option>'; 
-                                } 
-                            }
-                            ?>
-                        </select>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">
+                        Meet The Team
+                    </h2>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search" class="form-control rounded mr-2 px-2 ">
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <select id="multiSelectSearch" name="multiSelectSearch" title="All" class="form-control rounded">
+                                    <option value=""><a href="window.location.reload()">All</option>
+                                    <?php
+                                    $sql = $pdo->prepare("SELECT * FROM teams");
+                                    $sql->execute();
+                                    $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach($row as $data) {
+                                        if($data['team_status'] != '2') {
+                                            echo '<option value="'.$data["id"].'">'.$data["team_name"].'</option>'; 
+                                        } 
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+           
             <input type="hidden" name="location" id="location" />
             <div style="clear:both"></div>
                 <section class="user-section">

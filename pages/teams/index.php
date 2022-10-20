@@ -67,7 +67,7 @@ if(checkSession()) {
 				<div class="container-fluid">
 					
 					<?php
-					renderError('sys_team_add_err');
+					renderError('sys_team_err');
 					renderSuccess('sys_team_suc');
 					?>
 					
@@ -75,7 +75,10 @@ if(checkSession()) {
 						<div class="card-header">
 							<h3 class="card-title"><?php echo renderLang($team_list); ?></h3>
 							<div class="card-tools">
-								<?php if(checkPermission('team-add')) { ?><a href="add-team" class="btn btn-primary btn-md"><i class="fa fa-plus mr-2"></i><?php echo renderLang($team_add); ?></a><?php } ?>
+								<button type="button" class="btn btn-primary mr-1" data-toggle="modal" data-target="#add_team_modal">
+									<i class="fa fa-plus mr-2"></i><?php echo renderLang($team_add); ?>
+								</button>
+								
 							</div>
 						</div>
 						<div class="card-body">
@@ -147,7 +150,36 @@ if(checkSession()) {
 	</div><!-- wrapper -->
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
-	
+	<?php if(checkPermission('team-add')) { ?>
+		<!-- MODAL -->
+		<div class="modal fade" id="add_team_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header bg-primary" style="">
+						<h4 class="modal-title"><?= renderLang($team_add_form) ?></h4>
+					</div>
+					
+					<form action="/submit-add-team" method="post" id="add_form">
+						<div class="modal-body">								
+							<!-- TEAM NAME -->
+							<div class="form-group w-100 m-0">
+								<?php $err = isset($_SESSION['sys_team_add_name_err']) ? 1 : 0; ?>
+								<label for="team_name" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($team_name_label); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+								<input type="text" minlength="4" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="team_name" name="team_name" placeholder="<?php echo renderLang($team_name_placeholder); ?>"<?php if(isset($_SESSION['sys_team_add_name_val'])) { echo ' value="'.$_SESSION['sys_team_add_name_val'].'"'; } ?> required>
+								<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_team_add_name_err'].'</p>'; unset($_SESSION['sys_team_add_name_err']); } ?>
+							</div>
+									
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
+							<button type="submit" class="btn btn-confirm btn-primary"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_add) ?></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+
 </body>
 
 </html>
