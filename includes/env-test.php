@@ -1,9 +1,9 @@
 <?php
 
 $server = 'localhost';
-$username = 'root'; 
-$password = '';
-$db = 'dxinfo_db';
+$username = 'dxcti'; 
+$password = 'Password1234567890_';
+$db = 'tcap_infohub';
 
 define("SERVER", $server);
 define("USERNAME", $username);
