@@ -148,7 +148,7 @@ if(checkSession()) {
 						// if there is a change
 						$sql_delete = $pdo->prepare("DELETE FROM files WHERE document_id = $document_id");
 						$sql_delete->bindParam(":document_id",$document_id);
-						$sql_delete->execute($bind_param);
+						$sql_delete->execute();
 				
 
 					if($sql_delete) {
