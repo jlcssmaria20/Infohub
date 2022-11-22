@@ -154,7 +154,7 @@ if(checkSession()) {
 																array_push($user_roles_display_arr,$_data['role_name']);
 															}
 														}
-														echo implode($user_roles_display_arr,', ');
+														echo implode(', ',$user_roles_display_arr);
 													echo '</td>';
 
 													// STATUS
