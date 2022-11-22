@@ -32,7 +32,7 @@ if(checkSession()) {
 		$_SESSION['sys_document_edit_file_link_val'] = $links_arr_insert;
 		// check if ID exists
 		$sql = $pdo->prepare("SELECT * FROM documents WHERE id = :document_id LIMIT 1");
-		$sql->bindParam(":document_id",$document_id);
+		$sql->bindParam(":document_id", $document_id);
 		$sql->execute();
 		$data = $sql->fetch(PDO::FETCH_ASSOC);
 		if($sql->rowCount()) {
@@ -113,7 +113,7 @@ if(checkSession()) {
 				$links_arr_prev = array();
 				//check changes in files table
 				$sql2 = $pdo->prepare("SELECT * FROM files WHERE document_id = :document_id ORDER BY id ASC");
-				$sql2->bindParam(":document_id",$document_id);
+				$sql2->bindParam(":document_id", $document_id);
 				$sql2->execute();
 				if($sql2->rowCount() > 0) {
 					// get previous budget time details
@@ -147,7 +147,7 @@ if(checkSession()) {
 					array_push($change_logs,$tmp);	
 						// if there is a change
 						$sql_delete = $pdo->prepare("DELETE FROM files WHERE document_id = $document_id");
-						$sql_delete->bindParam(":document_id",$document_id);
+						$sql_delete->bindParam(":document_id", $document_id);
 						$sql_delete->execute();
 				
 
