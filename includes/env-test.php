@@ -1,9 +1,9 @@
 <?php
 
-$server = '10.16.24.163';
+$server = '127.0.0.1';
 $username = 'dxtci'; 
-$password = 'Tcap#dxtci#2022!';
-$db = 'tcap_infohub';
+$password = "Tcap#dxtci#2022!";
+$db = "dx_infodb";
 
 define("SERVER", $server);
 define("USERNAME", $username);
