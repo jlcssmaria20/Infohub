@@ -251,7 +251,7 @@ if(checkSession()) {
                                                         <input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="photo" name="photo" required>
                                                         <label for="photo" class="custom-file-label"><?php echo $user_photo; ?></label>
                                                         <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_photo_err'].'</p>'; unset($_SESSION['sys_general_edit_photo_err']); } ?>
-                                                        <input type="hidden" name="file_src" value="<?php echo $user_photo; ?>" required>
+                                                        <input type="hidden" name="file_src" value="<?php echo $user_photo; ?>">
                                                     </div>
                                                     <br><br>
                                                     <p><?php echo renderLang($settings_general_msg2);?>
