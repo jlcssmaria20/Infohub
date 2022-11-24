@@ -144,7 +144,7 @@ if(checkSession()) {
 					unset($roles_arr[$i]);
 				}
 			}
-			$roles = implode($roles_arr,',');
+			$roles = implode(',', $roles_arr);
 			$roles_val = $roles;
 			unset($_SESSION['sys_users_edit_roles_val']);
 	
