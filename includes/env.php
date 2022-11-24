@@ -1,3 +1,3 @@
 <?php
 
-define("ENV", "test");
+define("ENV", "local");
