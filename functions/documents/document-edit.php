@@ -146,7 +146,7 @@ if(checkSession()) {
 					$tmp = 'prev::'.json_encode($links_arr).'=='.json_encode($links_arr_prev);
 					array_push($change_logs,$tmp);	
 						// if there is a change
-						$sql_delete = $pdo->prepare("DELETE FROM files WHERE document_id = $document_id");
+						$sql_delete = $pdo->prepare("DELETE FROM files WHERE document_id = :document_id");
 						$sql_delete->bindParam(":document_id", $document_id);
 						$sql_delete->execute();
 				
