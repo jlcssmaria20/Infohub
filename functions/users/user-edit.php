@@ -12,8 +12,8 @@ if(checkSession()) {
 		$user_id = decryptID($_POST['id'], 'users');
 		
 		// check if ID exists
-		$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = ".$user_id." LIMIT 1");
-		$sql->bindParam(":user_id",$user_id);
+		$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
+		$sql->bindParam(":user_id", $user_id);
 		$sql->execute();
 		$data = $sql->fetch(PDO::FETCH_ASSOC);
 		if($sql->rowCount()) {
