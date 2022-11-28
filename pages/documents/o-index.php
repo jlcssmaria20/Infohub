@@ -42,7 +42,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                         <ul class="list-inline mb-4" id="myUL">
                             <?php
                                 $data_count = 0;
-                                $sql = $pdo->prepare("SELECT * FROM documents WHERE `document_status` = 0 ORDER BY id ASC");
+                                $sql = $pdo->prepare("SELECT * FROM documents WHERE `document_status` = 0 ORDER BY id DESC");
                                 $sql->execute();
                                 while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
                                 $data_count++;

@@ -85,30 +85,45 @@ if(checkSession()) {
 						<!-- WEBINARS -->
 						<div class="col-lg-4 col-4">
 							<?php
-								$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW() ORDER BY date_set ASC LIMIT 1");
-								$sql->execute();
-								
-								while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
-								
-									$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW()");
-									$count->execute();
-									$active_webinars = $count->rowCount();
+							$sql = $pdo->prepare("SELECT id, webinar_title, webinar_status FROM webinarandevents WHERE webinar_status = 0 ORDER BY date_set DESC LIMIT 1");
+							$sql->execute();
+							
+							while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+							
+								$count =  $pdo->prepare("SELECT id, webinar_status FROM webinarandevents WHERE webinar_status = 0 AND date_set > NOW()");
+								$count->execute();
+								$active_webinars = $count->rowCount();
 
-							?>
-							<div class="small-box shadow dash-cardbox webinar-cardbox">
-								<div class="inner pl-4 mb-2 text-light">
-									<span class="dash-number"><?php echo number_format($active_webinars,0,'.',','); ?></span><br>
-									
-									<?php
-									if ($active_webinars > 1) {
-										echo '<span class="dash-title">Upcoming Webinars</span><br>';
-									}else{
-										echo '<span class="dash-title">Upcoming Webinar</span><br>';
-									}
-									?>
-									<div class="dash-desc w-75">
-										<span class="text-truncate">Title: <?php echo $data['webinar_title'] ; ?></span>
-									</div>
+								echo '<div class="small-box shadow dash-cardbox webinar-cardbox">
+										<div class="inner pl-4 mb-2 text-light">';
+								echo '<span class="dash-number">'; 
+								echo number_format($active_webinars,0,'.',','); 
+								echo '</span><br>';
+
+								if ($active_webinars > 1) {
+									echo '<span class="dash-title">Upcoming Webinars</span><br>';
+									echo '<div class="dash-desc w-75">
+									<span class="text-truncate"> ';
+									echo 'Title: '. $data['webinar_title'] ;
+									echo '</span>
+									</div>';
+								}else if ($active_webinars == 1) {
+									echo '<span class="dash-title">Upcoming Webinar</span><br>';
+									echo '<div class="dash-desc w-75">
+									<span class="text-truncate"> ';
+									echo 'Title: '. $data['webinar_title'] ;
+									echo '</span>
+									</div>';
+								}else {
+									echo '<span class="dash-title">No Upcoming Webinars</span><br>';
+									echo '<div class="dash-desc w-75">
+									<span class="text-truncate"> ';
+									echo 'Schedule webinars or events! 🎉 ' ;
+									echo '</span>
+									</div>';
+								}
+							}?>
+							
 									
 								</div>
 								<div class="icon text-light">
@@ -118,7 +133,7 @@ if(checkSession()) {
 									<a href="/webinarandevents" class="small-box-footer footer-cardbox">
 									Know More <i class="fas fa-arrow-circle-right ml-2"></i>
 									</a>
-								<?php } }?>
+								<?php }?>
 							</div>
 						</div>
 						<!-- ANNOUNCEMENT -->
