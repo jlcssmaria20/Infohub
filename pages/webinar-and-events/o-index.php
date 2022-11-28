@@ -51,7 +51,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                    
                         <?php
                             $x = array();
-                            $sql = $pdo->prepare("SELECT * FROM webinarandevents where YEAR(date_set) >= YEAR(CURDATE()) ORDER BY date_set ASC");
+                            $sql = $pdo->prepare("SELECT * FROM webinarandevents where YEAR(date_set) >= YEAR(CURDATE()) ORDER BY date_set DESC");
                             $sql->execute();
                             $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 							$dateHandler =0;
