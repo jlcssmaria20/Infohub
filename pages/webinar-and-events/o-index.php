@@ -55,32 +55,29 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                             $sql->execute();
                             $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 							$dateHandler =0;
-                            $counter = 0;
-                                $counterfeb = 0;
-                                $countermar = 0;
-                                $counterapr = 0;
-                                $countermay = 0;
-                                $counterjun = 0;
-                                $counterjul = 0;
-                                $counteraug = 0;
-                                $countersep = 0;
-                                $counteroct = 0;
-                                $counternov = 0;
-                            $counterdec = 0;
 							
                             foreach($row as $key => $data) {
                                 // echo $data['date_set'];
                                 $x = $key +1;
                                 if($data['webinar_status'] != 2) {
                                     if($data['id'] != 0) {
-                                    // jan
-									if ($dateHandler != date('Y',strtotime($data['date_set'])))
-									{
-										$counter=0;
+                                   
+									if ($dateHandler != date('Y',strtotime($data['date_set']))){
+										$counter = 0;
+										$counterfeb = 0;
+										$countermar = 0;
+										$counterapr = 0;
+										$countermay = 0;
+										$counterjun = 0;
+										$counterjul = 0;
+										$counteraug = 0;
+										$countersep = 0;
+										$counteroct = 0;
+										$counternov = 0;
+										$counterdec = 0;
 									}
                                     $dateHandler = date('Y',strtotime($data['date_set']));
-									
-									//jan
+									 // jan
                                     if(substr($data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー', 0, 7) == 'January') {
                                         $data_date =  date('F j, Y',strtotime($data['date_set']));
 										$data_month =  date('F',strtotime($data['date_set']));
@@ -254,7 +251,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             }
             // $("h3#subheading6").attr("style", "display: block !important; width:100%;overflow:hidden;font-size:0px;");
             $(".webinarandevent1").attr("style","display:none");
-            $(".for-<?php echo $data_month ?>-class_0").show();
+            $(".for-January-class_0").show();
             $(".for-February-class_0").show();
             $(".for-March-class_0").show();
             $(".for-April-class_0").show();
