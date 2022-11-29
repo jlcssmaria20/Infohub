@@ -95,24 +95,21 @@ if(checkSession()) {
 					announcements_title,
 					announcements_details,
 					announcements_img,
-					date_created,
-					date_edit
+					date_created
 				) VALUES(
 					NULL,
 					:user_id,
 					:announcements_title,
 					:announcements_details,
 					:announcements_img,
-					:date_created,
-					:date_edit
+					:date_created
 				)");
 			$bind_param = array(
 				':user_id'  				=> $_SESSION['sys_id'],
 				':announcements_title'  	=> $title,
 				':announcements_details'  	=> $details,
 				':announcements_img'   		=> $img,
-				':date_created'				=> $current_date,
-				':date_edit'				=> $current_date
+				':date_created'				=> $current_date
 			);
 			
 			$sql->execute($bind_param);
