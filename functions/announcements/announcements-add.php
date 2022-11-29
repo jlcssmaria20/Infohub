@@ -88,6 +88,9 @@ if(checkSession()) {
 			move_uploaded_file($_FILES["img"]["tmp_name"], $inputFile);
 			$filepath = '/assets/images/announcements/'.$img;
 
+			//CURRENT DATE
+			$date_edit = date('F j, Y - l - h:i a', time());
+
 			// insert in database
 			$sql = $pdo->prepare("INSERT INTO announcements(
 					id,
@@ -95,6 +98,7 @@ if(checkSession()) {
 					announcements_title,
 					announcements_details,
 					announcements_img,
+					date_edit,
 					date_created
 				) VALUES(
 					NULL,
@@ -102,6 +106,7 @@ if(checkSession()) {
 					:announcements_title,
 					:announcements_details,
 					:announcements_img,
+					:date_edit,
 					:date_created
 				)");
 			$bind_param = array(
@@ -109,6 +114,7 @@ if(checkSession()) {
 				':announcements_title'  	=> $title,
 				':announcements_details'  	=> $details,
 				':announcements_img'   		=> $img,
+				':date_edit'   		        => $date_edit,
 				':date_created'				=> $current_date
 			);
 			
