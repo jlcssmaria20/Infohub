@@ -9,6 +9,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
     $data = $sql->fetch(PDO::FETCH_ASSOC);
     $total = $data['total'];
 
+    $users_arr = getTable('users');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                     echo $data['announcements_title'];
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
-                                                echo  '<pre style="white-space: normal;display:none;"><b>Description: </b><br>'.$data['announcements_details'].'</pre>';
+                                                echo '<p data2="'.$data['date_edit'].'"> </p>';
+                                                echo  '<pre style="white-space: normal;display:none;"><b>Posted by: </b>';
+                                                foreach($users_arr as $user) {
+                                                    if($user['user_id'] == $data['user_id']) {
+                                                        echo $user['user_firstname'].' '.$user['user_lastname'];
+                                                        break;
+                                                    }
+                                                }
+                                                echo '<br><b>Description: </b><br>'.$data['announcements_details'].'</pre>';
                                         echo '</a>';
                                     echo '</li>';
                                 
@@ -87,7 +96,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-7 text-justify">
-                            <p class="modal-name p-2 text-left"></p>
+                            <p class="modal-name pl-2 text-left"></p>
+                            <span class="modal-date pl-2 text-muted font-italic"></span>
                             <pre style="white-space: pre-wrap;" class="modal-details"></pre>
                             <div id="caption<?php echo $x ?>"></div>
                         </div>
@@ -136,11 +146,13 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
             var modalTarget = $(this).attr('data-target');
             var modalImg = $(this).find('img').attr('src'); 
             var modalName = $(this).find('h2').attr('data1');
+            var modalDate = $(this).find('p').attr('data2');
             var modaldetails = $(this).find('pre').html();
 
             $('#'+ modalTarget).show();
             $('#'+ modalTarget).find('.modal-img').attr('src', modalImg)
             $('#'+ modalTarget).find('.modal-name').html(modalName)
+            $('#'+ modalTarget).find('.modal-date').html(modalDate)
             $('#'+ modalTarget).find('.modal-details').html(modaldetails)
         });
 
