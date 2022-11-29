@@ -62,35 +62,6 @@ $total = 4;
             <a href="/o-webinar-and-events" class="btn btn-block btn-primary">See All Events</a>
         </section>
         
-        <!-- <section class="main-area col-s-9 d-column mb-5" >
-            <div class="webinar mb-4">
-                <h2 class="mb-3">
-                <span class="text-primary">WEBINAR &  EVENTS</span>
-                </h2>
-                <div class="webinar-row">
-                    <?php
-                        $x = array();
-                        $sql = $pdo->prepare("SELECT * FROM webinarandevents ORDER BY date_set DESC LIMIT 4");
-                        $sql->execute();
-                        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
-                        foreach($row as $key => $data) {
-                            $x = $key +1;
-                            if($data['status'] != 1) {
-                                if($data['id'] != 1) {
-                                    echo '<div class="list-inline-item">';
-                                    echo '<a href="javascript:void(0)" class="js-modal" data-target="myModal'.$x.'" >';
-                                        echo "<img src='/assets/images/".$data['images']."' class='myImg'>";
-                                    echo '</a>';
-                                    echo '</div>';
-                                }
-                            }
-                        }
-                    ?>
-                </div>
-            </div>
-            <a href="/dx-webinar-and-events" class="btn btn-primary">See more events</a>
-        </section> -->
-        
         <section class="main-area col-s-9 d-column mb-5 pl-5" >
             <div class="announcement mb-5">
                 <h2 class="mb-3"> 
