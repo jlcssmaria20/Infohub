@@ -91,9 +91,9 @@ if(checkSession()) {
 								<table id="table-data" class="table table-striped table-hover">
 									<thead>
 										<tr class="text-dark">
-											<th style="width: 35%"><?php echo renderLang($document_name_label); ?></th>
-											<th style="width: 20%"><?php echo renderLang($document_description_label); ?></th>
-											<th class="text-center" style="width: 15%"><?php echo renderLang($document_file_count); ?></th>
+											<th style="width: 25%"><?php echo renderLang($document_name_label); ?></th>
+											<th style="width: 25%"><?php echo renderLang($document_description_label); ?></th>
+											<th class="text-center" style="width: 20%"><?php echo renderLang($document_file_count); ?></th>
 											<th class="text-center" style="width: 20%"><?php echo renderLang($created_by); ?></th>
 											<th style="width: 10%"></th>
 										</tr>
@@ -115,7 +115,7 @@ if(checkSession()) {
 											<tr>
 												<!-- FOLDER NAME -->
 												<td class="align-middle">
-													<span class="font-weight-bold"><?php echo $data['document_name'] ?></span>
+													<span class="font-weight-bold d-inline-block text-truncate" style="max-width: 200px;"><?php echo $data['document_name'] ?></span>
 												</td>
 												<!-- FOLDER DESCRIPTION -->
 												<td class="align-middle">
