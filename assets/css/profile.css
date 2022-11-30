@@ -1,6 +1,12 @@
 
 p.details {
   font-family: 'Volkhov', serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: center;
+}
+
+.fa{
+  font-size: 1.3rem;
+  margin-right: 10px;
+  width: 15px;
 }

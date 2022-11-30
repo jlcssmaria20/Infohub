@@ -51,66 +51,62 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                 foreach($row as $key => $data) {
                     if($data['user_status'] != 1) {
                         ?>
-                    <div class="row mx-5 information">
-                        <div class="col- text-center mx-5">
-                            <div class="m-3">
-                                <img class="profile-user-img img-fluid img-circle border" style="height:200px;width:200px;"
-                                src='/assets/images/team-images/<?php echo $data['user_photo']?>' 
-                                alt="User profile picture">
-                            </div>
-                            <h3 class="profile-username"><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></h3>
-                            <p class="mb-5"><?php echo $data["user_employee_id"] ?></p>
-                                
-                      
-                            <p class="text-primary text-center font-weight-bold">Mantra in Life</p>
-                            <p class="details mb-5">❝ <?php echo $data["user_mantra_in_life"]; ?> ❞</p>
-
-                            <div class="row justify-content-center">
-                                <div class="col-sm-3 bg-light info-box">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text text-center text-primary font-weight-bold mb-2">Team</span>
-                                            <?php
-                                                foreach($teams_arr as $team) {
-                                                    if($team['id'] == $data['team_id']) {
-                                                        echo '<span class="info-box-number text-center text-muted">'.$team['team_name'].'</span>';
-                                                        break;
-                                                    }
-                                                }
-                                            ?>                          
-                                        </div>                                    
-                                    </div>
-                                    <div class="col-sm-4 bg-light info-box mx-3">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text text-center text-primary font-weight-bold mb-2">Technical Skills</span>
-                                            <span class="info-box-number text-center text-muted mb-2"><?php echo $data["user_skills"]; ?></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3 bg-light info-box ">
-                                        <div class="info-box-content">
-                                            <span class="info-box-text text-center text-primary font-weight-bold  mb-2">Position</span>
-                                            <?php 
-                                            foreach($positions_arr as $position) {
-                                                if($position['position_id'] == $data["user_position"]) {
-                                                echo  '<span class="info-box-number text-center text-muted">'.$position["position_name"].'</span>';
-                                                    break;
-                                                }
-                                            }
-                                        ?>                                    
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
+                    <div class="row information mt-5">
+                        <div class="col-4 text-center mx-5 shadow rounded p-5">
+                        
+                            <img class="profile-user-img img-fluid img-circle border mb-5" style="height:200px;width:200px;"
+                            src='/assets/images/team-images/<?php echo $data['user_photo']?>' 
+                            alt="User profile picture">
                             
+                            
+                            <p class=""><?php echo $data["user_nickname"] .'  |  '.$data["user_employee_id"]  ?> </p>
+                            <h3 class="profile-username"><?php echo $data["user_firstname"].' '.$data["user_middlename"].' '.$data["user_lastname"] ?></h3>
+                            
+                        </div>
+                        
+                        <div class="col-7 mt-3">
+                            <p class="text-primary font-weight-bold"><i class="fa fa-bullseye" aria-hidden="true"></i> Mantra in Life</p>
+                            <p class="details mb-5">❝ <?php echo $data["user_mantra_in_life"]; ?> ❞</p>
+                            
+                            <p class="text-primary font-weight-bold"><i class="fa fa-code" aria-hidden="true"></i> Technical Skills</p>
+                            <p class="mb-5"><?php echo $data["user_skills"]; ?></p>
+
+                            <p class="text-primary font-weight-bold"><i class="fa fa-envelope" aria-hidden="true"></i> Email Address</p>
+                            <p class="mb-5"><?php echo $data["user_email"]; ?></p>
+
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-primary font-weight-bold"><i class="fa fa-users" aria-hidden="true"></i> Team</p>
+                                    <?php
+                                        foreach($teams_arr as $team) {
+                                            if($team['id'] == $data['team_id']) {
+                                                echo '<p class="">'.$team['team_name'].'</p>';
+                                                break;
+                                            }
+                                        }
+                                    ?>          
+                                </div>
+                                <div class="col">
+                                    <p class="text-primary font-weight-bold"><i class="fa fa-sitemap" aria-hidden="true"></i> Position</p>
+                                    <?php 
+                                        foreach($positions_arr as $position) {
+                                            if($position['position_id'] == $data["user_position"]) {
+                                            echo  '<p>'.$position["position_name"].'</p>';
+                                                break;
+                                            }
+                                        }
+                                    ?>         
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="text-right m-5">
+                   <!--  <div class="text-right m-5">
                         <a href="/o-teams" class="btn btn-primary">
                             <i class="fa fa-arrow-left "></i>
                             <?php echo renderLang($btn_back); ?>
                         </a>
-                    </div>
+                    </div> -->
                 <?php } 
                 } 
             ?>
