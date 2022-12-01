@@ -94,7 +94,7 @@ if(checkSession()) {
 			// insert in database
 			$sql = $pdo->prepare("INSERT INTO announcements(
 					id,
-					`user_id`,
+					user_id,
 					announcements_title,
 					announcements_details,
 					announcements_img,

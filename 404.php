@@ -1,6 +1,7 @@
 <?php
 require('includes/config.php');
 $page = '404';
+$uri = '/';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +13,12 @@ $page = '404';
   <title>Page Not Found - <?php echo $sitenamee; ?></title>
 </head>
 <body id="notFound">
-  <!-- HEADER -->
+  
   <?php include('includes/common/child-header.php'); ?>
-  <!-- /HEADER -->
+  
 
   <main>
-  <!-- Start editing page content here -->
+  
     <section class="mainContent">
       <div class="innerWrap">
         <p class="image"><img src="<?php echo $uri; ?>assets/images/undraw_page_not_found.svg" alt="404 Error Image"></p>
@@ -29,18 +30,15 @@ $page = '404';
         </ul>
       </div>
     </section>
-  <!-- /End editing page content here -->
+ 
   </main>
 
-  <!-- FOOTER -->
+ 
   <?php include('includes/common/child-footer.php'); ?>
-  <!-- /FOOTER -->
+  
 
-  <!-- SCRIPTS -->
+  
   <?php include('includes/common/js.php'); ?>
-  <script>
 
-  </script>
-  <!-- /SCRIPTS -->
 </body>
 </html>
