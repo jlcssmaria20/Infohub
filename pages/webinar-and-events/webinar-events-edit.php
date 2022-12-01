@@ -205,7 +205,7 @@ if(checkSession()) {
 															<?php $err = isset($_SESSION['sys_webinar_events_edit_speaker_err']) ? 1 : 0; ?>
 															<div class="form-group">
 																<label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-																<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="speaker" name="speaker" onchange="yesnoCheck(this);" style="width:250px" required>
+																<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="speaker" name="speaker" onchange="yesnoCheck(this);" style="width:250px">
 																		
 																	<?php
 																		$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
