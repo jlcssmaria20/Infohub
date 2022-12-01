@@ -57,14 +57,14 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                                 echo '</span>'; 
                                                 echo  '<h2 data1="'.$data['announcements_title'].'"> </h2>';
                                                 echo '<p data2="'.$data['date_edit'].'"> </p>';
-                                                echo  '<pre style="white-space: normal;display:none;"><b>Posted by: </b>';
+                                                echo  '<br><pre style="white-space: normal;display:none;"><b>Posted by: </b>';
                                                 foreach($users_arr as $user) {
                                                     if($user['user_id'] == $data['user_id']) {
                                                         echo $user['user_firstname'].' '.$user['user_lastname'];
                                                         break;
                                                     }
                                                 }
-                                                echo '<br><b>Description: </b><br>'.$data['announcements_details'].'</pre>';
+                                                echo '<br><br><b>Description: </b><br>'.$data['announcements_details'].'</pre>';
                                         echo '</a>';
                                     echo '</li>';
                                 

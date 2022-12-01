@@ -2,7 +2,7 @@
 	<!-- LOGO -->	
 	<a href="/dashboard" class="brand-link py-">
 		<img src="/assets/images/logowhite.png" alt="<?php echo renderLang($dx); ?>" class="brand-image elevation-3 ml-2 float-none" style="width:35px; height:25px; ">
-		<span class="brand-text font-weight-light ml-3"><?php echo "DX Info Hub"; ?></span>
+		<span class="brand-text font-weight-light ml-1"><?php echo "DX Info Hub"; ?></span>
 	</a>
 	<!-- SIDEBAR -->
 	<div class="sidebar">
