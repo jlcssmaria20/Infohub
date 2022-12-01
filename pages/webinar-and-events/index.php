@@ -179,11 +179,15 @@ if(checkSession()) {
 												// SCHEDULE DATE
 												echo '<td class="align-middle text-center">';
 													echo $data['date_set'] != 0 ? date('F j, Y',strtotime($data['date_set'])) : 'ー';
-													$date = new DateTime($data['date_set']);
-													$now = new DateTime();
 													
-													if($date < $now) {
-														echo '<br><span class="right badge badge-primary">Done</span>';
+													$result = new DateTime();
+													$now = $result->format('Ymd');
+													
+													/* echo '<br>NOW date: '.$now.' SCHEDULED DATE:'.$data['date_set']; */
+													if($data['date_set'] === $now) {
+														echo '<br><span class="right badge badge-primary">Today</span>';
+													}else if($data['date_set'] < $now){
+														echo '<br><span class="right badge badge-success">Done</span>';
 													}else{
 														echo '<br><span class="right badge badge-warning">Upcoming</span>';
 													}
