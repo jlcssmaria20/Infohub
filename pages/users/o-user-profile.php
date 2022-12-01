@@ -101,12 +101,12 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                         </div>
                     </div>
                     
-                   <!--  <div class="text-right m-5">
+                    <div class="text-right m-5">
                         <a href="/o-teams" class="btn btn-primary">
                             <i class="fa fa-arrow-left "></i>
                             <?php echo renderLang($btn_back); ?>
                         </a>
-                    </div> -->
+                    </div>
                 <?php } 
                 } 
             ?>
