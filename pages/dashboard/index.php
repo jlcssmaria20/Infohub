@@ -218,7 +218,7 @@ if(checkSession()) {
 													$data_count++;
 												
 												
-													echo '<tr>';
+													echo ' <tr class="clickable-row pe-auto"  data-href="/webinarandevents">';
 
 													// WEBINAR IMAGE
 													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
@@ -340,6 +340,7 @@ if(checkSession()) {
 										</tbody>
 									</table>
 								</div>
+
 								<div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
 									<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
 									<table id="table" class="table table-hover">
@@ -500,6 +501,14 @@ if(checkSession()) {
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	
+	<script>
+				
+		jQuery(document).ready(function($) {
+			$(".clickable-row").click(function() {
+				window.location = $(this).data("href");
+			});
+		});
+	</script>
 </body>
 
 </html>

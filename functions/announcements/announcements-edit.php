@@ -103,7 +103,7 @@ if(checkSession()) {
 				}
 			}
 			//CURRENT DATE
-			$date_edit = date('F j, Y - l - h:i a', time());
+			$date_edit = date('F j, Y');
 
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors
