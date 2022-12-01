@@ -180,7 +180,7 @@ $users_mantra_in_life_required = array(
 	''
 );
 $users_skills = array(
-	'Skills Front end(FE), Back end(BE), Tools',
+	'Skills',
 	''
 );
 $users_skills_placeholder = array(

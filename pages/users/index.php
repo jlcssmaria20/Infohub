@@ -49,7 +49,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
                                 <select id="multiSelectSearch" name="multiSelectSearch" title="All" class="form-control rounded">
                                     <option value=""><a href="window.location.reload()">All</option>
                                     <?php
-                                    $sql = $pdo->prepare("SELECT * FROM teams");
+                                    $sql = $pdo->prepare("SELECT * FROM teams ORDER BY team_name ASC ");
                                     $sql->execute();
                                     $row = $sql->fetchAll(PDO::FETCH_ASSOC);
                                     foreach($row as $data) {
