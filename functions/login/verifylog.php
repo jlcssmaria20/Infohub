@@ -111,7 +111,7 @@ if(isset($_POST['submit-login'])) {
 				// $_SESSION['sys_center_id'] = $data['center_id'];
 				$_SESSION['sys_role_ids'] = $data['role_ids']; 
 				// $_SESSION['sys_language'] = $data['language'];
-				$GLOBALS['language'] = $data['language'];
+				// $GLOBALS['language'] = $data['language'];
 				$_SESSION['sys_data_per_page'] = $data['data_per_page'];
 				$_SESSION['sys_account_mode'] = 'user';
 				$status = $data['user_status'];
