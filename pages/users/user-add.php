@@ -143,38 +143,6 @@ if(checkSession()) {
 										</div>
 									</div>
 
-									<!-- LEVEL -->
-									<div class="col-lg-3">
-										<?php
-										$level_err = 0;
-										if(isset($_SESSION['sys_users_add_level_err'])) { $level_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="level" class="mr-1<?php if($level_err) { echo ' text-danger'; } ?>"><?php if($level_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_level); ?></label> <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control" name="level">
-												<?php
-												echo '<option value="0"';
-												if(isset($_SESSION['sys_users_add_level_val'])) {
-													if($_SESSION['sys_users_add_level_val'] == 0) {
-														echo ' selected';
-													}
-												}
-												echo '>TBD</option>';
-												for($x=1;$x<=5;$x++) {
-													echo '<option value="'.$x.'"';
-														if(isset($_SESSION['sys_users_add_level_val'])) {
-															if($_SESSION['sys_users_add_level_val'] == $x) {
-																echo ' selected';
-															}
-														}
-													echo '>'.$x.'</option>';
-												}
-												?>
-											</select>
-											<?php if($level_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_add_level_err'].'</p>'; unset($_SESSION['sys_users_add_level_err']); } ?>
-										</div>
-									</div>
-
 									<!-- POSITION -->
 									<div class="col-lg-3">
 										<?php

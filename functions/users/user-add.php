@@ -80,22 +80,6 @@ if(checkSession()) {
 			}
 		}
 		
-		// LEVEL
-		$level = 1;
-		if(isset($_POST['level'])) {
-			$levels_arr = array(0,1,2,3,4,5);
-			$level = ucwords(strtolower(trim($_POST['level'])));
-			$_SESSION['sys_users_add_level_val'] = $level;
-			if(strlen($level) == 0) {
-				$err++;
-				$_SESSION['sys_users_add_level_err'] = renderLang($users_level_required);
-			} else {
-				if(!in_array($level,$levels_arr)) {
-					$err++;
-					$_SESSION['sys_users_add_level_err'] = renderLang($users_invalid_level_selected);
-				}
-			}
-		}
 		// MANTRA IN LIFE
 		$mantra_in_life = '';
 		if(isset($_POST['mantra_in_life'])) {
@@ -280,7 +264,6 @@ if(checkSession()) {
 					user_lastname,
 					user_nickname,
 					user_photo,
-					user_level,
 					user_gender,
 					user_position,
 					role_ids,
@@ -300,7 +283,6 @@ if(checkSession()) {
 					:user_lastname,
 					:user_nickname,
 					:user_photo,
-					:user_level,
 					:user_gender,
 					:user_position,
 					:role_ids,
@@ -320,7 +302,6 @@ if(checkSession()) {
 				':user_lastname'      => $lastname,
 				':user_nickname'      => $nickname,
 				':user_photo'         => $user_photo,
-				':user_level'         => $level,
 				':user_gender'        => $gender,
 				':user_position'      => $position_id,
 				':role_ids'           => $role_ids,

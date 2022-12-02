@@ -77,12 +77,6 @@ if(checkSession()) {
 				unset($_SESSION['sys_users_edit_email_val']);
 			}
 			
-			$user_level = $data['user_level'];
-			if(isset($_SESSION['sys_users_edit_level_val'])) {
-				$user_level = $_SESSION['sys_users_edit_level_val'];
-				unset($_SESSION['sys_users_edit_level_val']);
-			}
-			
 			$user_position = $data['user_position'];
 			if(isset($_SESSION['sys_users_edit_position_val'])) {
 				$user_position = $_SESSION['sys_users_edit_position_val'];
@@ -287,35 +281,6 @@ if(checkSession()) {
 
 								</div>
 								<div class="row">
-
-									<!-- LEVEL -->
-									<div class="col-lg-3 col-md-4 col-sm-2">
-										<?php
-										$level_err = 0;
-										if(isset($_SESSION['sys_users_edit_level_err'])) { $level_err = 1; }
-										?>
-										<div class="form-group">
-											<label for="level" class="mr-1<?php if($level_err) { echo ' text-danger'; } ?>"><?php if($level_err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($users_level); ?></label> <span class="right badge badge-success"><?php echo renderLang($label_required); ?></span>
-											<select class="form-control" name="level">
-												<?php
-												echo '<option value="0"';
-												if($user_level == 0) {
-													echo ' selected';
-												}
-												echo '>TBD</option>';
-												for($x=1;$x<=5;$x++) {
-													echo '<option value="'.$x.'"';
-													if($user_level == $x) {
-														echo ' selected';
-													}
-													echo '>'.$x.'</option>';
-												}
-												?>
-											</select>
-											<?php if($level_err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_users_edit_level_err'].'</p>'; unset($_SESSION['sys_users_edit_level_err']); } ?>
-										</div>
-									</div>
-									
 									<!--POSITION-->
 									<div class="col-lg-3 col-md-4 col-sm-2">
 										<?php
