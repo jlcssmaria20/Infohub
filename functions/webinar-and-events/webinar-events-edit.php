@@ -79,8 +79,16 @@ if(checkSession()) {
 			//HOST
 			$hosts = implode(',', (array)$_POST['host']);
 			
-			//SPEAKERS
-			$speakers = implode(',', (array)$_POST['others']);
+			//SPEAKER
+			
+			$speakers = '';
+			if(isset($_POST['others'])) {
+				$speakers = implode(',', (array)$_POST['others']);
+				$_SESSION['sys_webinar_events_add_others_val'] = $speakers;
+				if(strlen($speakers) == 0) {
+					$speakers = 'NA';
+				} 
+			}
 			
 			// VALIDATE FOR ERRORS
 			if($err == 0) { // there are no errors

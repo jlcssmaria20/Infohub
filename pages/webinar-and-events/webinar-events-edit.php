@@ -204,8 +204,10 @@ if(checkSession()) {
 														<div class="col-lg-5 mx-3">
 															<?php $err = isset($_SESSION['sys_webinar_events_edit_speaker_err']) ? 1 : 0; ?>
 															<div class="form-group">
-																<label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-																<select class="form-control select2 required<?php if($err) { echo ' is-invalid'; } ?>" id="speaker" name="speaker" onchange="yesnoCheck(this);" style="width:250px">
+																<label for="speaker" class="mr-1<?php if($err) { echo ' text-danger'; } ?>">
+																	<?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_speaker); ?>
+																</label>
+																<select onchange="myFunction(this);" class="form-control select2" id="speaker" name="speaker" onChange="yesnoCheck(this);" style="width:250px">
 																		
 																	<?php
 																		$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
@@ -244,16 +246,16 @@ if(checkSession()) {
 																?>
 																	<div id="ifYes" class="form-group" style="display: none;">
 																	<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
-																	<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-																	<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
+																	
+																	<input type="text" minlength="4" maxlength="50" class="form-control" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" >
 																
 																<?php
 
 															}else{?>
 																<div id="ifYes" class="form-group" style="display:block;">
 																<label for="others" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_other); ?></label> 
-																<span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-																<input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>" required>
+																
+																<input type="text" minlength="4" maxlength="50" class="form-control" id="others" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>" value="<?php echo $others; ?>">
 															<?php }	?>
 														
 																<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_others_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_others_err']); } ?>
@@ -447,25 +449,14 @@ if(checkSession()) {
 
 		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
-		function yesnoCheck(that) {
-			if (that.value == "others") {
-				document.getElementById("ifYes").style.display = "block";
-				document.getElementById("others").required = true;
-			} else {
-				document.getElementById("ifYes").style.display = "block";
-				document.getElementById("others").required = false;
-			}
-		}
-		
 
 		function myFunction(element){
 			document.getElementById("others").value = element.options[element.selectedIndex].id;
 			if (element.value == "others") {
 				document.getElementById("ifYes").style.visibility = "visible";
-				document.getElementById("others").required = true;
+				document.getElementById("ifYes").style.display = "block";
 			} else {
 				document.getElementById("ifYes").style.visibility = "hidden";
-				document.getElementById("others").required = false;
 			}
 		}
 		function myFunction1(element){
@@ -557,7 +548,7 @@ if(checkSession()) {
 					}
 					
 				?>
-			</select></div></div><div class="col-lg-5"><div id="ifYes'+i+'" class="form-group" style=""><input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> required ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
+			</select></div></div><div class="col-lg-5"><div id="ifYes'+i+'" class="form-group" style=""><input type="text" maxlength="50" class="form-control" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
 				 
 				i++;
 				
