@@ -14,7 +14,7 @@
 				?>
 			</div>
 			<div class="info">
-				<a href='/' class="d-inline-block text-truncate" style="max-width: 190px;font-size:12px"><?php echo $_SESSION['sys_fullname']; ?></a>
+				<span class="d-inline-block text-truncate text-light" style="max-width: 190px;font-size:12px"><?php echo $_SESSION['sys_fullname']; ?></span>
 			</div>
 		</div>
 

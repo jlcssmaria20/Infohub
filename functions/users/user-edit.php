@@ -94,22 +94,6 @@ if(checkSession()) {
 				}
 			}
 
-			// LEVEL
-			$level = 1;
-			if(isset($_POST['level'])) {
-				$levels_arr = array(0,1,2,3,4,5);
-				$level = ucwords(strtolower(trim($_POST['level'])));
-				$_SESSION['sys_users_edit_level_val'] = $level;
-				if(strlen($level) == 0) {
-					$err++;
-					$_SESSION['sys_users_edit_level_err'] = renderLang($users_level_required);
-				} else {
-					if(!in_array($level,$levels_arr)) {
-						$err++;
-						$_SESSION['sys_users_edit_level_err'] = renderLang($users_invalid_level_selected);
-					}
-				}
-			}
 			
 			// NICKNAME
 			$nickname = '';
@@ -311,10 +295,6 @@ if(checkSession()) {
 					$tmp = 'users_email::'.$data['user_email'].'=='.$email;
 					array_push($change_logs,$tmp);
 				}
-				if($level != $data['user_level']) {
-					$tmp = 'users_level::'.$data['user_level'].'=='.$level;
-					array_push($change_logs,$tmp);
-				}
 				if($gender != $data['user_gender']) {
 					$tmp = 'users_gender::'.$data['user_gender'].'=='.$gender;
 					array_push($change_logs,$tmp);
@@ -397,7 +377,6 @@ if(checkSession()) {
 					$sql = $pdo->prepare("UPDATE users SET
 							user_employee_id = :user_employee_id,
 							user_email = :user_email,
-							user_level = :user_level,
 							user_firstname = :user_firstname,
 							user_middlename = :user_middlename,
 							user_lastname = :user_lastname,
@@ -418,7 +397,6 @@ if(checkSession()) {
 						':user_id'            => $user_id,
 						':user_employee_id'   => $employee_id,
 						':user_email'         => $email,
-						':user_level'         => $level,
 						':user_firstname'     => $firstname,
 						':user_middlename'    => $middlename,
 						':user_lastname'      => $lastname,

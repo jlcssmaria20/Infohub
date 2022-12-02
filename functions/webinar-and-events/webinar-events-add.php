@@ -55,30 +55,18 @@ if(checkSession()) {
 				$_SESSION['sys_webinar_events_add_description_err'] = renderLang($webinar_events_description_required);
 			} 
 		}
-		// HOST
-		/* $host = '';
-		if(isset($_POST['host'])) {
-			$host = htmlentities(trim($_POST['host']));
-			$_SESSION['sys_webinar_events_add_host_val'] = $host;
-			if(strlen($host) == 0) {
-				$err++;
-				$_SESSION['sys_webinar_events_add_host_err'] = renderLang($webinar_events_host_required);
-			} 
-		} */
-/* 
-		// SPEAKER
-		$speaker = '';
-		if(isset($_POST['speaker'])) {
-			$speaker = htmlentities(trim($_POST['speaker']));
-			$speaker = implode(',', (array)$_POST['speaker']);
-			if(strlen($speaker) == "others") {
-				$speaker = implode(',', (array)$_POST['others']);
-			}
-		}
- */
-		// OTHERS
 
-		$speakers = implode(',', (array)$_POST['others']);
+		//SPEAKER
+		
+
+		$speakers = '';
+		if(isset($_POST['others'])) {
+			$speakers = implode(',', (array)$_POST['others']);
+			$_SESSION['sys_webinar_events_add_others_val'] = $speakers;
+			if(strlen($speakers) == 0) {
+				$speakers = 'NA';
+			} 
+		}
 		//HOST
 		$hosts = implode(',', (array)$_POST['host']);
 			
