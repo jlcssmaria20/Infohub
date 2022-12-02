@@ -118,18 +118,6 @@ $status_arr = array(
 			'無効化'
 		)
 	),
-	array(1.5,
-		  array(
-			  'Locked',
-			  'ロック'
-		  )
-	),
-	array(2,
-		array(
-			'Deleted',
-			'削除済み'
-		)
-	)
 );
 //$start = $month = strtotime('2018-10-01');
 $months_temp = array();

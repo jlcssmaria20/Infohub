@@ -168,12 +168,6 @@ if(checkSession()) {
 																	case 1:
 																		echo '<span class="text-danger px-2 rounded" style="background-color:#FDD4D4">'.renderLang($status[1]).'</span>';
 																		break;
-																	case 1.5:
-																		echo '<span class="text-danger px-2 rounded" style="background-color:#FDF6B2">'.renderLang($status[1]).'</span>';
-																		break;
-																	case 2:
-																		echo '<span class="text-danger px-2 rounded" style="background-color:#FDD4D4">'.renderLang($status[1]).'</span>';
-																		break;
 																}
 															}
 														}

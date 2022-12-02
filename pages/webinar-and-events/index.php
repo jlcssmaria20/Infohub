@@ -183,7 +183,6 @@ if(checkSession()) {
 													$result = new DateTime();
 													$now = $result->format('Ymd');
 													
-													/* echo '<br>NOW date: '.$now.' SCHEDULED DATE:'.$data['date_set']; */
 													if($data['date_set'] === $now) {
 														echo '<br><span class="right badge badge-primary">Today</span>';
 													}else if($data['date_set'] < $now){
