@@ -129,7 +129,7 @@ if(checkSession()) {
 								<div class="icon text-light">
 									<i class="fas fa-calendar-alt"></i>
 								</div>
-								<?php if(checkPermission('webinar-and-events')) { ?>
+								<?php if(checkPermission('users')) { ?>
 									<a href="/webinarandevents" class="small-box-footer footer-cardbox">
 									Know More <i class="fas fa-arrow-circle-right ml-2"></i>
 									</a>

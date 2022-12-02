@@ -175,7 +175,7 @@ if(checkSession()) {
 		<div class="modal fade" id="add_document_modal" data-backdrop="static" data-keyboard="false" aria-modal="true">
 			<div class="modal-dialog modal-md">
 				<div class="modal-content">
-					<div class="modal-header" style="background-color: #FCCD2F">
+					<div class="modal-header bg-primary">
 						<h4 class="modal-title"><?= renderLang($modal_add_confirmation) ?></h4>
 					</div>
 					<form action="/submit-add-document" method="post" id="add_form">
@@ -201,7 +201,7 @@ if(checkSession()) {
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times mr-2"></i><?= renderLang($modal_cancel) ?></button>
-							<button type="submit"  style="background-color: #FCCD2F"class="btn btn-confirm text-dark"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_add) ?></button>
+							<button type="submit" class="btn btn-confirm text-dark bg-primary"><i class="fa fa-check mr-2"></i><?= renderLang($modal_confirm_add) ?></button>
 						</div>
 					</form>
 				</div>
