@@ -344,14 +344,14 @@ if(checkSession()) {
 
 								<div class="tab-pane fade overflow-auto" style="height:400px;"  id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
 									<div class="row mx-0">
-										<div class="col-lg-10">
+										<div class="col-lg-9">
 											<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
 										</div>
-										<div class="col-lg-2 align-self-center ">
-											<select id="multiSelectSearch" name="multiSelectSearch" title="All" class="select2 rounded">
+										<div class="col-lg-3 align-self-center" >
+											<select id="multiSelectSearch" name="multiSelectSearch" title="All" class="select2 rounded" style="width:200px">
 												<option value=""><a href="window.location.reload()">All</option>
-												<option value="fiscalYear">Fiscal Year</option>
-												<option value="currentYear">Current Year</option>
+												<option value="fiscalYear">FY April 2021 - March 2022</option>
+												<option value="currentYear">FY April 2022 - March 2022</option>
 											</select>
 										</div>
 									</div>
