@@ -347,13 +347,6 @@ if(checkSession()) {
 										<div class="col-lg-9">
 											<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
 										</div>
-										<div class="col-lg-3 align-self-center" >
-											<select id="multiSelectSearch" name="multiSelectSearch" title="All" class="select2 rounded" style="width:200px">
-												<option value=""><a href="window.location.reload()">All</option>
-												<option value="fiscalYear">FY April 2021 - March 2022</option>
-												<option value="currentYear">FY April 2022 - March 2022</option>
-											</select>
-										</div>
 									</div>
 									<table id="table" class="table table-hover">
 									
