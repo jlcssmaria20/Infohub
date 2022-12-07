@@ -35,13 +35,11 @@ if(checkSession()) {
 		<div class="content-wrapper">
 			<section class="content-header">
 				<div class="container-fluid">
-					
 					<div class="row">
 						<div class="col-sm-6 col-12">
 							<h1><i class="fa fa-tachometer-alt mr-3"></i>Dashboard</h1>
 						</div>
 					</div>
-					
 				</div><!-- container-fluid -->
 			</section><!-- content-header -->
 			<!-- Main content -->
@@ -197,8 +195,10 @@ if(checkSession()) {
 								</div>
 							</nav>
 							<div class="tab-content shadow p-3" id="nav-tabContent" style="width:73%">
-								<div class="tab-pane fade show active " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> 
+								<div class="tab-pane fade show active  overflow-auto overflow-y-hidden" style="height:400px;" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> 
+									
 									<h5 class="my-3">Here's a list of upcoming webinar and events assigned to you!</h5>
+										
 									<table id="table" class="table table-hover">
 									
 										<tbody>
@@ -207,7 +207,8 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 											FROM webinarandevents
 											WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker)) AND temp_del = 0 AND date_set >= NOW() - INTERVAL 1 DAY
-											ORDER BY date_set ASC LIMIT 10");
+
+											ORDER BY date_set ASC");
 											$bind_param = array(
 												'employee_id' => $_SESSION['sys_employee_id']
 											);
@@ -341,8 +342,12 @@ if(checkSession()) {
 									</table>
 								</div>
 
-								<div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
-									<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
+								<div class="tab-pane fade overflow-auto" style="height:400px;"  id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
+									<div class="row mx-0">
+										<div class="col-lg-9">
+											<h5 class="my-3">Here's a list of webinar and events you've done!</h5>
+										</div>
+									</div>
 									<table id="table" class="table table-hover">
 									
 										<tbody>
@@ -352,7 +357,7 @@ if(checkSession()) {
 											$sql = $pdo->prepare("SELECT *
 												FROM webinarandevents
 												WHERE (FIND_IN_SET(:employee_id, webinar_host) OR FIND_IN_SET(:employee_id, webinar_speaker))AND temp_del = 0 AND date_set <= NOW() - INTERVAL 1 DAY
-												ORDER BY date_set ASC LIMIT 10");
+												ORDER BY date_set DESC");
 												$bind_param = array(
 													'employee_id' => $_SESSION['sys_employee_id']
 												);

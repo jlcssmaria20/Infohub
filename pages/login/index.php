@@ -111,7 +111,7 @@ if(isset($_COOKIE['sys_cookie_'.$system_code])) {
 						</div>
 						<hr>
 						<div class="text-center">
-							<span>Business Suite - DX Info Hub<br>Copyright 2021. All Rights Reserved.</span>				
+							<span>DX Info Hub v3.0.0<br>© 2021 transcosmos Asia Philippines, Inc.</span>				
 						</div>
 					</form>					
 				</div>

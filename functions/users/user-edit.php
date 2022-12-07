@@ -221,8 +221,9 @@ if(checkSession()) {
 					$_SESSION['sys_users_edit_hiredate_val'] = $_POST['user_hiredate'];
 				}
 			}
+			
 			// END DATE
-			$user_enddate = 0;
+		/* 	$user_enddate = 0;
 			if(isset($_POST['user_enddate'])) {
 				$user_enddate = date('Ymd', strtotime($_POST['user_enddate']));
 				if(empty($user_enddate)) {
@@ -231,7 +232,7 @@ if(checkSession()) {
 					$_SESSION['sys_users_edit_enddate_val'] = $_POST['user_enddate'];
 				}
 			}
-
+ */
 			// MANTRA IN LIFE
 			$mantra_in_life = '';
 			if(isset($_POST['mantra_in_life'])) {
@@ -270,6 +271,13 @@ if(checkSession()) {
 					$_SESSION['sys_users_edit_user_status_err'] = 'Please select a valid status.';
 				}
 			}
+
+			$user_enddate = '';
+			if ($user_status == 1 && $user_enddate == 0) {
+				$date = new DateTime();
+				$user_enddate  = $date->format('Ymd');
+			}
+
 			$user_photo_is_default = 0;
 			$user_photo = '';
 			//check if user photo is the default photo that was set by system
