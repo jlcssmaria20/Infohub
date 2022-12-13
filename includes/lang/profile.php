@@ -102,7 +102,7 @@ $account_email_label = array(
 	''
 );
 $account_mobile_label = array(
-	'Cellphone Number',
+	'Contact Number',
 	''
 );
 $account_last_login = array(

@@ -381,3 +381,14 @@ pre{
 			-webkit-box-shadow: inset 6px 6px 6px 6px #747f85; 
 			border: 2px solid #fff;
 		}
+
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
