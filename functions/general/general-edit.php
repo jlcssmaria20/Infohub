@@ -38,14 +38,13 @@ if(checkSession()) {
 				$_SESSION['sys_general_edit_photo_err'] = "Incorrect File Type ( Choose jpg or png file type only)";
 			}    
 				  
-			$maxsize = 200000;
+			// $maxsize = 200000;
 	
-			if ($size > $maxsize) {
-				$err++; 
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
-			}    
-						  
-		  
+			// if ($size > $maxsize) {
+			// 	$err++; 
+			// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+			// }    
+						
 		}
 		if($_FILES["photo"]["error"] == 1){
 			$err++; 
