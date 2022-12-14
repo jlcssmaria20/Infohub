@@ -46,9 +46,6 @@ if(checkSession()) {
 			}    
 						  
 		  
-		} else {
-			$err++; 
-			$_SESSION['sys_general_edit_photo_err'] = $_FILES["file"]["error"] . " File is not uploaded</b>";
 		}
 
 
