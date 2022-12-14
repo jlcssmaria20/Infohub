@@ -35,7 +35,7 @@ if(checkSession()) {
 	  
 			if (!array_key_exists($ext, $allowed_ext)) {
 				$err++;
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
+				$_SESSION['sys_general_edit_photo_err'] = "Incorrect File Type ( Choose jpg or png file type only)";
 			}    
 				  
 			$maxsize = 200000;
