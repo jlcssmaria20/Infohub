@@ -47,8 +47,10 @@ if(checkSession()) {
 						  
 		  
 		}
-
-
+		if($_FILES["photo"]["error"] == 1){
+			$err++; 
+			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+		}
 		// SKILLS
 		$skills = '';
 		if(isset($_POST['skills'])) {
