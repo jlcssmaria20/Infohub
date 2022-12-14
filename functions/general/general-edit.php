@@ -80,11 +80,14 @@ if(checkSession()) {
 			$_SESSION['sys_general_edit_nickname_val'] = $nickname;
 			if(strlen($nickname) == 0) {
 				$err++;
-				$_SESSION['sys_general_edit_nickname_err'] = renderLang($general_nickname_required);
-			} 
+				$_SESSION['sys_general_edit_nickname_err'] = "Nickname is Required";
+			}  else {
+				if(!validateNameV1($nickname)) {
+					$err++;
+					$_SESSION['sys_general_edit_nickname_err'] = "Invalid Characters!";
+				}
+			}
 		}
-	
-
 		// FIRSTNAME
 		$firstname = '';
 		if(isset($_POST['firstname'])) {
@@ -93,8 +96,13 @@ if(checkSession()) {
 			$_SESSION['sys_general_edit_firstname_val'] = $firstname;
 			if(strlen($firstname) == 0) {
 				$err++;
-				$_SESSION['sys_general_edit_firstname_err'] = renderLang($general_firstname_required);
-			} 
+				$_SESSION['sys_general_edit_firstname_err'] = "First name is Required";
+			}   else {
+				if(!validateNameV1($firstname)) {
+					$err++;
+					$_SESSION['sys_general_edit_firstname_err'] = "Invalid Characters!";
+				}
+			}
 		}
 		// MIDDLE NAME
 		$middlename = '';
@@ -102,6 +110,11 @@ if(checkSession()) {
 			$middlename = htmlentities(trim($_POST['middlename']));
 			$middlename = ucfirst(trim($_POST['middlename']));
 			$_SESSION['sys_general_edit_middlename_val'] = $middlename;
+
+			if(!validateNameV1($middlename)) {
+				$err++;
+				$_SESSION['sys_general_edit_middlename_val'] = "Invalid Characters!";
+			}
 		}
 		// LASTNAME
 		$lastname = '';
@@ -112,7 +125,12 @@ if(checkSession()) {
 			if(strlen($lastname) == 0) {
 				$err++;
 				$_SESSION['sys_general_edit_lastname_err'] = renderLang($general_lastname_required);
-			} 
+			}  else {
+				if(!validateNameV1($lastname)) {
+					$err++;
+					$_SESSION['sys_general_edit_lastname_err'] = "Invalid Characters!";
+				}
+			}
 		}
 		// MOBILE NUMBER
 	
