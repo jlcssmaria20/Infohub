@@ -9,7 +9,7 @@ if(checkSession()) {
 
 	$err = 0;
 	$user_id = $_SESSION['sys_id'];
-	
+	unset($_SESSION['sys_general_edit_photo_err']);
 	// check if ID exists
 	$sql = $pdo->prepare("SELECT * FROM users WHERE user_id = :user_id LIMIT 1");
 	$sql->bindParam(":user_id", $user_id);
@@ -17,7 +17,40 @@ if(checkSession()) {
 	$data = $sql->fetch(PDO::FETCH_ASSOC);
 	if($sql->rowCount()) {
 
-		// PROCESS FORM
+	// PHOTO
+		$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
+		$target_file = $target_dir.basename($_FILES['photo']['name']);
+		$name = $_FILES["photo"]["name"];
+		$type = $_FILES["photo"]["type"];
+		$size = $_FILES["photo"]["size"];
+		
+		// Check if file was uploaded without errors
+		if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+			$allowed_ext = array("jpg" => "image/jpg",
+								"jpeg" => "image/jpeg",
+								"png" => "image/png");
+		  
+			// Verify file extension
+			$ext = pathinfo($name, PATHINFO_EXTENSION);
+	  
+			if (!array_key_exists($ext, $allowed_ext)) {
+				$err++;
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
+			}    
+				  
+			$maxsize = 200000;
+	
+			if ($size > $maxsize) {
+				$err++; 
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+			}    
+						  
+		  
+		} else {
+			$err++; 
+			$_SESSION['sys_general_edit_photo_err'] = $_FILES["file"]["error"] . " File is not uploaded</b>";
+		}
+
 
 		// SKILLS
 		$skills = '';
@@ -50,31 +83,7 @@ if(checkSession()) {
 				$_SESSION['sys_general_edit_nickname_err'] = renderLang($general_nickname_required);
 			} 
 		}
-		// PHOTO
-		$target_file = '';
-		if($_FILES["photo"]['name'] != '') {
-			$file_info = getimagesize($_FILES['photo']['tmp_name']);
-			$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
-			if($file_info !== false) {} else {
-				if(
-					$image_extension != "jpg" &&
-					$image_extension != "png" &&
-					$image_extension != "jpeg" &&
-					$image_extension != "gif"
-				) {
-					$err++;
-					$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_invalid_file_type);
-				}
-				
-			}
-
-			
-			// check file size
-			if ($_FILES["photo"]['error'] == 1) {
-				$err++;
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
-			}
-		}
+	
 
 		// FIRSTNAME
 		$firstname = '';
@@ -157,17 +166,18 @@ if(checkSession()) {
 				$tmp = 'user_mobile::'.$data['user_mobile'].'=='.$mobile;
 				array_push($change_logs,$tmp);
 			}
-
-
+			//PHOTO NAME
+			if($name != $data['user_photo']){
+				$tmp = 'user_photo::'.$data['user_photo'].'=='.$name;
+				array_push($change_logs,$tmp);
+			}
 
 			// check if there is are changes made
 			if(count($change_logs) > 0) {
-				$filename = $_FILES['photo']['name'];
-				$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
-				$target_file = $target_dir.basename($_FILES['photo']['name']);
-				$image_extension= pathinfo($_FILES["photo"]['name'], PATHINFO_EXTENSION);
+			
+				$_SESSION['sys_fullname'] = $firstname.' '.$lastname;
 
-				$photo = $filename;
+				$photo = $name;
 				if (empty($photo)) {
 					$photo = $_POST['file_src'];
 				}

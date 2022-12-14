@@ -36,7 +36,7 @@ if(isset($_POST['submit-login'])) {
 			$_SESSION['sys_account_mode'] = 'admin';
 			$status = $data['admin_status'];
 			
-			$_SESSION['is_locked'] = false;
+			// $_SESSION['is_locked'] = false;
 			$isInside = true;
 			//setcookie('sys__language', $GLOBALS['language'], time() + (86400 * 30), "/");
 		}
@@ -67,16 +67,17 @@ if(isset($_POST['submit-login'])) {
 					}
 					
 					$_SESSION['sys_login_err'] = renderLang($login_msg_err_8); // "Account is locked."
-					$_SESSION['is_locked'] = true;
+					// $_SESSION['is_locked'] = true;
 					goToPage(false);
 
 				} else {
 					
 					//$_SESSION['sys_login_err'] = $attempts.' '.renderLang($login_msg_err_attempts);//2 out of 5 attempts.<br> Invalid email or password!."
 					$_SESSION['sys_login_err'] = renderLang($login_msg_err_3);
-					$_SESSION['is_locked'] = false;
+					// $_SESSION['is_locked'] = false;
 					goToPage(false);
 					
+
 				}
 
 			}
@@ -116,7 +117,7 @@ if(isset($_POST['submit-login'])) {
 				$_SESSION['sys_account_mode'] = 'user';
 				$status = $data['user_status'];
 				$GLOBALS['user_permissions_arr'] = array_filter(explode(',',$data['permissions']));
-				$_SESSION['is_locked'] = false;
+				// $_SESSION['is_locked'] = false;
 				//setcookie('sys_goop_language', $GLOBALS['language'], time() + (86400 * 30), "/");
 			}
 			
@@ -137,14 +138,14 @@ if(isset($_POST['submit-login'])) {
 
 					}
 					$_SESSION['sys_login_err'] = renderLang($login_msg_err_8); // "Account is locked due to multiple failed log-in.<br>Please wait for one hour login again"
-					$_SESSION['is_locked'] = true;
+					// $_SESSION['is_locked'] = true;
 					goToPage(false);
 					
 					
 				}else{
 					$_SESSION['sys_login_err'] = renderLang($login_msg_err_3);
 					//$_SESSION['sys_login_err'] = $attempts.' '.renderLang($login_msg_err_attempts); //2 out of 5 attempts.<br> Invalid email or password!."
-					$_SESSION['is_locked'] = false;
+					// $_SESSION['is_locked'] = false;
 					goToPage(false);
 				}
 			}
