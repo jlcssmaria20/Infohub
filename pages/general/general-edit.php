@@ -157,9 +157,7 @@ if(checkSession()) {
                                                  
                                                     <label for="skills" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_skills_label); ?></label>
 
-                                                    <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-                                                    
-                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="skills" name="skills" placeholder="<?php echo renderLang($account_skills_label); ?>" value="<?php echo $user_skills ?>" required>
+                                                    <input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="skills" name="skills" placeholder="<?php echo renderLang($account_skills_label); ?>" value="<?php echo $user_skills ?>" >
 											        
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_skills_err'].'</p>'; unset($_SESSION['sys_general_edit_skills_err']); } ?>
 									
@@ -173,7 +171,7 @@ if(checkSession()) {
 
                                                     <!-- <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span> -->
 
-                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mantra" name="mantra" placeholder="<?php echo renderLang($account_mantra_label); ?>" value="<?php echo $user_mantra ?>">
+                                                    <input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mantra" name="mantra" placeholder="<?php echo renderLang($account_mantra_label); ?>" value="<?php echo $user_mantra ?>">
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_mantra_err'].'</p>'; unset($_SESSION['sys_general_edit_mantra_err']); } ?>
                                                 </div>
