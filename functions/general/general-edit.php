@@ -65,9 +65,13 @@ if(checkSession()) {
 			$mantra = htmlentities(trim($_POST['mantra']));
 			$_SESSION['sys_general_edit_mantra_val'] = $mantra;
 			if(strlen($mantra) == 0) {
-				$err++;
-				$_SESSION['sys_general_edit_mantra_err'] = renderLang($general_mantra_required);
-			} 
+				$mantra = 'NA';
+			}  else {
+				if(!validateNameV1($mantra)) {
+					$err++;
+					$_SESSION['sys_general_edit_mantra_err'] = "Invalid Characters!";
+				}
+			}
 		}
 		// NICKNAME
 		$nickname = '';

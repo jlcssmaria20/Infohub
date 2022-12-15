@@ -87,7 +87,7 @@ if(checkSession()) {
 							<div class="row">
 								<div class="col-lg-3 text-center ">
 									<div class="m-3">
-										<img class="profile-user-img img-fluid img-circle" style="height:100px;"
+										<img class="profile-user-img img-fluid img-circle" style="height:200px; width: 200px"
 										src="<?php echo $_SESSION['sys_photo'] ?>"
 										alt="User profile picture">
 									</div>

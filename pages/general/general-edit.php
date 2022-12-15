@@ -122,7 +122,7 @@ if(checkSession()) {
                                 <div class="row">
                                     <div class="col-lg-3 text-center ">
                                         <div class="m-3">
-                                            <img class="profile-user-img img-fluid img-circle" style="height:100px;"
+                                            <img class="profile-user-img img-fluid img-circle" style="height:200px; width: 200px"
                                             src="<?php echo $_SESSION['sys_photo'] ?>"
                                             alt="User profile picture">
                                         </div>
@@ -171,9 +171,9 @@ if(checkSession()) {
                                                 <div class="form-group">
                                                     <label for="mantra" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_mantra_label); ?></label>
 
-                                                    <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
+                                                    <!-- <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span> -->
 
-                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mantra" name="mantra" placeholder="<?php echo renderLang($account_mantra_label); ?>" value="<?php echo $user_mantra ?>" required>
+                                                    <input type="text" minlength="4" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mantra" name="mantra" placeholder="<?php echo renderLang($account_mantra_label); ?>" value="<?php echo $user_mantra ?>">
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_mantra_err'].'</p>'; unset($_SESSION['sys_general_edit_mantra_err']); } ?>
                                                 </div>
