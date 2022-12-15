@@ -153,7 +153,7 @@ if(checkSession()) {
 																		if($host == $data['user_employee_id']){
 																			echo ' selected';
 																		}
-																		echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+																		echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 																	}
 																?>
 															</select>
@@ -223,7 +223,7 @@ if(checkSession()) {
 																			if($others == $data['user_employee_id']){
 																				echo ' selected';
 																			}
-																			echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+																			echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 																		}
 																	?>
 																</select>
