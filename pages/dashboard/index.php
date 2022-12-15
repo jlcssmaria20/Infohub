@@ -113,7 +113,7 @@ if(checkSession()) {
 									echo '</span>
 									</div>';
 								}else {
-									echo '<span class="dash-title">No Upcoming Webinars</span><br>';
+									echo '<span class="dash-title">No Upcoming Webinar</span><br>';
 									echo '<div class="dash-desc w-75">
 									<span class="text-truncate"> ';
 									echo 'Schedule webinars or events! 🎉 ' ;
@@ -219,7 +219,7 @@ if(checkSession()) {
 													$data_count++;
 												
 												
-													echo ' <tr class="clickable-row pe-auto"  data-href="/webinarandevents">';
+													echo ' <tr>';
 
 													// WEBINAR IMAGE
 													echo '<td style="width: 20%;" class="mt-3"><img src="assets/images/webinar-and-events/'.$data['webinar_img'].'" class="w-100 rounded" style="width:150px"></td>';
