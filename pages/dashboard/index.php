@@ -36,8 +36,22 @@ if(checkSession()) {
 			<section class="content-header">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-6 col-12">
+						<div class="col-sm-6 col-6">
 							<h1><i class="fa fa-tachometer-alt mr-3"></i>Dashboard</h1>
+						</div>
+						<div class="col-sm-6 col-6">
+							<h1 class="text-right">
+							<?php
+								$user_roles_display_arr = array();
+								$user_roles_arr = explode(',',$_SESSION['sys_role_ids']);
+								foreach($user_roles_arr as $user_role) {
+									if($user_role != '') {
+										$_data = getData($user_role,'roles','role');
+										array_push($user_roles_display_arr,$_data['role_name']);
+									}
+								}
+								echo implode(', ',$user_roles_display_arr);
+							?></h1>
 						</div>
 					</div>
 				</div><!-- container-fluid -->
