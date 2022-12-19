@@ -56,9 +56,13 @@ if(checkSession()) {
 			$skills = htmlentities(trim($_POST['skills']));
 			$_SESSION['sys_general_edit_skills_val'] = $skills;
 			if(strlen($skills) == 0) {
-				$err++;
-				$_SESSION['sys_general_edit_skills_err'] = renderLang($account_skills_required);
-			} 
+				$skills = 'NA';
+			}  else {
+				if(!validateNameV1($skills)) {
+					$err++;
+					$_SESSION['sys_general_edit_skills_err'] = "Invalid Characters!";
+				}
+			}
 		}
 		// MANTRA
 		$mantra = '';
@@ -66,9 +70,13 @@ if(checkSession()) {
 			$mantra = htmlentities(trim($_POST['mantra']));
 			$_SESSION['sys_general_edit_mantra_val'] = $mantra;
 			if(strlen($mantra) == 0) {
-				$err++;
-				$_SESSION['sys_general_edit_mantra_err'] = renderLang($general_mantra_required);
-			} 
+				$mantra = 'NA';
+			}  else {
+				if(!validateNameV1($mantra)) {
+					$err++;
+					$_SESSION['sys_general_edit_mantra_err'] = "Invalid Characters!";
+				}
+			}
 		}
 		// NICKNAME
 		$nickname = '';

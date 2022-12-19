@@ -82,7 +82,7 @@ if(checkSession()) {
 													echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 														echo '<option value="'.$data['user_employee_id'].'"';
-														echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+														echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 													}
 												?>
 											</select>
@@ -117,7 +117,7 @@ if(checkSession()) {
 													
 													while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 														echo '<option value="'.$data['user_employee_id'].'" id="'.$data['user_employee_id'].'"';
-														echo '> ['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+														echo '> '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 													}
 													
 												?>
@@ -164,7 +164,7 @@ if(checkSession()) {
 										<?php $err = isset($_SESSION['sys_webinar_events_add_title_err']) ? 1 : 0; ?>
 										<div class="form-group">
 											<label for="title" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($webinar_events_title); ?></label> <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
-											<input type="text" minlength="4" maxlength="100" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" list="title_choice" placeholder="<?php echo renderLang($webinar_events_title_placeholder); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_title_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_title_val'].'"'; } ?> required>
+											<input type="text" minlength="4" maxlength="100" class="titlechoice form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="title" name="title" list="title_choice" placeholder="<?php echo renderLang($webinar_events_title_placeholder); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_title_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_title_val'].'"'; } ?> required>
 											<datalist id="title_choice">
 												<option value="General Assembly Month">
 												<option value="Ice Breaker Month">
