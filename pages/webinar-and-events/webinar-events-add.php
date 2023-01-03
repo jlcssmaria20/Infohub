@@ -214,41 +214,30 @@ if(checkSession()) {
 												<input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" accept="image/*" required>
 												<label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
 												<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_img_err']); } ?>
-												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="#" style="display: none; height:150px;">
+												<img id="picture_display" class="img-thumbnail  mt-3" src="#" style="display: none; max-height:150px; width:auto;">
 											</div>
 										</div>
 									</div><!-- /col-->
-								</div><!-- /row-->
+								</div>
 								
-							</div><!-- card-body -->
+							</div>
 							<div class="card-footer text-right">
 								<a href="/webinarandevents" class="btn btn-default text-dark mr-1"><i class="fa fa-arrow-left mr-2"></i><?php echo renderLang($btn_back); ?></a>
 								<button class="btn btn-primary"><i class="fa fa-plus mr-2"></i><?php echo renderLang($webinar_events_add); ?></button>
 							</div>
-						</div><!-- card -->
+						</div>
 					</form>
-					
-				</div><!-- container-fluid -->
-			</section><!-- content -->
-			
+				</div>
+			</section>
 		</div>
-		<!-- /.content-wrapper -->
-
 		<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/child-footer.php'); ?>
-		
-	</div><!-- wrapper -->
+	</div>
 
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	<script src="/plugins/moment/moment.min.js"></script>
 	<script src="/plugins/daterangepicker/daterangepicker.js"></script>
-	<!-- bs-custom-file-input -->
 	<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script>
-		//$('[data-mask]').inputmask();
-		
-		//$('#summernote').summernote()
-		bsCustomFileInput.init();
-
 		//description maxlength
 		var maxLength = 2000;
 		function testLength(ta) {
@@ -256,11 +245,9 @@ if(checkSession()) {
 				ta.value = ta.value.substring(0, maxLength);
 			}
 		}
+		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
-		$('input[name="schedule_date"]').daterangepicker({
-			singleDatePicker: true
-		});
-
+		//image
 		function readURL(input){
             if(input.files && input.files[0]){
                 var reader = new FileReader();
@@ -270,13 +257,10 @@ if(checkSession()) {
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
 		$("#img").change(function(){
 			$('#picture_display').show();
 		  readURL(this);
 		});
-		
-		$("#title").keypress(function(e){ if(e.target.value.length==100){ alert("Ooops. Character limit reached."); } });
 
 		function myFunction(element){
 			document.getElementById("others").value = element.options[element.selectedIndex].id;
@@ -317,13 +301,13 @@ if(checkSession()) {
 				document.getElementById("ifYes3").style.visibility = "hidden";
 				document.getElementById("others3").required = false;
 			}
-		}
+		}		
 		
-		
-		//ADD AND REMOVE HOST 
+		//REMOVE HOST 
 		function removeHost(row) {
 			$("#rowhost" + row).remove();
 		}
+		//ADD HOST
 		$(document).ready(function() {
 			var i = 1;
 			$('#addhost').click(function() {
@@ -335,22 +319,22 @@ if(checkSession()) {
 							echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 							while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 								echo '<option value="'.$data['user_employee_id'].'"';
-								echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+								echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 							}
 						?>
 					</select></div></div><a href="#" onclick="removeHost(' + i + ')" class="btn btn-danger  ml-2 mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div>')
-				 
 				i++;
-				
 				}
 			});			
 		});
 
 		
-		//ADD AND REMOVE SPEAKER 
+		//REMOVE SPEAKER 
 		function removeSpeaker(row) {
 			$("#rowspeaker"  + row).remove();
 		}
+
+		//ADD SPEAKER
 		$(document).ready(function() {
 			var i = 1;
 			$('#addspeaker').click(function() {
@@ -366,20 +350,17 @@ if(checkSession()) {
 				
 					$sql = $pdo->prepare("SELECT * FROM users WHERE user_status = 0 AND temp_del = 0");
 					$sql->execute();
-					
 					while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 						echo '<option value="'.$data['user_employee_id'].'" id="'.$data['user_employee_id'].'"';
-						echo '> ['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+						echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 					}
-					
 				?>
 			</select></div></div><div class="col-lg-5"><div id="ifYes'+i+'" class="form-group" style=""><input type="text" maxlength="50" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="others' + i + '" name="others[]" placeholder="<?php echo renderLang($webinar_events_other); ?>"<?php if(isset($_SESSION['sys_webinar_events_add_others_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_others_val'].'"'; } ?> required ></div></div><div class="col"><a href="#" onclick="removeSpeaker(' + i + ')" class="btn btn-danger  mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div></div>')
-				 
 				i++;
-				
 				}
 			});			
 		});
+
 	</script>
 	
 </body>
