@@ -359,7 +359,7 @@ if(checkSession()) {
                                                 <label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
                                                 <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_img_err']); } ?>
 												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
-												<img id="picture_display" class="img-thumbnail  mt-3 w-100" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="height:150px;">
+												<img id="picture_display" class="img-thumbnail  mt-3" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="max-height:150px; width:auto;">
                                             </div>
                                         </div>
                                     </div><!-- /col-->
@@ -505,7 +505,7 @@ if(checkSession()) {
 							echo '<option value="" hidden>'.renderLang($webinar_events_select_host).'</option>';
 							while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 								echo '<option value="'.$data['user_employee_id'].'"';
-								echo '>['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+								echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 							}
 						?>
 					</select></div></div><a href="#" onclick="removeHost(' + i + ')" class="btn btn-danger  ml-2 mb-3" title="remove"><i class="fa fa-window-close mr-0"></i></a></div>')
@@ -544,7 +544,7 @@ if(checkSession()) {
 					
 					while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
 						echo '<option value="'.$data['user_employee_id'].'" id="'.$data['user_employee_id'].'"';
-						echo '> ['.$data['user_employee_id'].'] '.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
+						echo '>'.$data['user_firstname'].' '.$data['user_lastname'].'</option>';
 					}
 					
 				?>
