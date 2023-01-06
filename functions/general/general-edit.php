@@ -119,7 +119,7 @@ if(checkSession()) {
 
 			if(!validateNameV1($middlename)) {
 				$err++;
-				$_SESSION['sys_general_edit_middlename_val'] = "Invalid Characters!";
+				$_SESSION['sys_general_edit_middlename_err'] = "Invalid Characters!";
 			}
 		}
 		// LASTNAME
