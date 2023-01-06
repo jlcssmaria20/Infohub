@@ -202,6 +202,7 @@ if(checkSession()) {
                                                 <div class="form-group">
                                                     <label for="middlename" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_middlename_label); ?></label>
 
+                                                    <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                                     <input type="text" maxlength="30" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="middlename" name="middlename" placeholder="<?php echo renderLang($account_middlename_label); ?>" value="<?php echo $user_middlename ?>">
 
                                                     <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_middlename_err'].'</p>'; unset($_SESSION['sys_general_edit_middlename_err']); } ?>
