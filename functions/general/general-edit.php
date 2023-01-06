@@ -143,8 +143,7 @@ if(checkSession()) {
 		$mobile = '';
 		if(isset($_POST['mobile'])) {
 			$mobile = trim($_POST['mobile']);
-			$checkStartingNumber = substr($mobile, 0,2);
-			if (!preg_match('/^[0-9]*$/', $mobile) || strpos($checkStartingNumber, '09') === false) {
+			if (!preg_match('/^[0-9]*$/', $mobile)) {
 				$err++;
 				$_SESSION['sys_general_edit_user_mobile_err'] = renderLang($users_mobile_err);
 			}else{
