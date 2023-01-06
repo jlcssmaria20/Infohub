@@ -347,7 +347,6 @@ if(checkSession()) {
 					array_push($change_logs,$tmp);
 				}
 				if($user_status != $data['user_status']) {
-					echo $user_status.' '.$data['user_status'];
 					$tmp = 'lang_status::'.$data['user_status'].'=='.$user_status;
 					array_push($change_logs,$tmp);
 				}
