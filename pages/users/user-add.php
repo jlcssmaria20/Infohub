@@ -161,7 +161,7 @@ if(checkSession()) {
 													$sql = $pdo->prepare("SELECT * FROM positions ORDER BY position_name ASC");
 													$sql->execute();
 													while($data=$sql->fetch(PDO::FETCH_ASSOC)){
-														$data++;
+														// $data++;
 														echo '<option value="'.$data['position_id'].'">'.$data['position_name'].'</option>';
 													}
 												?>
