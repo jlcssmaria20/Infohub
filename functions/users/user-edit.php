@@ -272,10 +272,12 @@ if(checkSession()) {
 				}
 			}
 
-			$user_enddate = '';
+			$user_enddate = 0;
 			if ($user_status == 1 && $user_enddate == 0) {
 				$date = new DateTime();
 				$user_enddate  = $date->format('Ymd');
+			}else{
+				$user_enddate = date('Ymd', strtotime($_POST['user_enddate']));
 			}
 
 			$user_photo_is_default = 0;
