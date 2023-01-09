@@ -27,6 +27,8 @@ if(checkSession()) {
 		// Check if file was uploaded without errors
 		if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
 			$allowed_ext = array("jpg" => "image/jpg",
+								"JPG" => "image/JPG",
+								"PNG" => "image/PNG",
 								"jpeg" => "image/jpeg",
 								"png" => "image/png");
 		  
