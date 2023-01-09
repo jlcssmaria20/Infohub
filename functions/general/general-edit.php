@@ -47,10 +47,17 @@ if(checkSession()) {
 			// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			// }    
 						
+		}else{
+			$filepath = '/assets/images/team-images/'.$name;
+			$_SESSION['sys_photo'] = $filepath;
 		}
+		
 		if($_FILES["photo"]["error"] == 1){
 			$err++; 
 			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+		}else{
+			$filepath = '/assets/images/team-images/'.$name;
+			$_SESSION['sys_photo'] = $filepath;
 		}
 		// SKILLS
 		$skills = '';
