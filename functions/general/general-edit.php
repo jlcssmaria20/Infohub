@@ -25,7 +25,9 @@ if(checkSession()) {
 		$size = $_FILES["photo"]["size"];
 		
 		// Check if file was uploaded without errors
-		if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+		if(isset($_FILES["photo"])) {
+			$filepath = '/assets/images/team-images/'.$name;
+			$_SESSION['sys_photo'] = $filepath;
 			$allowed_ext = array("jpg" => "image/jpg",
 								"JPG" => "image/JPG",
 								"PNG" => "image/PNG",
@@ -46,19 +48,20 @@ if(checkSession()) {
 			// 	$err++; 
 			// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			// }    
+			if($_FILES["photo"]["error"] == 1){
+				$err++; 
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+			}
 						
-		}else{
-			$filepath = '/assets/images/team-images/'.$name;
-			$_SESSION['sys_photo'] = $filepath;
 		}
-		
-		if($_FILES["photo"]["error"] == 1){
-			$err++; 
-			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
-		}else{
-			$filepath = '/assets/images/team-images/'.$name;
-			$_SESSION['sys_photo'] = $filepath;
-		}
+
+		// if($_FILES["photo"]["error"] == 1){
+		// 	$err++; 
+		// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+		// }else{
+		// 	$filepath = '/assets/images/team-images/'.$name;
+		// 	$_SESSION['sys_photo'] = $filepath;
+		// }
 		// SKILLS
 		$skills = '';
 		if(isset($_POST['skills'])) {
