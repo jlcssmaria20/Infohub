@@ -16,18 +16,18 @@ if(checkSession()) {
 	$sql->execute();
 	$data = $sql->fetch(PDO::FETCH_ASSOC);
 	if($sql->rowCount()) {
-
-	// PHOTO
-		$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
-		$target_file = $target_dir.basename($_FILES['photo']['name']);
-		$name = $_FILES["photo"]["name"];
-		$type = $_FILES["photo"]["type"];
-		$size = $_FILES["photo"]["size"];
-		
+	
 		// Check if file was uploaded without errors
 		if(isset($_FILES["photo"])) {
-			$filepath = '/assets/images/team-images/'.$name;
-			$_SESSION['sys_photo'] = $filepath;
+
+			// PHOTO
+			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
+			$target_file = $target_dir.basename($_FILES['photo']['name']);
+			$name = $_FILES["photo"]["name"];
+			$type = $_FILES["photo"]["type"];
+			$size = $_FILES["photo"]["size"];
+
+			$_SESSION['sys_photo'] = $target_file;
 			$allowed_ext = array("jpg" => "image/jpg",
 								"JPG" => "image/JPG",
 								"PNG" => "image/PNG",
