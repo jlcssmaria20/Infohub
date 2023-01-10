@@ -38,17 +38,18 @@ if(checkSession()) {
 				$_SESSION['sys_general_edit_photo_err'] = "Incorrect File Type ( Choose jpg or png file type only)";
 			}    
 				  
-			$maxsize = 200000;
+			// $maxsize = 200000;
 	
-			if ($size > $maxsize) {
-				$err++; 
-				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
-			}    
-						  
-		  
+			// if ($size > $maxsize) {
+			// 	$err++; 
+			// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+			// }    
+						
 		}
-
-
+		if($_FILES["photo"]["error"] == 1){
+			$err++; 
+			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+		}
 		// SKILLS
 		$skills = '';
 		if(isset($_POST['skills'])) {
@@ -118,7 +119,7 @@ if(checkSession()) {
 
 			if(!validateNameV1($middlename)) {
 				$err++;
-				$_SESSION['sys_general_edit_middlename_val'] = "Invalid Characters!";
+				$_SESSION['sys_general_edit_middlename_err'] = "Invalid Characters!";
 			}
 		}
 		// LASTNAME
@@ -143,7 +144,8 @@ if(checkSession()) {
 		$mobile = '';
 		if(isset($_POST['mobile'])) {
 			$mobile = trim($_POST['mobile']);
-			if (!preg_match('/^[0-9]*$/', $mobile)) {
+      $checkStartingNumber = substr($mobile, 0,2);
+			if (!preg_match('/^[0-9]*$/', $mobile) || strpos($checkStartingNumber, '09') === false) {
 				$err++;
 				$_SESSION['sys_general_edit_user_mobile_err'] = renderLang($users_mobile_err);
 			}else{
