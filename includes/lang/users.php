@@ -267,6 +267,10 @@ $users_email_alread_in_use = array(
 	'Email already in use.',
 	'メールアドレスが既に存在しています。'
 );
+$use_company_email= array(
+	'Please use company email.',
+	''
+);
 $users_user_added = array(
 	'User added!',
 	'ユーザーが追加されました！'

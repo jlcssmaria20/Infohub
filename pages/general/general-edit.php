@@ -280,7 +280,7 @@ if(checkSession()) {
 
                                                     <input type="text" minlength="8" maxlength="15" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mobile" name="mobile" placeholder="<?php echo renderLang($account_mobile_label); ?>" value="<?php echo $user_mobile ?>" required>
 
-                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_mobile_err']); } ?>
+                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_user_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_mobile_err']); } ?>
                                                 </div>
                                             </div>
                                         </div>

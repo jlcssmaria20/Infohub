@@ -67,17 +67,26 @@ if(checkSession()) {
 					}
 				}
 			}
-
+			// $checkStartingNumber = substr($mobile, 0,2);
+			// strpos($checkStartingNumber, '09') === false
 			// EMAIL
 			$email = '';
 			if(isset($_POST['email'])) {
 				$email = htmlentities(strtolower(trim($_POST['email'])));
+
+				$atCount = strpos($email,"@");
+				$emailChecker = substr($email,$atCount);
+
 				$_SESSION['sys_users_edit_email_val'] = $email;
 				if(strlen($email) == 0) {
 					$err++;
 					$_SESSION['sys_users_edit_email_err'] = renderLang($users_email_required);
-				} else {
-
+				}
+				else {
+					if (strpos($emailChecker, '@trans-cosmos.co.jp') === false) {
+						$err++;
+						$_SESSION['sys_users_edit_email_err'] = renderLang($use_company_email);
+					}
 					// check if email already in use
 					$sql = $pdo->prepare("SELECT user_email, temp_del FROM users WHERE user_email = :user_email AND user_id <> :user_id AND temp_del = 0 LIMIT 1");
 					$bind_param = array(
