@@ -307,13 +307,42 @@ if(checkSession()) {
 	<?php require($_SERVER['DOCUMENT_ROOT'].'/includes/common/js.php'); ?>
 	
     <script>
-        
+
 		// for input image
 		$('#photo').on('change',function(){
+       
 			//get the file name
 			var photo = $(this).val();
+            var photo_size = document.getElementById("photo").files[0].size
+
+            var fileExtension = ['jpeg', 'jpg', 'png', 'PNG', 'JPG', "JPEG"];
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+
+                alert("Incorrect File Type ( Choose jpg or png file type only)");
+                $('.btn-primary').attr('disabled','disabled')
+
+            }else{
+
+                if(photo_size > 2097152){
+
+                alert('Image size exceeds 2,000 KB')
+                $('.btn-primary').attr('disabled','disabled')
+                
+                }else{
+                    $('.btn-primary').removeAttr('disabled');
+                }
+                // $('.btn-primary').removeAttr('disabled');
+            }
+
+            //2MB
+            // if(photo_size > 2097152){
+            //     alert('Image size exceeds 2,000 KB')
+            //     $('.btn-primary').attr('disabled','disabled')
+            // }else{
+            //     $('.btn-primary').removeAttr('disabled');
+            // }
 			//replace the "Choose a file" label
-			$(this).next('.custom-file-label').html(photo);
+            $(this).next('.custom-file-label').html(photo);
 		});
     </script>
 </body>

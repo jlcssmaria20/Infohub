@@ -210,8 +210,7 @@ if(checkSession()) {
 				$tmp = 'user_photo::'.$data['user_photo'].'=='.$name;
 				array_push($change_logs,$tmp);
 			}
-			print_r($change_logs);
-			return;
+	
 			// check if there is are changes made
 			if(count($change_logs) > 0) {
 			
@@ -243,7 +242,6 @@ if(checkSession()) {
 					user_mobile 			= :user_mobile
 					WHERE user_id = :user_id");
 			
-				return;
 				$bind_param = array(
 					':user_id'            	=> $user_id,
 					':user_skills'   		=> $skills,
