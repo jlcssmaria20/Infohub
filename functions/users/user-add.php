@@ -327,7 +327,7 @@ if(checkSession()) {
 				':role_ids'           => $role_ids,
 				':team_id'            => $team_id,
 				':user_hiredate'      => $user_hiredate,
-				':user_enddate'       => 20270101,
+				':user_enddate'       => 0,
 				':user_mantra_in_life' => $mantra_in_life,
 				':user_skills'        => $skills,
 				':user_mobile'        => $user_mobile
