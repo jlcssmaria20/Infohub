@@ -417,9 +417,6 @@ if(checkSession()) {
 	<!-- bs-custom-file-input -->
 	<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script>
-		$('[data-mask]').inputmask();
-		
-		//$('#summernote').summernote()
 		bsCustomFileInput.init();
 
 		var maxLength = 2000;
