@@ -14,7 +14,7 @@ if(checkSession()) {
 		$err = 0;
 
 		// PROCESS FORM
-		$role_id = decryptID($_POST['id']);
+		$role_id = decryptID($_GET['id']);
 
 			$account_id = $_SESSION['sys_id'];
 			$upass = $_POST['upass'];
@@ -55,6 +55,8 @@ if(checkSession()) {
 
 					// update roles in users table
 					$sql_update = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
+					echo $role_id;
+					return;
 					$sql_update->bindParam(":role_id", $role_id);
 					$sql_update->execute();
 					
