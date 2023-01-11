@@ -55,33 +55,30 @@ if(checkSession()) {
 
 					// update roles in users table
 					$sql_update = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
-					echo $role_id;
-					echo "SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, $role_id ,%'";
-					return;
-					$sql_update->bindParam(":role_id", $role_id);
 					$sql_update->execute();
-					
-					while($data = $sql_update->fetch(PDO::FETCH_ASSOC)) {
+					if($sql_update->rowCount() > 0){
+						while($data = $sql_update->fetch(PDO::FETCH_ASSOC)) {
 
-						// get current row ID
-						$data_id = $data['user_id'];
-
-						// update roles, remove role ID, replace with comma
-						$role_ids = $data['role_ids'];
-						$role_ids = str_replace(','.$id.',',',',$role_ids);
-
-						// update this row
-						$sql2 = $pdo->prepare("UPDATE users SET role_ids = :role_ids WHERE user_id = :user_id LIMIT 1");
-						$bind_param = array(
-							':role_ids' => $roles,
-							':user_id' => $role_ids
-						);
-						$sql2->execute($bind_param);
+							// get current row ID
+							$data_id = $data['user_id'];
+	
+							// update roles, remove role ID, replace with comma
+							$role_ids = $data['role_ids'];
+							$role_ids = str_replace(','.$id.',',',',$role_ids);
+	
+							// update this row
+							$sql2 = $pdo->prepare("UPDATE users SET role_ids = :role_ids WHERE user_id = :user_id LIMIT 1");
+							$bind_param = array(
+								':role_ids' => $roles,
+								':user_id' => $role_ids
+							);
+							$sql2->execute($bind_param);
+						}
 					}
+					
 
 					// record to system log
 					// systemLog('role',$role_id,'delete','');
-					echo "utet";
 					$err_code = 0;
 
 				} else {
