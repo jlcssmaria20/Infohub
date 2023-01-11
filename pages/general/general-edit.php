@@ -278,9 +278,9 @@ if(checkSession()) {
 
                                                     <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
 
-                                                    <input pattern="09[0-9]{8,9}" type="text" minlength="8" maxlength="15" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mobile" name="mobile" placeholder="<?php echo renderLang($account_mobile_label); ?>" value="<?php echo $user_mobile ?>" required>
+                                                    <input type="text" minlength="8" maxlength="15" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mobile" name="mobile" placeholder="<?php echo renderLang($account_mobile_label); ?>" value="<?php echo $user_mobile ?>" required>
 
-                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_mobile_err']); } ?>
+                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_user_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_mobile_err']); } ?>
                                                 </div>
                                             </div>
                                         </div>

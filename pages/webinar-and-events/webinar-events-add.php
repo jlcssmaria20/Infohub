@@ -180,7 +180,8 @@ if(checkSession()) {
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
 												</div>
-												<input type="text" class="form-control" name="schedule_date" data-inputmask-alias="datetime" data-inputmask-inputformat="mmddyyyy" data-mask="" im-insert="false" value="<?= date('m') . '/' . date('d') . '/' . date('Y')?>">
+												<input type="text" data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" data-mask="" im-insert="false" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="schedule_date" name="schedule_date"
+											    <?php if(isset($_SESSION['sys_webinar_events_add_schedule_date_val'])) { echo ' value="'.$_SESSION['sys_webinar_events_add_schedule_date_val'].'"'; } ?>>
 											</div>
 										</div>
 										<?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_add_schedule_date_err'].'</p>'; unset($_SESSION['sys_webinar_events_add_schedule_date_err']); } ?>
@@ -239,6 +240,10 @@ if(checkSession()) {
 	<script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<script>
 		//description maxlength
+		bsCustomFileInput.init();
+		$('input[name="schedule_date"]').daterangepicker({
+			singleDatePicker: true
+		});
 		var maxLength = 2000;
 		function testLength(ta) {
 			if(ta.value.length > maxLength) {
