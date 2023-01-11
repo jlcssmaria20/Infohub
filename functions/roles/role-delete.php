@@ -54,10 +54,10 @@ if(checkSession()) {
 					$sql->execute();
 
 					// update roles in users table
-					$sql = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
-					$sql->bindParam(":role_id",$role_id);
-					$sql->execute();
-					while($data = $sql->fetch(PDO::FETCH_ASSOC)) {
+					$sql_update = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
+					$sql_update->bindParam(":role_id", $role_id);
+					$sql_update->execute();
+					while($data = $sql_update->fetch(PDO::FETCH_ASSOC)) {
 
 						// get current row ID
 						$data_id = $data['user_id'];
