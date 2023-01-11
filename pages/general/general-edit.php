@@ -272,7 +272,7 @@ if(checkSession()) {
                                             </div>
                                             <!-- CONTACT NUMBER -->
                                             <div class="col-lg-4">
-                                                <?php $err = isset($_SESSION['sys_general_edit_mobile_err']) ? 1 : 0; ?>
+                                                <?php $err = isset($_SESSION['sys_general_edit_user_mobile_err']) ? 1 : 0; ?>
                                                 <div class="form-group">
                                                     <label for="mobile" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($account_mobile_label); ?></label>
 
@@ -280,7 +280,7 @@ if(checkSession()) {
 
                                                     <input type="text" minlength="8" maxlength="15" class="form-control required<?php if($err) { echo ' is-invalid'; } ?>" id="mobile" name="mobile" placeholder="<?php echo renderLang($account_mobile_label); ?>" value="<?php echo $user_mobile ?>" required>
 
-                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_user_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_mobile_err']); } ?>
+                                                    <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_general_edit_user_mobile_err'].'</p>'; unset($_SESSION['sys_general_edit_user_mobile_err']); } ?>
                                                 </div>
                                             </div>
                                         </div>

@@ -82,11 +82,14 @@ if(checkSession()) {
 					$err++;
 					$_SESSION['sys_users_edit_email_err'] = renderLang($users_email_required);
 				}
+
+				elseif (strpos($emailChecker, '@trans-cosmos.co.jp') === false) {
+					$err++;
+					$_SESSION['sys_users_edit_email_err'] = renderLang($use_company_email);
+				}
+				
 				else {
-					if (strpos($emailChecker, '@trans-cosmos.co.jp') === false) {
-						$err++;
-						$_SESSION['sys_users_edit_email_err'] = renderLang($use_company_email);
-					}
+					
 					// check if email already in use
 					$sql = $pdo->prepare("SELECT user_email, temp_del FROM users WHERE user_email = :user_email AND user_id <> :user_id AND temp_del = 0 LIMIT 1");
 					$bind_param = array(
