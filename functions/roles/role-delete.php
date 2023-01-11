@@ -101,5 +101,5 @@ if(checkSession()) {
 }
 
 renderConfirmDelete($err_code,'sys_roles_suc','roles_messages_role_removed');
-//header('location: /roles');
+header('location: /roles');
 ?>
