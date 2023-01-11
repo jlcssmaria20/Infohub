@@ -187,7 +187,7 @@ if(checkSession()) {
 <?php
 		} else { // ID not found
 
-			$_SESSION['sys_team_err'] = renderLang($team_team_not_found);
+			$_SESSION['sys_team_err'] = "Team not found.";
 			header('location: /team');
 
 		}

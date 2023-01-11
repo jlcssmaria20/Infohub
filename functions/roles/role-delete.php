@@ -14,7 +14,7 @@ if(checkSession()) {
 		$err = 0;
 
 		// PROCESS FORM
-		$role_id = decryptID($_POST['role_id']);
+		$role_id = decryptID($_GET['id']);
 
 			$account_id = $_SESSION['sys_id'];
 			$upass = $_POST['upass'];
@@ -100,6 +100,6 @@ if(checkSession()) {
 		}
 }
 
-renderConfirmDelete($err_code,'sys_roles_suc','roles_messages_role_removed');
-header('location: /roles');
+renderConfirmDelete($err_code, 'sys_roles_suc', 'roles_messages_role_removed');
+// header('location: /roles');
 ?>

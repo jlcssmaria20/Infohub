@@ -85,7 +85,7 @@ RewriteRule ^add-role												        pages/roles/role-add.php [NC,L]
 RewriteRule ^submit-add-role										        functions/roles/role-add.php [NC,L]
 RewriteRule ^edit-role/([a-zA-Z0-9_]+)								        pages/roles/role-edit.php?id=$1 [NC,L]
 RewriteRule ^submit-edit-role										        functions/roles/role-edit.php [NC,L]
-RewriteRule ^delete-role											        functions/roles/role-delete.php [NC,L]
+RewriteRule ^delete-role/([a-zA-Z0-9_]+)									functions/roles/role-delete.php?id=$1 [NC,L]
 
 # USERS ------------------------------------------------------------------------------------------------
 RewriteRule ^users													        pages/users/users.php [NC,L]

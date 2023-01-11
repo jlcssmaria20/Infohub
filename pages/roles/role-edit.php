@@ -194,7 +194,7 @@ if(checkSession()) {
 			<div class="modal-header bg-danger">
 				<h4 class="modal-title"><?php echo renderLang($modal_delete_confirmation); ?></h4>
 			</div>
-			<form action="/delete-role" method="post" id="form_delete">
+			<form action="/delete-role/<?php echo $_GET['id'] ?>" method="post" id="form_delete">
 				<input type="hidden" name="role_id" value="<?php echo encryptID($role_id); ?>">
 				<div class="modal-body align-items-start">
 					<p class="font-weight-bold">
@@ -279,6 +279,7 @@ if(checkSession()) {
 				// hideLoading()
 				$('.btn-delete').prop('disabled', false);
 				var response_arr = response.split(',');
+				console.log(response)
 				if(response_arr[0] == 1) { // val is 1
 					window.location.href = '/roles';
 				} else {
