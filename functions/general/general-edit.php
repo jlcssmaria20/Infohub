@@ -227,8 +227,8 @@ if(checkSession()) {
 				$filepath = '/assets/images/team-images/'.$photo;
 				$_SESSION['sys_photo'] = $filepath;
 
-				echo $filepath;
-				return;
+			
+				
 
 				// update account language table
 				$sql = $pdo->prepare("UPDATE users SET
@@ -241,7 +241,8 @@ if(checkSession()) {
 					user_lastname 			= :user_lastname,
 					user_mobile 			= :user_mobile
 					WHERE user_id = :user_id");
-				
+				echo $photo;
+				return;
 				$bind_param = array(
 					':user_id'            	=> $user_id,
 					':user_skills'   		=> $skills,
