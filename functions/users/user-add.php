@@ -15,6 +15,7 @@ if(checkSession()) {
 		//  TEAM 
 		
 		$team_id = 0;
+		$invalid = "Invalid Characters!";
 		
 		if(isset($_POST['team_id'])) {
 			$team_id = strtoupper(trim($_POST['team_id']));
@@ -123,7 +124,7 @@ if(checkSession()) {
 			} else {
 				if(!validateNameV1($nickname)) {
 					$err++;
-					$_SESSION['sys_users_add_nickname_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_users_add_nickname_err'] = $invalid;
 				}
 			}
 		}
@@ -139,7 +140,7 @@ if(checkSession()) {
 			} else {
 				if(!validateNameV1($firstname)) {
 					$err++;
-					$_SESSION['sys_users_add_firstname_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_users_add_firstname_err'] = $invalid;
 				}
 			}
 		}
@@ -151,7 +152,7 @@ if(checkSession()) {
 			$_SESSION['sys_users_add_middlename_val'] = $middlename;
 			if(!validateNameV1($middlename)) {
 				$err++;
-				$_SESSION['sys_users_add_middleame_err'] = renderLang($lang_invalid_characters);
+				$_SESSION['sys_users_add_middleame_err'] = $invalid;
 			}
 		}
 		
@@ -166,7 +167,7 @@ if(checkSession()) {
 			} else {
 				if(!validateNameV1($lastname)) {
 					$err++;
-					$_SESSION['sys_users_add_lastname_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_users_add_lastname_err'] = $invalid;
 				}
 			}
 		}

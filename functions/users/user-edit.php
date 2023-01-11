@@ -16,6 +16,7 @@ if(checkSession()) {
 		$sql->bindParam(":user_id", $user_id);
 		$sql->execute();
 		$data = $sql->fetch(PDO::FETCH_ASSOC);
+		$invalid = "Invalid Characters!";
 		if($sql->rowCount()) {
 
 			// PROCESS FORM
@@ -118,7 +119,7 @@ if(checkSession()) {
 				} else {
 					if(!validateNameV1($nickname)) {
 						$err++;
-						$_SESSION['sys_users_edit_nickname_err'] = renderLang($lang_invalid_characters);
+						$_SESSION['sys_users_edit_nickname_err'] = $invalid;
 					}
 				}
 			}
@@ -134,7 +135,7 @@ if(checkSession()) {
 				} else {
 					if(!validateNameV1($firstname)) {
 						$err++;
-						$_SESSION['sys_users_edit_firstname_err'] = renderLang($lang_invalid_characters);
+						$_SESSION['sys_users_edit_firstname_err'] = $invalid;
 					}
 				}
 			}
@@ -146,7 +147,7 @@ if(checkSession()) {
 				$_SESSION['sys_users_edit_middlename_val'] = $middlename;
 				if(!validateNameV1($middlename)) {
 					$err++;
-					$_SESSION['sys_users_edit_middlename_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_users_edit_middlename_err'] = $invalid;
 				}
 			}
 
@@ -161,7 +162,7 @@ if(checkSession()) {
 				} else {
 					if(!validateNameV1($lastname)) {
 						$err++;
-						$_SESSION['sys_users_edit_lastname_err'] = renderLang($lang_invalid_characters);
+						$_SESSION['sys_users_edit_lastname_err'] = $invalid;
 					}
 				}
 			}

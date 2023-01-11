@@ -10,7 +10,7 @@ if(checkSession()) {
 
 		// set page
 		$page = 'admins';
-	
+		$invalid = "Invalid Characters!";
 		$err = 0;
 		$admin_id = decryptID($_POST['id']);
 		
@@ -59,7 +59,7 @@ if(checkSession()) {
 				} else {
 					if(!validateNameV1($firstname)) {
 						$err++;
-						$_SESSION['sys_admins_edit_firstname_err'] = renderLang($lang_invalid_characters);
+						$_SESSION['sys_admins_edit_firstname_err'] = $invalid;
 					}
 				}
 			}
@@ -75,7 +75,7 @@ if(checkSession()) {
 				} else {
 					if(!validateNameV1($lastname)) {
 						$err++;
-						$_SESSION['sys_admins_edit_lastname_err'] = renderLang($lang_invalid_characters);
+						$_SESSION['sys_admins_edit_lastname_err'] = $invalid;
 					}
 				}
 			}

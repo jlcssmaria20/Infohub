@@ -9,7 +9,7 @@ if(checkSession()) {
 	if(checkPermission('admin-add')) {
 	
 		$err = 0;
-		
+		$invalid = "Invalid Characters!";
 		// PROCESS FORM
 		
 		// USERNAME
@@ -47,7 +47,7 @@ if(checkSession()) {
 			} else {
 				if(!validateNameV1($firstname)) {
 					$err++;
-					$_SESSION['sys_admins_add_firstname_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_admins_add_firstname_err'] = $invalid;
 				}
 			}
 		}
@@ -63,7 +63,7 @@ if(checkSession()) {
 			} else {
 				if(!validateNameV1($lastname)) {
 					$err++;
-					$_SESSION['sys_admins_add_lastname_err'] = renderLang($lang_invalid_characters);
+					$_SESSION['sys_admins_add_lastname_err'] =  $invalid;
 				}
 			}
 		}
