@@ -56,6 +56,7 @@ if(checkSession()) {
 					// update roles in users table
 					$sql_update = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
 					echo $role_id;
+					echo "SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, $role_id ,%'";
 					return;
 					$sql_update->bindParam(":role_id", $role_id);
 					$sql_update->execute();
