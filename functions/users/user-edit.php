@@ -252,8 +252,12 @@ if(checkSession()) {
 				$mantra_in_life = $_POST['mantra_in_life'];
 				$_SESSION['sys_users_edit_mantra_in_life_val'] = $mantra_in_life;
 				if(strlen($mantra_in_life) == 0) {
-					$err++;
-					$_SESSION['sys_users_edit_mantra_in_life_err'] = renderLang($users_mantra_in_life_required);
+					$mantra_in_life = 'NA';
+				}  else {
+					if(!validateNameV1($mantra_in_life)) {
+						$err++;
+						$_SESSION['sys_users_edit_mantra_in_life_err'] = "Invalid Characters!";
+					}
 				}
 			}
 
@@ -263,8 +267,12 @@ if(checkSession()) {
 				$skills = $_POST['skills'];
 				$_SESSION['sys_users_edit_skills_val'] = $skills;
 				if(strlen($skills) == 0) {
-					$err++;
-					$_SESSION['sys_users_edit_skills_err'] = renderLang($users_skills_required);
+					$skills = 'NA';
+				}  else {
+					if(!validateNameV1($skills)) {
+						$err++;
+						$_SESSION['sys_users_edit_skills_err'] = "Invalid Characters!";
+					}
 				}
 			}
 			
@@ -286,11 +294,11 @@ if(checkSession()) {
 			}
 
 			$user_enddate = 0;
-			if ($user_status == 1 && $user_enddate == 0) {
+			if ($user_status == 1) {
 				$date = new DateTime();
 				$user_enddate  = $date->format('Ymd');
 			}else{
-				$user_enddate = date('Ymd', strtotime($_POST['user_enddate']));
+				$user_enddate = 0;
 			}
 
 			$user_photo_is_default = 0;
