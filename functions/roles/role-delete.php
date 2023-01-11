@@ -14,7 +14,7 @@ if(checkSession()) {
 		$err = 0;
 
 		// PROCESS FORM
-		$role_id = decryptID($_GET['id']);
+		$role_id = decryptID($_POST['id']);
 
 			$account_id = $_SESSION['sys_id'];
 			$upass = $_POST['upass'];
