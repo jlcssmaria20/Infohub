@@ -151,6 +151,11 @@ $users_mobile_err = array(
 	'Only numbers are allowed.',
 	''
 );
+
+$users_mobile_09_err = array(
+	'Number should start with 09.',
+	''
+);
 $users_nickname_placeholder = array(
 	'e.g. Trataro',
 	'例: トラタロー'

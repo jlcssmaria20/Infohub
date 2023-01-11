@@ -63,11 +63,21 @@ if(checkSession()) {
 		$email = '';
 		if(isset($_POST['email'])) {
 			$email = htmlentities(strtolower(trim($_POST['email'])));
+
+			$atCount = strpos($email,"@");
+			$emailChecker = substr($email,$atCount);
+
 			$_SESSION['sys_users_add_email_val'] = $email;
 			if(strlen($email) == 0) {
 				$err++;
 				$_SESSION['sys_users_add_email_err'] = renderLang($users_email_required);
-			} else {
+			}
+			elseif (strpos($emailChecker, '@trans-cosmos.co.jp') === false) {
+				$err++;
+				$_SESSION['sys_users_edit_email_err'] = renderLang($use_company_email);
+			}
+			
+			else {
 
 				// check if email already in use
 				$sql = $pdo->prepare("SELECT user_email, temp_del FROM users WHERE user_email = :email AND temp_del = 0 LIMIT 1");
@@ -77,7 +87,7 @@ if(checkSession()) {
 					$err++;
 					$_SESSION['sys_users_add_email_err'] = renderLang($users_email_alread_in_use);
 				}
-			}
+			}				
 		}
 		
 		// MANTRA IN LIFE
