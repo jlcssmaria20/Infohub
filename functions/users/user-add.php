@@ -74,7 +74,7 @@ if(checkSession()) {
 			}
 			elseif (strpos($emailChecker, '@trans-cosmos.co.jp') === false) {
 				$err++;
-				$_SESSION['sys_users_edit_email_err'] = renderLang($use_company_email);
+				$_SESSION['sys_users_add_email_err'] = renderLang($use_company_email);
 			}
 			
 			else {
