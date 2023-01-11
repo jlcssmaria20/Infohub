@@ -349,17 +349,18 @@ if(checkSession()) {
                                     </div><!-- /col-->
                     
                                     <!-- WEBINAR IMAGES-->
-                                    <div class="col-3">
+									<div class="col-3">
                                         <?php $err = isset($_SESSION['sys_webinar_events_edit_img_err']) ? 1 : 0; ?>
                                         <div class="form-group">
                                             <label for="img" class="mr-1<?php if($err) { echo ' text-danger'; } ?>"><?php if($err) { echo '<i class="far fa-times-circle mr-1"></i>'; } echo renderLang($announcements_img_label); ?></label> 
                                             <span class="right badge badge-danger"><?php echo renderLang($label_required); ?></span>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input required<?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img" accept="image/*">
-                                                <label for="imgs" class="custom-file-label"><?php echo renderLang($webinar_events_img_placeholder); ?></label>
+                                                <input type="file" class="custom-file-input <?php if($err) { echo ' is-invalid'; } ?>" id="img" name="img">
+                                                <label for="img" class="custom-file-label"><?php echo $webinar_img; ?></label>
                                                 <?php if($err) { echo '<p class="error-message text-danger mt-1">'.$_SESSION['sys_webinar_events_edit_img_err'].'</p>'; unset($_SESSION['sys_webinar_events_edit_img_err']); } ?>
-												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
+												
 												<img id="picture_display" class="img-thumbnail  mt-3" src="/assets/images/webinar-and-events/<?php echo $webinar_img; ?>" style="max-height:150px; width:auto;">
+												<input type="hidden" name="file_src" value="<?php echo $webinar_img; ?>">
                                             </div>
                                         </div>
                                     </div><!-- /col-->
