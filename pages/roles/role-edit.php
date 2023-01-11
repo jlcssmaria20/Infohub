@@ -280,7 +280,7 @@ if(checkSession()) {
 				$('.btn-delete').prop('disabled', false);
 				var response_arr = response.split(',');
 				console.log(response)
-				if(response_arr[1] == "success") { // val is 1
+				if(response_arr[0] == 1) { // val is 1
 					window.location.href = '/roles';
 				} else {
 					$('.modal-error')
