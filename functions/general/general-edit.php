@@ -1,3 +1,4 @@
+
 <?php
 // INCLUDES
 require($_SERVER['DOCUMENT_ROOT'].'/includes/config.php');
@@ -16,17 +17,21 @@ if(checkSession()) {
 	$sql->execute();
 	$data = $sql->fetch(PDO::FETCH_ASSOC);
 	if($sql->rowCount()) {
-
-	// PHOTO
-		$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
-		$target_file = $target_dir.basename($_FILES['photo']['name']);
-		$name = $_FILES["photo"]["name"];
-		$type = $_FILES["photo"]["type"];
-		$size = $_FILES["photo"]["size"];
-		
+	
 		// Check if file was uploaded without errors
-		if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+		if(isset($_FILES["photo"])) {
+
+			// PHOTO
+			$target_dir = $_SERVER["DOCUMENT_ROOT"].'/assets/images/team-images/';
+			$target_file = $target_dir.basename($_FILES['photo']['name']);
+			$name = $_FILES["photo"]["name"];
+			$type = $_FILES["photo"]["type"];
+			$size = $_FILES["photo"]["size"];
+
+			$_SESSION['sys_photo'] = $target_file;
 			$allowed_ext = array("jpg" => "image/jpg",
+								"JPG" => "image/JPG",
+								"PNG" => "image/PNG",
 								"jpeg" => "image/jpeg",
 								"png" => "image/png");
 		  
@@ -44,12 +49,20 @@ if(checkSession()) {
 			// 	$err++; 
 			// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
 			// }    
+			if($_FILES["photo"]["error"] == 1){
+				$err++; 
+				$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+			}
 						
 		}
-		if($_FILES["photo"]["error"] == 1){
-			$err++; 
-			$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
-		}
+
+		// if($_FILES["photo"]["error"] == 1){
+		// 	$err++; 
+		// 	$_SESSION['sys_general_edit_photo_err'] = renderLang($settings_general_update_exceeds_size);
+		// }else{
+		// 	$filepath = '/assets/images/team-images/'.$name;
+		// 	$_SESSION['sys_photo'] = $filepath;
+		// }
 		// SKILLS
 		$skills = '';
 		if(isset($_POST['skills'])) {
@@ -144,8 +157,7 @@ if(checkSession()) {
 		$mobile = '';
 		if(isset($_POST['mobile'])) {
 			$mobile = trim($_POST['mobile']);
-      $checkStartingNumber = substr($mobile, 0,2);
-			if (!preg_match('/^[0-9]*$/', $mobile) || strpos($checkStartingNumber, '09') === false) {
+			if (!preg_match('/^[0-9]*$/', $mobile)) {
 				$err++;
 				$_SESSION['sys_general_edit_user_mobile_err'] = renderLang($users_mobile_err);
 			}else{
