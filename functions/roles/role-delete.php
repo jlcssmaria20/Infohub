@@ -57,7 +57,7 @@ if(checkSession()) {
 					$sql_update = $pdo->prepare("SELECT user_id, role_ids FROM users WHERE role_ids LIKE '%, :role_id ,%'");
 					$sql_update->bindParam(":role_id", $role_id);
 					$sql_update->execute();
-					echo "utet";
+					
 					while($data = $sql_update->fetch(PDO::FETCH_ASSOC)) {
 
 						// get current row ID
@@ -78,7 +78,7 @@ if(checkSession()) {
 
 					// record to system log
 					// systemLog('role',$role_id,'delete','');
-
+					echo "utet";
 					$err_code = 0;
 
 				} else {
